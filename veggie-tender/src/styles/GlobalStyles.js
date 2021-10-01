@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
 }
 html{
     font-family: 'NunitoRegular';
-    background-color: var(--black);
+    font-color: var(--black);
 }
 `;
 export default GlobalStyles;
