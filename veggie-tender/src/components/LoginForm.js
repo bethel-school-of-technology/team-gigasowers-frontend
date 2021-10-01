@@ -1,6 +1,10 @@
 
 import React, { useState } from 'react';
+import axios from "axios";
+
 //import './LoginForm.css';
+
+
 
 
 
@@ -10,6 +14,7 @@ const LoginForm = () => {
     const [enteredUserName, setUserName] = useState('');
     const [enteredPassword, setPassword] = useState('');
 
+    
 
 
     //handlers for each input field on the form
@@ -29,8 +34,20 @@ const LoginForm = () => {
             userName: enteredUserName,
             userPass: enteredPassword
         };
-        console.log(`Login Data: ${loginData.userName}`);
-        console.log(`Login Data: ${loginData.userPass}`);
+        console.log(`Login userName from Form: ${loginData.userName}`);
+        console.log(`Login password from Form: ${loginData.userPass}`);
+
+        //post to login in API to get user 
+        axios.post('http://localhost:5000/api/users/login', { 
+            loginData
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
         
         setUserName('');
         setPassword('');
