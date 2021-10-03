@@ -44,7 +44,7 @@ export default function FarmerRegisterForm() {
         setFarmEmail(event.target.value);
     };
 
-    const registerFarmHandler = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
         const registerFarmData = {
@@ -91,7 +91,7 @@ export default function FarmerRegisterForm() {
     return (
         <FarmerRegStyles>
         <div className='farmer-form-content'>
-            <form className='form'>
+            <form className='form' onSubmit={submitHandler}>
                 <h2>Register Your Farm:</h2>
                 <div className='form-inputs'>
                     <label className='form-label'>Farm Name:
@@ -174,7 +174,7 @@ export default function FarmerRegisterForm() {
                     </label>
                 </div>
                 <div className="">
-                    <button type='submit' onSubmit={registerFarmHandler}>Register</button>
+                    <button type='submit'>Register</button>
                 </div>
             </form>
         </div>
