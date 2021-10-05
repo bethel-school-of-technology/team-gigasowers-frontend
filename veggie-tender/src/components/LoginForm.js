@@ -20,6 +20,7 @@ const LoginForm = () => {
 
     //Error Code Handler
     const errorCodeHandler = (errMsg) => {
+
         setShowError(true);
 
         let errNumb = errMsg.match(/\d/g).join("");  //extracts the error code out of the error msg
@@ -28,8 +29,15 @@ const LoginForm = () => {
                 setErrorCode('403');
                 break;
             case '404':
-                //console.log("case 404 hit");
                 setErrorCode('404');
+                break;
+            case '423':
+                console.log("errNumb: " + errNumb);
+                setErrorCode('423');
+                break;
+            case '424':
+                console.log("errNumb: " + errNumb);
+                setErrorCode('424');
                 break;
             default:
                 setErrorCode('400');
@@ -56,6 +64,15 @@ const LoginForm = () => {
             userPass: enteredPassword
         };
 
+     
+        if (!loginData.userName || loginData.userName.trim().length === 0) {
+            errorCodeHandler('User Name Required - 423');
+            return;
+        };
+        if (!loginData.userPass || loginData.userPass.trim().length === 0) { 
+            errorCodeHandler('Password Required - 424'); 
+            return;
+        };
 
         //post to login in API to get user 
         axios.post('http://localhost:5000/api/users/login', {
