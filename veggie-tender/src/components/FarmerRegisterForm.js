@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import RegExp from 'regex-parser';
 
 const FarmerRegStyles = styled.div`
     padding-top: 5rem;
@@ -9,7 +11,9 @@ const FarmerRegStyles = styled.div`
 `;
 
 export default function FarmerRegisterForm() {
-    
+
+    let history = useHistory();
+
     const [enteredFarmName, setFarmName] = useState('');
     const [enteredFarmDetails, setFarmDetails] = useState('');
     const [enteredFarmAddress, setFarmAddress] = useState('');
@@ -18,31 +22,48 @@ export default function FarmerRegisterForm() {
     const [enteredFarmZip, setFarmZip] = useState('');
     const [enteredFarmWebsite, setFarmWebsite] = useState('');
     const [enteredFarmEmail, setFarmEmail] = useState('');
+
+    const [showError, setShowError] = useState(false);
+
+    const validAddressRegExp = RegExp(`[A-Za-z0-9'\.\-\s\,`);
+
+
+    const errorHandler = (event) => {
+        event.preventDefault();
+
+        setShowError(true);
+
+        let errors = this.state.errors;
+
+        switch (showError) {
+            case 'farmName': 
+                errors.farmName = enteredFarmName.length < 5 
+                ? showError('Farm Name must be 5 or more characters')
+                :'';
+                break;
+            case 'farmDetails': 
+                errors.farmDetails = enteredFarmDetails.length > 15 
+                ? showError('Farm Name must be 5 or more characters')
+                :'';
+                break;
+            case 'farmAddress': 
+                errors.farm = enteredFarmAddress.length < 5 
+                ? showError('Farm Name must be 5 or more characters')
+                :'';
+                break;
+            default:
+                showError('Please try to register again');
+        }
+    }
         
-    const farmNameHandler = (event) => {
-        setFarmName(event.target.value);
-    };
-    const farmDetailsHandler = (event) => {
-        setFarmDetails(event.target.value);
-    };
-    const farmAddressHandler = (event) => {
-        setFarmAddress(event.target.value);
-    };
-    const farmCityHandler = (event) => {
-        setFarmCity(event.target.value);
-    };
-    const farmStateHandler = (event) => {
-        setFarmState(event.target.value);
-    };
-    const farmZipHandler = (event) => {
-        setFarmZip(event.target.value);
-    };
-    const farmWebsiteHandler = (event) => {
-        setFarmWebsite(event.target.value);
-    };
-    const farmEmailHandler = (event) => {
-        setFarmEmail(event.target.value);
-    };
+    const farmNameHandler = (event) => {setFarmName(event.target.value)};
+    const farmDetailsHandler = (event) => {setFarmDetails(event.target.value)};
+    const farmAddressHandler = (event) => {setFarmAddress(event.target.value)};
+    const farmCityHandler = (event) => {setFarmCity(event.target.value)};
+    const farmStateHandler = (event) => {setFarmState(event.target.value)};
+    const farmZipHandler = (event) => {setFarmZip(event.target.value)};
+    const farmWebsiteHandler = (event) => {setFarmWebsite(event.target.value)};
+    const farmEmailHandler = (event) => {setFarmEmail(event.target.value)};
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
@@ -56,36 +77,46 @@ export default function FarmerRegisterForm() {
             farmZip: enteredFarmZip,
             farmWebsite: enteredFarmWebsite,
             farmEmail: enteredFarmEmail
-
         };
+
+
     
-        console.log(`Login farmName from Form: ${registerFarmData.farmName}`);
-        console.log(`Login farmDetails from Form: ${registerFarmData.farmDetails}`);
-        console.log(`Login farmAddress from Form: ${registerFarmData.farmAddress}`);
-        console.log(`Login farmCity from Form: ${registerFarmData.farmCity}`);
-        console.log(`Login farmState from Form: ${registerFarmData.farmState}`);
-        console.log(`Login farmZip from Form: ${registerFarmData.farmZip}`);
-        console.log(`Login farmWebsite from Form: ${registerFarmData.farmWebsite}`);
-        console.log(`Login farmEmail from Form: ${registerFarmData.farmEmail}`);
+        // console.log(`Login farmName from Form: ${registerFarmData.farmName}`);
+        // console.log(`Login farmDetails from Form: ${registerFarmData.farmDetails}`);
+        // console.log(`Login farmAddress from Form: ${registerFarmData.farmAddress}`);
+        // console.log(`Login farmCity from Form: ${registerFarmData.farmCity}`);
+        // console.log(`Login farmState from Form: ${registerFarmData.farmState}`);
+        // console.log(`Login farmZip from Form: ${registerFarmData.farmZip}`);
+        // console.log(`Login farmWebsite from Form: ${registerFarmData.farmWebsite}`);
+        // console.log(`Login farmEmail from Form: ${registerFarmData.farmEmail}`);
 
-        axios.put('http://localhost:5000/api/users/farmRegister', { 
+        axios.put('http://localhost:5000/api/users/farmRegister?id', { 
             registerFarmData
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        })
+            .then(function (response) {
+                console.log(response.status);
+                if (response.status >= 200 && response.status < 300) {
+                    console.log("directing push to farm profile");
+                    history.push('/users/farmProfile/:farmId', { userName: response.data.userName });
+            } else {
+                setShowError(true);
+                setShowError('Unable to register farm.')
+                console.log(`Unable to register farm: ${response.status} `);
+            }
 
-          setFarmName('');
-          setFarmDetails('');
-          setFarmAddress('');
-          setFarmCity('');
-          setFarmState('');
-          setFarmZip('');
-          setFarmWebsite('');
-          setFarmEmail('');
+        })
+        .catch(function (error) {
+            errorHandler(error.message);
+        });
+
+        setFarmName('');
+        setFarmDetails('');
+        setFarmAddress('');
+        setFarmCity('');
+        setFarmState('');
+        setFarmZip('');
+        setFarmWebsite('');
+        setFarmEmail('');
     };
 
     return (
