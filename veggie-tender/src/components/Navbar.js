@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../../src/App.css";
 
 function Navbar() {
+    const[showLinks, setShowLinks] = useState(false);
     return (
         <div className="Navbar">
             <div className="leftSide">
@@ -10,6 +11,7 @@ function Navbar() {
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
                     <a href="/Umm">MAYYYYYYBEEEE</a>
+                    <button> Button </button>
                 </div>
             </div>
             <div className="reftSide">

@@ -54,7 +54,11 @@ button:hover{
   width: 70px;
   font-size: 16px;
 }
-.Navbar .leftSide .links{
+/* .Navbar .leftSide .links{
+  display: none;
+} */
+
+.Navbar .leftSide .button{
   max-height: 80px;
 }
 
@@ -64,6 +68,8 @@ button:hover{
   font-size: 25px;
   margin-left: 15px;
 }
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -110,3 +116,16 @@ button:hover{
     font-size: 15px;
   }
 }
+
+@media only screen and (max-width: 650px){
+  .Navbar .leftSide .links{
+    display: flex;
+  }
+}
+
+.Navbar .leftSide .links{
+  display: none;
+  margin-left: 20px;
+  
+}
+
