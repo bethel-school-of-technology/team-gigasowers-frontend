@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
+import styled from 'styled-components';
 import "../../src/App.css";
 import ReorderIcon from '@material-ui/icons/Reorder';
 import SearchIcon from '@material-ui/icons/Search';
@@ -84,8 +85,12 @@ const NavbarStyles = styled.div`
 `;
 
 
+const NavbarStyles = styled.div`
+
+`;
+
 function Navbar() {
-    const[showLinks, setShowLinks] = useState(false);
+    // const[showLinks, setShowLinks] = useState(false);
     return (
         <NavbarStyles>
         <div className="Navbar">
