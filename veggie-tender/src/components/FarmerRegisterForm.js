@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { Component, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { FormErrors } from '../services/FormErrors';
 import axios from "axios";
-import RegExp from 'regex-parser';
+
 
 const FarmerRegStyles = styled.div`
     padding-top: 5rem;
@@ -10,205 +10,258 @@ const FarmerRegStyles = styled.div`
     font-size: 1.5rem;
 `;
 
-export default function FarmerRegisterForm() {
+class FarmerRegisterForm extends Component() {
 
-    let history = useHistory();
-
-    const [enteredFarmName, setFarmName] = useState('');
-    const [enteredFarmDetails, setFarmDetails] = useState('');
-    const [enteredFarmAddress, setFarmAddress] = useState('');
-    const [enteredFarmCity, setFarmCity] = useState('');
-    const [enteredFarmState, setFarmState] = useState('');
-    const [enteredFarmZip, setFarmZip] = useState('');
-    const [enteredFarmWebsite, setFarmWebsite] = useState('');
-    const [enteredFarmEmail, setFarmEmail] = useState('');
-
-    const [showError, setShowError] = useState(false);
-
-    const validAddressRegExp = RegExp(`[A-Za-z0-9'\.\-\s\,`);
-
-
-    const errorHandler = (event) => {
-        event.preventDefault();
-
-        setShowError(true);
-
-        let errors = this.state.errors;
-
-        switch (showError) {
-            case 'farmName': 
-                errors.farmName = enteredFarmName.length < 5 
-                ? showError('Farm Name must be 5 or more characters')
-                :'';
-                break;
-            case 'farmDetails': 
-                errors.farmDetails = enteredFarmDetails.length > 15 
-                ? showError('Farm Name must be 5 or more characters')
-                :'';
-                break;
-            case 'farmAddress': 
-                errors.farm = enteredFarmAddress.length < 5 
-                ? showError('Farm Name must be 5 or more characters')
-                :'';
-                break;
-            default:
-                showError('Please try to register again');
+    constructor (props){
+        super(props);
+        this.state = {
+            farmName: '',
+            farmDetails: '',
+            farmAddress: '',
+            farmCity: '',
+            farmState: '',
+            farmZip: '',
+            farmWebsite: '',
+            farmEmail: '',
+            formErrors: { farmName: '',farmDetails: '',farmAddress: '',farmCity: '',farmState: '',farmZip: '',farmWebsite: '',farmEmail: '',},
+            farmNameValid: false,
+            farmDetailsValid: false,
+            farmAddressValid: false,
+            farmCityValid: false,
+            farmStateValid: false,
+            farmZipValid: false,
+            farmWebsiteValid: false,
+            farmEmailValid: false,
+            formValid: false
         }
     }
-        
-    const farmNameHandler = (event) => {setFarmName(event.target.value)};
-    const farmDetailsHandler = (event) => {setFarmDetails(event.target.value)};
-    const farmAddressHandler = (event) => {setFarmAddress(event.target.value)};
-    const farmCityHandler = (event) => {setFarmCity(event.target.value)};
-    const farmStateHandler = (event) => {setFarmState(event.target.value)};
-    const farmZipHandler = (event) => {setFarmZip(event.target.value)};
-    const farmWebsiteHandler = (event) => {setFarmWebsite(event.target.value)};
-    const farmEmailHandler = (event) => {setFarmEmail(event.target.value)};
 
-    const submitHandler = (event) => {
-        event.preventDefault();  //prevents form from refreshing after submit
+    handleUserInput = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({[name]: value},
+                    () => { this.validateField(name, value) });
+    }
 
-        const registerFarmData = {
-            farmName: enteredFarmName,
-            farmDetails: enteredFarmDetails,
-            farmAddress: enteredFarmAddress,
-            farmCity: enteredFarmCity,
-            farmState: enteredFarmState,
-            farmZip: enteredFarmZip,
-            farmWebsite: enteredFarmWebsite,
-            farmEmail: enteredFarmEmail
-        };
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+        let farmNameValid = this.state.farmNameValid;
+        let farmDetailsValid = this.state.farmDetailsValid;
+        let farmAddressValid = this.state.farmAddressValid;
+        let farmCityValid = this.state.farmCityValid;
+        let farmStateValid = this.state.farmStateValid;
+        let farmZipValid = this.state.farmZipValid;
+        let farmWebsiteValid = this.state.farmWebsiteValid;
+        let farmEmailValid = this.state.farmEmailValid;
 
-
+    switch(fieldName) {
+        case 'farmName':
+            farmNameValid = value.length < 5;
+            fieldValidationErrors.farmName = farmNameValid ? '' : ' is an invalid farm name';
+            break;
+        case 'farmDetails':
+            farmDetailsValid = value.length > 25;
+            fieldValidationErrors.farmDetails = farmDetailsValid ? '' : ' -- Tell us more about your farm please';
+            break;
+        case 'farmAddress':
+            farmAddressValid = value.match(/^[a-zA-Z0-9\s,.'-]{3,}$/);
+            fieldValidationErrors.farmAddress = farmAddressValid ? '' : ' is an invalid address';
+            break;
+        case 'farmCity':
+            farmCityValid = value.length < 1;
+            fieldValidationErrors.farmCity = farmCityValid ? '' : ' is an invalid city';
+            break;
+        case 'farmState':
+            farmStateValid = value.match(/[^,]*[A-Z]{2}/);
+            fieldValidationErrors.farmState = farmStateValid ? '' : ' is an invalid state';
+            break;
+        case 'farmZip':
+            farmZipValid = value.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
+            fieldValidationErrors.farmZip = farmZipValid ? '' : ' is an invalid zip code';
+            break;
+        case 'farmWebsite':
+            farmWebsiteValid = value.match(/^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/);
+            fieldValidationErrors.farmWebsite = farmWebsiteValid ? '' : ' is an invalid website';
+            break;
+        case 'farmEmail':
+            farmEmail = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            fieldValidationErrors.farmEmail = farmEmailValid ? '' : ' is an invalid email';
+            break;
+    }
+    this.setState({formErrors: fieldValidationErrors, 
+        farmNameValid: farmNameValid,
+        farmDetailsValid: farmDetailsValid,
+        farmAddressValid: farmAddressValid,
+        farmCityValid: farmCityValid,
+        farmStateValid: farmStateValid,
+        farmZipValid: farmZipValid,
+        farmWebsiteValid: farmWebsiteValid,
+        farmEmailValid: farmEmailValid}, this.validateForm);
     
-        // console.log(`Login farmName from Form: ${registerFarmData.farmName}`);
-        // console.log(`Login farmDetails from Form: ${registerFarmData.farmDetails}`);
-        // console.log(`Login farmAddress from Form: ${registerFarmData.farmAddress}`);
-        // console.log(`Login farmCity from Form: ${registerFarmData.farmCity}`);
-        // console.log(`Login farmState from Form: ${registerFarmData.farmState}`);
-        // console.log(`Login farmZip from Form: ${registerFarmData.farmZip}`);
-        // console.log(`Login farmWebsite from Form: ${registerFarmData.farmWebsite}`);
-        // console.log(`Login farmEmail from Form: ${registerFarmData.farmEmail}`);
 
-        axios.put('http://localhost:5000/api/users/farmRegister?id', { 
-            registerFarmData
+    validateForm() {
+        this.setState({formValid: 
+            this.state.farmNameValid && 
+            this.state.farmDetailsValid &&
+            this.state.farmAddressValid &&
+            this.state.farmCityValid &&
+            this.state.farmStateValid &&
+            this.state.farmZipValid &&
+            this.state.farmWebsiteValid &&
+            this.state.farmEmailValid 
         })
-            .then(function (response) {
-                console.log(response.status);
-                if (response.status >= 200 && response.status < 300) {
-                    console.log("directing push to farm profile");
-                    history.push('/users/farmProfile/:farmId', { userName: response.data.userName });
-            } else {
-                setShowError(true);
-                setShowError('Unable to register farm.')
-                console.log(`Unable to register farm: ${response.status} `);
-            }
+    }}
 
-        })
-        .catch(function (error) {
-            errorHandler(error.message);
-        });
+    errorClass(error) {
+        return(error.length === 0 ? '' : 'has-error');
+    }
 
-        setFarmName('');
-        setFarmDetails('');
-        setFarmAddress('');
-        setFarmCity('');
-        setFarmState('');
-        setFarmZip('');
-        setFarmWebsite('');
-        setFarmEmail('');
-    };
+    // axios.put('http://localhost:5000/api/users/farmRegister?id', { 
+    //             registerFarmData
+    // })
+
+    // const [enteredFarmName, setFarmName] = useState('');
+    // const [enteredFarmDetails, setFarmDetails] = useState('');
+    // const [enteredFarmAddress, setFarmAddress] = useState('');
+    // const [enteredFarmCity, setFarmCity] = useState('');
+    // const [enteredFarmState, setFarmState] = useState('');
+    // const [enteredFarmZip, setFarmZip] = useState('');
+    // const [enteredFarmWebsite, setFarmWebsite] = useState('');
+    // const [enteredFarmEmail, setFarmEmail] = useState('');
+        
+    // const farmNameHandler = (event) => {setFarmName(event.target.value)};
+    // const farmDetailsHandler = (event) => {setFarmDetails(event.target.value)};
+    // const farmAddressHandler = (event) => {setFarmAddress(event.target.value)};
+    // const farmCityHandler = (event) => {setFarmCity(event.target.value)};
+    // const farmStateHandler = (event) => {setFarmState(event.target.value)};
+    // const farmZipHandler = (event) => {setFarmZip(event.target.value)};
+    // const farmWebsiteHandler = (event) => {setFarmWebsite(event.target.value)};
+    // const farmEmailHandler = (event) => {setFarmEmail(event.target.value)};
+
+
+    // const registerFarmData = {
+    //         farmName: enteredFarmName,
+    //         farmDetails: enteredFarmDetails,
+    //         farmAddress: enteredFarmAddress,
+    //         farmCity: enteredFarmCity,
+    //         farmState: enteredFarmState,
+    //         farmZip: enteredFarmZip,
+    //         farmWebsite: enteredFarmWebsite,
+    //         farmEmail: enteredFarmEmail
+    //         };
+
+
+
+            // .then(function (response) {
+            //     console.log(response.status);
+            //     if (response.status >= 200 && response.status < 300) {
+            //         console.log("directing to farm profile");
+            //         history.push('/users/farmProfile/:farmId', { userName: response.data.userName });
+            // } else {
+            //     // setShowError(true);
+            //     // setShowError('Unable to register farm.')
+            //     // console.log(`Unable to register farm: ${response.status} `);
+            // }
+
+            // })
+            // .catch(function (error) {
+            // // errorHandler(error.message);
+            // });
+
+                
+};
 
     return (
         <FarmerRegStyles>
         <div className='farmer-form-content'>
             <form className='form' onSubmit={submitHandler}>
                 <h2>Register Your Farm:</h2>
-                <div className='form-inputs'>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.farmName)}`}>
                     <label className='form-label'>Farm Name:
                         <input type='text'
                         className='farmName'  
                         placeholder='Name of your farm'
-                        value={enteredFarmName} 
-                        onChange={farmNameHandler}
+                        value={this.state.farmName} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>Farm Details:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmDetails)}`}>Farm Details:
                         <input type='text' 
                         className='farmDetails' 
                         placeholder='Tell us about your farm!'
-                        value={enteredFarmDetails} 
-                        onChange={farmDetailsHandler}
+                        value={this.state.FarmDetails} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>Farm Address:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmAddress)}`}>Farm Address:
                         <input type='text' 
                         className='farmAddress' 
                         placeholder='Where is your farm?'
-                        value={enteredFarmAddress} 
-                        onChange={farmAddressHandler}
+                        value={this.state.FarmAddress} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>City:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmCity)}`}>City:
                         <input type='text' 
                         className='farmCity' 
                         placeholder='City'
-                        value={enteredFarmCity} 
-                        onChange={farmCityHandler}
+                        value={this.state.FarmCity} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>State:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmState)}`}>State:
                         <input type='text' 
                         className='farmState' 
                         placeholder='State'
-                        value={enteredFarmState} 
-                        onChange={farmStateHandler}
+                        value={this.state.FarmState} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>Zip:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmZip)}`}>Zip:
                         <input type='text' 
                         className='farmZip' 
                         placeholder='Zip Code'
-                        value={enteredFarmZip} 
-                        onChange={farmZipHandler}
+                        value={this.state.FarmZip} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
-                <div className='form-inputs'>
+                <div className={`form-group ${this.errorClass(this.state.formErrors.farmWebsite)}`}>
                     <label className='form-label'>Farm Website:
                         <input type='text' 
                         className='farmWebsite' 
                         placeholder='Website'
-                        value={enteredFarmWebsite} 
-                        onChange={farmWebsiteHandler}
+                        value={this.state.FarmWebsite} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
                 <div className='form-inputs'>
-                    <label className='form-label'>Farm Email:
+                    <label className={`form-group ${this.errorClass(this.state.formErrors.farmEmail)}`}>Farm Email:
                         <input type='text' 
                         className='farmEmail' 
                         placeholder='Email'
-                        value={enteredFarmEmail} 
-                        onChange={farmEmailHandler}
+                        value={this.state.FarmEmail} 
+                        onChange={this.handleUserInput}
                         />
                     </label>
                 </div>
-                <div className="">
-                    <button type='submit'>Register</button>
+                <div className='register'>
+                    <button type='submit' disabled={!this.state.formValid}>Register</button>
+                    <FormErrors formErrors={this.state.formErrors} />
                 </div>
             </form>
         </div>
         </FarmerRegStyles>
-    )
-};
+    );

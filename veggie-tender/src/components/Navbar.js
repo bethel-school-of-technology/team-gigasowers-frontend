@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
+import styled from 'styled-components';
 import "../../src/App.css";
 
+const NavbarStyles = styled.div`
+
+`;
+
 function Navbar() {
-    const[showLinks, setShowLinks] = useState(false);
+    // const[showLinks, setShowLinks] = useState(false);
     return (
+        <NavbarStyles>
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
@@ -19,6 +25,7 @@ function Navbar() {
                 <button> Search </button>
             </div>
         </div>
+        </NavbarStyles>
     )
 }
 
