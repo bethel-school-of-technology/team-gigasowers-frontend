@@ -84,8 +84,8 @@ const LoginForm = () => {
     //set state for entered credentials
     const [enteredUserName, setUserName] = useState('');
     const [enteredPassword, setPassword] = useState('');
-    const [showError, setShowError] = useState(false);
-    const [errCode, setErrorCode] = useState('');
+    let [showError, setShowError] = useState(false);
+    let [errCode, setErrorCode] = useState('');
 
 
     //Error Code Handler
