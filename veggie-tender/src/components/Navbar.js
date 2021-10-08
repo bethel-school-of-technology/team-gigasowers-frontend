@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import "../../src/App.css";
 import ReorderIcon from '@material-ui/icons/Reorder';
-import SearchIcon from '@material-ui/icons/Search';
+//import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
+import List from './List';
+//import Input from './Input';
 
 import LoginForm from "./LoginForm"
 import { Route } from 'react-router';
@@ -85,7 +87,36 @@ const NavbarStyles = styled.div`
 
 
 function Navbar() {
-    const[showLinks, setShowLinks] = useState(false);
+  let [items, setItems] = useState([]);
+  let [inputTxt, setInputTxt] = useState("");
+  const[showLinks, setShowLinks] = useState(false);
+
+    const changeText = (e) =>{
+      setInputTxt(e.target.value)
+    }
+
+    const submitInput = (e) => {
+      let newItems = [...items];
+      newItems.push({
+        name: inputTxt,
+        completed:false
+      })
+      setItems(newItems)
+    }
+
+    const onComplete = (complete, idx) => {
+      let updatedItems = [...items];
+
+      updatedItems[idx].completed = complete
+      setItems(updatedItems)
+      
+      console.log(items);
+    }
+
+
+
+
+
     return (
         <NavbarStyles>
         <div className="Navbar">
@@ -102,13 +133,9 @@ function Navbar() {
                 </button>
             </div>
             <div className="reftSide">
-                <input type="text" placeholder="search"/>
-                {/* <button> <SearchIcon/> </button>
-                    var button = document.getElementById('myButton');
-                    button.onclick = function() {
-                    location.assign('/users/login')
-                    }
-                <button id="myButton">Visit Website</button> */}
+                <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
+                <List items={items} onComplete={onComplete}/>
+
                 <button><Route exact path="/" component={LoginForm}>Login</Route></button>
             </div>
         </div>
