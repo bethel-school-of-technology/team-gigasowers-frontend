@@ -1,9 +1,9 @@
 // import React, {useState} from 'react';
 import styled from 'styled-components';
 import "../../src/App.css";
-import ReorderIcon from '@material-ui/icons/Reorder';
-import SearchIcon from '@material-ui/icons/Search';
-import styled from 'styled-components';
+// import ReorderIcon from '@material-ui/icons/Reorder';
+// import SearchIcon from '@material-ui/icons/Search';
+
 
 import LoginForm from "./LoginForm"
 import { Route } from 'react-router';
@@ -85,10 +85,6 @@ const NavbarStyles = styled.div`
 `;
 
 
-const NavbarStyles = styled.div`
-
-`;
-
 function Navbar() {
     // const[showLinks, setShowLinks] = useState(false);
     return (
@@ -96,15 +92,15 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/" id={showLinks ? "hidden" : ""}>Home</a>
+                    {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
                     <a href="/Umm">MAYYYYYYBEEEE</a>
                 </div>
-                <button onClick={()=> setShowLinks(!showLinks)}>
+                {/* <button onClick={()=> setShowLinks(!showLinks)}>
                         {" "} 
-                        <ReorderIcon/>
-                </button>
+                        <ReorderIcon/> */}
+                {/* </button> */}
             </div>
             <div className="reftSide">
                 <input type="text" placeholder="search"/>
