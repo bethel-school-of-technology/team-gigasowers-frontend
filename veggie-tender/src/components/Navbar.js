@@ -10,7 +10,9 @@ import { Route } from 'react-router';
 
 
 const NavbarStyles = styled.div`
-
+  *{
+    font-family: 'MontserratMedium';
+  }
   
   .Navbar .leftSide #hidden{
   margin:10px;
@@ -70,14 +72,14 @@ const NavbarStyles = styled.div`
     width: 100%;
     height: 80px;
     background-color: #a0db8d;
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
   
   }
   
   .Navbar .leftSide{
     flex: 65%;
-    background-color: #61dafb;     /*takeoff later*/
+    padding-top: 20px;
+    background-color: var(--turq);     /*takeoff later*/
     justify-content: left;
     align-items: center;
   }
