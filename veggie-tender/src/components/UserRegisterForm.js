@@ -1,9 +1,128 @@
 
 import React, { useState } from 'react';
+import styled from 'styled-components';
 // import axios from "axios";
 
 
+const UserRegStyles = styled.div`
+padding-top: 5rem;
+    font-size: 1.1rem;
 
+    //form validation
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+    
+    body {
+        
+        font-family: 'MontserratRegular';
+        font-color: black;
+        font-size: 12px;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+    
+    .farmer-form-content {
+        margin-left: 25rem;
+        justify-content: center;
+        background-color: var(--salmon);
+        padding: 1em;
+        // border: solid 2px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        width: 400px;
+    }
+    
+    .form-title {
+        font-family: 'MontserratRegular';
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    
+    }
+    
+    .form-field {
+        margin-bottom: 5px;
+    
+    }
+    
+    .form-field label {
+        font-family: 'MontserratRegular';
+        display: block;
+        color: black;
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .form-field input {
+        font-family: 'MontserratRegular';
+        border: solid 2px var(--salmon);
+        border-radius: 5px;
+        background-color: #ECCBBA;
+        padding: 10px;
+        margin-bottom: 5px;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+    }
+    
+    .form-field input:focus {
+        outline: none;
+    }
+    
+    .form-field.error input {
+        border-color: var(--error-color);
+    }
+    
+    .form-field.success input {
+        border-color: var(--success-color);
+    }
+    
+    
+    .form-field small {
+        font-family: 'MontserratThin'
+        color: var(--error-color);
+    }
+    
+    
+    /* button */
+    .btn-field {
+        padding-top: 1rem;
+    }
+    .btn {
+        width: 100%;
+        padding: 3%;
+        background: var(--redor);
+        border-bottom: 2px solid var(--redor);
+        border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+        border-radius: 5px;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: 'MontserratRegular';
+        font-size: 16px;
+    }
+    
+    .btn:hover {
+        background: var(--lt-tan);
+        cursor: pointer;
+    }
+    
+    .btn:focus {
+        outline: none;
+    }
+`;
 
 
 
@@ -16,7 +135,7 @@ const UserRegisterForm = () => {
     const [enteredFirstName, setFirstName] = useState('');
     const [enteredLastName, setLastName] = useState('');
     const [enteredEmail, setEmail] = useState('');
-    
+
 
 
     //handlers for each input field on the form
@@ -57,7 +176,7 @@ const UserRegisterForm = () => {
         //     console.log(error);
         //   });
 
-        
+
         setUserName('');
         setPassword('');
         setFirstName('');
@@ -66,40 +185,46 @@ const UserRegisterForm = () => {
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className=''>
-                <h2>Register Now!</h2>
-                <div className=''>
-                    <label>User Name</label>
-                    <input type='text' value={enteredUserName} onChange={usernameChangeHandler} />
-                </div>
+        <UserRegStyles>
+            <div className='user-form-content'>
+                <form id='userReg' className='form' onSubmit={submitHandler}>
+                    <h2 className='form-title'>Register Now!</h2>
+                    <div className='form-field'>
+                        <label className='form-label'>User Name</label>
+                        <input type='text' value={enteredUserName} onChange={usernameChangeHandler} />
+                        <small></small>
+                    </div>
 
-                <div className=''>
-                    <label>Password</label>
-                    <input type='Password' value={enteredPassword} onChange={passwordChangeHandler} />
-                </div>
+                    <div className='form-field'>
+                        <label className='form-label'>Password</label>
+                        <input type='text' className='password' value={enteredPassword} onChange={passwordChangeHandler} />
+                        <small></small>
+                    </div>
 
-                <div className=''>
-                    <label>FirstName</label>
-                    <input type='FirstName' value={enteredFirstName} onChange={FirstNameChangeHandler} />
-                </div>
+                    <div className='form-field'>
+                        <label className='form-label'>FirstName</label>
+                        <input type='text' className='firstName' value={enteredFirstName} onChange={FirstNameChangeHandler} />
+                        <small></small>
+                    </div>
 
-                <div className=''>
-                    <label>LastName</label>
-                    <input type='LastName' value={enteredLastName} onChange={LastNameChangeHandler} />
-                </div>
+                    <div className='form-field'>
+                        <label className='form-label'>LastName</label>
+                        <input type='text' className='lastName' value={enteredLastName} onChange={LastNameChangeHandler} />
+                        <small></small>
+                    </div>
 
-                <div className=''>
-                    <label>Email</label>
-                    <input type='Email' value={enteredEmail} onChange={EmailChangeHandler} />
-                </div>
- 
+                    <div className='form-field'>
+                        <label className='form-label'>Email</label>
+                        <input type='text' className='email' value={enteredEmail} onChange={EmailChangeHandler} />
+                        <small></small>
+                    </div>
+
+                    <div className="btn-field">
+                        <button className='btn' type='submit'>Register</button>
+                    </div>
+                </form>
             </div>
-
-            <div className="">
-                <button type='submit'>Register</button>
-            </div>
-        </form>
+        </UserRegStyles>
     )
 };
 

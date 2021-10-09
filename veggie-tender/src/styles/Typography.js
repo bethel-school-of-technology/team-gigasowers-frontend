@@ -3,6 +3,8 @@ import NunitoRegular from '../assets/fonts/NunitoRegular.ttf';
 import NunitoBold from '../assets/fonts/NunitoBold.ttf';
 import MontserratRegular from '../assets/fonts/MontserratRegular.ttf';
 import MontserratThin from '../assets/fonts/MontserratThin.ttf';
+import MontserratMedium from '../assets/fonts/MontserratMedium.ttf';
+import MontserratBold from '../assets/fonts/MontserratBold.ttf';
 
 
 const Typography = createGlobalStyle`
@@ -24,6 +26,16 @@ const Typography = createGlobalStyle`
 @font-face {
     font-family: 'MontserratThin';
     src: url(${MontserratThin});
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MontserratMedium';
+    src: url(${MontserratMedium});
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MontserratBold';
+    src: url(${MontserratBold});
     font-style: normal;
 }
 `;
