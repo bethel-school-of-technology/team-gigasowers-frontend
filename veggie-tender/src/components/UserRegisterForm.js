@@ -30,10 +30,10 @@ padding-top: 5rem;
         margin: 0;
     }
     
-    .farmer-form-content {
+    .user-form-content {
         margin-left: 25rem;
         justify-content: center;
-        background-color: var(--salmon);
+        background-color: var(--turq);
         padding: 1em;
         // border: solid 2px;
         border-radius: 5px;
@@ -66,9 +66,9 @@ padding-top: 5rem;
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--salmon);
+        border: solid 2px var(--turq);
         border-radius: 5px;
-        background-color: #ECCBBA;
+        background-color: var(--cream);
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -102,8 +102,8 @@ padding-top: 5rem;
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--redor);
-        border-bottom: 2px solid var(--redor);
+        background: var(--dk-turq);
+        border-bottom: 2px solid var(--dk-turq);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
