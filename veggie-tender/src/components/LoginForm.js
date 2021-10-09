@@ -6,13 +6,18 @@ import { Link, useHistory } from 'react-router-dom';
 import ErrorMessage from '../services/ErrorMessage';
 
 const LoginFormStyles = styled.div`
-font-family: 'NunitoRegular';
+font-family: 'MontserratMedium';
+
+.title{
+    text-transform: uppercase;
+    font-size: 1.75rem;
+}
 
 .login-shell {
-    background-color: #a892ee;
+    background-color: var(--cream);
     padding: 1rem;
     margin: 2rem auto;
-    width: 50rem;
+    width: 28rem;
     max-width: 95%;
     border-radius: 12px;
     text-align: center;
@@ -28,13 +33,14 @@ font-family: 'NunitoRegular';
     text-align: left;
 }
 .login__control label {
+    font-family: 'MontserratRegular';
     font-weight: bold;
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
     display: block;
 } 
 .login__control input {
-    font-family: 'NunitoRegular';
+    font-family: 'MontserratRegular';
     padding: .5rem;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -48,22 +54,24 @@ font-family: 'NunitoRegular';
 }
 
 .login-shell button {
-    font-family: 'NunitoRegular';
+    font-family: 'MontserratRegular';
+    font-size: 16px;
     cursor: pointer;
     padding: 1rem 2rem;
-    border: 1px solid #40005d;
-    background-color: #40005d;
+    border: 1px solid var(--terra);
+    background-color: var(--terra);
     color: white;
     border-radius: 12px;
     /* margin-right: 1rem; */
     margin-top: 1rem;
     margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 .login-shell button:hover,
 .login-shell button:active {
-    background-color: #510674;
-    border-color: #510674;
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
 }
 .login-shell button.alternative {
     color: #220131;
@@ -174,7 +182,7 @@ const LoginForm = () => {
         <form onSubmit={submitHandler}>
             <div className='login-shell'>
                 <div >
-                    <h1>Login</h1>
+                    <h1 className='title'>Login</h1>
                     <div className='login__controls'>
                         <div className='login__control'>
                             <label>User Name</label>

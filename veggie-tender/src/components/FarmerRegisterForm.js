@@ -215,7 +215,7 @@ export default function FarmerRegisterForm() {
                 <form id='farmReg' className='form' onSubmit={submitHandler}>
                     <h2 className='form-title'>- Register Your Farm -</h2>
                     <div className='form-field'>
-                        <label className='form-label'>Farm Name:</label>
+                        <label className='form-label'>Farm Name</label>
                         <input type='text'
                             className='farmName'
                             placeholder='Name of your farm'
@@ -225,7 +225,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>Farm Details:</label>
+                        <label className='form-label'>Farm Details</label>
                         <input type='text'
                             className='farmDetails'
                             placeholder='Tell us about your farm!'
@@ -235,7 +235,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>Farm Address:</label>
+                        <label className='form-label'>Farm Address</label>
                         <input type='text'
                             className='farmAddress'
                             placeholder='Where is your farm?'
@@ -245,7 +245,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>City:</label>
+                        <label className='form-label'>City</label>
                         <input type='text'
                             className='farmCity'
                             placeholder='City'
@@ -255,7 +255,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>State:</label>
+                        <label className='form-label'>State</label>
                         <input type='text'
                             className='farmState'
                             placeholder='State Abbrev'
@@ -265,7 +265,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>Zip:</label>
+                        <label className='form-label'>Zip</label>
                         <input type='text'
                             className='farmZip'
                             placeholder='Zip Code'
@@ -275,7 +275,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>Farm Website:</label>
+                        <label className='form-label'>Farm Website</label>
                         <input type='text'
                             className='farmWebsite'
                             placeholder='Website'
@@ -285,7 +285,7 @@ export default function FarmerRegisterForm() {
                         <small></small>
                     </div>
                     <div className='form-field'>
-                        <label className='form-label'>Farm Email:</label>
+                        <label className='form-label'>Farm Email</label>
                         <input type='text'
                             className='farmEmail'
                             placeholder='Email'
