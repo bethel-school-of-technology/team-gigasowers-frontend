@@ -1,11 +1,89 @@
 
 import React, { useState } from 'react';
 import axios from "axios";
+import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import ErrorMessage from '../services/ErrorMessage';
-import './LoginForm.css';
 
+const LoginFormStyles = styled.div`
+font-family: 'MontserratMedium';
 
+.title{
+    text-transform: uppercase;
+    font-size: 1.75rem;
+}
+
+.login-shell {
+    background-color: var(--cream);
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 28rem;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+.login__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+.login__control label {
+    font-family: 'MontserratRegular';
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    display: block;
+} 
+.login__control input {
+    font-family: 'MontserratRegular';
+    padding: .5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+    text-align: left;
+    margin-left: 0.3rem;
+}
+.login__actions {
+    text-align: center;
+}
+
+.login-shell button {
+    font-family: 'MontserratRegular';
+    font-size: 16px;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid var(--terra);
+    background-color: var(--terra);
+    color: white;
+    border-radius: 12px;
+    /* margin-right: 1rem; */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.login-shell button:hover,
+.login-shell button:active {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+}
+.login-shell button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.login-shell button.alternative:hover,
+.login-shell button.alternative:active {
+    background-color: #ddb3f8;
+}
+`;
 
 const LoginForm = () => {
 
@@ -14,8 +92,8 @@ const LoginForm = () => {
     //set state for entered credentials
     const [enteredUserName, setUserName] = useState('');
     const [enteredPassword, setPassword] = useState('');
-    const [showError, setShowError] = useState(false);
-    const [errCode, setErrorCode] = useState('');
+    let [showError, setShowError] = useState(false);
+    let [errCode, setErrorCode] = useState('');
 
 
     //Error Code Handler
@@ -100,10 +178,11 @@ const LoginForm = () => {
     };
 
     return (
+        <LoginFormStyles>
         <form onSubmit={submitHandler}>
             <div className='login-shell'>
                 <div >
-                    <h1>Login</h1>
+                    <h1 className='title'>Login</h1>
                     <div className='login__controls'>
                         <div className='login__control'>
                             <label>User Name</label>
@@ -125,6 +204,7 @@ const LoginForm = () => {
                 </div>
             </div>
         </form>
+        </LoginFormStyles>
     )
 };
 

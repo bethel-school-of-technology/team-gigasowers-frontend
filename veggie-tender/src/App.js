@@ -12,44 +12,44 @@ import FarmProfile from "./pages/FarmProfile";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="pages">
-          <Switch>
-                <Route path="/">
-                      <Landing />
-                </Route>
-          </Switch>
-          <Switch>
-                <Route path="/users/login">
-                      <LoginForm />
-                </Route>
-          </Switch>
-          <Switch>
-                <Route path="/users/register">
-                      <UserReg />
-                </Route>
-          </Switch>
-          <Switch>
-                <Route path="/users/farmRegister">
-                      <FarmerReg />
-                </Route>
-          </Switch>
-          <Switch>
-                <Route path="/users/profile/">
-                      <UserProfile />
-                </Route>
-          </Switch>
-          <Switch>
-                <Route path="/users/farmProfile">
-                      <FarmProfile />
-                </Route>
-          </Switch>
-        </div>
+<Router>
+<div className="App">
+      <Navbar />
+      <div className="pages">
+      <Switch>
+            <Route path="/">
+                  <Landing />
+            </Route>
+      </Switch>
+      <Switch>
+            <Route path="/users/login">
+                  <LoginForm />
+            </Route>
+      </Switch>
+      <Switch>
+            <Route path="/users/register">
+                  <UserReg />
+            </Route>
+      </Switch>
+      <Switch>
+            <Route path="/users/farmRegister">
+                  <FarmerReg />
+            </Route>
+      </Switch>
+      <Switch>
+            <Route path="/users/profile/:userId">
+                  <UserProfile />
+            </Route>
+      </Switch>
+      <Switch>
+            <Route path="/users/farmProfile/:farmId">
+                  <FarmProfile />
+            </Route>
+      </Switch>
       </div>
-    </Router>
-  );
+</div>
+</Router>
+);
 }
 
 export default App;

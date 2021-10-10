@@ -7,12 +7,33 @@ const GlobalStyles = createGlobalStyle`
 }
 :root{
     --black: black;
+
+    --turq: #91E9D5;
+    --md-turq: #53E9CD;
+    --dk-turq: #4ACFB6;
+
+    --terra: #EAC891;
+    --dk-terra: #E8B469;
+
+    --salmon: #FFA376;
+    --redor: #EC7134;
+
+    --cream: #FFF7E2;
+    --lt-tan: #DACAAA;
+    --greybrwn: #928064;
+
     --emerald: #82E0AA;
     --dk-emerald: #239B56;
     --light-gray: #F2F3F4;
+
+    /* error colors */
+
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
 }
 html{
-    font-family: 'NunitoRegular';
+    font-family: 'MontserratRegular';
     font-color: var(--black);
 }
 
