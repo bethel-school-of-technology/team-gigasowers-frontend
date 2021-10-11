@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm";
 import FarmerReg from "./pages/FarmerReg";
 import UserProfile from "./pages/UserProfile";
 import FarmProfile from "./pages/FarmProfile";
+import Mascot from "./components/Mascot";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 <Router>
 <div className="App">
       <Navbar />
+      <Mascot />
       <div className="pages">
       <Switch>
             <Route path="/">
