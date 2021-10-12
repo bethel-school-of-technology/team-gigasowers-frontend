@@ -142,25 +142,27 @@ const LoginForm = () => {
             userPass: enteredPassword
         };
 
-     
+
         if (!loginData.userName || loginData.userName.trim().length === 0) {
             errorCodeHandler('User Name Required - 423');
             return;
         };
-        if (!loginData.userPass || loginData.userPass.trim().length === 0) { 
-            errorCodeHandler('Password Required - 424'); 
+        if (!loginData.userPass || loginData.userPass.trim().length === 0) {
+            errorCodeHandler('Password Required - 424');
             return;
         };
 
-        //post to login in API to get user 
+        //post to login in API to auth user and get token
         axios.post('http://localhost:5000/api/users/login', {
             loginData
         })
             .then(function (response) {
-                console.log(response.status);
-                if (response.status >= 200 && response.status < 300) {
-                    console.log("redirecting push to home page");
-                    history.push('/', { userName: response.data.userName });
+                console.log(response);
+                if (response.status === 200) {
+                    //set jwt token into local storage 
+                    localStorage.setItem("vegToken", response.data.jwt);
+                    //redirect to landing or home page
+                    history.push('/');
                 } else {
                     setShowError = true;
                     setErrorCode = response.status;
@@ -179,31 +181,31 @@ const LoginForm = () => {
 
     return (
         <LoginFormStyles>
-        <form onSubmit={submitHandler}>
-            <div className='login-shell'>
-                <div >
-                    <h1 className='title'>Login</h1>
-                    <div className='login__controls'>
-                        <div className='login__control'>
-                            <label>User Name</label>
-                            <input type='text' value={enteredUserName} onChange={usernameChangeHandler} />
-                        </div>
-                        <div className='login__control'>
-                            <label>Password</label>
-                            <input type='password' value={enteredPassword} onChange={passwordChangeHandler} />
+            <form onSubmit={submitHandler}>
+                <div className='login-shell'>
+                    <div >
+                        <h1 className='title'>Login</h1>
+                        <div className='login__controls'>
+                            <div className='login__control'>
+                                <label>User Name</label>
+                                <input type='text' value={enteredUserName} onChange={usernameChangeHandler} />
+                            </div>
+                            <div className='login__control'>
+                                <label>Password</label>
+                                <input type='password' value={enteredPassword} onChange={passwordChangeHandler} />
+                            </div>
                         </div>
                     </div>
+                    <div className="login__actions">
+                        <button type='submit'>Login</button>
+                        {showError ? <ErrorMessage errorCode={errCode} /> : null}
+                    </div>
+                    <div className='login__control'>
+                        <label>Don't have an account?</label>
+                        <Link to="/users/register">Create your account</Link>
+                    </div>
                 </div>
-                <div className="login__actions">
-                    <button type='submit'>Login</button>
-                    {showError ? <ErrorMessage errorCode={errCode} /> : null}
-                </div>
-                <div className='login__control'>
-                    <label>Don't have an account?</label>
-                    <Link to="/users/register">Create your account</Link>
-                </div>
-            </div>
-        </form>
+            </form>
         </LoginFormStyles>
     )
 };
