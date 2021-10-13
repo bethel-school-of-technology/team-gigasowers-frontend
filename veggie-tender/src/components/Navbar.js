@@ -5,11 +5,9 @@ import "../../src/App.css";
 //import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
 import List from './List';
+// import LoginForm from './LoginForm';
 //import Input from './Input';
-
-
-import LoginForm from "./LoginForm"
-import { Route } from 'react-router';
+// import { Route } from 'react-router';
 
 
 const NavbarStyles = styled.div`
@@ -128,7 +126,6 @@ function Navbar() {
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
-                    <a href="/Umm">MAYYYYYYBEEEE</a>
                 </div>
                 {/* <button onClick={()=> setShowLinks(!showLinks)}>
                         {" "} 
@@ -139,7 +136,7 @@ function Navbar() {
                 <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
                 <List items={items} onComplete={onComplete}/>
 
-                <button><Route exact path="/" component={LoginForm}>Login</Route></button>
+                {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>
         </NavbarStyles>

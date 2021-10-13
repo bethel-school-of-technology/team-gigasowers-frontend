@@ -177,7 +177,7 @@ const UserRegisterForm = () => {
 
 
         // post to login in API to get user 
-        axios.post('http://localhost:5000/api/users/register', {
+        axios.put('http://localhost:5000/api/users/register', {
             UserRegisterForm
         })
             .then(function (response) {
