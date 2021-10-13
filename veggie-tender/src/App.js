@@ -19,7 +19,7 @@ function App() {
       <Mascot />
       <div className="pages">
       <Switch>
-            <Route path="/">
+            <Route path="/home">
                   <Landing />
             </Route>
       </Switch>

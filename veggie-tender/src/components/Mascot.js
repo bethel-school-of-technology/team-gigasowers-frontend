@@ -15,9 +15,14 @@ body{
     background: #abcde4;
     
 }
+.container{
+    display: flex;
+    justify-content: right;
+    position:relative;
+}
 
 .face{
-    position:relative;
+    position:absolute;
     width:300px;
     height:300px;
     border-radius: 50%;
@@ -26,7 +31,6 @@ body{
     justify-content:center;
     align-items: center;
     margin-top: 23rem;
-    position: absolute;
 }
 .face::before{
     content: "";
@@ -96,12 +100,14 @@ export default function Mascot() {
 
     return (
         <MascotStyles>
-        <div className="face">
-            <div className="eyes">
-                <div className="eye">.</div>
-                <div className="eye">.</div>
+            <div className="container">
+                <div className="face">
+                    <div className="eyes">
+                        <div className="eye">.</div>
+                        <div className="eye">.</div>
+                    </div>
+                </div>
             </div>
-        </div>
         </MascotStyles>
     )
 }
