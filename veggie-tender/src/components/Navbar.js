@@ -1,12 +1,13 @@
-// import React, {useState} from 'react';
-import styled from 'styled-components';
+
+import React, {useState} from 'react';
 import "../../src/App.css";
-// import ReorderIcon from '@material-ui/icons/Reorder';
-// import SearchIcon from '@material-ui/icons/Search';
-
-
-import LoginForm from "./LoginForm"
-import { Route } from 'react-router';
+//import ReorderIcon from '@material-ui/icons/Reorder';
+//import SearchIcon from '@material-ui/icons/Search';
+import styled from 'styled-components';
+import List from './List';
+// import LoginForm from './LoginForm';
+//import Input from './Input';
+// import { Route } from 'react-router';
 
 
 const NavbarStyles = styled.div`
@@ -88,7 +89,35 @@ const NavbarStyles = styled.div`
 
 
 function Navbar() {
-    // const[showLinks, setShowLinks] = useState(false);
+
+  let [items, setItems] = useState([]);
+  let [inputTxt, setInputTxt] = useState("");
+  //const[showLinks, setShowLinks] = useState(false);
+
+    const changeText = (e) =>{
+      setInputTxt(e.target.value)
+    }
+
+    const submitInput = (e) => {
+      let newItems = [...items];
+      newItems.push({
+        name: inputTxt,
+        completed:false
+      })
+      setItems(newItems)
+    }
+
+    const onComplete = (complete, idx) => {
+      let updatedItems = [...items];
+
+      updatedItems[idx].completed = complete
+      setItems(updatedItems)
+      
+      console.log(items);
+    }
+
+
+
     return (
         <NavbarStyles>
         <div className="Navbar">
@@ -97,7 +126,6 @@ function Navbar() {
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
-                    <a href="/Umm">MAYYYYYYBEEEE</a>
                 </div>
                 {/* <button onClick={()=> setShowLinks(!showLinks)}>
                         {" "} 
@@ -105,14 +133,10 @@ function Navbar() {
                 {/* </button> */}
             </div>
             <div className="reftSide">
-                <input type="text" placeholder="search"/>
-                {/* <button> <SearchIcon/> </button>
-                    var button = document.getElementById('myButton');
-                    button.onclick = function() {
-                    location.assign('/users/login')
-                    }
-                <button id="myButton">Visit Website</button> */}
-                <button><Route exact path="/" component={LoginForm}>Login</Route></button>
+                <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
+                <List items={items} onComplete={onComplete}/>
+
+                {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>
         </NavbarStyles>

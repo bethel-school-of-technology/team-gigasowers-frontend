@@ -177,6 +177,8 @@ export default function FarmerRegisterForm() {
         //set JWT token into header for server side authentication
         let myHeaders = {
             'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+            'Content-Type': 'application/json'
+
         };
 
         axios.put('http://localhost:5000/api/users/update',  profileData , 

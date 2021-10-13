@@ -189,8 +189,10 @@ const UserRegisterForm = () => {
 
         };
 
+
         // post to register API to create user 
         axios.post('http://localhost:5000/api/users/register', profileData)
+
             .then(function (response) {
                 if (response.status >= 200 && response.status <= 206) {
                     //redirect to sign in page
