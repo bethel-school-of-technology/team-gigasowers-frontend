@@ -1,9 +1,7 @@
 import React from 'react'
-//import Navbar from '../components/Navbar';
-//import CardComponent from '../components/Card';
 import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
-
+import LandingFunction from '../components/LandingFunction';
 
 
 const CardStyles = styled.div`
@@ -40,6 +38,7 @@ export default function Landing() {
 
 
     return (
+
         <div className="landing">
             something
             <div>
@@ -87,6 +86,9 @@ export default function Landing() {
                 </div>
                 </div>
             </div>
+
+        <div>
+            <LandingFunction />
         </div>
     )
 }

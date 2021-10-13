@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import axios from "axios";
+import axios from "axios";
 
 
 const UserRegStyles = styled.div`
@@ -135,6 +135,8 @@ const UserRegisterForm = () => {
     const [enteredFirstName, setFirstName] = useState('');
     const [enteredLastName, setLastName] = useState('');
     const [enteredEmail, setEmail] = useState('');
+    const [enteredCity, setCity] = useState('');
+    const [enteredState, setState] = useState('');
 
 
 
@@ -154,6 +156,12 @@ const UserRegisterForm = () => {
     const EmailChangeHandler = (event) => {
         setEmail(event.target.value);
     };
+    const CityChangeHandler = (event) => {
+        setCity(event.target.value);
+    };
+    const StateChangeHandler = (event) => {
+        setState(event.target.value);
+    };
 
 
     const submitHandler = (event) => {
@@ -164,17 +172,20 @@ const UserRegisterForm = () => {
         console.log(`register firstName from Form: ${UserRegisterForm.firstName}`);
         console.log(`register lastName from Form: ${UserRegisterForm.lastName}`);
         console.log(`register email from Form: ${UserRegisterForm.email}`);
+        console.log(`register city from Form: ${UserRegisterForm.city}`);
+        console.log(`register state from Form: ${UserRegisterForm.state}`);
 
-        //post to login in API to get user 
-        // axios.post('http://localhost:5000/api/users/register', { 
-        //     loginData
-        //   })
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
+
+        // post to login in API to get user 
+        axios.post('http://localhost:5000/api/users/register', {
+            UserRegisterForm
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
         setUserName('');
@@ -182,6 +193,8 @@ const UserRegisterForm = () => {
         setFirstName('');
         setLastName('');
         setEmail('');
+        setCity('');
+        setState('');
     };
 
     return (
@@ -217,6 +230,17 @@ const UserRegisterForm = () => {
                         <label className='form-label'>Email</label>
                         <input type='text' className='email' value={enteredEmail} onChange={EmailChangeHandler} />
                         <small></small>
+                    </div>
+
+                    <div className='form-field'>
+                        <label className='form-label'>City</label>
+                        <input type='City' className='city' value={enteredCity} onChange={CityChangeHandler} />
+                        <small></small>
+                    </div>
+
+                    <div className='form-field'>
+                        <label className='form-label'>State</label>
+                        <input type='State' className='state' value={enteredState} onChange={StateChangeHandler} />
                     </div>
 
                     <div className="btn-field">
