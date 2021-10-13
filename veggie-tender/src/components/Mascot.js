@@ -8,7 +8,7 @@ const MascotStyles = styled.div`
     box-sizing: border-box;
 }
 body{
-    display: flexl;
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -25,6 +25,8 @@ body{
     display: flex;
     justify-content:center;
     align-items: center;
+    margin-top: 23rem;
+    position: absolute;
 }
 .face::before{
     content: "";
@@ -79,7 +81,7 @@ export default function Mascot() {
 
     document.querySelector("body").addEventListener("mousemove", eyeball);
     function eyeball() {
-        var eye = document.querySelectorAll(".eye");
+        var eye = document.querySelectorAll('eye');
         eye.forEach(function (eye) {
             // x & y are variables and x represents the x coordinate of the mouse and y represents the coordinate of the mouse.
             let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
@@ -94,10 +96,10 @@ export default function Mascot() {
 
     return (
         <MascotStyles>
-        <div class="face">
-            <div class="eyes">
-                <div class="eye">.</div>
-                <div class="eye">.</div>
+        <div className="face">
+            <div className="eyes">
+                <div className="eye">.</div>
+                <div className="eye">.</div>
             </div>
         </div>
         </MascotStyles>
