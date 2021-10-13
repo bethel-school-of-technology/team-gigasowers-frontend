@@ -16,7 +16,8 @@ const UserRegisterForm = () => {
     const [enteredFirstName, setFirstName] = useState('');
     const [enteredLastName, setLastName] = useState('');
     const [enteredEmail, setEmail] = useState('');
-    
+    const [enteredCity, setCity] = useState('');
+    const [enteredState, setState] = useState('');
 
 
     //handlers for each input field on the form
@@ -35,6 +36,12 @@ const UserRegisterForm = () => {
     const EmailChangeHandler = (event) => {
         setEmail(event.target.value);
     };
+    const CityChangeHandler = (event) => {
+        setCity(event.target.value);
+    };
+    const StateChangeHandler = (event) => {
+        setState(event.target.value);
+    };
 
 
     const submitHandler = (event) => {
@@ -45,10 +52,17 @@ const UserRegisterForm = () => {
         console.log(`register firstName from Form: ${UserRegisterForm.firstName}`);
         console.log(`register lastName from Form: ${UserRegisterForm.lastName}`);
         console.log(`register email from Form: ${UserRegisterForm.email}`);
+        console.log(`register city from Form: ${UserRegisterForm.city}`);
+        console.log(`register state from Form: ${UserRegisterForm.state}`);
 
+        // insert profile data object 
+        const profileData = {
+            userName: enteredUserName,
+            userPass: enteredPassword
+        };
         //post to login in API to get user 
         // axios.post('http://localhost:5000/api/users/register', { 
-        //     loginData
+        //     profileData
         //   })
         //   .then(function (response) {
         //     console.log(response);
@@ -63,6 +77,8 @@ const UserRegisterForm = () => {
         setFirstName('');
         setLastName('');
         setEmail('');
+        setCity('');
+        setState('');
     };
 
     return (
