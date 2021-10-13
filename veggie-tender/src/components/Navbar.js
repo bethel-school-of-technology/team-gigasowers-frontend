@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import "../../src/App.css";
-import ReorderIcon from '@material-ui/icons/Reorder';
+//import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
 import List from './List';
@@ -94,7 +94,7 @@ function Navbar() {
 
   let [items, setItems] = useState([]);
   let [inputTxt, setInputTxt] = useState("");
-  const[showLinks, setShowLinks] = useState(false);
+  //const[showLinks, setShowLinks] = useState(false);
 
     const changeText = (e) =>{
       setInputTxt(e.target.value)
