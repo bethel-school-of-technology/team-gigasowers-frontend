@@ -97,31 +97,31 @@ const LoginForm = () => {
 
 
     //Error Code Handler
-    const errorCodeHandler = (errMsg) => {
+    //const errorCodeHandler = (errMsg) => {
 
-        setShowError(true);
+        //setShowError(true);
 
-        let errNumb = errMsg.match(/\d/g).join("");  //extracts the error code out of the error msg
-        switch (errNumb) {
-            case '403':
-                setErrorCode('403');
-                break;
-            case '404':
-                setErrorCode('404');
-                break;
-            case '423':
-                console.log("errNumb: " + errNumb);
-                setErrorCode('423');
-                break;
-            case '424':
-                console.log("errNumb: " + errNumb);
-                setErrorCode('424');
-                break;
-            default:
-                setErrorCode('400');
-        }
+    //     let errNumb = errMsg.match(/\d/g).join("");  //extracts the error code out of the error msg
+    //     switch (errNumb) {
+    //         case '403':
+    //             setErrorCode('403');
+    //             break;
+    //         case '404':
+    //             setErrorCode('404');
+    //             break;
+    //         case '423':
+    //             console.log("errNumb: " + errNumb);
+    //             setErrorCode('423');
+    //             break;
+    //         case '424':
+    //             console.log("errNumb: " + errNumb);
+    //             setErrorCode('424');
+    //             break;
+    //         default:
+    //             setErrorCode('400');
+    //     }
 
-    };
+    //};
 
 
     //handlers for each input field on the form
@@ -143,19 +143,17 @@ const LoginForm = () => {
         };
 
 
-        if (!loginData.userName || loginData.userName.trim().length === 0) {
-            errorCodeHandler('User Name Required - 423');
-            return;
-        };
-        if (!loginData.userPass || loginData.userPass.trim().length === 0) {
-            errorCodeHandler('Password Required - 424');
-            return;
-        };
+        // if (!loginData.userName || loginData.userName.trim().length === 0) {
+        //     errorCodeHandler('User Name Required - 423');
+        //     return;
+        // };
+        // if (!loginData.userPass || loginData.userPass.trim().length === 0) {
+        //     errorCodeHandler('Password Required - 424');
+        //     return;
+        // };
 
         //post to login in API to auth user and get token
-        axios.post('http://localhost:5000/api/users/login', {
-            loginData
-        })
+        axios.post('http://localhost:5000/api/users/login', loginData)
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {
@@ -171,7 +169,7 @@ const LoginForm = () => {
 
             })
             .catch(function (error) {
-                errorCodeHandler(error.message);
+                //errorCodeHandler(error.message);
             });
 
 

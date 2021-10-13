@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 
 const UserRegStyles = styled.div`
@@ -125,9 +126,9 @@ padding-top: 5rem;
 `;
 
 
-
-
 const UserRegisterForm = () => {
+
+    let history = useHistory();  //Used to track page route history
 
     //set state for entered credentials
     const [enteredUserName, setUserName] = useState('');
@@ -135,8 +136,10 @@ const UserRegisterForm = () => {
     const [enteredFirstName, setFirstName] = useState('');
     const [enteredLastName, setLastName] = useState('');
     const [enteredEmail, setEmail] = useState('');
+    const [enteredAddress, setAddress] = useState('');
     const [enteredCity, setCity] = useState('');
     const [enteredState, setState] = useState('');
+    const [enteredZip, setZip] = useState('');
 
 
 
@@ -147,41 +150,54 @@ const UserRegisterForm = () => {
     const passwordChangeHandler = (event) => {
         setPassword(event.target.value);
     };
-    const FirstNameChangeHandler = (event) => {
+    const firstNameChangeHandler = (event) => {
         setFirstName(event.target.value);
     };
-    const LastNameChangeHandler = (event) => {
+    const lastNameChangeHandler = (event) => {
         setLastName(event.target.value);
     };
-    const EmailChangeHandler = (event) => {
+    const emailChangeHandler = (event) => {
         setEmail(event.target.value);
     };
-    const CityChangeHandler = (event) => {
+    const addressChangeHandler = (event) => {
+        setAddress(event.target.value);
+    };
+    const cityChangeHandler = (event) => {
         setCity(event.target.value);
     };
-    const StateChangeHandler = (event) => {
+    const stateChangeHandler = (event) => {
         setState(event.target.value);
+    };
+    const zipChangeHandler = (event) => {
+        setZip(event.target.value);
     };
 
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        console.log(`register userName from Form: ${UserRegisterForm.userName}`);
-        console.log(`register password from Form: ${UserRegisterForm.userPassword}`);
-        console.log(`register firstName from Form: ${UserRegisterForm.firstName}`);
-        console.log(`register lastName from Form: ${UserRegisterForm.lastName}`);
-        console.log(`register email from Form: ${UserRegisterForm.email}`);
-        console.log(`register city from Form: ${UserRegisterForm.city}`);
-        console.log(`register state from Form: ${UserRegisterForm.state}`);
+        const profileData = {
+            userName: enteredUserName,
+            password: enteredPassword,
+            firstName: enteredFirstName,
+            lastName: enteredLastName,
+            email: enteredEmail,
+            address: enteredAddress,
+            city: enteredCity,
+            state: enteredState,
+            zip: enteredZip
 
+        };
 
-        // post to login in API to get user 
-        axios.post('http://localhost:5000/api/users/register', {
-            UserRegisterForm
-        })
+        // post to register API to create user 
+        axios.post('http://localhost:5000/api/users/register', profileData)
             .then(function (response) {
-                console.log(response);
+                if (response.status >= 200 && response.status <= 206) {
+                    //redirect to sign in page
+                    history.push('/users/login');
+                } else {
+                    console.log(`error response received: ${response.status} `);
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -193,8 +209,10 @@ const UserRegisterForm = () => {
         setFirstName('');
         setLastName('');
         setEmail('');
+        setAddress('');
         setCity('');
         setState('');
+        setZip('');
     };
 
     return (
@@ -210,37 +228,48 @@ const UserRegisterForm = () => {
 
                     <div className='form-field'>
                         <label className='form-label'>Password</label>
-                        <input type='text' className='password' value={enteredPassword} onChange={passwordChangeHandler} />
+                        <input type='password' className='password' value={enteredPassword} onChange={passwordChangeHandler} />
                         <small></small>
                     </div>
 
                     <div className='form-field'>
                         <label className='form-label'>FirstName</label>
-                        <input type='text' className='firstName' value={enteredFirstName} onChange={FirstNameChangeHandler} />
+                        <input type='text' className='firstName' value={enteredFirstName} onChange={firstNameChangeHandler} />
                         <small></small>
                     </div>
 
                     <div className='form-field'>
                         <label className='form-label'>LastName</label>
-                        <input type='text' className='lastName' value={enteredLastName} onChange={LastNameChangeHandler} />
+                        <input type='text' className='lastName' value={enteredLastName} onChange={lastNameChangeHandler} />
                         <small></small>
                     </div>
 
                     <div className='form-field'>
                         <label className='form-label'>Email</label>
-                        <input type='text' className='email' value={enteredEmail} onChange={EmailChangeHandler} />
+                        <input type='text' className='email' value={enteredEmail} onChange={emailChangeHandler} />
+                        <small></small>
+                    </div>
+
+                    <div className='form-field'>
+                        <label className='form-label'>Address</label>
+                        <input type='text' className='address' value={enteredAddress} onChange={addressChangeHandler} />
                         <small></small>
                     </div>
 
                     <div className='form-field'>
                         <label className='form-label'>City</label>
-                        <input type='City' className='city' value={enteredCity} onChange={CityChangeHandler} />
+                        <input type='text' className='city' value={enteredCity} onChange={cityChangeHandler} />
                         <small></small>
                     </div>
 
                     <div className='form-field'>
                         <label className='form-label'>State</label>
-                        <input type='State' className='state' value={enteredState} onChange={StateChangeHandler} />
+                        <input type='text' className='state' value={enteredState} onChange={stateChangeHandler} />
+                    </div>
+
+                    <div className='form-field'>
+                        <label className='form-label'>Zip</label>
+                        <input type='text' className='zip' value={enteredZip} onChange={zipChangeHandler} />
                     </div>
 
                     <div className="btn-field">

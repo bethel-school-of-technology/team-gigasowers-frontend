@@ -164,7 +164,7 @@ export default function FarmerRegisterForm() {
 
         const profileData = {
             farmName: enteredFarmName,
-            farmDescription: enteredFarmDetails,  //updated to map this to DB field farmDescription
+            farmDescription: enteredFarmDetails, 
             farmAddress: enteredFarmAddress,
             farmCity: enteredFarmCity,
             farmState: enteredFarmState,
@@ -173,19 +173,13 @@ export default function FarmerRegisterForm() {
             farmEmail: enteredFarmEmail
         };
 
-        // if (formErrorHandler === true) {
-        //     FormErrors.push(msg);
-        //     return;
-        // } 
-        // formErrors(profileData);
-
-
+   
         //set JWT token into header for server side authentication
         let myHeaders = {
-            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
         };
 
-        axios.put('http://localhost:5000/api/users/update', { profileData }, 
+        axios.put('http://localhost:5000/api/users/update',  profileData , 
         { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
