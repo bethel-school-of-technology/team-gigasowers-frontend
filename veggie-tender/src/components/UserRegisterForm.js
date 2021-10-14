@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+// import {checkField, checkEmail, checkAddress, checkState, checkZip } from '../services/FormErrors';
 
 
 const UserRegStyles = styled.div`
@@ -177,6 +178,17 @@ const UserRegisterForm = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
+
+        // checkField(enteredUserName, 3, 'Username must be at least 3 characters.');
+        // checkField(enteredPassword, 8, 'Username must be at least 8 characters.');
+        // checkField(enteredFirstName, 3, 'First name must be at least 3 characters.');
+        // checkField(enteredLastName, 3, 'Last name must be at least 3 characters.');
+        // checkEmail(enteredEmail, 'Email is not valid');
+        // checkAddress(enteredAddress, 'Address is not valid');
+        // checkField(enteredCity, 3, 'City must be at least 3 characters.');
+        // checkState(enteredState, 'State is not valid');
+        // checkZip(enteredZip, 'Zip is not valid');
+
 
         const profileData = {
             userName: enteredUserName,
