@@ -19,7 +19,7 @@ function App() {
       <Mascot />
       <div className="pages">
       <Switch>
-            <Route path="/">
+            <Route path="/home">
                   <Landing />
             </Route>
       </Switch>
@@ -44,7 +44,7 @@ function App() {
             </Route>
       </Switch>
       <Switch>
-            <Route path="/users/farmProfile/:farmId">
+            <Route path="/users/farmProfile">
                   <FarmProfile />
             </Route>
       </Switch>

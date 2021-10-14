@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 // import FormErrors from '../services/FormErrors';
 
 
@@ -126,6 +127,8 @@ const FarmerRegStyles = styled.div`
 
 export default function FarmerRegisterForm() {
 
+    let history = useHistory();  //Used to track page route history
+    
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
     const [enteredFarmDetails, setFarmDetails] = useState('');
@@ -161,7 +164,7 @@ export default function FarmerRegisterForm() {
 
         const profileData = {
             farmName: enteredFarmName,
-            farmDetails: enteredFarmDetails,
+            farmDescription: enteredFarmDetails, 
             farmAddress: enteredFarmAddress,
             farmCity: enteredFarmCity,
             farmState: enteredFarmState,
@@ -170,22 +173,26 @@ export default function FarmerRegisterForm() {
             farmEmail: enteredFarmEmail
         };
 
-        // if (formErrorHandler === true) {
-        //     FormErrors.push(msg);
-        //     return;
-        // } 
+   
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+            'Content-Type': 'application/json'
 
-        // formErrors(profileData);
+        };
 
-
-        axios.put('http://localhost:5000/api/users/update', {
-            profileData
-        })
+        axios.put('http://localhost:5000/api/users/update',  profileData , 
+        { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status >= 200 && response.status < 300) {
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                    console.log(response.status.message);
+                    history.push('/users/login');
+                }
+                if (response.status === 200) {
                     console.log("directing to farm profile");
-                    // history.push('/users/farmProfile/:farmId', { userName: response.data.userName });
+                    // history.push('/users/farmProfile/:farmId');
                 }
                     else {
                         // setShowError(true);
