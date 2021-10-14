@@ -30,7 +30,8 @@ body{
     display: flex;
     justify-content:center;
     align-items: center;
-    margin-top: 23rem;
+    margin-top: 22rem;
+    margin-right: 1rem;
 }
 .face::before{
     content: "";
