@@ -1,7 +1,10 @@
 .App {
   text-align: center;
   width: 100vw;     /* debating.... */
-  height: 100vh;     /*debating....*/
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
 body {

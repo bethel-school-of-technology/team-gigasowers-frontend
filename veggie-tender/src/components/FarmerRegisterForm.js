@@ -25,6 +25,7 @@ const FarmerRegStyles = styled.div`
         font-size: 12px;
         background-color: #f4f4f4;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
@@ -36,6 +37,7 @@ const FarmerRegStyles = styled.div`
         justify-content: center;
         background-color: var(--salmon);
         padding: 1em;
+        margin: 2rem auto;
         // border: solid 2px;
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
@@ -218,6 +220,7 @@ export default function FarmerRegisterForm() {
 
     return (
         <FarmerRegStyles>
+            
             <div className='farmer-form-content'>
                 <form id='farmReg' className='form' onSubmit={submitHandler}>
                     <h2 className='form-title'>- Register Your Farm -</h2>
@@ -306,6 +309,7 @@ export default function FarmerRegisterForm() {
                     </div>
                 </form>
             </div>
+            
         </FarmerRegStyles>
     )
 }

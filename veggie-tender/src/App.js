@@ -9,12 +9,13 @@ import FarmerReg from "./pages/FarmerReg";
 import UserProfile from "./pages/UserProfile";
 import FarmProfile from "./pages/FarmProfile";
 import Mascot from "./components/Mascot";
+import veggieBack from './assets/images/veggieBack.jpg';
 
 
-function App() {
+export default function App() {
   return (
 <Router>
-<div className="App">
+<div className="App" style={{ backgroundImage: `url(${veggieBack})`}}>
       <Navbar />
       <Mascot />
       <div className="pages">
@@ -54,7 +55,7 @@ function App() {
 );
 }
 
-export default App;
+
 
 
 
