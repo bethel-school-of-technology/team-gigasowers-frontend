@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-// import FormErrors from '../services/FormErrors';
+// import { checkField, checkEmail, checkAddress, checkState, checkZip, checkWebsite } from '../services/FormErrors';
 
 
 const FarmerRegStyles = styled.div`
@@ -163,6 +163,14 @@ export default function FarmerRegisterForm() {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        // checkField(enteredFarmName, 3, 'Farm name must be at least 3 characters');
+        // checkField(enteredFarmDetails, 15, 'Farm details must be at least 8 characters');
+        // checkAddress(enteredFarmAddress, 'Address is not valid');
+        // checkField(enteredFarmCity, 3, 'City must be at least 3 characters.');
+        // checkState(enteredFarmState, 'State is not valid');
+        // checkZip(enteredFarmZip, 'Zip is not valid');
+        // checkWebsite(enteredFarmWebsite, 'Website is not valid');
+        // checkEmail(enteredFarmEmail, 'Email is not valid');
 
         const profileData = {
             farmName: enteredFarmName,
@@ -194,7 +202,7 @@ export default function FarmerRegisterForm() {
                 }
                 if (response.status === 200) {
                     console.log("directing to farm profile");
-                    // history.push('/users/farmProfile/:farmId');
+                    history.push('/users/farmProfile/:farmId');
                 }
                     else {
                         // setShowError(true);

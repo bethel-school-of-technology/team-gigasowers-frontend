@@ -5,7 +5,7 @@ const FarmerInfoStyles = styled.div`
 font-family: 'MontserratRegular';
 .container {
     width: 80%;
-    height: 400px;
+    min-height: 100vh;
     padding-left: 5rem;
 }
 .farmImage_shell {
