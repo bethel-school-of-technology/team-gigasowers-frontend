@@ -1,22 +1,16 @@
 import React from 'react'
 //import Navbar from '../components/Navbar';
-//import CardComponent from '../components/Card';
-import { CustomPlaceholder } from 'react-placeholder-image';
-import styled from 'styled-components';
+import CardComponent from '../components/Card';
+//import { CustomPlaceholder } from 'react-placeholder-image';
+//import styled from 'styled-components';
 
 
 
-const CardStyles = styled.div`
-#topShelf{
-    list-style: none;
-
-}
-
-.#topshelf .wrapper{
-    display: inline;
-}
-
-`
+// const CardStyles = styled.div`
+// .cards{
+//     margin: 3px;
+// }
+// `
 //@import
 // url("http://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
 
@@ -33,6 +27,14 @@ const CardStyles = styled.div`
 // $clr-grey700: #161d34;
 
 // #wrapper
+// #topShelf{
+//     list-style: none;
+
+// }
+
+// .#topshelf .wrapper{
+//     display: inline;
+// }
 
 export default function Landing() {
 
@@ -41,10 +43,18 @@ export default function Landing() {
 
     return (
         <div className="landing">
-            something
-            <div>
-                {/* <CardComponent /> */}
-                <div id="topShelf">
+            Landing Events
+            <div className="cards">
+                <CardComponent />
+                <CardComponent />
+                             
+            </div>
+        </div>
+    )
+}
+
+
+               /* <div id="topShelf">
                 <div className="wrapper">
                     <div className="Card">
                     <div className="cardBody">
@@ -85,8 +95,4 @@ export default function Landing() {
                     <button className="cardBut">a Button</button>
                     </div>
                 </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+                </div> */
