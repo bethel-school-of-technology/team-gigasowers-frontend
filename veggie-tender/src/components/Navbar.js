@@ -72,7 +72,7 @@ const NavbarStyles = styled.div`
   
     width: 100%;
     height: 80px;
-    background-color: #a0db8d;
+    background-color: var(--blue-green); 
     display: flex;
   
   }
@@ -80,7 +80,7 @@ const NavbarStyles = styled.div`
   .Navbar .leftSide{
     flex: 65%;
     padding-top: 20px;
-    background-color: var(--turq);     /*takeoff later*/
+    background-color: var(--blue-green);     /*takeoff later*/
     justify-content: left;
     align-items: center;
   }

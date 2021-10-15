@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const FarmerInfoStyles = styled.div`
+const FarmInfoStyles = styled.div`
 font-family: 'MontserratRegular';
 .container {
     width: 80%;
@@ -55,7 +55,7 @@ font-family: 'MontserratRegular';
 `;
 
 
-export default function FarmerInfo({
+export default function FarmInfo({
     // farmImage = 'Farm Image',
     farmName = 'Farm Name',
     farmDescription = 'Farm Details',
@@ -67,7 +67,7 @@ export default function FarmerInfo({
 }) {
 
     return (
-        <FarmerInfoStyles>
+        <FarmInfoStyles>
             <div className="container">
                 <div className="farmImage_shell">
                     <h3 className="farmImage">Img</h3>
@@ -88,6 +88,6 @@ export default function FarmerInfo({
                         <p>{farmEmail}</p>
                 </div>
             </div>
-        </FarmerInfoStyles>
+        </FarmInfoStyles>
     )
 }

@@ -36,7 +36,7 @@ padding-top: 5rem;
     .user-form-content {
         margin-left: 25rem;
         justify-content: center;
-        background-color: var(--turq);
+        background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
         // border: solid 2px;
@@ -70,9 +70,9 @@ padding-top: 5rem;
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--turq);
+        border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: var(--cream);
+        background-color: white;
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -106,8 +106,8 @@ padding-top: 5rem;
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--dk-turq);
-        border-bottom: 2px solid var(--dk-turq);
+        background: var(--terra);
+        border-bottom: 2px solid var(--terra);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
@@ -119,7 +119,8 @@ padding-top: 5rem;
     }
     
     .btn:hover {
-        background: var(--lt-tan);
+        background: var(--greybrwn);
+        border-color: var(--greybrwn);
         cursor: pointer;
     }
     

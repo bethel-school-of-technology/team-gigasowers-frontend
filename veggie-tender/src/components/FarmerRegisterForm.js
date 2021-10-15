@@ -35,7 +35,7 @@ const FarmerRegStyles = styled.div`
     .farmer-form-content {
         margin-left: 25rem;
         justify-content: center;
-        background-color: var(--salmon);
+        background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
         // border: solid 2px;
@@ -69,9 +69,9 @@ const FarmerRegStyles = styled.div`
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--salmon);
+        border: solid 2px var(--cream);
         border-radius: 5px;
-        background-color: #ECCBBA;
+        background-color: white;
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -105,8 +105,8 @@ const FarmerRegStyles = styled.div`
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--redor);
-        border-bottom: 2px solid var(--redor);
+        background: var(--terra);
+        border-bottom: 2px solid var(--terra);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
@@ -118,7 +118,8 @@ const FarmerRegStyles = styled.div`
     }
     
     .btn:hover {
-        background: var(--lt-tan);
+        background-color: var(--greybrwn);
+        border-color: var(--greybrwn);
         cursor: pointer;
     }
     
