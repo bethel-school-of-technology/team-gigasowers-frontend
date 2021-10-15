@@ -1,12 +1,12 @@
 import React from 'react';
-import FarmerInfo from '../components/FarmerInfo';
-import FarmerProduce from '../components/FarmerProduce';
+import FarmInfo from '../components/FarmInfo';
+import FarmProduce from '../components/FarmProduce';
 
 export default function FarmerProfile() {
     return (
         <div>
-            <FarmerInfo />
-            <FarmerProduce />
+            <FarmInfo />
+            <FarmProduce />
         </div>
     )
 }
