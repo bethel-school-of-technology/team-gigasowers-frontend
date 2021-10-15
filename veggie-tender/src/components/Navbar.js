@@ -6,7 +6,8 @@ import "../../src/App.css";
 import styled from 'styled-components';
 import List from './List';
 //import Input from './Input';
-
+//import loginButton from './loginout.js';
+//import logoutButton from './loginout.js';
 
 import LoginForm from "./LoginForm"
 import { Route } from 'react-router';
