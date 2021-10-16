@@ -23,7 +23,6 @@ const FarmerRegStyles = styled.div`
         font-family: 'MontserratRegular';
         font-color: black;
         font-size: 12px;
-        background-color: #f4f4f4;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
@@ -33,7 +32,6 @@ const FarmerRegStyles = styled.div`
     }
     
     .farmer-form-content {
-        margin-left: 25rem;
         justify-content: center;
         background-color: var(--cream);
         padding: 1em;

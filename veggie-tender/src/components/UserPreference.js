@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const FarmProduceStyles = styled.div`
+const UserPreferenceStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
@@ -30,7 +30,7 @@ body {
     
 }
 
-.farmProduce_shell {
+.userPreferences {
     margin-top: 1rem;
     width: 250px;
     height: 100%;
@@ -43,19 +43,19 @@ body {
 
     
 }
-.produceTitle {
+.title {
     font-size: 1.5rem;
 }
-.produceInventory {
+.producePref {
     font-size: 1.1rem;
     margin-top: 1rem;
 }
 @media only screen and (max-width: 768px) {
-    .produceTitle {
+    .title {
         display: flex;
         flex-direction: column;
     }
-    .produceInventory {
+    .producePref {
         display: flex;
         flex-direction: column;
     }
@@ -63,16 +63,16 @@ body {
 `;
 
 export default function FarmProduce() {
-    let farmProduceArray = ("cucumbers", "kale", "pumpkin");
+    let preferenceArray = ("cucumbers", "kale", "pumpkin");
 
     return (
-        <FarmProduceStyles>
+        <UserPreferenceStyles>
         <div className="container">
-                <div className="farmProduce_shell">
-                    <h3 className="produceTitle">Current Produce Available</h3>
-                    <h2 className="produceInventory">{farmProduceArray}</h2>
+                <div className="userPreferences">
+                    <h3 className="title">My Favorite Fruits and Veggies</h3>
+                    <h2 className="producePref">{preferenceArray}</h2>
                 </div>
         </div>
-        </FarmProduceStyles>
+        </UserPreferenceStyles>
     )
 }

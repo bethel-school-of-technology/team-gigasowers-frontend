@@ -35,7 +35,7 @@ const NavbarStyles = styled.div`
   
   .Navbar .leftSide .links a {
     text-decoration: none;
-    color: aliceblue;
+    color: white;
     font-size: 25px;
     margin-left: 15px;
   }
