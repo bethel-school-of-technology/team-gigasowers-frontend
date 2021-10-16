@@ -56,14 +56,14 @@ export default function LandingFunction() {
     //     const farmerPage = 
     // }
 
-    var farms = [
-        {
-            farmName: 'Farm 1',
-        },
-        {
-            farmName: 'Farm 2',
-        },
-    ];
+    // var farms = [
+    //     {
+    //         farmName: 'Farm 1',
+    //     },
+    //     {
+    //         farmName: 'Farm 2',
+    //     },
+    // ];
     
     return (
 
@@ -82,7 +82,7 @@ export default function LandingFunction() {
                                 <button className="cardBut">Button</button>
                             </div>
                         </div>
-                        <div className="wrapper">
+                        {/* <div className="wrapper">
                             <div className="Card">
                                 <div className="cardBody">
                                     <CustomPlaceholder width={265} height={149} />
@@ -111,7 +111,7 @@ export default function LandingFunction() {
                                 </div>
                                 <button className="cardBut">Button</button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

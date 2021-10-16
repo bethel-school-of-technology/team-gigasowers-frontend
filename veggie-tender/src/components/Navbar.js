@@ -4,10 +4,11 @@ import "../../src/App.css";
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
-import List from './List';
+//import List from './List';
 // import LoginForm from './LoginForm';
 //import Input from './Input';
 // import { Route } from 'react-router';
+import {Link} from 'react-router-dom'
 
 
 const NavbarStyles = styled.div`
@@ -133,9 +134,13 @@ function Navbar() {
                 {/* </button> */}
             </div>
             <div className="reftSide">
-                <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
-                <List items={items} onComplete={onComplete}/>
-
+            <div>
+              <Link to='/users/login'>
+              <button type="button" className="btn btn-info">Button</button>
+              </Link>
+            </div>
+                {/* <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
+                <List items={items} onComplete={onComplete}/> */}
                 {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>
