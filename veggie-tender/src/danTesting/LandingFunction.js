@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Card from './Card';
-=======
 import React from 'react'
 import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
@@ -34,7 +29,7 @@ const LandingFunctionStyles = styled.div`
 // $clr-grey700: #161d34;
 
 // #wrapper
->>>>>>> 7ebb665190f25028d7b06dcfe8f93d95cc4d5020
+
 
 export default function LandingFunction() {
 
@@ -71,29 +66,7 @@ export default function LandingFunction() {
     ];
     
     return (
-<<<<<<< HEAD
-        <div >
 
-
-        
-            {farms.map(function(farm, index){
-                    return <Card 
-                    img=""
-                    title={farm.farmName}
-                    description="des 1"/>
-                  })}
-
-            {/* <Cards 
-            img=""
-            title="tit1"
-            description="des 1"/>   //need to add img etc
-            <Cards
-            img=""
-            title="2"
-            description="des 2" /> */}
-        </div>
-
-=======
         <LandingFunctionStyles>
             <div className="landing">
                 something
@@ -143,6 +116,6 @@ export default function LandingFunction() {
                 </div>
             </div>
         </LandingFunctionStyles>
->>>>>>> 7ebb665190f25028d7b06dcfe8f93d95cc4d5020
+
     )
 }
