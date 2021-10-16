@@ -6,7 +6,7 @@ import { CustomPlaceholder } from 'react-placeholder-image';
 
 const CardStyles = styled.div`
 .cardWrapper{
-
+display: flex; 
 }
 
 .cardImg{
