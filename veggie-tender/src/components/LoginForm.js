@@ -13,6 +13,11 @@ font-family: 'MontserratMedium';
     font-size: 1.75rem;
 }
 
+.login-form-content {
+    min-height: 100vh;
+}
+
+
 .login-shell {
     background-color: var(--cream);
     padding: 1rem;
@@ -160,7 +165,7 @@ const LoginForm = () => {
                     //set jwt token into local storage 
                     localStorage.setItem("vegToken", response.data.jwt);
                     //redirect to landing or home page
-                    history.push('/');
+                    history.push('/home');
                 } else {
                     setShowError = true;
                     setErrorCode = response.status;
@@ -179,6 +184,7 @@ const LoginForm = () => {
 
     return (
         <LoginFormStyles>
+            <div className='login-form-content'>
             <form onSubmit={submitHandler}>
                 <div className='login-shell'>
                     <div >
@@ -204,6 +210,7 @@ const LoginForm = () => {
                     </div>
                 </div>
             </form>
+            </div>
         </LoginFormStyles>
     )
 };

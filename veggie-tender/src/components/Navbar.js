@@ -1,14 +1,16 @@
 
 import React, {useState} from 'react';
 import "../../src/App.css";
+import styled from 'styled-components';
+import {Link} from 'react-router-dom'
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
-import styled from 'styled-components';
 //import List from './List';
 // import LoginForm from './LoginForm';
 //import Input from './Input';
 // import { Route } from 'react-router';
-import {Link} from 'react-router-dom'
+
+
 
 
 const NavbarStyles = styled.div`
@@ -36,7 +38,7 @@ const NavbarStyles = styled.div`
   
   .Navbar .leftSide .links a {
     text-decoration: none;
-    color: aliceblue;
+    color: white;
     font-size: 25px;
     margin-left: 15px;
   }
@@ -73,7 +75,7 @@ const NavbarStyles = styled.div`
   
     width: 100%;
     height: 80px;
-    background-color: #a0db8d;
+    background-color: var(--blue-green); 
     display: flex;
   
   }
@@ -81,7 +83,7 @@ const NavbarStyles = styled.div`
   .Navbar .leftSide{
     flex: 65%;
     padding-top: 20px;
-    background-color: var(--turq);     /*takeoff later*/
+    background-color: var(--blue-green);     /*takeoff later*/
     justify-content: left;
     align-items: center;
   }

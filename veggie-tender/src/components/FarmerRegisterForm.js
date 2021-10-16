@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-// import FormErrors from '../services/FormErrors';
+// import { checkField, checkEmail, checkAddress, checkState, checkZip, checkWebsite } from '../services/FormErrors';
 
 
 const FarmerRegStyles = styled.div`
@@ -23,8 +23,8 @@ const FarmerRegStyles = styled.div`
         font-family: 'MontserratRegular';
         font-color: black;
         font-size: 12px;
-        background-color: #f4f4f4;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
@@ -32,10 +32,10 @@ const FarmerRegStyles = styled.div`
     }
     
     .farmer-form-content {
-        margin-left: 25rem;
         justify-content: center;
-        background-color: var(--salmon);
+        background-color: var(--cream);
         padding: 1em;
+        margin: 2rem auto;
         // border: solid 2px;
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
@@ -67,9 +67,9 @@ const FarmerRegStyles = styled.div`
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--salmon);
+        border: solid 2px var(--cream);
         border-radius: 5px;
-        background-color: #ECCBBA;
+        background-color: white;
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -103,8 +103,8 @@ const FarmerRegStyles = styled.div`
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--redor);
-        border-bottom: 2px solid var(--redor);
+        background: var(--terra);
+        border-bottom: 2px solid var(--terra);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
@@ -116,7 +116,8 @@ const FarmerRegStyles = styled.div`
     }
     
     .btn:hover {
-        background: var(--lt-tan);
+        background-color: var(--greybrwn);
+        border-color: var(--greybrwn);
         cursor: pointer;
     }
     
@@ -161,6 +162,14 @@ export default function FarmerRegisterForm() {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        // checkField(enteredFarmName, 3, 'Farm name must be at least 3 characters');
+        // checkField(enteredFarmDetails, 15, 'Farm details must be at least 8 characters');
+        // checkAddress(enteredFarmAddress, 'Address is not valid');
+        // checkField(enteredFarmCity, 3, 'City must be at least 3 characters.');
+        // checkState(enteredFarmState, 'State is not valid');
+        // checkZip(enteredFarmZip, 'Zip is not valid');
+        // checkWebsite(enteredFarmWebsite, 'Website is not valid');
+        // checkEmail(enteredFarmEmail, 'Email is not valid');
 
         const profileData = {
             farmName: enteredFarmName,
@@ -192,7 +201,7 @@ export default function FarmerRegisterForm() {
                 }
                 if (response.status === 200) {
                     console.log("directing to farm profile");
-                    // history.push('/users/farmProfile/:farmId');
+                    history.push('/users/farmProfile/:farmId');
                 }
                     else {
                         // setShowError(true);
@@ -218,6 +227,7 @@ export default function FarmerRegisterForm() {
 
     return (
         <FarmerRegStyles>
+            
             <div className='farmer-form-content'>
                 <form id='farmReg' className='form' onSubmit={submitHandler}>
                     <h2 className='form-title'>- Register Your Farm -</h2>
@@ -306,6 +316,7 @@ export default function FarmerRegisterForm() {
                     </div>
                 </form>
             </div>
+            
         </FarmerRegStyles>
     )
 }
