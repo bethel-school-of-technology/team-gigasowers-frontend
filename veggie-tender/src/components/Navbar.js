@@ -124,6 +124,7 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
+                    <a href="/home"><img src="../img/kingyo.png"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>

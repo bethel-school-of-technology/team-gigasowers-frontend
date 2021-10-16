@@ -1,6 +1,7 @@
 import React from 'react'
 import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
+import Card from '../components/Card.js';
 
 
 
@@ -32,6 +33,88 @@ const LandingFunctionStyles = styled.div`
 
 
 export default function LandingFunction() {
+
+    // const farmNameHandler = (event) => { setFarmName(event.target.value) };
+    // const farmDetailsHandler = (event) => { setFarmDetails(event.target.value) };
+    // const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
+    // const farmCityHandler = (event) => { setFarmCity(event.target.value) };
+    // const farmStateHandler = (event) => { setFarmState(event.target.value) };
+    // const farmZipHandler = (event) => { setFarmZip(event.target.value) };
+    // const farmWebsiteHandler = (event) => { setFarmWebsite(event.target.value) };
+    // const farmEmailHandler = (event) => { setFarmEmail(event.target.value) };
+
+
+
+    // const profileData = {
+    //     farmName: enteredFarmName,
+    //     farmDescription: enteredFarmDetails, 
+    //     farmAddress: enteredFarmAddress,
+    //     farmCity: enteredFarmCity,
+    //     farmState: enteredFarmState,
+    //     farmZip: enteredFarmZip,
+    //     farmWebsite: enteredFarmWebsite,
+    //     farmEmail: enteredFarmEmail
+    // };
+
+
+    
+    return (
+
+        <LandingFunctionStyles>
+            <div className="landing">
+                something
+            <div>
+                <Card />
+            </div>
+            </div>
+        </LandingFunctionStyles>
+
+    )
+}
+
+{/* <div id="topShelf">
+<div className="wrapper">
+    <div className="Card">
+        <div className="cardBody">
+            <CustomPlaceholder width={265} height={149} />
+            <h2 className="cardTitle">Farm Event1</h2>
+            <p className="cardDes">description</p>
+        </div>
+        <button className="cardBut">Button</button>
+    </div>
+</div>
+
+</div> */}
+{/* <div className="wrapper">
+                            <div className="Card">
+                                <div className="cardBody">
+                                    <CustomPlaceholder width={265} height={149} />
+                                    <h2 className="cardTitle">local Farm</h2>
+                                    <p className="cardDes">description</p>
+                                </div>
+                                <button className="cardBut">Button</button>
+                            </div>
+                        </div>
+                        <div className="wrapper">
+                            <div className="Card">
+                                <div className="cardBody">
+                                    <CustomPlaceholder width={265} height={149} />
+                                    <h2 className="cardTitle">farm</h2>
+                                    <p className="cardDes">description</p>
+                                </div>
+                                <button className="cardBut">Button</button>
+                            </div>
+                        </div>
+                        <div className="wrapper">
+                            <div className="Card">
+                                <div className="cardBody">
+                                    <CustomPlaceholder width={265} height={149} />
+                                    <h2 className="cardTitle">farmer market</h2>
+                                    <p className="cardDes">description</p>
+                                </div>
+                                <button className="cardBut">Button</button>
+                            </div>
+                        </div> */}
 
     // useEffect(() => {
     //     axios
@@ -65,57 +148,3 @@ export default function LandingFunction() {
     //     },
     // ];
     
-    return (
-
-        <LandingFunctionStyles>
-            <div className="landing">
-                something
-            <div>
-                    <div id="topShelf">
-                        <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">Farm Event1</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div>
-                        {/* <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">local Farm</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div>
-                        <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">farm</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div>
-                        <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">farmer market</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div> */}
-                    </div>
-                </div>
-            </div>
-        </LandingFunctionStyles>
-
-    )
-}

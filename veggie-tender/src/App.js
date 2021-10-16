@@ -20,7 +20,7 @@ function App() {
       <div className="pages">
       <Switch>
             <Route path="/home">
-                  <Landing />
+                  <Landing /> //same as events
             </Route>
       </Switch>
       <Switch>
