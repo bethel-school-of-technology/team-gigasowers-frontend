@@ -30,8 +30,43 @@ const LandingFunctionStyles = styled.div`
 
 // #wrapper
 
+
 export default function LandingFunction() {
+
+    // useEffect(() => {
+    //     axios
+    //       .get(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=9&regionCode=PK&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+    //       .then(response => {
+    //         console.log(response.data.items);
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       })
+    //     }, [])
+
+        
+
+    // const [cards, setCards] = useState([]);
+    // const [isLoading, setIsLoading] = useState(true);
+    // const [isError, setIsError] = useState(false);
+    
+    // let newCards =[];
+    // for (const farmer of farmerHere){
+    //     const farmerId = farmer.id;
+    //     const farmerPage = 
+    // }
+
+    var farms = [
+        {
+            farmName: 'Farm 1',
+        },
+        {
+            farmName: 'Farm 2',
+        },
+    ];
+    
     return (
+
         <LandingFunctionStyles>
             <div className="landing">
                 something
@@ -81,5 +116,6 @@ export default function LandingFunction() {
                 </div>
             </div>
         </LandingFunctionStyles>
+
     )
 }
