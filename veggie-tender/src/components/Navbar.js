@@ -7,7 +7,13 @@ import styled from 'styled-components';
 import List from './List';
 // import LoginForm from './LoginForm';
 //import Input from './Input';
-// import { Route } from 'react-router';
+
+//import loginButton from './loginout.js';
+//import logoutButton from './loginout.js';
+
+import LoginForm from "./LoginForm"
+import { Route } from 'react-router';
+
 
 
 const NavbarStyles = styled.div`
