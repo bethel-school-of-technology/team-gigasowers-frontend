@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-//import axios from "axios";
+//import ReactPlaceholder from 'react-placeholder';
+//import "react-placeholder/lib/reactPlaceholder.css";
 import { CustomPlaceholder } from 'react-placeholder-image';
-//import { render } from 'react-dom';
-// import FormErrors from '../services/FormErrors';
-
 
 const CardStyles = styled.div`
 .card{
@@ -68,27 +66,10 @@ color: white;
 }
 `;
 
-// const CardStyles = styled.div`
+export default function Card() {
 
-
-// `
-
-
-// export default function Card(){
-//     return {
-//         <div>
-        
-//         </div>
-//     }
-
-// }
-
-const CardComponent = () => {
-
-//render(
-    return(
-    <CardStyles>
-        <div className="Card">
+    return (
+        <CardStyles>
             <div className="cardWrapper">
             <div className="cardBody">
                 <div className="cardImg">
@@ -104,7 +85,11 @@ const CardComponent = () => {
             </div>
         </div>
     </CardStyles>
+
     )
 
 }
+
+
+
 

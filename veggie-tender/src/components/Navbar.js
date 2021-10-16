@@ -1,18 +1,15 @@
 
 import React, {useState} from 'react';
 import "../../src/App.css";
+import styled from 'styled-components';
+import {Link} from 'react-router-dom'
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
-import styled from 'styled-components';
-import List from './List';
+//import List from './List';
 // import LoginForm from './LoginForm';
 //import Input from './Input';
+// import { Route } from 'react-router';
 
-//import loginButton from './loginout.js';
-//import logoutButton from './loginout.js';
-
-import LoginForm from "./LoginForm"
-import { Route } from 'react-router';
 
 
 
@@ -129,6 +126,7 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
+                    <a href="/home"><img src="../img/kingyo.png"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
@@ -139,9 +137,13 @@ function Navbar() {
                 {/* </button> */}
             </div>
             <div className="reftSide">
-                <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
-                <List items={items} onComplete={onComplete}/>
-
+            <div>
+              <Link to='/users/login'>
+              <button type="button" className="btn btn-info">Button</button>
+              </Link>
+            </div>
+                {/* <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
+                <List items={items} onComplete={onComplete}/> */}
                 {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>

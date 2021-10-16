@@ -1,24 +1,22 @@
-import React from 'react';
-//import styled from 'styled-components';
+
+import React, { useState } from 'react';
+import styled from 'styled-components';
+//import axios from "axios";
+//import { useHistory } from 'react-router-dom';
+// import FormErrors from '../services/FormErrors';
 
 
-function loginButton(props) {
+const LoginButtonStyles = styled.div`
+
+`;
+
+export default function LoginButton() {
+
     return (
-      <button onClick={props.onClick}>
-        Login
-      </button>
-    );
-  }
-  
-  function logoutButton(props) {
-    return (
-      <button onClick={props.onClick}>
-        Logout
-      </button>
-    );
-  }
+        <LoginButtons>
+            
+        </LoginButton>
+    )
+}
 
 
-
-//   export default CardComponent
-//   export default CardComponent

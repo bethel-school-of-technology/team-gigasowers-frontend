@@ -12,6 +12,7 @@ import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
 
 
+
 export default function App() {
       return (
             <Router>
@@ -53,6 +54,7 @@ export default function App() {
                   </div>
             </Router>
       );
+
 }
 
 
