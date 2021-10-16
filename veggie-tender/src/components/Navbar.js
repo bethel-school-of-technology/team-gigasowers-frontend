@@ -5,12 +5,15 @@ import "../../src/App.css";
 //import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
 import List from './List';
+// import LoginForm from './LoginForm';
 //import Input from './Input';
+
 //import loginButton from './loginout.js';
 //import logoutButton from './loginout.js';
 
 import LoginForm from "./LoginForm"
 import { Route } from 'react-router';
+
 
 
 const NavbarStyles = styled.div`
@@ -38,7 +41,7 @@ const NavbarStyles = styled.div`
   
   .Navbar .leftSide .links a {
     text-decoration: none;
-    color: aliceblue;
+    color: white;
     font-size: 25px;
     margin-left: 15px;
   }
@@ -75,7 +78,7 @@ const NavbarStyles = styled.div`
   
     width: 100%;
     height: 80px;
-    background-color: #a0db8d;
+    background-color: var(--blue-green); 
     display: flex;
   
   }
@@ -83,7 +86,7 @@ const NavbarStyles = styled.div`
   .Navbar .leftSide{
     flex: 65%;
     padding-top: 20px;
-    background-color: var(--turq);     /*takeoff later*/
+    background-color: var(--blue-green);     /*takeoff later*/
     justify-content: left;
     align-items: center;
   }
@@ -129,7 +132,6 @@ function Navbar() {
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
-                    <a href="/Umm">MAYYYYYYBEEEE</a>
                 </div>
                 {/* <button onClick={()=> setShowLinks(!showLinks)}>
                         {" "} 
@@ -140,7 +142,7 @@ function Navbar() {
                 <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
                 <List items={items} onComplete={onComplete}/>
 
-                <button><Route exact path="/" component={LoginForm}>Login</Route></button>
+                {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>
         </NavbarStyles>

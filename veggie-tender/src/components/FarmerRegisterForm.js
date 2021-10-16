@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
-// import FormErrors from '../services/FormErrors';
+import { useHistory } from 'react-router-dom';
+// import { checkField, checkEmail, checkAddress, checkState, checkZip, checkWebsite } from '../services/FormErrors';
 
 
 const FarmerRegStyles = styled.div`
@@ -22,8 +23,8 @@ const FarmerRegStyles = styled.div`
         font-family: 'MontserratRegular';
         font-color: black;
         font-size: 12px;
-        background-color: #f4f4f4;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
@@ -31,10 +32,10 @@ const FarmerRegStyles = styled.div`
     }
     
     .farmer-form-content {
-        margin-left: 25rem;
         justify-content: center;
-        background-color: var(--salmon);
+        background-color: var(--cream);
         padding: 1em;
+        margin: 2rem auto;
         // border: solid 2px;
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
@@ -66,9 +67,9 @@ const FarmerRegStyles = styled.div`
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--salmon);
+        border: solid 2px var(--cream);
         border-radius: 5px;
-        background-color: #ECCBBA;
+        background-color: white;
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -102,8 +103,8 @@ const FarmerRegStyles = styled.div`
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--redor);
-        border-bottom: 2px solid var(--redor);
+        background: var(--terra);
+        border-bottom: 2px solid var(--terra);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
@@ -115,7 +116,8 @@ const FarmerRegStyles = styled.div`
     }
     
     .btn:hover {
-        background: var(--lt-tan);
+        background-color: var(--greybrwn);
+        border-color: var(--greybrwn);
         cursor: pointer;
     }
     
@@ -126,6 +128,8 @@ const FarmerRegStyles = styled.div`
 
 export default function FarmerRegisterForm() {
 
+    let history = useHistory();  //Used to track page route history
+    
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
     const [enteredFarmDetails, setFarmDetails] = useState('');
@@ -158,10 +162,18 @@ export default function FarmerRegisterForm() {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        // checkField(enteredFarmName, 3, 'Farm name must be at least 3 characters');
+        // checkField(enteredFarmDetails, 15, 'Farm details must be at least 8 characters');
+        // checkAddress(enteredFarmAddress, 'Address is not valid');
+        // checkField(enteredFarmCity, 3, 'City must be at least 3 characters.');
+        // checkState(enteredFarmState, 'State is not valid');
+        // checkZip(enteredFarmZip, 'Zip is not valid');
+        // checkWebsite(enteredFarmWebsite, 'Website is not valid');
+        // checkEmail(enteredFarmEmail, 'Email is not valid');
 
         const profileData = {
             farmName: enteredFarmName,
-            farmDetails: enteredFarmDetails,
+            farmDescription: enteredFarmDetails, 
             farmAddress: enteredFarmAddress,
             farmCity: enteredFarmCity,
             farmState: enteredFarmState,
@@ -170,22 +182,26 @@ export default function FarmerRegisterForm() {
             farmEmail: enteredFarmEmail
         };
 
-        // if (formErrorHandler === true) {
-        //     FormErrors.push(msg);
-        //     return;
-        // } 
+   
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+            'Content-Type': 'application/json'
 
-        // formErrors(profileData);
+        };
 
-
-        axios.put('http://localhost:5000/api/users/update', {
-            profileData
-        })
+        axios.put('http://localhost:5000/api/users/update',  profileData , 
+        { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status >= 200 && response.status < 300) {
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                    console.log(response.status.message);
+                    history.push('/users/login');
+                }
+                if (response.status === 200) {
                     console.log("directing to farm profile");
-                    // history.push('/users/farmProfile/:farmId', { userName: response.data.userName });
+                    history.push('/users/farmProfile/:farmId');
                 }
                     else {
                         // setShowError(true);
@@ -211,6 +227,7 @@ export default function FarmerRegisterForm() {
 
     return (
         <FarmerRegStyles>
+            
             <div className='farmer-form-content'>
                 <form id='farmReg' className='form' onSubmit={submitHandler}>
                     <h2 className='form-title'>- Register Your Farm -</h2>
@@ -299,6 +316,7 @@ export default function FarmerRegisterForm() {
                     </div>
                 </form>
             </div>
+            
         </FarmerRegStyles>
     )
 }

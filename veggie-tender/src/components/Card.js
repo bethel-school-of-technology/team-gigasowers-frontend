@@ -105,5 +105,6 @@ const CardComponent = () => {
         </div>
     </CardStyles>
     )
+
 }
-export default CardComponent
+

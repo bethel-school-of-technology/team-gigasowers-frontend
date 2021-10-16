@@ -7,5 +7,7 @@ export default function UserReg() {
         <div>
             <UserRegisterForm />
         </div>
+
     )
+
 }

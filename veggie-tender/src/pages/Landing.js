@@ -36,12 +36,11 @@ import CardComponent from '../components/Card';
 //     display: inline;
 // }
 
+
 export default function Landing() {
 
-
-
-
     return (
+
         <div className="landing">
             Landing Events
             <div className="cards">
@@ -96,3 +95,4 @@ export default function Landing() {
                     </div>
                 </div>
                 </div> */
+
