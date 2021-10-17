@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 //import axios from "axios";
@@ -5,16 +6,17 @@ import styled from 'styled-components';
 // import FormErrors from '../services/FormErrors';
 
 
-const FarmerRegStyles = styled.div`
+const LoginButtonStyles = styled.div`
 
 `;
 
 export default function LoginButton() {
 
     return (
-        <FarmerRegStyles>
+        <LoginButtons>
             
-        </FarmerRegStyles>
+        </LoginButton>
     )
 }
+
 

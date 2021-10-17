@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+// import {checkField, checkEmail, checkAddress, checkState, checkZip } from '../services/FormErrors';
 
 
 const UserRegStyles = styled.div`
@@ -25,6 +26,7 @@ padding-top: 5rem;
         font-size: 12px;
         background-color: #f4f4f4;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
@@ -34,8 +36,9 @@ padding-top: 5rem;
     .user-form-content {
         margin-left: 25rem;
         justify-content: center;
-        background-color: var(--turq);
+        background-color: var(--cream);
         padding: 1em;
+        margin: 2rem auto;
         // border: solid 2px;
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
@@ -67,9 +70,9 @@ padding-top: 5rem;
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--turq);
+        border: 1px solid #ccc;
         border-radius: 5px;
-        background-color: var(--cream);
+        background-color: white;
         padding: 10px;
         margin-bottom: 5px;
         font-size: 14px;
@@ -103,8 +106,8 @@ padding-top: 5rem;
     .btn {
         width: 100%;
         padding: 3%;
-        background: var(--dk-turq);
-        border-bottom: 2px solid var(--dk-turq);
+        background: var(--terra);
+        border-bottom: 2px solid var(--terra);
         border-top-style: none;
         border-right-style: none;
         border-left-style: none;
@@ -116,7 +119,8 @@ padding-top: 5rem;
     }
     
     .btn:hover {
-        background: var(--lt-tan);
+        background: var(--greybrwn);
+        border-color: var(--greybrwn);
         cursor: pointer;
     }
     
@@ -175,6 +179,17 @@ const UserRegisterForm = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
+
+        // checkField(enteredUserName, 3, 'Username must be at least 3 characters.');
+        // checkField(enteredPassword, 8, 'Username must be at least 8 characters.');
+        // checkField(enteredFirstName, 3, 'First name must be at least 3 characters.');
+        // checkField(enteredLastName, 3, 'Last name must be at least 3 characters.');
+        // checkEmail(enteredEmail, 'Email is not valid');
+        // checkAddress(enteredAddress, 'Address is not valid');
+        // checkField(enteredCity, 3, 'City must be at least 3 characters.');
+        // checkState(enteredState, 'State is not valid');
+        // checkZip(enteredZip, 'Zip is not valid');
+
 
         const profileData = {
             userName: enteredUserName,
