@@ -20,9 +20,12 @@ const NavbarStyles = styled.div`
   
   .Navbar .leftSide #hidden{
   margin:10px;
-  
-  
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   }
+
   /* .Navbar .leftSide .links{
     display: none;
   } */
@@ -88,6 +91,10 @@ const NavbarStyles = styled.div`
     align-items: center;
   }
   
+  .homeButton{
+    flex: 0.2;
+
+  }
 `;
 
 
@@ -126,7 +133,7 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home"><img src="../img/kingyo.png"/></a>
+                    <a href="/home" className="homeButton">Home<img src="../img/kingyo.png"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>

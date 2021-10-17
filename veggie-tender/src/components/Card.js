@@ -5,11 +5,8 @@ import styled from 'styled-components';
 import { CustomPlaceholder } from 'react-placeholder-image';
 
 const CardStyles = styled.div`
-<<<<<<< HEAD
-.cardWrapper{
-display: flex; 
-=======
 .card{
+   flex: 0.8;
    box-sizing: border-box;
    margin: 0;
    padding: px;
@@ -27,7 +24,7 @@ display: flex;
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
->>>>>>> c8ca9a3110142256a635e9eade5dd3d5bc041b4a
+
 }
 
 .cardImg{
@@ -86,7 +83,6 @@ export default function Card() {
                     <p className="cardDes">description</p>
                 </div>
             </div>
-            <button className="cardBut">Buttonです</button>
             </div>
         
         </CardStyles>
@@ -95,6 +91,6 @@ export default function Card() {
 
 }
 
-
+//<button className="cardBut">Buttonです</button>
 
 
