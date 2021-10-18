@@ -67,7 +67,7 @@ const FarmerRegStyles = styled.div`
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--cream);
+        border: 1px solid #ccc;
         border-radius: 5px;
         background-color: white;
         padding: 10px;
@@ -132,7 +132,7 @@ export default function FarmerRegisterForm() {
     
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
-    const [enteredFarmDetails, setFarmDetails] = useState('');
+    const [enteredFarmDescription, setFarmDescription] = useState('');
     const [enteredFarmAddress, setFarmAddress] = useState('');
     const [enteredFarmCity, setFarmCity] = useState('');
     const [enteredFarmState, setFarmState] = useState('');
@@ -150,7 +150,7 @@ export default function FarmerRegisterForm() {
     // };
 
     const farmNameHandler = (event) => { setFarmName(event.target.value) };
-    const farmDetailsHandler = (event) => { setFarmDetails(event.target.value) };
+    const farmDescriptionHandler = (event) => { setFarmDescription(event.target.value) };
     const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
     const farmCityHandler = (event) => { setFarmCity(event.target.value) };
     const farmStateHandler = (event) => { setFarmState(event.target.value) };
@@ -173,7 +173,7 @@ export default function FarmerRegisterForm() {
 
         const profileData = {
             farmName: enteredFarmName,
-            farmDescription: enteredFarmDetails, 
+            farmDescription: enteredFarmDescription, 
             farmAddress: enteredFarmAddress,
             farmCity: enteredFarmCity,
             farmState: enteredFarmState,
@@ -215,7 +215,7 @@ export default function FarmerRegisterForm() {
                 });
 
                 setFarmName('');
-                setFarmDetails('');
+                setFarmDescription('');
                 setFarmAddress('');
                 setFarmCity('');
                 setFarmState('');
@@ -246,8 +246,8 @@ export default function FarmerRegisterForm() {
                         <input type='text'
                             className='farmDetails'
                             placeholder='Tell us about your farm!'
-                            value={enteredFarmDetails}
-                            onChange={farmDetailsHandler}
+                            value={enteredFarmDescription}
+                            onChange={farmDescriptionHandler}
                         />
                         <small></small>
                     </div>

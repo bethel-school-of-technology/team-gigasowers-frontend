@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router';
+
 
 const FarmInfoStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -85,16 +89,59 @@ body {
 `;
 
 
-export default function FarmInfo({
-    // farmImage = 'Farm Image',
-    farmName = 'Farm Name',
-    farmDescription = 'Farm Details',
-    farmAddress = 'Farm Address',
-    farmCity = "Farm City",
-    farmState = "Farm State",
-    farmWebsite = "Farm Website",
-    farmEmail = "Farm Email",
-}) {
+const FarmInfo = () => {
+    
+    // const [farmImage, setFarmImage] = useState();
+    const [userFarms, setUserFarms] = useState({
+            profileSection: 'FARM',
+            farmName: '',
+            farmDescription: '',
+            farmAddress: '',
+            farmCity: '',
+            farmState: '',
+            farmZip: '',
+            farmWebsite: '',
+            farmEmail: ''
+    });
+    // const [farmName, setFarmName] = useState();
+    // const [farmDescription, setFarmDescription] = useState();
+    // const [farmAddress, setFarmAddress] = useState();
+    // const [farmCity, setFarmCity] = useState();
+    // const [farmState, setFarmState] = useState();
+    // const [farmZip, setFarmZip] = useState();
+    // const [farmWebsite, setFarmWebsite] = useState();
+    // const [farmEmail, setFarmEmail] = useState();
+
+    let {farmId} = useParams;
+    //set JWT token into header for server side authentication
+    let myHeaders = {
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+        'Content-Type': 'application/json'
+    };
+    
+    
+    useEffect(() => {
+        const url = `http://localhost:5000/api/users/farms/${farmId}`;
+        
+        axios.get(url, 
+        { 'headers': myHeaders }).then(result => {
+            setUserFarms(result.data);
+            // setFarmName(result.data);
+            // setFarmDescription(result.data);
+            // setFarmAddress(result.data);
+            // setFarmCity(result.data);
+            // setFarmState(result.data);
+            // setFarmZip(result.data);
+            // setFarmWebsite(result.data);
+            // setFarmEmail(result.data);
+        }, err => {
+            useHistory.push('/');
+        }, []);
+    });
+
+    
+    
+
 
     return (
         <FarmInfoStyles>
@@ -105,27 +152,30 @@ export default function FarmInfo({
                 <div className="info_float">
                     <div className="farmInfo">
 
-                        <h3 className="farmDesc">Farm Description: </h3>
-                        <p>{farmDescription}</p><br />
+                        <h3 className="farmDescription">Farm Description: </h3>
+                        <p>{userFarms.farmDescription}</p><br />
                         <h3 className="farmAddress">Address: </h3>
-                        <p>{farmAddress}</p><br />
+                        <p>{userFarms.farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
-                        <p>{farmCity}</p><br />
+                        <p>{userFarms.farmCity}</p><br />
                         <h3 className="farmState">State: </h3>
-                        <p>{farmState}</p><br />
+                        <p>{userFarms.farmState}</p><br />
+                        <h3 className="farmZip">Zip: </h3>
+                        <p>{userFarms.farmZip}</p><br />
                         <h3 className="farmWebsite">Website: </h3>
-                        <p>{farmWebsite}</p><br />
+                        <p>{userFarms.farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
-                        <p>{farmEmail}</p>
+                        <p>{userFarms.farmEmail}</p>
 
                     </div>
                 </div>
                 <div className="farmNameSection">
 
-                    <h3 className="farmName">{farmName}</h3>
+                    <h3 className="farmName">{userFarms.farmName}</h3>
                 </div>
             </div>
         </FarmInfoStyles>
     )
 }
 
+export default FarmInfo;

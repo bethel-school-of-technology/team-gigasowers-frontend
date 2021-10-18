@@ -71,20 +71,20 @@ export default function Card() {
     return (
         <CardStyles>
             <div className="cardWrapper">
-            <div className="cardBody">
-                <div className="cardImg">
-                    {/* <img src="./imgtest/imgholder.png" /> */}
-                    <CustomPlaceholder width={265} height={149} />
+                <div className="cardBody">
+                    <div className="cardImg">
+                        {/* <img src="./imgtest/imgholder.png" /> */}
+                        <CustomPlaceholder width={265} height={149} />
+                    </div>
+                    <div className="cardWords">
+                        <h2 className="cardTitle">title</h2>
+                        <p className="cardDes">description</p>
+                    </div>
                 </div>
-                <div className="cardWords">
-                    <h2 className="cardTitle">title</h2>
-                    <p className="cardDes">description</p>
-                </div>
+                <button className="cardBut">Buttonです</button>
             </div>
-            <button className="cardBut">Buttonです</button>
-            </div>
-        </div>
-    </CardStyles>
+        
+        </CardStyles >
 
     )
 

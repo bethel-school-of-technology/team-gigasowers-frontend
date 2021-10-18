@@ -63,6 +63,8 @@ body {
 `;
 
 export default function FarmProduce() {
+
+    
     let farmProduceArray = ("cucumbers", "kale", "pumpkin");
 
     return (
