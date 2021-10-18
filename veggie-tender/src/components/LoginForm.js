@@ -160,7 +160,7 @@ const LoginForm = () => {
         //post to login in API to auth user and get token
         axios.post('http://localhost:5000/api/users/login', loginData)
             .then(function (response) {
-                console.log(response);
+                
                 if (response.status === 200) {
                     //set jwt token into local storage 
                     localStorage.setItem("vegToken", response.data.jwt);
