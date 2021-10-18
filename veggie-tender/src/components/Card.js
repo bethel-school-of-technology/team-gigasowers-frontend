@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { CustomPlaceholder } from 'react-placeholder-image';
 
 const CardStyles = styled.div`
+
 .card{
    box-sizing: border-box;
    margin: 0;
@@ -85,6 +86,7 @@ export default function Card() {
             </div>
         
         </CardStyles >
+
 
     )
 
