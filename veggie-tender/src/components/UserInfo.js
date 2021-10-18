@@ -89,15 +89,25 @@ body {
 
 const UserInfo = () => {
     // const [userImage, setUserImage] = useState();
-    const [user, setUser] = useState();
-    const [userName, setUserName] = useState();
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [userAddress, setUserAddress] = useState();
-    const [userCity, setUserCity] = useState();
-    const [userState, setUserState] = useState();
-    const [userZip, setUserZip] = useState();
-    const [userEmail, setUserEmail] = useState();
+    const [user, setUser] = useState({
+            profileSection: 'USER',
+            userName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            address: '',
+            city: '',
+            state: '',
+            zip: ''
+    });
+    // const [userName, setUserName] = useState();
+    // const [firstName, setFirstName] = useState();
+    // const [lastName, setLastName] = useState();
+    // const [userAddress, setUserAddress] = useState();
+    // const [userCity, setUserCity] = useState();
+    // const [userState, setUserState] = useState();
+    // const [userZip, setUserZip] = useState();
+    // const [userEmail, setUserEmail] = useState();
 
     let {_id} = useParams;
 
@@ -110,14 +120,15 @@ const UserInfo = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/api/users/?_id', "USER", 
         { 'headers': myHeaders }).then(result => {
-            setUserName(result.data);
-            setFirstName(result.data);
-            setLastName(result.data);
-            setUserAddress(result.data);
-            setUserCity(result.data);
-            setUserState(result.data);
-            setUserZip(result.data);
-            setUserEmail(result.data);
+            setUser(result.data);
+            // setUserName(result.data);
+            // setFirstName(result.data);
+            // setLastName(result.data);
+            // setUserAddress(result.data);
+            // setUserCity(result.data);
+            // setUserState(result.data);
+            // setUserZip(result.data);
+            // setUserEmail(result.data);
         });
     });
 

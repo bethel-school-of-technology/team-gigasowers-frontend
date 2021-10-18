@@ -36,12 +36,12 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/profile">
+                                    <Route path="/users/profile/:id">
                                           <UserProfile />
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/farmProfile">
+                                    <Route path="/users/farmProfile/:farmId">
                                           <FarmProfile />
                                     </Route>
                               </Switch>

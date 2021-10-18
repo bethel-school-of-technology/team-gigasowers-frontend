@@ -157,7 +157,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update your farm name'
                                         value={userFarms.farmName}
-                                        onChange={e => setUserFarms({farmName: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmName: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -165,7 +165,7 @@ const FarmInfoUpdate = () => {
                                     <field type='text'
                                         placeholder='Update your farm details'
                                         value={userFarms.farmDescription}
-                                        onChange={e => setUserFarms({farmDescription: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmDescription: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -173,7 +173,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update farm address'
                                         value={userFarms.farmAddress}
-                                        onChange={e => setUserFarms({farmAddress: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmAddress: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -181,7 +181,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update City'
                                         value={userFarms.farmCity}
-                                        onChange={e => setUserFarms({farmCity: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmCity: e.target.value})}
                                     />
                                     <small></small>
                                 </div>
@@ -190,7 +190,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update your state'
                                         value={userFarms.farmState}
-                                        onChange={e => setUserFarms({farmState: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmState: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -198,7 +198,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update zipcode'
                                         value={userFarms.farmZip}
-                                        onChange={e => setUserFarms({farmZip: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmZip: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -206,7 +206,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Website'
                                         value={userFarms.farmWebsite}
-                                        onChange={e => setUserFarms({farmWebsite: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmWebsite: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -214,7 +214,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Email'
                                         value={userFarms.farmEmail}
-                                        onChange={e => setUserFarms({farmEmail: e.target.value})}
+                                        onChange={e => setUserFarms({...userFarms, farmEmail: e.target.value})}
                                     />
                                 </div>
                                 <div className='btn-field'>
