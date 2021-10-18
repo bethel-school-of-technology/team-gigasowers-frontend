@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import axios from "axios";
+import { useParams } from 'react-router';
 
 const UserInfoStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -85,17 +87,50 @@ body {
 `;
 
 
-export default function UserInfo({
-    // userImage = 'User Image',
-    userName = 'Username',
-    firstName = 'Full',
-    lastName = 'Name',
-    email = 'Email',
-    address = 'Address',
-    city = 'City',
-    state = 'State',
-    zip = 'Zip'
-}) {
+const UserInfo = () => {
+    // const [userImage, setUserImage] = useState();
+    const [user, setUser] = useState({
+            profileSection: 'USER',
+            userName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            address: '',
+            city: '',
+            state: '',
+            zip: ''
+    });
+    // const [userName, setUserName] = useState();
+    // const [firstName, setFirstName] = useState();
+    // const [lastName, setLastName] = useState();
+    // const [userAddress, setUserAddress] = useState();
+    // const [userCity, setUserCity] = useState();
+    // const [userState, setUserState] = useState();
+    // const [userZip, setUserZip] = useState();
+    // const [userEmail, setUserEmail] = useState();
+
+    let {_id} = useParams;
+
+    //set JWT token into header for server side authentication
+    let myHeaders = {
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+        'Content-Type': 'application/json'
+    };
+    console.log(_id);
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/users/?_id', "USER", 
+        { 'headers': myHeaders }).then(result => {
+            setUser(result.data);
+            // setUserName(result.data);
+            // setFirstName(result.data);
+            // setLastName(result.data);
+            // setUserAddress(result.data);
+            // setUserCity(result.data);
+            // setUserState(result.data);
+            // setUserZip(result.data);
+            // setUserEmail(result.data);
+        });
+    });
 
     return (
         <UserInfoStyles>
@@ -107,24 +142,25 @@ export default function UserInfo({
                     <div className="userInfo">
 
                         <h3 className="userName">Username: </h3>
-                        <p>{userName}</p><br />
+                        <p>{user.userName}</p><br />
                         <h3 className="address">Address: </h3>
-                        <p>{address}</p><br />
+                        <p>{user.address}</p><br />
                         <h3 className="city">City: </h3>
-                        <p>{city}</p><br />
+                        <p>{user.city}</p><br />
                         <h3 className="state">State: </h3>
-                        <p>{state}</p><br />
+                        <p>{user.state}</p><br />
                         <h3 className="zip">Zip: </h3>
-                        <p>{zip}</p><br />
+                        <p>{user.zip}</p><br />
                         <h3 className="email">Email: </h3>
-                        <p>{email}</p>
+                        <p>{user.email}</p>
 
                     </div>
                 </div>
                 <div class="userFullName">
-                    <h3 className="fullName">{firstName} {lastName}</h3>
+                    <h3 className="fullName">{user.firstName} {user.lastName}</h3>
                 </div>
             </div>
         </UserInfoStyles >
     )
 }
+export default  UserInfo;

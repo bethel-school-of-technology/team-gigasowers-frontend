@@ -67,7 +67,7 @@ const FarmerRegStyles = styled.div`
     
     .form-field input {
         font-family: 'MontserratRegular';
-        border: solid 2px var(--cream);
+        border: 1px solid #ccc;
         border-radius: 5px;
         background-color: white;
         padding: 10px;
@@ -129,10 +129,10 @@ const FarmerRegStyles = styled.div`
 export default function FarmerRegisterForm() {
 
     let history = useHistory();  //Used to track page route history
-    
+
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
-    const [enteredFarmDetails, setFarmDetails] = useState('');
+    const [enteredFarmDescription, setFarmDescription] = useState('');
     const [enteredFarmAddress, setFarmAddress] = useState('');
     const [enteredFarmCity, setFarmCity] = useState('');
     const [enteredFarmState, setFarmState] = useState('');
@@ -150,7 +150,7 @@ export default function FarmerRegisterForm() {
     // };
 
     const farmNameHandler = (event) => { setFarmName(event.target.value) };
-    const farmDetailsHandler = (event) => { setFarmDetails(event.target.value) };
+    const farmDescriptionHandler = (event) => { setFarmDescription(event.target.value) };
     const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
     const farmCityHandler = (event) => { setFarmCity(event.target.value) };
     const farmStateHandler = (event) => { setFarmState(event.target.value) };
@@ -173,7 +173,7 @@ export default function FarmerRegisterForm() {
 
         const profileData = {
             farmName: enteredFarmName,
-            farmDescription: enteredFarmDetails, 
+            farmDescription: enteredFarmDescription,
             farmAddress: enteredFarmAddress,
             farmCity: enteredFarmCity,
             farmState: enteredFarmState,
@@ -182,7 +182,7 @@ export default function FarmerRegisterForm() {
             farmEmail: enteredFarmEmail
         };
 
-   
+
         //set JWT token into header for server side authentication
         let myHeaders = {
             'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
@@ -190,8 +190,8 @@ export default function FarmerRegisterForm() {
 
         };
 
-        axios.put('http://localhost:5000/api/users/update',  profileData , 
-        { 'headers': myHeaders })
+        axios.put('http://localhost:5000/api/users/update', profileData,
+            { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
                 if (response.status === 401) {
@@ -203,31 +203,31 @@ export default function FarmerRegisterForm() {
                     console.log("directing to farm profile");
                     history.push('/users/farmProfile/:farmId');
                 }
-                    else {
-                        // setShowError(true);
-                        // setFormErrors('Unable to register farm.')
-                        console.log(`Unable to register farm: ${response.status} `);
-                    }
+                else {
+                    // setShowError(true);
+                    // setFormErrors('Unable to register farm.')
+                    console.log(`Unable to register farm: ${response.status} `);
+                }
 
-                })
-                .catch(function (error) {
-                    // formErrorHandler(error.message);
-                });
+            })
+            .catch(function (error) {
+                // formErrorHandler(error.message);
+            });
 
-                setFarmName('');
-                setFarmDetails('');
-                setFarmAddress('');
-                setFarmCity('');
-                setFarmState('');
-                setFarmZip('');
-                setFarmWebsite('');
-                setFarmEmail('');
-            }
-        
+        setFarmName('');
+        setFarmDescription('');
+        setFarmAddress('');
+        setFarmCity('');
+        setFarmState('');
+        setFarmZip('');
+        setFarmWebsite('');
+        setFarmEmail('');
+    }
+
 
     return (
         <FarmerRegStyles>
-            
+
             <div className='farmer-form-content'>
                 <form id='farmReg' className='form' onSubmit={submitHandler}>
                     <h2 className='form-title'>- Register Your Farm -</h2>
@@ -246,8 +246,8 @@ export default function FarmerRegisterForm() {
                         <input type='text'
                             className='farmDetails'
                             placeholder='Tell us about your farm!'
-                            value={enteredFarmDetails}
-                            onChange={farmDetailsHandler}
+                            value={enteredFarmDescription}
+                            onChange={farmDescriptionHandler}
                         />
                         <small></small>
                     </div>
@@ -316,7 +316,7 @@ export default function FarmerRegisterForm() {
                     </div>
                 </form>
             </div>
-            
+
         </FarmerRegStyles>
     )
 }

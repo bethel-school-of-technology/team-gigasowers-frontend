@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import { CustomPlaceholder } from 'react-placeholder-image';
 
 const CardStyles = styled.div`
-<<<<<<< HEAD
-.cardWrapper{
-display: flex; 
-=======
+
 .card{
    box-sizing: border-box;
    margin: 0;
@@ -27,7 +24,6 @@ display: flex;
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
->>>>>>> c8ca9a3110142256a635e9eade5dd3d5bc041b4a
 }
 
 .cardImg{
@@ -76,20 +72,21 @@ export default function Card() {
     return (
         <CardStyles>
             <div className="cardWrapper">
-            <div className="cardBody">
-                <div className="cardImg">
-                    {/* <img src="./imgtest/imgholder.png" /> */}
-                    <CustomPlaceholder width={265} height={149} />
+                <div className="cardBody">
+                    <div className="cardImg">
+                        {/* <img src="./imgtest/imgholder.png" /> */}
+                        <CustomPlaceholder width={265} height={149} />
+                    </div>
+                    <div className="cardWords">
+                        <h2 className="cardTitle">title</h2>
+                        <p className="cardDes">description</p>
+                    </div>
                 </div>
-                <div className="cardWords">
-                    <h2 className="cardTitle">title</h2>
-                    <p className="cardDes">description</p>
-                </div>
-            </div>
-            <button className="cardBut">Buttonです</button>
+                <button className="cardBut">Buttonです</button>
             </div>
         
-        </CardStyles>
+        </CardStyles >
+
 
     )
 

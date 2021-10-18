@@ -139,7 +139,7 @@ function Navbar() {
             <div className="reftSide">
             <div>
               <Link to='/users/login'>
-              <button type="button" className="btn btn-info">Button</button>
+              <button type="button" className="btn btn-info">Login</button>
               </Link>
             </div>
                 {/* <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>

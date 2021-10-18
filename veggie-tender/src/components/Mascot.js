@@ -19,10 +19,12 @@ body{
     display: flex;
     justify-content: right;
     position:relative;
+    margin-top: 22rem;
+    margin-right: 1rem;
 }
 
 .face{
-    position:absolute;
+    position:relative;
     width:300px;
     height:300px;
     border-radius: 50%;
@@ -30,8 +32,7 @@ body{
     display: flex;
     justify-content:center;
     align-items: center;
-    margin-top: 22rem;
-    margin-right: 1rem;
+
 }
 .face::before{
     content: "";
@@ -62,7 +63,7 @@ body{
     position: relative;
     width: 80px;
     height: 80px;
-    display: block;
+    display: inline-block;
     background: #fff;
     margin: 0 15px;
     border-radius: 50%;
@@ -97,6 +98,20 @@ export default function Mascot() {
             eye.style.transform = "rotate(" + rot + "deg)";
         });
     }
+
+    // ("face").mousemove(function(event) {
+    //     var eye = $("eye");
+    //     var x = (eye.offset().left) + (eye.width()/2);
+    //     var y = (eye.offset().top) + (eye.height()/2);
+    //     var rad = Math.atan2(event.pageX - x, event.pageY - y);
+    //     var rot = (rad * (180 / Math.PI) * -1) + 180;
+    //     eye.css({
+    //         '-webkit-transform': 'rotate(' + rot + 'deg)',
+    //         '-moz-transform': 'rotate(' + rot + 'deg)',
+    //         '-ms-transform': 'rotate(' + rot + 'deg)',
+    //         'transform': 'rotate(' + rot + 'deg)',
+    //     });
+    // });
 
 
     return (
