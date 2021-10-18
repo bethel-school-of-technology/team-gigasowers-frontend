@@ -88,59 +88,67 @@ body {
 }
 `;
 
-
 const FarmInfo = () => {
-    
-    // const [farmImage, setFarmImage] = useState();
-    const [userFarms, setUserFarms] = useState({
-            profileSection: 'FARM',
-            farmName: '',
-            farmDescription: '',
-            farmAddress: '',
-            farmCity: '',
-            farmState: '',
-            farmZip: '',
-            farmWebsite: '',
-            farmEmail: ''
-    });
-    // const [farmName, setFarmName] = useState();
-    // const [farmDescription, setFarmDescription] = useState();
-    // const [farmAddress, setFarmAddress] = useState();
-    // const [farmCity, setFarmCity] = useState();
-    // const [farmState, setFarmState] = useState();
-    // const [farmZip, setFarmZip] = useState();
-    // const [farmWebsite, setFarmWebsite] = useState();
-    // const [farmEmail, setFarmEmail] = useState();
 
-    let {farmId} = useParams;
+    //checkAuth for valid token will go here
+
+    //State Variables for farm profile
+    const [farmName, setFarmName] = useState('');
+    const [farmDescription, setFarmDescription] = useState('');
+    const [farmAddress, setFarmAddress] = useState('');
+    const [farmCity, setFarmCity] = useState('');
+    const [farmState, setFarmState] = useState('');
+    const [farmZip, setFarmZip] = useState('');
+    //const [farmImage, setFarmImage] = useState('');
+    const [farmWebsite, setFarmWebsite] = useState('');
+    const [farmEmail, setFarmEmail] = useState('');
+
+
     //set JWT token into header for server side authentication
     let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
-        'Content-Type': 'application/json'
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
     };
-    
-    
-    useEffect(() => {
-        const url = `http://localhost:5000/api/users/farms/${farmId}`;
-        
-        axios.get(url, 
-        { 'headers': myHeaders }).then(result => {
-            setUserFarms(result.data);
-            // setFarmName(result.data);
-            // setFarmDescription(result.data);
-            // setFarmAddress(result.data);
-            // setFarmCity(result.data);
-            // setFarmState(result.data);
-            // setFarmZip(result.data);
-            // setFarmWebsite(result.data);
-            // setFarmEmail(result.data);
-        }, err => {
-            useHistory.push('/');
-        }, []);
-    });
 
-    
-    
+    axios.get('http://localhost:5000/api/users/profile',
+        { 'headers': myHeaders })
+        .then(function (response) {
+            console.log(response.status);
+            if (response.status === 401) {
+                console.log("No token or must be logged in");
+                console.log(response.status.message);
+                //history.push('/users/login');
+            }
+            if (response.status === 200) {
+                console.log("response: ");
+                console.log(response);
+                //validate this profile is a farmer
+                if (!response.data.isFarmer) {
+                    console.log("this profile is not a farmer");
+                }
+                //load state variables from response data
+                setFarmName(response.data.userFarms.farmName);
+                setFarmDescription(response.data.userFarms.farmDescription);
+                setFarmAddress(response.data.userFarms.farmAddress);
+                setFarmCity(response.data.userFarms.farmCity);
+                setFarmState(response.data.userFarms.farmState);
+                setFarmZip(response.data.userFarms.farmZip);
+                //setFarmImage(response.data.userFarms.farmImage);
+                setFarmWebsite(response.data.userFarms.farmWebsite);
+                setFarmEmail(response.data.userFarms.farmEmail);
+
+                // history.push('/users/farmProfile/:farmId');
+            }
+            else {
+                // setShowError(true);
+                // setFormErrors('Unable to register farm.')
+                console.log(`Unable to get farm info; error status: ${response.status} `);
+            }
+
+        })
+        .catch(function (error) {
+            console.log("catch error: " + error);
+            // formErrorHandler(error.message);
+        });
 
 
     return (
@@ -151,27 +159,27 @@ const FarmInfo = () => {
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
-
+                        <h3 className="farmName">Farm Name: </h3>
+                        <p>{farmName}</p><br />
                         <h3 className="farmDescription">Farm Description: </h3>
-                        <p>{userFarms.farmDescription}</p><br />
+                        <p>{farmDescription}</p><br />
                         <h3 className="farmAddress">Address: </h3>
-                        <p>{userFarms.farmAddress}</p><br />
+                        <p>{farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
-                        <p>{userFarms.farmCity}</p><br />
+                        <p>{farmCity}</p><br />
                         <h3 className="farmState">State: </h3>
-                        <p>{userFarms.farmState}</p><br />
+                        <p>{farmState}</p><br />
                         <h3 className="farmZip">Zip: </h3>
-                        <p>{userFarms.farmZip}</p><br />
+                        <p>{farmZip}</p><br />
                         <h3 className="farmWebsite">Website: </h3>
-                        <p>{userFarms.farmWebsite}</p><br />
+                        <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
-                        <p>{userFarms.farmEmail}</p>
+                        <p>{farmEmail}</p>
 
                     </div>
                 </div>
                 <div className="farmNameSection">
-
-                    <h3 className="farmName">{userFarms.farmName}</h3>
+                    <h3 className="farmName">{farmName}</h3>
                 </div>
             </div>
         </FarmInfoStyles>
