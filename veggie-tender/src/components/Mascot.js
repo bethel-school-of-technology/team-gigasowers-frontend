@@ -17,14 +17,16 @@ body{
 }
 .container{
     display: flex;
-    justify-content: right;
-    position:relative;
+    flex-wrap: wrap;
+    float: right;
+    position:absolute;
     margin-top: 22rem;
     margin-right: 1rem;
 }
 
 .face{
     position:relative;
+    float: right;
     width:300px;
     height:300px;
     border-radius: 50%;

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 //import axios from "axios";
 //import { useHistory } from 'react-router-dom';
@@ -13,9 +13,9 @@ const LoginButtonStyles = styled.div`
 export default function LoginButton() {
 
     return (
-        <LoginButtons>
+        <LoginButtonStyles>
             
-        </LoginButton>
+        </LoginButtonStyles>
     )
 }
 

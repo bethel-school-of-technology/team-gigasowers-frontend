@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router';
 
 
 const FarmInfoStyles = styled.div`
@@ -62,15 +61,22 @@ body {
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: left;
 }
 
 .h3 {
     font-size: 1.5rem;
 }
-.farmNameSection {
-    
+.addressDetails {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+}
+.farmZip {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
 }
 .farmName {
     margin-top: -1rem;
@@ -167,10 +173,12 @@ const FarmInfo = () => {
                         <p>{farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
                         <p>{farmCity}</p><br />
-                        <h3 className="farmState">State: </h3>
-                        <p>{farmState}</p><br />
-                        <h3 className="farmZip">Zip: </h3>
-                        <p>{farmZip}</p><br />
+                        <div className="addressDetails">
+                            <h3 className="farmState">State: </h3>
+                            <p>{farmState}</p><br />
+                            <h3 className="farmZip">Zip: </h3>
+                            <p>{farmZip}</p><br />
+                        </div>
                         <h3 className="farmWebsite">Website: </h3>
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
