@@ -8,7 +8,9 @@ import LoginForm from "./components/LoginForm";
 import FarmerReg from "./pages/FarmerReg";
 import UserProfile from "./pages/UserProfile";
 import FarmProfile from "./pages/FarmProfile";
-import Mascot from "./components/Mascot";
+import FarmProfileUp from "./pages/FarmProfileUp";
+import UserProfileUp from "./pages/UserProfileUp";
+// import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
 
 
@@ -18,7 +20,7 @@ export default function App() {
             <Router>
                   <div className="App" style={{ backgroundImage: `url(${veggieBackFade})` }}>
                         <Navbar />
-                        <Mascot />
+                        {/* <Mascot /> */}
                         <div className="pages">
                               <Switch>
                                     <Route path="/users/login">
@@ -43,6 +45,16 @@ export default function App() {
                               <Switch>
                                     <Route path="/users/farmProfile">
                                           <FarmProfile />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/farmProfile/update">
+                                          <FarmProfileUp />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/profile/update">
+                                          <UserProfileUp />
                                     </Route>
                               </Switch>
                               <Switch>

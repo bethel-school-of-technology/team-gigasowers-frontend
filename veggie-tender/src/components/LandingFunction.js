@@ -34,27 +34,7 @@ const LandingFunctionStyles = styled.div`
 
 export default function LandingFunction() {
 
-    // const farmNameHandler = (event) => { setFarmName(event.target.value) };
-    // const farmDetailsHandler = (event) => { setFarmDetails(event.target.value) };
-    // const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
-    // const farmCityHandler = (event) => { setFarmCity(event.target.value) };
-    // const farmStateHandler = (event) => { setFarmState(event.target.value) };
-    // const farmZipHandler = (event) => { setFarmZip(event.target.value) };
-    // const farmWebsiteHandler = (event) => { setFarmWebsite(event.target.value) };
-    // const farmEmailHandler = (event) => { setFarmEmail(event.target.value) };
 
-
-
-    // const profileData = {
-    //     farmName: enteredFarmName,
-    //     farmDescription: enteredFarmDetails, 
-    //     farmAddress: enteredFarmAddress,
-    //     farmCity: enteredFarmCity,
-    //     farmState: enteredFarmState,
-    //     farmZip: enteredFarmZip,
-    //     farmWebsite: enteredFarmWebsite,
-    //     farmEmail: enteredFarmEmail
-    // };
 
 
     

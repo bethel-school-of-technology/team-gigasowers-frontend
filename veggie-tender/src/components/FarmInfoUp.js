@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router';
+import CheckAuth from '../services/CheckAuth';
 
 
 const FarmUpdateStyles = styled.div`
@@ -55,22 +55,29 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-.farmInfoUpdate {
+.farmInfo {
     margin-top: 2rem auto;
     width: 100%;
     height: 100%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: left;
 }
 
 .h3 {
     font-size: 1.5rem;
 }
-.farmNameSection {
-    
+.addressDetails {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+}
+.farmZip {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
 }
 .farmName {
     margin-top: -1rem;
@@ -91,55 +98,77 @@ body {
 
 const FarmInfoUpdate = () => {
 
-    // const [farmImage, setFarmImage] = useState();
-    const [userFarms, setUserFarms] = useState({
-            profileSection: 'FARM',
-            farmName: '',
-            farmDescription: '',
-            farmAddress: '',
-            farmCity: '',
-            farmState: '',
-            farmZip: '',
-            farmWebsite: '',
-            farmEmail: ''
-    });
-    // const [farmName, setFarmName] = useState();
-    // const [farmDescription, setFarmDescription] = useState();
-    // const [farmAddress, setFarmAddress] = useState();
-    // const [farmCity, setFarmCity] = useState();
-    // const [farmState, setFarmState] = useState();
-    // const [farmZip, setFarmZip] = useState();
-    // const [farmWebsite, setFarmWebsite] = useState();
-    // const [farmEmail, setFarmEmail] = useState();
+    let history = useHistory();
 
-    let { farmId } = useParams;
+    //checkAuth for valid token will go here
+    let validToken = CheckAuth();
+    if (!validToken) {
+        console.log("validToken returned false or undefined");
+        history.push('/users/login');
+    }
+
+    //State Variables for farm profile
+    const [farmName, setFarmName] = useState('');
+    const [farmDescription, setFarmDescription] = useState('');
+    const [farmAddress, setFarmAddress] = useState('');
+    const [farmCity, setFarmCity] = useState('');
+    const [farmState, setFarmState] = useState('');
+    const [farmZip, setFarmZip] = useState('');
+    //const [farmImage, setFarmImage] = useState('');
+    const [farmWebsite, setFarmWebsite] = useState('');
+    const [farmEmail, setFarmEmail] = useState('');
+
+
     //set JWT token into header for server side authentication
     let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
-        'Content-Type': 'application/json'
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
     };
+
+    axios.put('http://localhost:5000/api/users/profile',
+        { 'headers': myHeaders })
+        .then(function (response) {
+            console.log(response.status);
+            if (response.status === 401) {
+                console.log("No token or must be logged in");
+                console.log(response.status.message);
+                //history.push('/users/login');
+            }
+            if (response.status === 200) {
+                console.log("response: ");
+                console.log(response);
+                //validate this profile is a farmer
+                if (!response.data.isFarmer) {
+                    console.log("this profile is not a farmer");
+                }
+                //load state variables from response data
+                setFarmName(response.data.userFarms.farmName);
+                setFarmDescription(response.data.userFarms.farmDescription);
+                setFarmAddress(response.data.userFarms.farmAddress);
+                setFarmCity(response.data.userFarms.farmCity);
+                setFarmState(response.data.userFarms.farmState);
+                setFarmZip(response.data.userFarms.farmZip);
+                //setFarmImage(response.data.userFarms.farmImage);
+                setFarmWebsite(response.data.userFarms.farmWebsite);
+                setFarmEmail(response.data.userFarms.farmEmail);
+
+                // history.push('/users/farmProfile/:farmId');
+            }
+            else {
+                // setShowError(true);
+                // setFormErrors('Unable to register farm.')
+                console.log(`Unable to get farm info; error status: ${response.status} `);
+            }
+
+        })
+        .catch(function (error) {
+            console.log("catch error: " + error);
+            // formErrorHandler(error.message);
+        });
+
 
     const updateHandler = (event) => {
         event.preventDefault();
 
-        useEffect(() => {
-            const url = `http://localhost:5000/api/users/farms/${farmId}`;
-
-            axios.put(url,
-                { 'headers': myHeaders }).then(result => {
-                    setUserFarms(result.data);
-                    // setFarmName(result.data);
-                    // setFarmDescription(result.data);
-                    // setFarmAddress(result.data);
-                    // setFarmCity(result.data);
-                    // setFarmState(result.data);
-                    // setFarmZip(result.data);
-                    // setFarmWebsite(result.data);
-                    // setFarmEmail(result.data);
-                }, err => {
-                    useHistory.push('/');
-                }, [farmId, useHistory]);
-        });
     }
         return (
             <FarmUpdateStyles>
@@ -156,32 +185,32 @@ const FarmInfoUpdate = () => {
                                     <label className='form-label'>Farm Name</label>
                                     <input type='text'
                                         placeholder='Update your farm name'
-                                        value={userFarms.farmName}
-                                        onChange={e => setUserFarms({...userFarms, farmName: e.target.value})}
+                                        value={farmName}
+                                        onChange={e => setFarmName({farmName: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Details</label>
                                     <field type='text'
                                         placeholder='Update your farm details'
-                                        value={userFarms.farmDescription}
-                                        onChange={e => setUserFarms({...userFarms, farmDescription: e.target.value})}
+                                        value={farmDescription}
+                                        onChange={e => setFarmDescription({farmDescription: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Address</label>
                                     <input type='text'
                                         placeholder='Update farm address'
-                                        value={userFarms.farmAddress}
-                                        onChange={e => setUserFarms({...userFarms, farmAddress: e.target.value})}
+                                        value={farmAddress}
+                                        onChange={e => setFarmAddress({farmAddress: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>City</label>
                                     <input type='text'
                                         placeholder='Update City'
-                                        value={userFarms.farmCity}
-                                        onChange={e => setUserFarms({...userFarms, farmCity: e.target.value})}
+                                        value={farmCity}
+                                        onChange={e => setFarmCity({farmCity: e.target.value})}
                                     />
                                     <small></small>
                                 </div>
@@ -189,32 +218,32 @@ const FarmInfoUpdate = () => {
                                     <label className='form-label'>State</label>
                                     <input type='text'
                                         placeholder='Update your state'
-                                        value={userFarms.farmState}
-                                        onChange={e => setUserFarms({...userFarms, farmState: e.target.value})}
+                                        value={farmState}
+                                        onChange={e => setFarmState({farmState: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Zip</label>
                                     <input type='text'
                                         placeholder='Update zipcode'
-                                        value={userFarms.farmZip}
-                                        onChange={e => setUserFarms({...userFarms, farmZip: e.target.value})}
+                                        value={farmZip}
+                                        onChange={e => setFarmZip({farmZip: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Website</label>
                                     <input type='text'
                                         placeholder='Website'
-                                        value={userFarms.farmWebsite}
-                                        onChange={e => setUserFarms({...userFarms, farmWebsite: e.target.value})}
+                                        value={farmWebsite}
+                                        onChange={e => setFarmWebsite({farmWebsite: e.target.value})}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Email</label>
                                     <input type='text'
                                         placeholder='Email'
-                                        value={userFarms.farmEmail}
-                                        onChange={e => setUserFarms({...userFarms, farmEmail: e.target.value})}
+                                        value={farmEmail}
+                                        onChange={e => setFarmEmail({farmEmail: e.target.value})}
                                     />
                                 </div>
                                 <div className='btn-field'>
