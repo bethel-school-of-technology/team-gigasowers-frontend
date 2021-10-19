@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const UserInfoStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -88,48 +88,64 @@ body {
 
 
 const UserInfo = () => {
-    // const [userImage, setUserImage] = useState();
-    const [user, setUser] = useState({
-            profileSection: 'USER',
-            userName: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            address: '',
-            city: '',
-            state: '',
-            zip: ''
-    });
-    // const [userName, setUserName] = useState();
-    // const [firstName, setFirstName] = useState();
-    // const [lastName, setLastName] = useState();
-    // const [userAddress, setUserAddress] = useState();
-    // const [userCity, setUserCity] = useState();
-    // const [userState, setUserState] = useState();
-    // const [userZip, setUserZip] = useState();
-    // const [userEmail, setUserEmail] = useState();
+    let history = useHistory();
 
-    let {_id} = useParams;
+    //checkAuth for valid token will go here
+    let validToken = CheckAuth();
+    if (!validToken) {
+        console.log("validToken returned false or undefined");
+        history.push('/users/login');
+    }
+
+    // const [userImage, setUserImage] = useState();
+    const [userName, setUserName] = useState();
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [address, setAddress] = useState();
+    const [city, setCity] = useState();
+    const [state, setState] = useState();
+    const [zip, setZip] = useState();
+    const [email, setEmail] = useState();
 
     //set JWT token into header for server side authentication
     let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
-        'Content-Type': 'application/json'
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
     };
-    console.log(_id);
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/users/?_id', "USER", 
-        { 'headers': myHeaders }).then(result => {
-            setUser(result.data);
-            // setUserName(result.data);
-            // setFirstName(result.data);
-            // setLastName(result.data);
-            // setUserAddress(result.data);
-            // setUserCity(result.data);
-            // setUserState(result.data);
-            // setUserZip(result.data);
-            // setUserEmail(result.data);
-        });
+
+    axios.get('http://localhost:5000/api/users/profile',  
+        { 'headers': myHeaders })
+        .then(function (response) {
+            console.log(response.status);
+        if (response.status === 401) {
+            console.log("No token or must be logged in");
+            console.log(response.status.message);
+            //history.push('/users/login');
+        }
+        if (response.status === 200) {
+            console.log("response: ");
+            console.log(response);
+            //validate this profile is a farmer
+            
+            //load state variables from response data
+            setUserName(response.data.userName);
+            setFirstName(response.data.firstName);
+            setLastName(response.data.lastName);
+            setAddress(response.data.address);
+            setCity(response.data.city);
+            setState(response.data.state);
+            setZip(response.data.zip);
+            setEmail(response.data.email);
+
+            // history.push('/users/profile/:_id');
+        }
+        else {
+            // setShowError(true);
+            console.log(`Unable to get user info; error status: ${response.status} `);
+        }
+    })
+    .catch(function (error) {
+        console.log("catch error: " + error);
+        // formErrorHandler(error.message);
     });
 
     return (
@@ -142,22 +158,22 @@ const UserInfo = () => {
                     <div className="userInfo">
 
                         <h3 className="userName">Username: </h3>
-                        <p>{user.userName}</p><br />
+                        <p>{userName}</p><br />
                         <h3 className="address">Address: </h3>
-                        <p>{user.address}</p><br />
+                        <p>{address}</p><br />
                         <h3 className="city">City: </h3>
-                        <p>{user.city}</p><br />
+                        <p>{city}</p><br />
                         <h3 className="state">State: </h3>
-                        <p>{user.state}</p><br />
+                        <p>{state}</p><br />
                         <h3 className="zip">Zip: </h3>
-                        <p>{user.zip}</p><br />
+                        <p>{zip}</p><br />
                         <h3 className="email">Email: </h3>
-                        <p>{user.email}</p>
+                        <p>{email}</p>
 
                     </div>
                 </div>
                 <div class="userFullName">
-                    <h3 className="fullName">{user.firstName} {user.lastName}</h3>
+                    <h3 className="fullName">{firstName} {lastName}</h3>
                 </div>
             </div>
         </UserInfoStyles >

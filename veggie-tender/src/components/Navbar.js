@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import "../../src/App.css";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom'
+import kingyo from '../assets/images/kingyo.png';
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 //import List from './List';
@@ -88,6 +89,12 @@ const NavbarStyles = styled.div`
     align-items: center;
   }
   
+  .kingyo {
+    max-width: 100px;
+    float: left;
+    padding: 1rem;
+    margin-top: -3rem;
+  }
 `;
 
 
@@ -126,10 +133,10 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home"><img src="../img/kingyo.png"/></a>
+                    <a href="/home"><img className="kingyo" src={kingyo} alt="Logo"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
-                    <a href="/farmers">Farmers</a>
-                    <a href="/events">Events</a>
+                    {/* <a href="/farmers">Farmers</a>
+                    <a href="/events">Events</a> */}
                 </div>
                 {/* <button onClick={()=> setShowLinks(!showLinks)}>
                         {" "} 
