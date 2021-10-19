@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import CheckAuth from '../services/CheckAuth';
+import CheckAuth from '../../services/CheckAuth';
 
 
 const FarmUpdateStyles = styled.div`
@@ -118,13 +118,11 @@ const FarmInfoUpdate = () => {
     const [farmWebsite, setFarmWebsite] = useState('');
     const [farmEmail, setFarmEmail] = useState('');
 
-
-    //set JWT token into header for server side authentication
     let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
+        'Content-Type': 'application/json'
     };
-
-    axios.put('http://localhost:5000/api/users/profile',
+    axios.get('http://localhost:5000/api/users/profile',
         { 'headers': myHeaders })
         .then(function (response) {
             console.log(response.status);
@@ -165,11 +163,66 @@ const FarmInfoUpdate = () => {
             // formErrorHandler(error.message);
         });
 
+    const farmNameHandler = (event) => { setFarmName(event.target.value) };
+    const farmDescriptionHandler = (event) => { setFarmDescription(event.target.value) };
+    const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
+    const farmCityHandler = (event) => { setFarmCity(event.target.value) };
+    const farmStateHandler = (event) => { setFarmState(event.target.value) };
+    const farmZipHandler = (event) => { setFarmZip(event.target.value) };
+    const farmWebsiteHandler = (event) => { setFarmWebsite(event.target.value) };
+    const farmEmailHandler = (event) => { setFarmEmail(event.target.value) };
 
-    const updateHandler = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
-    }
+        const profileData = {
+            farmName: farmName,
+            farmDescription: farmDescription,
+            farmAddress: farmAddress,
+            farmCity: farmCity,
+            farmState: farmState,
+            farmZip: farmZip,
+            farmWebsite: farmWebsite,
+            farmEmail: farmEmail
+        };
+
+        //set JWT token into header for server side authentication
+
+        axios.put('http://localhost:5000/api/users/update/profile', profileData,
+            { 'headers': myHeaders })
+            .then(function (response) {
+                console.log(response.status);
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                    console.log(response.status.message);
+                    //history.push('/users/login');
+                }
+                if (response.status === 200) {
+                    console.log("response: ");
+                    console.log(response);
+                }
+                else {
+                    // setShowError(true);
+                    // setFormErrors('Unable to register farm.')
+                    console.log(`Unable to get farm info; error status: ${response.status} `);
+                }
+
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+                // formErrorHandler(error.message);
+            });
+        setFarmName('');
+        setFarmDescription('');
+        setFarmAddress('');
+        setFarmCity('');
+        setFarmState('');
+        setFarmZip('');
+        setFarmWebsite('');
+        setFarmEmail('');
+
+        }
+
         return (
             <FarmUpdateStyles>
                 <div className="container">
@@ -179,22 +232,22 @@ const FarmInfoUpdate = () => {
                     <div className="info_float">
                         <div className="farmInfoUpdate">
 
-                            <form id='farmUpdate' className='form' onSubmit={updateHandler}>
-                                <h2>Update Your Farm Information:</h2>
+                            <form id='farmUpdate' className='form' onSubmit={submitHandler}>
+                                <h2>Update Farm Information:</h2>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Name</label>
                                     <input type='text'
-                                        placeholder='Update your farm name'
-                                        value={farmName}
-                                        onChange={e => setFarmName({farmName: e.target.value})}
+                                        placeholder={farmName}
+                                        value={setFarmName}
+                                        onChange={farmNameHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Details</label>
-                                    <field type='text'
+                                    <input type='text'
                                         placeholder='Update your farm details'
                                         value={farmDescription}
-                                        onChange={e => setFarmDescription({farmDescription: e.target.value})}
+                                        onChange={farmDescriptionHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -202,7 +255,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update farm address'
                                         value={farmAddress}
-                                        onChange={e => setFarmAddress({farmAddress: e.target.value})}
+                                        onChange={farmAddressHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -210,16 +263,15 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update City'
                                         value={farmCity}
-                                        onChange={e => setFarmCity({farmCity: e.target.value})}
+                                        onChange={farmCityHandler}
                                     />
-                                    <small></small>
                                 </div>
                                 <div className='form-field'>
                                     <label className='form-label'>State</label>
                                     <input type='text'
                                         placeholder='Update your state'
                                         value={farmState}
-                                        onChange={e => setFarmState({farmState: e.target.value})}
+                                        onChange={farmStateHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -227,7 +279,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Update zipcode'
                                         value={farmZip}
-                                        onChange={e => setFarmZip({farmZip: e.target.value})}
+                                        onChange={farmZipHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -235,7 +287,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Website'
                                         value={farmWebsite}
-                                        onChange={e => setFarmWebsite({farmWebsite: e.target.value})}
+                                        onChange={farmWebsiteHandler}
                                     />
                                 </div>
                                 <div className='form-field'>
@@ -243,7 +295,7 @@ const FarmInfoUpdate = () => {
                                     <input type='text'
                                         placeholder='Email'
                                         value={farmEmail}
-                                        onChange={e => setFarmEmail({farmEmail: e.target.value})}
+                                        onChange={farmEmailHandler}
                                     />
                                 </div>
                                 <div className='btn-field'>
@@ -254,6 +306,7 @@ const FarmInfoUpdate = () => {
                         </div>
                     </div>
                 </div>
+
             </FarmUpdateStyles>
         )
     }

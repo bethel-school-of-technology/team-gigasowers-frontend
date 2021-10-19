@@ -165,7 +165,7 @@ const LoginForm = () => {
                     //set jwt token into local storage 
                     localStorage.setItem("vegToken", response.data.jwt);
                     //redirect to landing or home page
-                    history.push('/home');
+                    history.push('/');
                 } else {
                     setShowError = true;
                     setErrorCode = response.status;

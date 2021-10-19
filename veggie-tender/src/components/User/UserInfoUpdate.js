@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import CheckAuth from '../services/CheckAuth';
+import CheckAuth from '../../services/CheckAuth';
 
 const UserUpdateStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -113,7 +113,7 @@ const UserInfoUpdate = () => {
         'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
     };
 
-    axios.put('http://localhost:5000/api/users/profile',  
+    axios.put('http://localhost:5000/api/users/update',  
         { 'headers': myHeaders })
         .then(function (response) {
             console.log(response.status);

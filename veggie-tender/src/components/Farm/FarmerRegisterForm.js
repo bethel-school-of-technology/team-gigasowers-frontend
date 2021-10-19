@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-// import { CheckAuth } from '../../services/CheckAuth';
+import  CheckAuth  from '../../services/CheckAuth';
 // import { checkField, checkEmail, checkAddress, checkState, checkZip, checkWebsite } from '../services/FormErrors';
 
 
@@ -131,11 +131,11 @@ export default function FarmerRegisterForm() {
 
     let history = useHistory();  //Used to track page route history
 
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned false or undefined");
-    //     history.push('/users/login');
-    // }
+    let validToken = CheckAuth();
+    if (!validToken) {
+        console.log("validToken returned false or undefined");
+        history.push('/users/login');
+    }
 
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
