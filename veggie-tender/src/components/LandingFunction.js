@@ -17,35 +17,27 @@ const LandingFunctionStyles = styled.div`
 
 `;
 
-// $clr-primary: #d50000;
-// $clr-primary-hover: #29e6a7;
-// $clr-primary-dark: #039d69;
-// $clr-grey100: #f9fbff;
-// $clr-grey150: #f4f6fb;
-// $clr-grey200: #eef1f6;
-// $clr-grey300: #e1e5ee;
-// $clr-grey400: #767b91;
-// $clr-grey500: #4f546c;
-// $clr-grey600: #2a324b;
-// $clr-grey700: #161d34;
-
-// #wrapper
 
 
-export default function LandingFunction() {
+export default function LandingFunction ({
+
+    farmName = 'Farm Name',
+    farmDescription = 'Farm Details',
+    farmAddress = 'Farm Address',
+    farmCity = "Farm City",
+    farmState = "Farm State",
+    farmWebsite = "Farm Website",
+    farmEmail = "Farm Email",
 
 
+}){
 
-
-    
     return (
 
         <LandingFunctionStyles>
             <div className="landing">
-                something
-            <div>
-                <Card />
-            </div>
+                
+                    <Card />
             </div>
         </LandingFunctionStyles>
 
@@ -128,3 +120,26 @@ export default function LandingFunction() {
     //     },
     // ];
     
+
+
+    // const farmNameHandler = (event) => { setFarmName(event.target.value) };
+    // const farmDetailsHandler = (event) => { setFarmDetails(event.target.value) };
+    // const farmAddressHandler = (event) => { setFarmAddress(event.target.value) };
+    // const farmCityHandler = (event) => { setFarmCity(event.target.value) };
+    // const farmStateHandler = (event) => { setFarmState(event.target.value) };
+    // const farmZipHandler = (event) => { setFarmZip(event.target.value) };
+    // const farmWebsiteHandler = (event) => { setFarmWebsite(event.target.value) };
+    // const farmEmailHandler = (event) => { setFarmEmail(event.target.value) };
+
+
+
+    // const profileData = {
+    //     farmName: enteredFarmName,
+    //     farmDescription: enteredFarmDetails, 
+    //     farmAddress: enteredFarmAddress,
+    //     farmCity: enteredFarmCity,
+    //     farmState: enteredFarmState,
+    //     farmZip: enteredFarmZip,
+    //     farmWebsite: enteredFarmWebsite,
+    //     farmEmail: enteredFarmEmail
+    // };

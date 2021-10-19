@@ -3,10 +3,13 @@ import styled from 'styled-components';
 //import ReactPlaceholder from 'react-placeholder';
 //import "react-placeholder/lib/reactPlaceholder.css";
 import { CustomPlaceholder } from 'react-placeholder-image';
+import farmName from './LandingFunction';
+import farmDescription from './LandingFunction';
 
 const CardStyles = styled.div`
 
 .card{
+   flex: 0.8;
    box-sizing: border-box;
    margin: 0;
    padding: px;
@@ -68,23 +71,33 @@ color: white;
 `;
 
 export default function Card() {
+    // farmName = 'Farm Name',
+    // farmDescription = 'Farm Details',
+    // farmAddress = 'Farm Address',
+    // farmCity = "Farm City",
+    // farmState = "Farm State",
+    // farmWebsite = "Farm Website",
+    // farmEmail = "Farm Email",
+
+// }){
 
     return (
         <CardStyles>
+            
             <div className="cardWrapper">
-                <div className="cardBody">
-                    <div className="cardImg">
-                        {/* <img src="./imgtest/imgholder.png" /> */}
-                        <CustomPlaceholder width={265} height={149} />
-                    </div>
-                    <div className="cardWords">
-                        <h2 className="cardTitle">title</h2>
-                        <p className="cardDes">description</p>
-                    </div>
+
+            <div className="cardBody">
+                <div className="cardImg">
+                    {/* <img src="./imgtest/imgholder.png" /> */}
+                    <CustomPlaceholder width={265} height={149} />
                 </div>
-                <button className="cardBut">Buttonです</button>
+                <div className="cardWords">
+                    <h2 className="cardTitle">{farmName}</h2>
+                    {/* instead of description, should i fill that w/ maybe first produce, maybe leave out?? */}
+                    <p className="cardDes">{farmDescription}</p>
+                </div>
             </div>
-        
+            </div>    
         </CardStyles >
 
 
@@ -92,6 +105,6 @@ export default function Card() {
 
 }
 
-
+//<button className="cardBut">Button</button>
 
 
