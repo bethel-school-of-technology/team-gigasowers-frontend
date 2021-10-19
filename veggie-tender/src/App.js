@@ -21,11 +21,6 @@ export default function App() {
                         <Mascot />
                         <div className="pages">
                               <Switch>
-                                    <Route path="/home">
-                                          <Landing />
-                                    </Route>
-                              </Switch>
-                              <Switch>
                                     <Route path="/users/login">
                                           <LoginForm />
                                     </Route>
@@ -48,6 +43,11 @@ export default function App() {
                               <Switch>
                                     <Route path="/users/farmProfile">
                                           <FarmProfile />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route exact path="/">
+                                          <Landing />
                                     </Route>
                               </Switch>
                         </div>

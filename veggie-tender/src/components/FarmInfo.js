@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
+
 
 const FarmInfoStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -58,15 +61,22 @@ body {
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: left;
 }
 
 .h3 {
     font-size: 1.5rem;
 }
-.farmNameSection {
-    
+.addressDetails {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+}
+.farmZip {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
 }
 .farmName {
     margin-top: -1rem;
@@ -84,17 +94,68 @@ body {
 }
 `;
 
+const FarmInfo = () => {
 
-export default function FarmInfo({
-    // farmImage = 'Farm Image',
-    farmName = 'Farm Name',
-    farmDescription = 'Farm Details',
-    farmAddress = 'Farm Address',
-    farmCity = "Farm City",
-    farmState = "Farm State",
-    farmWebsite = "Farm Website",
-    farmEmail = "Farm Email",
-}) {
+    //checkAuth for valid token will go here
+
+    //State Variables for farm profile
+    const [farmName, setFarmName] = useState('');
+    const [farmDescription, setFarmDescription] = useState('');
+    const [farmAddress, setFarmAddress] = useState('');
+    const [farmCity, setFarmCity] = useState('');
+    const [farmState, setFarmState] = useState('');
+    const [farmZip, setFarmZip] = useState('');
+    //const [farmImage, setFarmImage] = useState('');
+    const [farmWebsite, setFarmWebsite] = useState('');
+    const [farmEmail, setFarmEmail] = useState('');
+
+
+    //set JWT token into header for server side authentication
+    let myHeaders = {
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+    };
+
+    axios.get('http://localhost:5000/api/users/profile',
+        { 'headers': myHeaders })
+        .then(function (response) {
+            console.log(response.status);
+            if (response.status === 401) {
+                console.log("No token or must be logged in");
+                console.log(response.status.message);
+                //history.push('/users/login');
+            }
+            if (response.status === 200) {
+                console.log("response: ");
+                console.log(response);
+                //validate this profile is a farmer
+                if (!response.data.isFarmer) {
+                    console.log("this profile is not a farmer");
+                }
+                //load state variables from response data
+                setFarmName(response.data.userFarms.farmName);
+                setFarmDescription(response.data.userFarms.farmDescription);
+                setFarmAddress(response.data.userFarms.farmAddress);
+                setFarmCity(response.data.userFarms.farmCity);
+                setFarmState(response.data.userFarms.farmState);
+                setFarmZip(response.data.userFarms.farmZip);
+                //setFarmImage(response.data.userFarms.farmImage);
+                setFarmWebsite(response.data.userFarms.farmWebsite);
+                setFarmEmail(response.data.userFarms.farmEmail);
+
+                // history.push('/users/farmProfile/:farmId');
+            }
+            else {
+                // setShowError(true);
+                // setFormErrors('Unable to register farm.')
+                console.log(`Unable to get farm info; error status: ${response.status} `);
+            }
+
+        })
+        .catch(function (error) {
+            console.log("catch error: " + error);
+            // formErrorHandler(error.message);
+        });
+
 
     return (
         <FarmInfoStyles>
@@ -104,15 +165,20 @@ export default function FarmInfo({
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
-
-                        <h3 className="farmDesc">Farm Description: </h3>
+                        <h3 className="farmName">Farm Name: </h3>
+                        <p>{farmName}</p><br />
+                        <h3 className="farmDescription">Farm Description: </h3>
                         <p>{farmDescription}</p><br />
                         <h3 className="farmAddress">Address: </h3>
                         <p>{farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
                         <p>{farmCity}</p><br />
-                        <h3 className="farmState">State: </h3>
-                        <p>{farmState}</p><br />
+                        <div className="addressDetails">
+                            <h3 className="farmState">State: </h3>
+                            <p>{farmState}</p><br />
+                            <h3 className="farmZip">Zip: </h3>
+                            <p>{farmZip}</p><br />
+                        </div>
                         <h3 className="farmWebsite">Website: </h3>
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
@@ -121,7 +187,6 @@ export default function FarmInfo({
                     </div>
                 </div>
                 <div className="farmNameSection">
-
                     <h3 className="farmName">{farmName}</h3>
                 </div>
             </div>
@@ -129,3 +194,4 @@ export default function FarmInfo({
     )
 }
 
+export default FarmInfo;

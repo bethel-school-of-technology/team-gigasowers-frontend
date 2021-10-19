@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 const UserInfoStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -85,17 +87,66 @@ body {
 `;
 
 
-export default function UserInfo({
-    // userImage = 'User Image',
-    userName = 'Username',
-    firstName = 'Full',
-    lastName = 'Name',
-    email = 'Email',
-    address = 'Address',
-    city = 'City',
-    state = 'State',
-    zip = 'Zip'
-}) {
+const UserInfo = () => {
+    let history = useHistory();
+
+    //checkAuth for valid token will go here
+    let validToken = CheckAuth();
+    if (!validToken) {
+        console.log("validToken returned false or undefined");
+        history.push('/users/login');
+    }
+
+    // const [userImage, setUserImage] = useState();
+    const [userName, setUserName] = useState();
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [address, setAddress] = useState();
+    const [city, setCity] = useState();
+    const [state, setState] = useState();
+    const [zip, setZip] = useState();
+    const [email, setEmail] = useState();
+
+    //set JWT token into header for server side authentication
+    let myHeaders = {
+        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+    };
+
+    axios.get('http://localhost:5000/api/users/profile',  
+        { 'headers': myHeaders })
+        .then(function (response) {
+            console.log(response.status);
+        if (response.status === 401) {
+            console.log("No token or must be logged in");
+            console.log(response.status.message);
+            //history.push('/users/login');
+        }
+        if (response.status === 200) {
+            console.log("response: ");
+            console.log(response);
+            //validate this profile is a farmer
+            
+            //load state variables from response data
+            setUserName(response.data.userName);
+            setFirstName(response.data.firstName);
+            setLastName(response.data.lastName);
+            setAddress(response.data.address);
+            setCity(response.data.city);
+            setState(response.data.state);
+            setZip(response.data.zip);
+            setEmail(response.data.email);
+
+            // history.push('/users/profile/:_id');
+        }
+        else {
+            // setShowError(true);
+            console.log(`Unable to get user info; error status: ${response.status} `);
+        }
+    })
+    .catch(function (error) {
+        console.log("catch error: " + error);
+        // formErrorHandler(error.message);
+    });
 
     return (
         <UserInfoStyles>
@@ -128,3 +179,4 @@ export default function UserInfo({
         </UserInfoStyles >
     )
 }
+export default  UserInfo;

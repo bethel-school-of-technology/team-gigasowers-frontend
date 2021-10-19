@@ -3,19 +3,16 @@ import React, {useState} from 'react';
 import "../../src/App.css";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-//import React from "react";
 //import ReactDOM from "react-dom";
 //import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import LoginButton from './loginout';
-
-
+import kingyo from '../assets/images/kingyo.png';
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 //import List from './List';
 // import LoginForm from './LoginForm';
 //import Input from './Input';
-// import { Route } from 'react-router';
 
 
 
@@ -101,6 +98,11 @@ const NavbarStyles = styled.div`
   .homeButton{
     flex: 0.2;
 
+  .kingyo {
+    max-width: 100px;
+    float: left;
+    padding: 1rem;
+    margin-top: -3rem;
   }
 `;
 
@@ -154,10 +156,11 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home" className="homeButton">Home<img src="../fonts/images/fifty.png"/></a>
+//                     <a href="/home" className="homeButton">Home<img src="../fonts/images/fifty.png"/></a>
+                    <a href="/home"><img className="kingyo" src={kingyo} alt="Logo"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
-                    <a href="/farmers">Farmers</a>
-                    <a href="/events">Events</a>
+                    {/* <a href="/farmers">Farmers</a>
+                    <a href="/events">Events</a> */}
                 </div>
             </div>
 
@@ -170,6 +173,7 @@ function Navbar() {
               <Link to='/users/register'>
               <button type="button" className="btn btn-info">Register</button>
               <LoginButton />
+
               </Link>
             </div>
             </div>

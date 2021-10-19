@@ -7,6 +7,7 @@ import farmName from './LandingFunction';
 import farmDescription from './LandingFunction';
 
 const CardStyles = styled.div`
+
 .card{
    flex: 0.8;
    box-sizing: border-box;
@@ -26,7 +27,6 @@ const CardStyles = styled.div`
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
-
 }
 
 .cardImg{
@@ -85,6 +85,7 @@ export default function Card() {
         <CardStyles>
             
             <div className="cardWrapper">
+
             <div className="cardBody">
                 <div className="cardImg">
                     {/* <img src="./imgtest/imgholder.png" /> */}
@@ -96,14 +97,14 @@ export default function Card() {
                     <p className="cardDes">{farmDescription}</p>
                 </div>
             </div>
-            </div>
-        
-        </CardStyles>
+            </div>    
+        </CardStyles >
+
 
     )
 
 }
 
-//<button className="cardBut">Buttonです</button>
+//<button className="cardBut">Button</button>
 
 
