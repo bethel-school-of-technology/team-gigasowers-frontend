@@ -101,7 +101,7 @@ export default function Mascot() {
         });
     }
 
-    // ("face").mousemove(function(event) {
+    //  $("face").mousemove(function(event) {
     //     var eye = $("eye");
     //     var x = (eye.offset().left) + (eye.width()/2);
     //     var y = (eye.offset().top) + (eye.height()/2);

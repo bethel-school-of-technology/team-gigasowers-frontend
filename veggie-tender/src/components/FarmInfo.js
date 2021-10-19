@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import CheckAuth from '../services/CheckAuth';
 
 
 const FarmInfoStyles = styled.div`
@@ -95,8 +96,14 @@ body {
 `;
 
 const FarmInfo = () => {
+    let history = useHistory();
 
     //checkAuth for valid token will go here
+    let validToken = CheckAuth();
+    if (!validToken) {
+        console.log("validToken returned false or undefined");
+        history.push('/users/login');
+    }
 
     //State Variables for farm profile
     const [farmName, setFarmName] = useState('');

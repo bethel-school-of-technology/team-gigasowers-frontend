@@ -29,7 +29,9 @@ export default function LandingFunction ({
     farmWebsite = "Farm Website",
     farmEmail = "Farm Email",
 
+
 }){
+
     return (
 
         <LandingFunctionStyles>
