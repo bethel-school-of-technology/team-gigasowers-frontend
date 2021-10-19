@@ -1,5 +1,5 @@
 import React from 'react'
-import FarmerRegisterForm from '../components/FarmerRegisterForm';
+import FarmerRegisterForm from '../components/Farm/FarmerRegisterForm';
 
 
 export default function FarmerReg() {
