@@ -2,7 +2,14 @@
 import React, {useState} from 'react';
 import "../../src/App.css";
 import styled from 'styled-components';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+//import React from "react";
+//import ReactDOM from "react-dom";
+//import { Router } from "react-router";
+import { createBrowserHistory } from "history";
+import LoginButton from './loginout';
+
+
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 //import List from './List';
@@ -102,6 +109,9 @@ function Navbar() {
 
   let [items, setItems] = useState([]);
   let [inputTxt, setInputTxt] = useState("");
+  //const history = createBrowserHistory();
+
+
   //const[showLinks, setShowLinks] = useState(false);
 
     const changeText = (e) =>{
@@ -126,6 +136,17 @@ function Navbar() {
       console.log(items);
     }
 
+    // <Router>
+    //   <Switch>
+    //     <Navbar isAuth={loggedIn} />
+    //     <Route exact path="/" exact component={Home} />
+    //     <Route path="/login" component={Login} />
+    //     <PrivateRoute path="/dashboard" component={Dashboard} />
+    //   </Switch>
+    // </Router>
+
+
+
 
 
     return (
@@ -133,25 +154,24 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home" className="homeButton">Home<img src="../img/kingyo.png"/></a>
+                    <a href="/home" className="homeButton">Home<img src="../fonts/images/fifty.png"/></a>
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a>
                 </div>
-                {/* <button onClick={()=> setShowLinks(!showLinks)}>
-                        {" "} 
-                        <ReorderIcon/> */}
-                {/* </button> */}
             </div>
+
             <div className="reftSide">
-            <div>
+            <div className="loginbuttons">
               <Link to='/users/login'>
-              <button type="button" className="btn btn-info">Button</button>
+              <button type="button" className="btn btn-info">LogIn</button>
+              <LoginButton />
+              </Link>
+              <Link to='/users/register'>
+              <button type="button" className="btn btn-info">Register</button>
+              <LoginButton />
               </Link>
             </div>
-                {/* <input onChange={changeText} onClick={submitInput} placeholder="search" title={'Add Item'}/>
-                <List items={items} onComplete={onComplete}/> */}
-                {/* <button><Route exact path="/" component={LoginForm}>Login</Route></button> */}
             </div>
         </div>
         </NavbarStyles>

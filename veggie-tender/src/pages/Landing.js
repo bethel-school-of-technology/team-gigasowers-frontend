@@ -43,16 +43,14 @@ export default function Landing() {
     return (
 
         <div className="landing">
-            Landing Events
             <div className="cards">
-                <Sidebar />
                 <CardComponent />              
             </div>
         </div>
     )
 }
 
-
+//<Sidebar />
                /* <div id="topShelf">
                 <div className="wrapper">
                     <div className="Card">
