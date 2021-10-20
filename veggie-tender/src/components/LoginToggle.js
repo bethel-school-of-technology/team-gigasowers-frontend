@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import CheckAuth from '../services/CheckAuth';
-
 
 
 
@@ -22,30 +21,35 @@ const LoginToggle = () => {
             setUserName('');
             setLoginStatus(false);
         } else {
-            console.log("LoginToggle userName: " + localStorage.getItem("userName"));
+            //console.log("LoginToggle userName: " + localStorage.getItem("userName"));
             if (localStorage.getItem("userName")) {
                 setUserName(localStorage.getItem("userName"));
                 setLoginStatus(true);
             }
         }
+    }, []);
 
-
-    });
-
+    console.log("Entering LoginToggle: userName = " + userName);
+    if (localStorage.getItem("userName") === userName) {
+        // console.log("Entering LoginToggle: userName are same, return...");
+        // console.log(userName);
+        // console.log("loginStatus: " + loginStatus);
+        
+    };
 
 
     //handlers for each input field on the form
     const loginHandler = (event) => {
         //redirect to landing or home page
         history.push('/users/login');
-        //setLoginStatus(true);
+        window.location.reload();
     };
     const logoutHandler = (event) => {
         //remove local storage items
+        localStorage.clear();
         setUserName('');
         setLoginStatus(false);
-        localStorage.clear();
-        history.push('/');
+        window.location.reload();
     };
 
 

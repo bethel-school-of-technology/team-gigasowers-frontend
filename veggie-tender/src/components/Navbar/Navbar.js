@@ -1,7 +1,7 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import ReactDOM from "react-dom";
 //import { Router } from "react-router";
 import { createBrowserHistory } from "history";
@@ -10,6 +10,7 @@ import LoginButton from './loginout';
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 // import LoginForm from './LoginForm';
+import LoginToggle from '../LoginToggle';
 
 
 
@@ -112,70 +113,72 @@ function Navbar() {
 
   //const[showLinks, setShowLinks] = useState(false);
 
-    const changeText = (e) =>{
-      setInputTxt(e.target.value)
-    }
+  const changeText = (e) => {
+    setInputTxt(e.target.value)
+  }
 
-    const submitInput = (e) => {
-      let newItems = [...items];
-      newItems.push({
-        name: inputTxt,
-        completed:false
-      })
-      setItems(newItems)
-    }
+  const submitInput = (e) => {
+    let newItems = [...items];
+    newItems.push({
+      name: inputTxt,
+      completed: false
+    })
+    setItems(newItems)
+  }
 
-    const onComplete = (complete, idx) => {
-      let updatedItems = [...items];
+  const onComplete = (complete, idx) => {
+    let updatedItems = [...items];
 
-      updatedItems[idx].completed = complete
-      setItems(updatedItems)
-      
-      console.log(items);
-    }
+    updatedItems[idx].completed = complete
+    setItems(updatedItems)
 
-    // <Router>
-    //   <Switch>
-    //     <Navbar isAuth={loggedIn} />
-    //     <Route exact path="/" exact component={Home} />
-    //     <Route path="/login" component={Login} />
-    //     <PrivateRoute path="/dashboard" component={Dashboard} />
-    //   </Switch>
-    // </Router>
+    console.log(items);
+  }
 
-
+  // <Router>
+  //   <Switch>
+  //     <Navbar isAuth={loggedIn} />
+  //     <Route exact path="/" exact component={Home} />
+  //     <Route path="/login" component={Login} />
+  //     <PrivateRoute path="/dashboard" component={Dashboard} />
+  //   </Switch>
+  // </Router>
 
 
 
-    return (
-        <NavbarStyles>
-        <div className="Navbar">
-            <div className="leftSide">
-                <div className="links">
-                    <a href="/" className="homeButton">Veggie tender</a>
-                    {/* <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a> */}
-                    {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
-                    {/* <a href="/farmers">Farmers</a>
+
+
+  return (
+    <NavbarStyles>
+      <div className="Navbar">
+        <div className="leftSide">
+          <div className="links">
+            <a href="/" className="homeButton">Veggie tender</a>
+            {/* <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a> */}
+            {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
+            {/* <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a> */}
-                </div>
-            </div>
+          </div>
+        </div>
 
-            <div className="reftSide">
-            <div className="loginbuttons">
-              <Link to='/users/login'>
+        <div className="reftSide">
+          <div className="loginbuttons">
+            {/* <Link to='/users/login'>
               <button type="button" className="btn btn-info">LogIn</button>
               <LoginButton />
-              </Link>
-              <Link to='/users/register'>
+              </Link> */}
+
+            <LoginToggle />
+            <Link to='/users/register'>
               <button type="button" className="btn btn-info">Register</button>
               <LoginButton />
 
-              </Link>
-            </div>
-            </div>
+            </Link>
+          </div>
         </div>
-        </NavbarStyles>
-    )
+      </div>
+    </NavbarStyles>
+  )
 }
 
 export default Navbar
