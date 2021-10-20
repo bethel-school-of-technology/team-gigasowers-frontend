@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
-import CheckAuth from '../services/CheckAuth';
+import { Link, useHistory } from 'react-router-dom';
+import CheckAuth from '../../services/CheckAuth';
 
 
 const FarmInfoStyles = styled.div`
@@ -172,8 +172,7 @@ const FarmInfo = () => {
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
-                        <h3 className="farmName">Farm Name: </h3>
-                        <p>{farmName}</p><br />
+                    
                         <h3 className="farmDescription">Farm Description: </h3>
                         <p>{farmDescription}</p><br />
                         <h3 className="farmAddress">Address: </h3>
@@ -190,6 +189,9 @@ const FarmInfo = () => {
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
                         <p>{farmEmail}</p>
+                        <Link to='/users/update/farmProfile'>
+                            <button type="button" className="btn">Update Info</button>
+                        </Link>
 
                     </div>
                 </div>

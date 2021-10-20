@@ -171,8 +171,7 @@ const LoginForm = () => {
                     localStorage.setItem("isAdmin", response.data.isAdmin);
 
                     //redirect to landing or home page
-                    history.push('/home');
-                    
+                    history.push('/');
                 } else {
                     setShowError = true;
                     setErrorCode = response.status;

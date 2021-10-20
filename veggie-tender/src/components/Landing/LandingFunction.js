@@ -1,7 +1,7 @@
 import React from 'react'
-import { CustomPlaceholder } from 'react-placeholder-image';
+// import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
-import Card from '../components/Card.js';
+import Card from './Card';
 
 
 
@@ -44,49 +44,49 @@ export default function LandingFunction ({
     )
 }
 
-{/* <div id="topShelf">
-<div className="wrapper">
-    <div className="Card">
-        <div className="cardBody">
-            <CustomPlaceholder width={265} height={149} />
-            <h2 className="cardTitle">Farm Event1</h2>
-            <p className="cardDes">description</p>
-        </div>
-        <button className="cardBut">Button</button>
-    </div>
-</div>
+// {/* <div id="topShelf">
+// <div className="wrapper">
+//     <div className="Card">
+//         <div className="cardBody">
+//             <CustomPlaceholder width={265} height={149} />
+//             <h2 className="cardTitle">Farm Event1</h2>
+//             <p className="cardDes">description</p>
+//         </div>
+//         <button className="cardBut">Button</button>
+//     </div>
+// </div>
 
-</div> */}
-{/* <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">local Farm</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div>
-                        <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">farm</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div>
-                        <div className="wrapper">
-                            <div className="Card">
-                                <div className="cardBody">
-                                    <CustomPlaceholder width={265} height={149} />
-                                    <h2 className="cardTitle">farmer market</h2>
-                                    <p className="cardDes">description</p>
-                                </div>
-                                <button className="cardBut">Button</button>
-                            </div>
-                        </div> */}
+// </div> */}
+// {/* <div className="wrapper">
+//                             <div className="Card">
+//                                 <div className="cardBody">
+//                                     <CustomPlaceholder width={265} height={149} />
+//                                     <h2 className="cardTitle">local Farm</h2>
+//                                     <p className="cardDes">description</p>
+//                                 </div>
+//                                 <button className="cardBut">Button</button>
+//                             </div>
+//                         </div>
+//                         <div className="wrapper">
+//                             <div className="Card">
+//                                 <div className="cardBody">
+//                                     <CustomPlaceholder width={265} height={149} />
+//                                     <h2 className="cardTitle">farm</h2>
+//                                     <p className="cardDes">description</p>
+//                                 </div>
+//                                 <button className="cardBut">Button</button>
+//                             </div>
+//                         </div>
+//                         <div className="wrapper">
+//                             <div className="Card">
+//                                 <div className="cardBody">
+//                                     <CustomPlaceholder width={265} height={149} />
+//                                     <h2 className="cardTitle">farmer market</h2>
+//                                     <p className="cardDes">description</p>
+//                                 </div>
+//                                 <button className="cardBut">Button</button>
+//                             </div>
+//                         </div> */}
 
     // useEffect(() => {
     //     axios

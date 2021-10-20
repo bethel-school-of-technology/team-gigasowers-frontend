@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Landing from "./pages/Landing";
 import UserReg from "./pages/UserReg";
 import LoginForm from "./components/LoginForm";
@@ -50,12 +50,12 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/farmProfile/update">
+                                    <Route path="/users/update/farmProfile">
                                           <FarmProfileUp />
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/profile/update">
+                                    <Route path="/users/update/profile">
                                           <UserProfileUp />
                                     </Route>
                               </Switch>

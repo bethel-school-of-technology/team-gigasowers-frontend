@@ -1,13 +1,13 @@
 import React from 'react'
 //import Navbar from '../components/Navbar';
-import CardComponent from '../components/Card';
+import Card from '../components/Landing/Card';
 //import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
-import Sidebar from '../components/sidebar';
+// import Sidebar from '../components/sidebar';
 
 
 
-const CardStyles = styled.div`
+const LandingStyles = styled.div`
 .cards{
     display: flex;
 }
@@ -41,12 +41,13 @@ const CardStyles = styled.div`
 export default function Landing() {
 
     return (
-
+        <LandingStyles>
         <div className="landing">
             <div className="cards">
-                <CardComponent />              
+                <Card />              
             </div>
         </div>
+        </LandingStyles>
     )
 }
 
@@ -100,269 +101,4 @@ export default function Landing() {
 //                 <h1>test</h1>
 //                 <h1>test</h1>
 //                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
 
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
-//                 <h1>test</h1>
