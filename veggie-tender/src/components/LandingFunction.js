@@ -1,5 +1,6 @@
-import React from 'react'
-import { CustomPlaceholder } from 'react-placeholder-image';
+//import axios from 'axios';
+import React from 'react'; //,{useState}
+//import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
 import Card from '../components/Card.js';
 
@@ -17,18 +18,7 @@ const LandingFunctionStyles = styled.div`
 
 `;
 
-
-
 export default function LandingFunction ({
-
-    farmName = 'Farm Name',
-    farmDescription = 'Farm Details',
-    farmAddress = 'Farm Address',
-    farmCity = "Farm City",
-    farmState = "Farm State",
-    farmWebsite = "Farm Website",
-    farmEmail = "Farm Email",
-
 }){
     return (
 
@@ -42,7 +32,15 @@ export default function LandingFunction ({
     )
 }
 
-{/* <div id="topShelf">
+
+
+
+
+
+
+
+
+/* <div id="topShelf">
 <div className="wrapper">
     <div className="Card">
         <div className="cardBody">
@@ -54,8 +52,8 @@ export default function LandingFunction ({
     </div>
 </div>
 
-</div> */}
-{/* <div className="wrapper">
+</div> 
+ <div className="wrapper">
                             <div className="Card">
                                 <div className="cardBody">
                                     <CustomPlaceholder width={265} height={149} />
@@ -84,7 +82,7 @@ export default function LandingFunction ({
                                 </div>
                                 <button className="cardBut">Button</button>
                             </div>
-                        </div> */}
+                        </div> */
 
     // useEffect(() => {
     //     axios

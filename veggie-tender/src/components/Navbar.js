@@ -1,12 +1,12 @@
 
-import React, {useState} from 'react';
+import React from 'react'; //, {useState}
 import "../../src/App.css";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 //import React from "react";
 //import ReactDOM from "react-dom";
 //import { Router } from "react-router";
-import { createBrowserHistory } from "history";
+//import { createBrowserHistory } from "history";
 import LoginButton from './loginout';
 
 
@@ -54,7 +54,7 @@ const NavbarStyles = styled.div`
   }
   
   .Navbar .reftSide{
-    flex: 35%;
+    flex: 10%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -91,7 +91,7 @@ const NavbarStyles = styled.div`
   }
   
   .Navbar .leftSide{
-    flex: 65%;
+    flex: 90%;
     padding-top: 20px;
     background-color: var(--blue-green);     /*takeoff later*/
     justify-content: left;
@@ -107,56 +107,12 @@ const NavbarStyles = styled.div`
 
 function Navbar() {
 
-  let [items, setItems] = useState([]);
-  let [inputTxt, setInputTxt] = useState("");
-  //const history = createBrowserHistory();
-
-
-  //const[showLinks, setShowLinks] = useState(false);
-
-    const changeText = (e) =>{
-      setInputTxt(e.target.value)
-    }
-
-    const submitInput = (e) => {
-      let newItems = [...items];
-      newItems.push({
-        name: inputTxt,
-        completed:false
-      })
-      setItems(newItems)
-    }
-
-    const onComplete = (complete, idx) => {
-      let updatedItems = [...items];
-
-      updatedItems[idx].completed = complete
-      setItems(updatedItems)
-      
-      console.log(items);
-    }
-
-    // <Router>
-    //   <Switch>
-    //     <Navbar isAuth={loggedIn} />
-    //     <Route exact path="/" exact component={Home} />
-    //     <Route path="/login" component={Login} />
-    //     <PrivateRoute path="/dashboard" component={Dashboard} />
-    //   </Switch>
-    // </Router>
-
-
-
-
-
     return (
         <NavbarStyles>
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home" className="homeButton">Home<img src="../fonts/images/fifty.png"/></a>
-                    {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
-                    <a href="/farmers">Farmers</a>
+                    <a href="/home" className="homeButton">Home</a>
                     <a href="/events">Events</a>
                 </div>
             </div>
@@ -179,3 +135,46 @@ function Navbar() {
 }
 
 export default Navbar
+
+
+
+
+
+  //let [items, setItems] = useState([]);
+  //let [inputTxt, setInputTxt] = useState("");
+  //const history = createBrowserHistory();
+
+
+  //const[showLinks, setShowLinks] = useState(false);
+
+    // const changeText = (e) =>{
+    //   setInputTxt(e.target.value)
+    // }
+
+    // const submitInput = (e) => {
+    //   let newItems = [...items];
+    //   newItems.push({
+    //     name: inputTxt,
+    //     completed:false
+    //   })
+    //   setItems(newItems)
+    // }
+
+    // const onComplete = (complete, idx) => {
+    //   let updatedItems = [...items];
+
+    //   updatedItems[idx].completed = complete
+    //   setItems(updatedItems)
+      
+    //   console.log(items);
+    // }
+
+    // <Router>
+    //   <Switch>
+    //     <Navbar isAuth={loggedIn} />
+    //     <Route exact path="/" exact component={Home} />
+    //     <Route path="/login" component={Login} />
+    //     <PrivateRoute path="/dashboard" component={Dashboard} />
+    //   </Switch>
+    // </Router>
+

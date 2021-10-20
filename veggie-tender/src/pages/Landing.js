@@ -3,7 +3,7 @@ import React from 'react'
 import CardComponent from '../components/Card';
 //import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
-import Sidebar from '../components/sidebar';
+//import Sidebar from '../components/sidebar';
 
 
 
@@ -42,11 +42,13 @@ export default function Landing() {
 
     return (
 
+        <CardStyles>
         <div className="landing">
             <div className="cards">
                 <CardComponent />              
             </div>
         </div>
+        </CardStyles>
     )
 }
 
