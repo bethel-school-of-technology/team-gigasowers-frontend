@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
@@ -108,51 +108,108 @@ const UserInfoUpdate = () => {
     const [zip, setZip] = useState();
     const [email, setEmail] = useState();
 
-    //set JWT token into header for server side authentication
-    let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-    };
+    useEffect(() => {
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
 
-    axios.put('http://localhost:5000/api/users/update',  
-        { 'headers': myHeaders })
-        .then(function (response) {
-            console.log(response.status);
-        if (response.status === 401) {
-            console.log("No token or must be logged in");
-            console.log(response.status.message);
-            //history.push('/users/login');
-        }
-        if (response.status === 200) {
-            console.log("response: ");
-            console.log(response);
-            //validate this profile is a farmer
-            
-            //load state variables from response data
-            setUserName(response.data.userName);
-            setFirstName(response.data.firstName);
-            setLastName(response.data.lastName);
-            setAddress(response.data.address);
-            setCity(response.data.city);
-            setState(response.data.state);
-            setZip(response.data.zip);
-            setEmail(response.data.email);
+        axios.get('http://localhost:5000/api/users/profile',
+            { 'headers': myHeaders })
+            .then(function (response) {
+                console.log(response.status);
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                    console.log(response.status.message);
+                    //history.push('/users/login');
+                }
+                if (response.status === 200) {
+                    console.log("response: ");
+                    console.log(response);
 
-            // history.push('/users/profile/:_id');
-        }
-        else {
-            // setShowError(true);
-            console.log(`Unable to get user info; error status: ${response.status} `);
-        }
-    })
-    .catch(function (error) {
-        console.log("catch error: " + error);
-        // formErrorHandler(error.message);
-    });
+                    //load state variables from response data
+                    setUserName(response.data.userName);
+                    setFirstName(response.data.firstName);
+                    setLastName(response.data.lastName);
+                    setAddress(response.data.address);
+                    setCity(response.data.city);
+                    setState(response.data.state);
+                    setZip(response.data.zip);
+                    setEmail(response.data.email);
+                }
+                else {
+                    // setShowError(true);
+                    console.log(`Unable to get user info; error status: ${response.status} `);
+                }
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+                // formErrorHandler(error.message);
+            });
+    }, []);
 
-    const updateHandler = (event) => {
+    const usernameChangeHandler = (event) => {setUserName(event.target.value) };
+    const firstNameChangeHandler = (event) => {setFirstName(event.target.value) };
+    const lastNameChangeHandler = (event) => {setLastName(event.target.value) };
+    const emailChangeHandler = (event) => {setEmail(event.target.value) };
+    const addressChangeHandler = (event) => {setAddress(event.target.value) };
+    const cityChangeHandler = (event) => {setCity(event.target.value) };
+    const stateChangeHandler = (event) => {setState(event.target.value) };
+    const zipChangeHandler = (event) => {setZip(event.target.value) };
+
+    const submitHandler = (event) => {
         event.preventDefault();
 
-    }
+        const profileData = {
+            userName: userName,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            address: address,
+            city: city,
+            state: state,
+            zip: zip
+        };
+
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
+
+        axios.put('http://localhost:5000/api/users/update', profileData,
+            { 'headers': myHeaders })
+            .then(function (response) {
+                console.log(response.status);
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                    console.log(response.status.message);
+                    //history.push('/users/login');
+                }
+                if (response.status === 200) {
+                    console.log("directing to profile");
+                    history.push('/users/profile');
+                }
+                else {
+                    // setShowError(true);
+                    // setFormErrors('Unable to register farm.')
+                    console.log(`Unable to get info; error status: ${response.status} `);
+                }
+
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+                // formErrorHandler(error.message);
+            });
+        setUserName('');
+        setFirstName('');
+        setLastName('');
+        setAddress('');
+        setCity('');
+        setState('');
+        setZip('');
+        setEmail('');
+    };
+
     return (
         <UserUpdateStyles>
             <div className="container">
@@ -162,14 +219,14 @@ const UserInfoUpdate = () => {
                 <div className="info_float">
                     <div className="userInfoUpdate">
 
-                        <form id='userUpdate' className='form' onSubmit={updateHandler}>
+                        <form id='userUpdate' className='form' onSubmit={submitHandler}>
                             <h2>Update Your Farm Information:</h2>
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
                                     placeholder='Update your user name'
                                     value={userName}
-                                    onChange={e => setUserName({userName: e.target.value})}
+                                    onChange={usernameChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -177,7 +234,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update your first name'
                                     value={firstName}
-                                    onChange={e => setFirstName({firstName: e.target.value})}
+                                    onChange={firstNameChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -185,7 +242,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update your last name'
                                     value={lastName}
-                                    onChange={e => setLastName({lastName: e.target.value})}
+                                    onChange={lastNameChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -193,7 +250,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update your address'
                                     value={address}
-                                    onChange={e => setAddress({address: e.target.value})}
+                                    onChange={addressChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -201,7 +258,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update city'
                                     value={city}
-                                    onChange={e => setCity({city: e.target.value})}
+                                    onChange={cityChangeHandler}
                                 />
                                 <small></small>
                             </div>
@@ -210,7 +267,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update your state'
                                     value={state}
-                                    onChange={e => setState({state: e.target.value})}
+                                    onChange={stateChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -218,7 +275,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update zipcode'
                                     value={zip}
-                                    onChange={e => setZip({zip: e.target.value})}
+                                    onChange={zipChangeHandler}
                                 />
                             </div>
                             <div className='form-field'>
@@ -226,7 +283,7 @@ const UserInfoUpdate = () => {
                                 <input type='text'
                                     placeholder='Update email'
                                     value={email}
-                                    onChange={e => setEmail({email: e.target.value})}
+                                    onChange={emailChangeHandler}
                                 />
                             </div>
                             <div className='btn-field'>

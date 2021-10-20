@@ -53,7 +53,7 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/profile/update">
+                                    <Route path="/users/update/profile">
                                           <UserProfileUp />
                                     </Route>
                               </Switch>
