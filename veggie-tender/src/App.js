@@ -25,36 +25,43 @@ export default function App() {
                         <div className="pages">
                               <Switch>
                                     <Route path="/users/login">
+                                          <Navbar />
                                           <LoginForm />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/register">
+                                          <Navbar />
                                           <UserReg />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/farmRegister">
+                                          <Navbar />
                                           <FarmerReg />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/profile">
+                                          <Navbar />
                                           <UserProfile />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/farmProfile">
+                                          <Navbar />
                                           <FarmProfile />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/update/farmProfile">
+                                          <Navbar />
                                           <FarmProfileUp />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/update/profile">
+                                          <Navbar />  
                                           <UserProfileUp />
                                     </Route>
                               </Switch>
