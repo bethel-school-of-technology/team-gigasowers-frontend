@@ -5,6 +5,7 @@ import MontserratRegular from '../assets/fonts/MontserratRegular.ttf';
 import MontserratThin from '../assets/fonts/MontserratThin.ttf';
 import MontserratMedium from '../assets/fonts/MontserratMedium.ttf';
 import MontserratBold from '../assets/fonts/MontserratBold.ttf';
+import OldGrowth from '../assets/fonts/OldGrowth.otf';
 
 
 const Typography = createGlobalStyle`
@@ -36,6 +37,11 @@ const Typography = createGlobalStyle`
 @font-face {
     font-family: 'MontserratBold';
     src: url(${MontserratBold});
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OldGrowth';
+    src: url(${OldGrowth});
     font-style: normal;
 }
 `;

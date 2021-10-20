@@ -148,33 +148,15 @@ const UserRegisterForm = () => {
 
 
     //handlers for each input field on the form
-    const usernameChangeHandler = (event) => {
-        setUserName(event.target.value);
-    };
-    const passwordChangeHandler = (event) => {
-        setPassword(event.target.value);
-    };
-    const firstNameChangeHandler = (event) => {
-        setFirstName(event.target.value);
-    };
-    const lastNameChangeHandler = (event) => {
-        setLastName(event.target.value);
-    };
-    const emailChangeHandler = (event) => {
-        setEmail(event.target.value);
-    };
-    const addressChangeHandler = (event) => {
-        setAddress(event.target.value);
-    };
-    const cityChangeHandler = (event) => {
-        setCity(event.target.value);
-    };
-    const stateChangeHandler = (event) => {
-        setState(event.target.value);
-    };
-    const zipChangeHandler = (event) => {
-        setZip(event.target.value);
-    };
+    const usernameChangeHandler = (event) => {setUserName(event.target.value) };
+    const passwordChangeHandler = (event) => {setPassword(event.target.value) };
+    const firstNameChangeHandler = (event) => {setFirstName(event.target.value) };
+    const lastNameChangeHandler = (event) => {setLastName(event.target.value) };
+    const emailChangeHandler = (event) => {setEmail(event.target.value) };
+    const addressChangeHandler = (event) => {setAddress(event.target.value) };
+    const cityChangeHandler = (event) => {setCity(event.target.value) };
+    const stateChangeHandler = (event) => {setState(event.target.value) };
+    const zipChangeHandler = (event) => {setZip(event.target.value) };
 
 
     const submitHandler = (event) => {
@@ -201,7 +183,6 @@ const UserRegisterForm = () => {
             city: enteredCity,
             state: enteredState,
             zip: enteredZip
-
         };
 
 

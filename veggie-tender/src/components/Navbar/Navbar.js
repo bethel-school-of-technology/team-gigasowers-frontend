@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 //import { Router } from "react-router";
 import { createBrowserHistory } from "history";
 import LoginButton from './loginout';
-import kingyo from '../../assets/images/kingyo.png';
+// import kingyo from '../../assets/images/kingyo.png';
 //import ReorderIcon from '@material-ui/icons/Reorder';
 //import SearchIcon from '@material-ui/icons/Search';
 // import LoginForm from './LoginForm';
@@ -94,10 +94,10 @@ const NavbarStyles = styled.div`
   }
   
   .homeButton{
-    max-width: 100px;
+    font-family: 'OldGrowth';
+    margin-top: -1rem;
     float: left;
     padding: 1rem;
-    margin-top: -3rem;
 
 
 `;
@@ -152,7 +152,8 @@ function Navbar() {
         <div className="Navbar">
             <div className="leftSide">
                 <div className="links">
-                    <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a>
+                    <a href="/" className="homeButton">Veggie tender</a>
+                    {/* <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a> */}
                     {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
                     {/* <a href="/farmers">Farmers</a>
                     <a href="/events">Events</a> */}

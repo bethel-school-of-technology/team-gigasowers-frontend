@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 const UserInfoStyles = styled.div`
@@ -170,6 +170,9 @@ const UserInfo = () => {
                         <p>{zip}</p><br />
                         <h3 className="email">Email: </h3>
                         <p>{email}</p>
+                        <Link to='/users/update/profile'>
+                            <button type="button" className="btn">Update Info</button>
+                        </Link>
 
                     </div>
                 </div>

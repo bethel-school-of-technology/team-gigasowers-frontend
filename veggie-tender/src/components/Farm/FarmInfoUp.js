@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
@@ -118,11 +118,14 @@ const FarmInfoUpdate = () => {
     const [farmWebsite, setFarmWebsite] = useState('');
     const [farmEmail, setFarmEmail] = useState('');
 
-    let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`,
-        'Content-Type': 'application/json'
-    };
-    axios.get('http://localhost:5000/api/users/profile',
+
+
+    useEffect(() => {
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
+
+        axios.get('http://localhost:5000/api/users/profile',
         { 'headers': myHeaders })
         .then(function (response) {
             console.log(response.status);
@@ -148,8 +151,6 @@ const FarmInfoUpdate = () => {
                 //setFarmImage(response.data.userFarms.farmImage);
                 setFarmWebsite(response.data.userFarms.farmWebsite);
                 setFarmEmail(response.data.userFarms.farmEmail);
-
-                // history.push('/users/farmProfile/:farmId');
             }
             else {
                 // setShowError(true);
@@ -162,6 +163,7 @@ const FarmInfoUpdate = () => {
             console.log("catch error: " + error);
             // formErrorHandler(error.message);
         });
+    }, []);
 
     const farmNameHandler = (event) => { setFarmName(event.target.value) };
     const farmDescriptionHandler = (event) => { setFarmDescription(event.target.value) };
@@ -187,8 +189,11 @@ const FarmInfoUpdate = () => {
         };
 
         //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
 
-        axios.put('http://localhost:5000/api/users/update/profile', profileData,
+        axios.put('http://localhost:5000/api/users/update', profileData,
             { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
@@ -198,8 +203,8 @@ const FarmInfoUpdate = () => {
                     //history.push('/users/login');
                 }
                 if (response.status === 200) {
-                    console.log("response: ");
-                    console.log(response);
+                    console.log("directing to farm profile");
+                    history.push('/users/farmProfile/:farmId');
                 }
                 else {
                     // setShowError(true);
@@ -237,8 +242,8 @@ const FarmInfoUpdate = () => {
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Name</label>
                                     <input type='text'
-                                        placeholder={farmName}
-                                        value={setFarmName}
+                                        placeholder='Update your farm name'
+                                        value={farmName}
                                         onChange={farmNameHandler}
                                     />
                                 </div>
