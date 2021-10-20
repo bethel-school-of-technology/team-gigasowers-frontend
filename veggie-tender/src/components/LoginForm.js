@@ -101,6 +101,7 @@ const LoginForm = () => {
     let [errCode, setErrorCode] = useState('');
 
 
+
     //Error Code Handler
     //const errorCodeHandler = (errMsg) => {
 
@@ -162,8 +163,13 @@ const LoginForm = () => {
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {
-                    //set jwt token into local storage 
+                    //set into local storage 
                     localStorage.setItem("vegToken", response.data.jwt);
+                    localStorage.setItem("userId", response.data.userId);
+                    localStorage.setItem("userName", response.data.userName);
+                    localStorage.setItem("isFarmer", response.data.isFarmer);
+                    localStorage.setItem("isAdmin", response.data.isAdmin);
+
                     //redirect to landing or home page
                     history.push('/');
                 } else {
