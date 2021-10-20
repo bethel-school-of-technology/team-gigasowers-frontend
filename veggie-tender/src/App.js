@@ -20,8 +20,7 @@ export default function App() {
       return (
             <Router>
                   <div className="App" style={{ backgroundImage: `url(${veggieBackFade})` }}>
-                        <Navbar />
-                        <LoginToggle />
+
                         {/* <Mascot /> */}
                         <div className="pages">
                               <Switch>
@@ -61,6 +60,7 @@ export default function App() {
                               </Switch>
                               <Switch>
                                     <Route exact path="/">
+                                          <Navbar />
                                           <Landing />
                                     </Route>
                               </Switch>
