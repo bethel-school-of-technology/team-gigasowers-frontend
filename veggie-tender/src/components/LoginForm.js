@@ -22,7 +22,7 @@ font-family: 'MontserratMedium';
     background-color: var(--cream);
     padding: 1rem;
     margin: 2rem auto;
-    width: 28rem;
+    width: 25rem;
     max-width: 95%;
     border-radius: 12px;
     text-align: center;
@@ -33,7 +33,7 @@ font-family: 'MontserratMedium';
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 1rem;
-    margin-left: 3rem;
+    margin-left: 2rem;
     margin-top: 2rem;
     text-align: left;
 }
