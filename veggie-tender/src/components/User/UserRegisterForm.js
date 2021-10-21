@@ -37,12 +37,13 @@ padding-top: 5rem;
         margin-left: 25rem;
         justify-content: center;
         background-color: var(--cream);
-        padding: 1em;
+        padding: 2rem;
         margin: 2rem auto;
+        margin-top: -3rem;
         // border: solid 2px;
-        border-radius: 5px;
+        border-radius: 12px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        width: 400px;
+        width: 25rem;
     }
     
     .form-title {

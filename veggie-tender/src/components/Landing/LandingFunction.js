@@ -1,7 +1,7 @@
 import React from 'react'
 // import { CustomPlaceholder } from 'react-placeholder-image';
 import styled from 'styled-components';
-import Card from './Card';
+import Card from '../Card';
 
 
 
@@ -21,13 +21,13 @@ const LandingFunctionStyles = styled.div`
 
 export default function LandingFunction ({
 
-    farmName = 'Farm Name',
-    farmDescription = 'Farm Details',
-    farmAddress = 'Farm Address',
-    farmCity = "Farm City",
-    farmState = "Farm State",
-    farmWebsite = "Farm Website",
-    farmEmail = "Farm Email",
+    // farmName = 'Farm Name',
+    // farmDescription = 'Farm Details',
+    // farmAddress = 'Farm Address',
+    // farmCity = "Farm City",
+    // farmState = "Farm State",
+    // farmWebsite = "Farm Website",
+    // farmEmail = "Farm Email",
 
 
 }){

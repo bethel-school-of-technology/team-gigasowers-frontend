@@ -21,6 +21,7 @@ body {
 }
 .container {
     justify-content: center;
+    max-width: 800px;
     height: 450px;
     background-color: var(--cream);
     padding: 1em;
@@ -52,28 +53,43 @@ body {
     flex-wrap: wrap;
 }
 .userInfo {
-    margin-top: 2rem auto;
+    margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: left;
 }
 .fullName {
-    margin-top: 16rem;
-    font-size: 2rem;
+    margin-top: -1rem;
+    font-size: 1.75rem; 
 }
 .h3 {
     font-size: 1.5rem;
 }
-.userFullName{
+
+.zipContain {
+    float: right;
+    margin-right: 17rem;
+    margin-top: -3.75rem;
+    height: 10px;
+    display: inline-block;
+}
+.buttonSection{
+    margin-top: 3rem;
+    float: right;
     
 }
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+.btn{
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background-color: var(--dk-coral);
+    border: 3px solid var(--dk-coral);
+    border-radius: 12px;
+    text-decoration: none;
+    
 }
 
 @media only screen and (max-width: 768px) {
@@ -166,18 +182,20 @@ const UserInfo = () => {
                         <p>{city}</p><br />
                         <h3 className="state">State: </h3>
                         <p>{state}</p><br />
-                        <h3 className="zip">Zip: </h3>
-                        <p>{zip}</p><br />
+                        <div className="zipContain">
+                                <h3 className="zip">Zip: </h3>
+                                <p>{zip}</p><br />
+                        </div>
                         <h3 className="email">Email: </h3>
                         <p>{email}</p>
-                        <Link to='/users/update/profile'>
-                            <button type="button" className="btn">Update Info</button>
-                        </Link>
 
                     </div>
                 </div>
                 <div class="userFullName">
                     <h3 className="fullName">{firstName} {lastName}</h3>
+                </div>
+                <div className="buttonSection">
+                    <Link to='/users/update/profile' type="button" className="btn">Update Info</Link>
                 </div>
             </div>
         </UserInfoStyles >
