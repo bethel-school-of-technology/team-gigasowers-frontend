@@ -217,7 +217,7 @@ const UserRegisterForm = () => {
         <UserRegStyles>
             <div className='user-form-content'>
                 <form id='userReg' className='form' onSubmit={submitHandler}>
-                    <h2 className='form-title'>Register Now!</h2>
+                    <h2 className='form-title'>Register</h2>
                     <div className='form-field'>
                         <label className='form-label'>User Name</label>
                         <input type='text' value={enteredUserName} onChange={usernameChangeHandler} />

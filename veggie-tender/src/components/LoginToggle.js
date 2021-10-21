@@ -12,16 +12,15 @@ const LoginToggle = () => {
     const [userName, setUserName] = useState('');
 
 
-    useEffect(() => {
-
+    useEffect(async () => {
         //checkAuth for valid token will go here
-        let validToken = CheckAuth();
+        let validToken = await CheckAuth();
         if (!validToken) {
             console.log("validToken returned false or undefined");
             setUserName('');
             setLoginStatus(false);
         } else {
-            //console.log("LoginToggle userName: " + localStorage.getItem("userName"));
+            console.log("LoginToggle userName: " + localStorage.getItem("userName"));
             if (localStorage.getItem("userName")) {
                 setUserName(localStorage.getItem("userName"));
                 setLoginStatus(true);
@@ -29,13 +28,6 @@ const LoginToggle = () => {
         }
     }, []);
 
-    console.log("Entering LoginToggle: userName = " + userName);
-    if (localStorage.getItem("userName") === userName) {
-        // console.log("Entering LoginToggle: userName are same, return...");
-        // console.log(userName);
-        // console.log("loginStatus: " + loginStatus);
-        
-    };
 
 
     //handlers for each input field on the form
@@ -49,7 +41,7 @@ const LoginToggle = () => {
         localStorage.clear();
         setUserName('');
         setLoginStatus(false);
-        window.location.reload();
+        //window.location.reload();
     };
 
 
