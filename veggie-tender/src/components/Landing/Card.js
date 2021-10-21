@@ -106,6 +106,8 @@ export default function Card() {
 
     return (
         <CardStyles>
+<div class="card-container">
+
 
             {user.map(currentUser => (  
                 <div>
@@ -124,6 +126,7 @@ export default function Card() {
                     </div>
                 </div> 
             ))};
+            </div>
         </CardStyles>
 
     )
