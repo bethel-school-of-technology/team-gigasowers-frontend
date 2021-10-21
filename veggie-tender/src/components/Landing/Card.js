@@ -116,9 +116,9 @@ export default function Card() {
                             <CustomPlaceholder width={265} height={149} />
                         </div>
                         <div className="cardWords">
-                            <p className ="cardFarmId">{currentUser.userFarms.farmId}</p>
+                            {/* <p className ="cardFarmId">{currentUser.userFarms.farmId}</p> */}
                             <h2 className="cardTitle">{currentUser.userFarms.farmName}</h2>
-                            <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
+                            {/* <p className="cardDes">{currentUser.userFarms.farmDescription}</p> */}
                         </div>
                         </div>
                     </div>

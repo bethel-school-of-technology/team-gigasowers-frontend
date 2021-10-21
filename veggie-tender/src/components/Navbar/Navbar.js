@@ -1,17 +1,14 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-//import ReactDOM from "react-dom";
-//import { Router } from "react-router";
+// import { Link } from 'react-router-dom';
 import { createBrowserHistory } from "history";
-import LoginButton from './loginout';
 // import kingyo from '../../assets/images/kingyo.png';
-//import ReorderIcon from '@material-ui/icons/Reorder';
-//import SearchIcon from '@material-ui/icons/Search';
 // import LoginForm from './LoginForm';
-import LoginToggle from '../LoginToggle';
-
+import LoginToggle from './LoginToggle';
+import ProfileToggle from './ProfileToggle';
+import FarmToggle from './FarmToggle';
+// import { useLayoutEffect } from 'react';
 
 
 
@@ -49,15 +46,14 @@ const NavbarStyles = styled.div`
     margin-left: 15px;
   }
   
-  .Navbar .reftSide{
-    flex: 35%;
+  .Navbar .rightSide{
+    width: 500px;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    padding-right: 25px;
+    
   }
   
-  .reftSide input {
+  .rightSide input {
     width: 220px;
     height: 30px;
     border: none;
@@ -65,12 +61,6 @@ const NavbarStyles = styled.div`
     font-size: 20px;
     padding-left: 15px;
     color: bisque;
-  }
-  
-  .reftSide button {
-    height: 32px;
-    width: 70px;
-    font-size: 16px;
   }
 
   button:hover{
@@ -93,12 +83,39 @@ const NavbarStyles = styled.div`
     justify-content: left;
     align-items: center;
   }
+  .button{
+ 
+  }
+  ul{ 
+      padding-top: 1rem;
+      max-width: 50rem;
+      margin: 0 auto;
+        text-align: center;
+        li{
+            
+            display: inline-block; 
+            border-radius: 8px;
+            transition: .3s ease background-color;
+            :hover{
+                background-color: var(--dk-green);
+            }
+        }
+    }
+  .btn{
+    display: inline-block;
+    margin: 0 auto;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+
+  }
   
   .homeButton{
     font-family: 'OldGrowth';
     margin-top: -1rem;
     float: left;
     padding: 1rem;
+  }
 
 
 `;
@@ -106,34 +123,34 @@ const NavbarStyles = styled.div`
 
 function Navbar() {
 
-  let [items, setItems] = useState([]);
-  let [inputTxt, setInputTxt] = useState("");
+  // let [items, setItems] = useState([]);
+  // let [inputTxt, setInputTxt] = useState("");
   //const history = createBrowserHistory();
 
 
   //const[showLinks, setShowLinks] = useState(false);
 
-  const changeText = (e) => {
-    setInputTxt(e.target.value)
-  }
+  // const changeText = (e) => {
+  //   setInputTxt(e.target.value)
+  // }
 
-  const submitInput = (e) => {
-    let newItems = [...items];
-    newItems.push({
-      name: inputTxt,
-      completed: false
-    })
-    setItems(newItems)
-  }
+  // const submitInput = (e) => {
+  //   let newItems = [...items];
+  //   newItems.push({
+  //     name: inputTxt,
+  //     completed: false
+  //   })
+  //   setItems(newItems)
+  // }
 
-  const onComplete = (complete, idx) => {
-    let updatedItems = [...items];
+  // const onComplete = (complete, idx) => {
+  //   let updatedItems = [...items];
 
-    updatedItems[idx].completed = complete
-    setItems(updatedItems)
+  //   updatedItems[idx].completed = complete
+  //   setItems(updatedItems)
 
-    console.log(items);
-  }
+  //   console.log(items);
+  // }
 
   // <Router>
   //   <Switch>
@@ -161,20 +178,12 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="reftSide">
-          <div className="loginbuttons">
-            {/* <Link to='/users/login'>
-              <button type="button" className="btn btn-info">LogIn</button>
-              <LoginButton />
-              </Link> */}
-
-            <LoginToggle />
-            <Link to='/users/register'>
-              <button type="button" className="btn btn-info">Register</button>
-              <LoginButton />
-
-            </Link>
-          </div>
+        <div className="rightSide">
+          <ul className="buttons">
+            <li><ProfileToggle className="btn"/></li>
+            <li><LoginToggle className="btn" /></li>
+            <li><FarmToggle className="btn" /></li>
+          </ul>
         </div>
       </div>
     </NavbarStyles>

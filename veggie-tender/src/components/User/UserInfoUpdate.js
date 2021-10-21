@@ -22,6 +22,7 @@ body {
 .container {
     justify-content: center;
     height: 450px;
+    max-width: 800px;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
@@ -40,8 +41,6 @@ body {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
     border: 5px dashed var(--terra);
     background-color: grey;   
 }
@@ -52,13 +51,13 @@ body {
     flex-wrap: wrap;
 }
 .userInfo {
-    margin-top: 2rem auto;
+    margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: left;
 }
 .fullName {
