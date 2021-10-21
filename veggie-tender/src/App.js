@@ -12,7 +12,7 @@ import FarmProfileUp from "./pages/FarmProfileUp";
 import UserProfileUp from "./pages/UserProfileUp";
 // import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
-import LoginToggle from './components/LoginToggle';
+
 
 
 

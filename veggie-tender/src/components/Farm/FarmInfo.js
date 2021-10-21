@@ -56,9 +56,9 @@ body {
     flex-wrap: wrap;
 }
 .farmInfo {
-    margin-top: 2rem auto;
+    margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
@@ -74,14 +74,33 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-.farmZip {
-    float: right;
+.stateContain {
+    display: flex;
+    flex-wrap: wrap;
+}
+.zipContain {
+    margin-left: 5rem;
+    height: 10px;
     display: flex;
     flex-wrap: wrap;
 }
 .farmName {
     margin-top: -1rem;
     font-size: 1.75rem;
+}
+.buttonSection{
+    margin-top: 1rem;
+    float: right;
+    
+}
+.btn{
+    padding: .5rem;
+    link-color: white;
+    background-color: var(--dk-coral);
+    border: 3px solid var(--dk-coral);
+    border-radius: 12px;
+    text-decoration: none;
+    
 }
 
 @media only screen and (max-width: 768px) {
@@ -172,7 +191,7 @@ const FarmInfo = () => {
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
-                    
+
                         <h3 className="farmDescription">Farm Description: </h3>
                         <p>{farmDescription}</p><br />
                         <h3 className="farmAddress">Address: </h3>
@@ -180,23 +199,29 @@ const FarmInfo = () => {
                         <h3 className="farmCity">City: </h3>
                         <p>{farmCity}</p><br />
                         <div className="addressDetails">
-                            <h3 className="farmState">State: </h3>
-                            <p>{farmState}</p><br />
-                            <h3 className="farmZip">Zip: </h3>
-                            <p>{farmZip}</p><br />
+                            <div className="stateContain">
+                                <h3 className="farmState">State: </h3>
+                                <p>{farmState}</p><br />
+                            </div>
+                            <div className="zipContain">
+                                <h3 className="farmZip">Zip: </h3>
+                                <p>{farmZip}</p><br />
+                            </div>
+
                         </div>
                         <h3 className="farmWebsite">Website: </h3>
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
                         <p>{farmEmail}</p>
-                        <Link to='/users/update/farmProfile'>
-                            <button type="button" className="btn">Update Info</button>
-                        </Link>
+                        
 
                     </div>
                 </div>
                 <div className="farmNameSection">
                     <h3 className="farmName">{farmName}</h3>
+                </div>
+                <div className="buttonSection">
+                    <Link to='/users/update/farmProfile' type="button" className="btn">Update Info</Link>
                 </div>
             </div>
         </FarmInfoStyles>

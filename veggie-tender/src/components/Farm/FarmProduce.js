@@ -31,9 +31,9 @@ body {
 }
 
 .farmProduce_shell {
-    margin-top: 1rem;
+    margin-top: .5rem;
     width: 250px;
-    height: 100%;
+    height: 95%;
     float: left;
     overflow: hidden;
     display: inline-block;
