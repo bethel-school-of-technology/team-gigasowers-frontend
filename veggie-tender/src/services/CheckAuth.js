@@ -4,7 +4,7 @@ import axios from "axios";
 const CheckAuth = async () => {
 
     let result = null;
-
+ 
 
     //set JWT token into header for server side authentication
     let myHeaders = {
