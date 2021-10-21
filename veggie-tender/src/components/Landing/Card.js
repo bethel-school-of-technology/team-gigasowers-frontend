@@ -3,32 +3,27 @@ import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 //import ReactPlaceholder from 'react-placeholder';
 //import "react-placeholder/lib/reactPlaceholder.css";
-import { CustomPlaceholder } from 'react-placeholder-image';
+import { PhotoPlaceholder } from 'react-placeholder-image';
 //import farmName from './LandingFunction';
 //import farmDescription from './LandingFunction';
 //import farmId from './LandingFunction';
 
+
+
+
 const CardStyles = styled.div`
-.card{
-   flex: 0.8;
-   box-sizing: border-box;
-   margin: 0;
-   padding: px;
-   font-family: Oxygen, sans-serif;
-   margin: 2rem;
-   gap: 3px;
-}
 
 .cardWrapper{
+    display: flex;
+    flex-direction: row;
     border: black dashed;
+    flex-wrap: wrap;
     float: center;
     width: 400px;
     height: 150px;
     box-shadow: 0 2px 20px gray;
     justify-content: space-between;
     cursor: pointer;
-    transition: transform 200ms ease-in;
-
 }
 
 .cardImg{
@@ -46,32 +41,25 @@ float: right;
     padding: 1px;
 }
 
-.cardDes{
-    padding: 0 1rem;
-}
-
-.cardBut{
-    padding: 1rem;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 1rem;
-    margin: 1px;
-    border: 2px solid red;
-    //background: transparent;
-    color: red;
-    border-radius: $radius;
-    transition : background 200ms ease-in, color 200ms ease-in;
-}
-
-.card::hover{
-    transform: scale(1.02)
-}
-.cardBut :hover{
-background: red;
-color: white;
-}
 `;
 
+// .card::hover{
+//     transform: scale(1.02)
+// }
+// .cardBut :hover{
+// background: red;
+// color: white;
+// }
+// .card{
+//     flex-wrap: wrap;
+//     flex: 0.8;
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: px;
+//     font-family: Oxygen, sans-serif;
+//     margin: 2rem;
+//     gap: 3px;
+//  }
 //const responce = "";
 
 export default function Card() {
@@ -108,21 +96,23 @@ export default function Card() {
         <CardStyles>
 
             {user.map(currentUser => (  
+                //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
                 <div>
+                    <br/>
                 <div className="cardWrapper">
                     <div className="cardBody">
                         <div className="cardImg">
                             {/* <img src="./imgtest/imgholder.png" /> */}
-                            <CustomPlaceholder width={265} height={149} />
+                            <PhotoPlaceholder width={265} height={149} />
                         </div>
                         <div className="cardWords">
                             <p className ="cardFarmId">{currentUser.userFarms.farmId}</p>
                             <h2 className="cardTitle">{currentUser.userFarms.farmName}</h2>
-                            <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
                         </div>
                         </div>
                     </div>
-                </div> 
+                </div>    
+                //</link> 
             ))};
         </CardStyles>
 
@@ -132,7 +122,7 @@ export default function Card() {
 
 //<button className="cardBut">Buttonです</button>
 //<div>{currentUser.userFarms.farmId}</div>
-
+                            //<p className="cardDes">{currentUser.userFarms.farmDescription}</p>
 
     // farmName = 'Farm Name',
     // farmDescription = 'Farm Details',
