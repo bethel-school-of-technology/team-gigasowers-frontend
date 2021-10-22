@@ -16,50 +16,45 @@ body {
     font-color: black;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     min-height: 100vh;
-
 }
-
 .container {
-        justify-content: center;
-        height: 600px;
-        max-width: 800px;
-        background-color: var(--cream);
-        padding: 1em;
-        margin: 2rem auto;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        width: 85%;
+    justify-content: center;
+    height: 600px;
+    max-width: 800px;
+    background-color: var(--cream);
+    padding: 1em;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    width: 85%;
 }
 .image_float {
     float: left;
     width: 35%;
-    margin-left: 1rem;
     display: flex;
     flex-wrap: wrap;
 }
-
 .farmImage {
     margin: 2rem auto;
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    border: 5px dashed var(--terra);
+    border:3px dashed var(--terra);
     background-color: grey; 
 }
 .info_float {
     float: right;
-    height: 95%;
+    height: 90%;
     width: 60%;
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    margin-right: 1rem;
 }
 .farmInfoUpdate{
     margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
@@ -75,7 +70,6 @@ body {
     padding-left: 15px;
     margin-top: 5px;
 }
-
 .form-field input {
     font-family: 'MontserratRegular';
     border: 1px solid #ccc;
@@ -86,44 +80,41 @@ body {
     display: block;
     width: 95%;
 }
-
-.h2 {
-    font-size: 1.5rem;
-}
-.addressDetails {
-    float: right;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmZip {
-    float: right;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
-}
 .buttonSection{
-    margin-top: 2rem;
+    float: right;
+    margin-top: 3rem;
+    margin-right: -2rem; 
 }
 .btn{
     padding: .5rem;
-    margin-top: 1rem;
-    background-color: var(--dk-coral);
-    border: 3px solid var(--dk-coral);
+    margin-top: 3rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
     border-radius: 12px;
-    text-decoration: none;
-    
+    text-decoration: none;  
 }
 
 @media only screen and (max-width: 768px) {
-    .farmImage {
-        height: 200px;
+    .container {
+        display: block;
+        flex-direction: column;
+        height: 1000px;
+    }
+    .image_float {
+        width: 100%;
         flex-direction: column;
     }
-    .farmInfo {
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 600px;
         flex-direction: column;
+        padding-left: 1.5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 3rem;
+        margin-right: 0rem; 
     }
 }
 `;
@@ -337,11 +328,11 @@ const FarmInfoUpdate = () => {
                                         onChange={farmEmailHandler}
                                     />
                                 </div>
-                                <div className='buttonSection'>
-                                <Link to='/users/farmProfile' type="button" className="btn">Update Info</Link>
-                                </div>
+                                
                             </form>
-
+                            <div className='buttonSection'>
+                                <Link to='/users/farmProfile' type="button" className="btn">Update Info</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

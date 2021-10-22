@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 const UserUpdateStyles = styled.div`
@@ -15,7 +15,6 @@ body {
     font-color: black;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     min-height: 100vh;
 }
@@ -23,68 +22,96 @@ body {
     justify-content: center;
     height: 600px;
     max-width: 800px;
-    display: inline-block;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 95%;
+    width: 85%;
 }
 .image_float {
     float: left;
     width: 35%;
     display: flex;
-    flex-wrap: wrap;
-    margin-left: 1rem;
 }
 .userImage {
     margin: 2rem auto;
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    border: 5px dashed var(--terra);
+    border: 3px dashed var(--terra);
     background-color: grey;   
 }
 .info_float {
     float: right;
-    width: 65%;
+    width: 60%;
     height: 95%;
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    margin-right: 1rem;
 }
 .userInfoUpdate {
     margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
-    border: 5px solid var(--coral);
+    border: 5px solid var(--dk-green);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: left;
 }
-.fullName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+.form-field label {
+    font-family: 'MontserratRegular';
+    display: block;
+    color: black;
+    text-align: left;
+    padding-left: 15px;
+    margin-top: 5px;
 }
-.h3 {
-    font-size: 1.5rem;
+.form-field input {
+    font-family: 'MontserratRegular';
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    display: block;
+    width: 95%;
 }
-.userFullName{
-    
+.buttonSection{
+    float: right;
+    margin-top: 3rem;
+    margin-right: -2rem; 
 }
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+.btn{
+    padding: .5rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
+    border-radius: 12px;
+    text-decoration: none;  
 }
 
+
 @media only screen and (max-width: 768px) {
-    .userImage {
-        height: 200px;
+    .container {
+        display: block;
+        flex-direction: column;
+        height: 950px;
+    }
+    .image_float {
+        width: 100%;
         flex-direction: column;
     }
-    .userInfo {
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 575px;
         flex-direction: column;
+        padding-left: 1.5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 3.5rem;
+        margin-right: -2rem; 
     }
 }
 `;
@@ -216,13 +243,13 @@ const UserInfoUpdate = () => {
         <UserUpdateStyles>
             <div className="container">
                 <div className="image_float">
-                    <h3 className="userImage">Farm Image</h3>
+                    <h3 className="userImage">Image</h3>
                 </div>
                 <div className="info_float">
                     <div className="userInfoUpdate">
 
                         <form id='userUpdate' className='form' onSubmit={submitHandler}>
-                            <h2>Update Your Farm Information:</h2>
+                            <h2>Update Your User Information:</h2>
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
@@ -240,7 +267,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>User Name</label>
+                                <label className='form-label'>Last Name</label>
                                 <input type='text'
                                     placeholder='Update your last name'
                                     value={lastName}
@@ -248,7 +275,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>Farm Address</label>
+                                <label className='form-label'>Address</label>
                                 <input type='text'
                                     placeholder='Update your address'
                                     value={address}
@@ -281,15 +308,15 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>Farm Email</label>
+                                <label className='form-label'>Email</label>
                                 <input type='text'
                                     placeholder='Update email'
                                     value={email}
                                     onChange={emailChangeHandler}
                                 />
                             </div>
-                            <div className='btn-field'>
-                                <button className='btn' type='submit'>Update</button>
+                            <div className='buttonSection'>
+                                <Link to='/users/profile' type="button" className="btn">Update Info</Link>
                             </div>
                         </form>
 

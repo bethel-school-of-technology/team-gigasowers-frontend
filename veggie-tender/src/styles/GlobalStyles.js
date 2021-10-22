@@ -87,7 +87,7 @@ html{
     .Navbar .leftSide .links{
   position: absolute;
   left: 0px;
-  top: 80px;
+  top: 50px;
   height: auto;
   max-height: 230px;
   font-size: 25px;

@@ -9,40 +9,49 @@ import { CustomPlaceholder } from 'react-placeholder-image';
 //import farmId from './LandingFunction';
 
 const CardStyles = styled.div`
+.container {
+    
+    
+}
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+   }
 .card{
    flex: 0.8;
    box-sizing: border-box;
-   margin: 0;
-   padding: px;
-   font-family: Oxygen, sans-serif;
+   margin: 2rem;
+   padding: 3rem;
+   font-family: 'MontserratRegular';
    margin: 2rem;
    gap: 3px;
 }
+.carBody{
 
+}
 .cardWrapper{
-    border: black dashed;
+
+    border: black solid 2px;
+    margin-top: 4rem;
+    margin-left: 6rem;
     float: center;
-    width: 400px;
+    width: 265px;
     height: 150px;
     box-shadow: 0 2px 20px gray;
     justify-content: space-between;
     cursor: pointer;
     transition: transform 200ms ease-in;
-
 }
-
 .cardImg{
-object-fit: cover;
-float: left;
+    object-fit: cover;
+    float: top;
 }
-
 .cardWords{
-width: 33%;
-float: right;
+float: bottom;
 }
 
 .cardTitle{
-    font-size: xx-large;
+    font-size: 1.5rem;
     padding: 1px;
 }
 
@@ -110,7 +119,7 @@ export default function Card() {
 
 
             {user.map(currentUser => (  
-                <div>
+                <div className="container">
                 <div className="cardWrapper">
                     <div className="cardBody">
                         <div className="cardImg">

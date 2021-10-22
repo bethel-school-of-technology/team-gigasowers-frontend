@@ -10,12 +10,18 @@ font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
 }
+body {
+    font-family: 'MontserratRegular';
+    font-color: black;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
 .container {
     justify-content: center;
+    height: 450px;
     max-width: 800px;
-    height: 550px;
-    display: flex;
-    flex-direction: row;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
@@ -24,69 +30,93 @@ font-family: 'MontserratRegular';
     width: 85%;
 }
 .image_float {
-    width: 30%;
-    height: 50%;
-    flex-direction: row;
+    float: left;
+    width: 35%;
+    display: flex;
+    flex-wrap: wrap;
 }
-// .userImage {
-//     margin: 1rem auto;
-//     width: 250px;
-//     height: 250px;
-//     border-radius: 50%;
-//     border: 5px dashed var(--terra);
-//     background-color: grey;   
-// }
+.userImage {
+    margin: 2rem auto;
+    margin-left: 2rem;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 3px dashed var(--terra);
+    background-color: grey;   
+}
 .info_float {
-    // float: right;
+    float: right;
+    height: 90%;
     width: 60%;
-    flex-direction: row;
+    display: block;
 }
-// .userInfo {
-//     margin-top: 1rem auto;
-//     width: 100%;
-//     height: 95%;
-//     background-color: var(--cream);
-//     border: 5px solid var(--coral);
-//     border-radius: 12px;
-//     padding: 1.5rem;
-//     text-align: left;
-// }
-// .fullName {
-//     margin-top: -1rem;
-//     font-size: 1.75rem; 
-// }
-// .h3 {
-//     font-size: 1.5rem;
-// }
-
-// .zipContain {
-//     float: right;
-//     margin-right: 17rem;
-//     margin-top: -3.75rem;
-//     height: 10px;
-//     display: inline-block;
-// }
+.userInfo {
+    margin-top: 1rem auto;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cream);
+    border: 5px solid var(--dk-green);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+}
+.fullName {
+    margin-top: -0.5rem;
+    margin-left: 3rem;
+    font-size: 1.5rem; 
+    ustify-content: center;
+}
+.zipContain {
+    float: right;
+    margin-right: 17rem;
+    margin-top: -3.75rem;
+    height: 10px;
+    display: inline-block;
+}
 .buttonSection{
-    margin-top: 3rem;
-
+    float: right;
+    margin-top: 1rem; 
+}
+.btn{
+    padding: .5rem;
+    margin-bottom: 1rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
+    border-radius: 12px;
+    text-decoration: none;
     
 }
-// .btn{
-//     padding: .5rem;
-//     margin-bottom: 1rem;
-//     background-color: var(--dk-coral);
-//     border: 3px solid var(--dk-coral);
-//     border-radius: 12px;
-//     text-decoration: none;
-    
-// }
 
 @media only screen and (max-width: 768px) {
     .container {
-        width: 90%;
         display: block;
-        margin: auto;
-        margin-bottom: 1rem;
+        flex-direction: column;
+        height: 800px;
+    }
+    .image_float {
+        width: 100%;
+        margin-left: -1rem; 
+        flex-direction: column;
+    }
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 350px;
+        flex-direction: column;
+        padding-left: .5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 2rem;
+        margin-right: 0rem; 
+    }
+    .zipContain {
+        float: right;
+        margin-right: 5rem;
+        margin-top: -3.75rem;
+        height: 10px;
+        display: inline-block;
+        flex-direction: column;
     }
 }
 `;
@@ -158,6 +188,9 @@ const UserInfo = () => {
             <div className="container">
                 <div className="image_float">
                     <h3 className="userImage">Img</h3>
+                    <div class="userFullName">
+                        <h3 className="fullName">{firstName} {lastName}</h3>
+                    </div>
                 </div>
                 <div className="info_float">
                     <div className="userInfo">
@@ -178,12 +211,9 @@ const UserInfo = () => {
                         <p>{email}</p>
 
                     </div>
-                </div>
-                <div class="userFullName">
-                    <h3 className="fullName">{firstName} {lastName}</h3>
-                </div>
-                <div className="buttonSection">
+                    <div className="buttonSection">
                     <Link to='/users/update/profile' type="button" className="btn">Update Info</Link>
+                    </div>
                 </div>
             </div>
         </UserInfoStyles >
