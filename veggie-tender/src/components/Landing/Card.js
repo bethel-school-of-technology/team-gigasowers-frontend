@@ -117,8 +117,6 @@ export default function Card() {
         </CardStyles>
 
     )
-
-    
 }
 
 //<button className="cardBut">Buttonです</button>
