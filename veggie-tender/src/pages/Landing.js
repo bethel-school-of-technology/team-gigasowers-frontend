@@ -9,33 +9,12 @@ import styled from 'styled-components';
 
 const LandingStyles = styled.div`
 .cards{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
-`
-//@import
-// url("http://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
 
-// $clr-primary: #d50000;
-// $clr-primary-hover: #29e6a7;
-// $clr-primary-dark: #039d69;
-// $clr-grey100: #f9fbff;
-// $clr-grey150: #f4f6fb;
-// $clr-grey200: #eef1f6;
-// $clr-grey300: #e1e5ee;
-// $clr-grey400: #767b91;
-// $clr-grey500: #4f546c;
-// $clr-grey600: #2a324b;
-// $clr-grey700: #161d34;
+`;
 
-// #wrapper
-// #topShelf{
-//     list-style: none;
-
-// }
-
-// .#topshelf .wrapper{
-//     display: inline;
-// }
 
 
 export default function Landing() {

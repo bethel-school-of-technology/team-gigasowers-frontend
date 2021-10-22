@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
-import LoginForm from '../LoginForm';
+// import LoginForm from '../LoginForm';
 
 
 const FarmInfoStyles = styled.div`
@@ -17,21 +17,18 @@ body {
     font-color: black;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     min-height: 100vh;
-
 }
-
 .container {
-        justify-content: center;
-        height: 450px;
-        background-color: var(--cream);
-        padding: 1em;
-        margin: 2rem auto;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        width: 85%;
+    justify-content: center;
+    height: 450px;
+    background-color: var(--cream);
+    padding: 1em;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    width: 85%;
 }
 .image_float {
     float: left;
@@ -39,78 +36,109 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-
 .farmImage {
     margin: 2rem auto;
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
     border: 5px dashed var(--terra);
     background-color: grey; 
 }
 .info_float {
     float: right;
+    height: 90%;
     width: 65%;
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
 }
 .farmInfo {
     margin-top: 1rem auto;
     width: 100%;
-    height: 95%;
+    height: 100%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: left;
 }
-
-.h3 {
-    font-size: 1.5rem;
-}
-.addressDetails {
-    float: right;
-    display: flex;
-    flex-wrap: wrap;
-}
 .stateContain {
-    display: flex;
-    flex-wrap: wrap;
+    float: right;
+    margin-right: 15rem;
+    margin-top: -3.75rem;
+    height: 10px;
+    display: inline-block;
+    flex-direction: column;
 }
 .zipContain {
-    margin-left: 5rem;
+    float: right;
+    margin-right: 10rem;
+    margin-top: -3.75rem;
     height: 10px;
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-block;
+    margin-left: 5rem;
 }
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+.farmNameSection {
+    margin-top: -0.5rem;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    justify-content: center;
 }
 .buttonSection{
-    margin-top: 1rem;
     float: right;
-    
+    margin-top: 1rem;   
 }
 .btn{
     padding: .5rem;
     link-color: white;
-    background-color: var(--dk-coral);
-    border: 3px solid var(--dk-coral);
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
     border-radius: 12px;
     text-decoration: none;
+    justify-content: flex-end;
     
 }
 
 @media only screen and (max-width: 768px) {
-    .farmImage {
-        height: 200px;
+    .container {
+        display: block;
+        flex-direction: column;
+        height: 900px;
+    }
+    .image_float {
+        width: 100%;
         flex-direction: column;
     }
-    .farmInfo {
+    .farmNameSection {
+
+        margin-left: 3rem;
+
+    }
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 450px;
         flex-direction: column;
+        padding-left: .5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 2rem;
+        margin-right: 0rem; 
+    }
+    .stateContain {
+        float: right;
+        margin-right: 5rem;
+        margin-top: -3.75rem;
+        height: 10px;
+        display: inline-block;
+        flex-direction: column;
+    }
+    .zipContain {
+        float: right;
+        margin-right: 0rem;
+        margin-top: -3.75rem;
+        height: 10px;
+        display: inline-block;
+        margin-left: 5rem;
     }
 }
 `;
@@ -132,7 +160,8 @@ const FarmInfo = () => {
     const [farmEmail, setFarmEmail] = useState('');
 
     //state variable for validating user
-   let validUser = false;
+    let validUser = false;
+
 
 
     useEffect(async () => {
@@ -147,13 +176,11 @@ const FarmInfo = () => {
                 validUser = true;
             }
         }
-
         if (validUser) {
             loadFarmInfo();
         } else {
             history.push('/users/login');
         };
-
     }, []);
 
 
@@ -214,6 +241,9 @@ const FarmInfo = () => {
             <div className="container">
                 <div className="image_float">
                     <h3 className="farmImage">Farm Image</h3>
+                    <div className="farmNameSection">
+                        <h3 className="farmName">{farmName}</h3>
+                    </div>
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
@@ -224,7 +254,6 @@ const FarmInfo = () => {
                         <p>{farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
                         <p>{farmCity}</p><br />
-                        <div className="addressDetails">
                             <div className="stateContain">
                                 <h3 className="farmState">State: </h3>
                                 <p>{farmState}</p><br />
@@ -233,21 +262,14 @@ const FarmInfo = () => {
                                 <h3 className="farmZip">Zip: </h3>
                                 <p>{farmZip}</p><br />
                             </div>
-
-                        </div>
                         <h3 className="farmWebsite">Website: </h3>
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
                         <p>{farmEmail}</p>
-                        
-
                     </div>
-                </div>
-                <div className="farmNameSection">
-                    <h3 className="farmName">{farmName}</h3>
-                </div>
-                <div className="buttonSection">
+                    <div className="buttonSection">
                     <Link to='/users/update/farmProfile' type="button" className="btn">Update Info</Link>
+                    </div>
                 </div>
             </div>
         </FarmInfoStyles>

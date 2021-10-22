@@ -13,7 +13,7 @@ const ProfileToggle = () => {
     const [userName, setUserName] = useState('');
 
 
-    useEffect(() => {
+    useEffect(async () => {
 
         //checkAuth for valid token will go here
         let validToken = CheckAuth();
@@ -30,13 +30,13 @@ const ProfileToggle = () => {
         }
     }, []);
 
-    console.log("ProfileToggle: userName = " + userName);
-    if (localStorage.getItem("userName") === userName) {
-        // console.log("Entering LoginToggle: userName are same, return...");
-        // console.log(userName);
-        // console.log("loginStatus: " + loginStatus);
+    // console.log("ProfileToggle: userName = " + userName);
+    // if (localStorage.getItem("userName") === userName) {
+    //     // console.log("Entering LoginToggle: userName are same, return...");
+    //     // console.log(userName);
+    //     // console.log("loginStatus: " + loginStatus);
         
-    };
+    // };
 
 
     //handlers for each input field on the form
@@ -48,7 +48,6 @@ const ProfileToggle = () => {
     const userHandler = (event) => {
         //remove local storage items
         localStorage.clear();
-        setUserName('');
         setLoginStatus(false);
         history.push('/users/register');
         window.location.reload();

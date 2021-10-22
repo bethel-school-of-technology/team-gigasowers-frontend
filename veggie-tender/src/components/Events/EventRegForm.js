@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 
@@ -216,6 +216,7 @@ const EventRegForm = () => {
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
+
         // setEventArr(prevEventArr => [...prevEventArr,
         // {
         //     eventId: eventId,
@@ -227,6 +228,7 @@ const EventRegForm = () => {
         //     eventStartDate: enteredEventStartDate,
         //     eventFinishDate: enteredEventFinishDate
         // }]);
+
         console.log(eventArr);
 
         /*

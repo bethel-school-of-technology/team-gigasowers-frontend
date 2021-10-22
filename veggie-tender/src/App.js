@@ -12,7 +12,6 @@ import FarmProfileUp from "./pages/FarmProfileUp";
 import UserProfileUp from "./pages/UserProfileUp";
 // import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
-import Events from './components/Events/Events';
 import EventReg from './pages/EventReg';
 
 
@@ -67,12 +66,12 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/farmProfile/events">
-                                          <Events />
+                                    <Route path="/users/eventRegister">
+                                          <EventReg />
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/eventRegister">
+                                    <Route path="/users/eventEdit">
                                           <EventReg />
                                     </Route>
                               </Switch>
