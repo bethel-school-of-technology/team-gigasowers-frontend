@@ -180,9 +180,9 @@ function Navbar() {
 
         <div className="rightSide">
           <ul className="buttons">
-            <li><ProfileToggle className="btn"/></li>
+            {/* <li><ProfileToggle className="btn"/></li> */}
             <li><LoginToggle className="btn" /></li>
-            <li><FarmToggle className="btn" /></li>
+            {/* <li><FarmToggle className="btn" /></li> */}
           </ul>
         </div>
       </div>
