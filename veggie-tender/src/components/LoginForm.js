@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ErrorMessage from '../services/ErrorMessage';
 
 const LoginFormStyles = styled.div`
@@ -91,6 +92,10 @@ font-family: 'MontserratMedium';
 `;
 
 const LoginForm = () => {
+
+    const location = useLocation();
+    const referer = location.state && location.state.referer;
+    console.log("referer: " + referer);
 
     let history = useHistory();  //Used to track page route history
 

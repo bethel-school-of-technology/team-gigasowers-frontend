@@ -102,26 +102,34 @@ const EventRegForm = () => {
     // }
 
     let history = useHistory();  //Used to track page route history
-    let resEvents = [];
+   
     let resEventsLength = 0;
     //set state for entered credentials
-    const [eventArr, setEventArr] = useState([]);
-    const [eventId, setEventId] = useState('');  //load this separately by incrementing on array length
-    const [enteredEventName, setEventName] = useState('');
-    const [enteredEventAddress, setEventAddress] = useState('');
-    const [enteredEventCity, setEventCity] = useState('');
-    const [enteredEventState, setEventState] = useState('');
-    const [enteredEventZip, setEventZip] = useState('');
-    const [enteredEventStartDate, setEventStartDate] = useState('');
-    const [enteredEventFinishDate, setEventFinishDate] = useState('');
-    //const [enteredEventImage, setEventImage] = useState('');
+    const [eventArr, setEventArr] = useState([
+        {
+            eventId: "",
+            eventName: "",
+            eventAddress: "",
+            eventCity: "",
+            eventState: "",
+            eventZip: "",
+            eventStartDate: "",
+            eventFinishDate: ""
+        }
+    ]);
+
+    const [calcEventId, setCalcEventId] = useState([]);  //load this separately by incrementing on array length
+    const [enteredEventName, setEventName] = useState([]);
+    const [enteredEventAddress, setEventAddress] = useState([]);
+    const [enteredEventCity, setEventCity] = useState([]);
+    const [enteredEventState, setEventState] = useState([]);
+    const [enteredEventZip, setEventZip] = useState([]);
+    const [enteredEventStartDate, setEventStartDate] = useState([]);
+    const [enteredEventFinishDate, setEventFinishDate] = useState([]);
+    //const [enteredEventImage, setEventImage] = useState([]);
 
 
 
-    const eventIdChangeHandler = (eId) => {
-        setEventId(eId);
-        console.log("eId handler: " + eventId);
-    };
     //handlers for each input field on the form
     const eventNameChangeHandler = (event) => {
         setEventName(event.target.value);
@@ -148,81 +156,96 @@ const EventRegForm = () => {
     //     setEventImage(event.target.value);
     // };
 
-
-    //set JWT token into header for server side authentication
-    let myHeaders = {
-        'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-    };
-    //get events for user profile
-    axios.get('http://localhost:5000/api/users/profile',
-        { 'headers': myHeaders })
-        .then(function (response) {
-            console.log(response.status);
-            if (response.status === 401) {
-                console.log("No token or must be logged in");
-            }
-            if (response.status === 200) {
-                console.log("response: ");
-                console.log(response);
-                //validate this profile is a farmer
-                if (!response.data.isFarmer) {
-                    console.log("this profile is not a farmer");
-                }
-                //load state variables from response data
-                resEvents = response.data.userFarms.farmEvent;
-                resEventsLength = resEvents.length;
-                eventIdChangeHandler(resEventsLength);
-            }
-            else {
-                console.log(`Unable to get farm event info; error status: ${response.status} `);
-            }
-        })
-        .catch(function (error) {
-            console.log("catch error: " + error);
-        });
-
-    console.log(resEvents);
     useEffect(() => {
-        setEventArr(prevEventArr => [...prevEventArr, { ...resEvents }]);
+
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
+        //get events for user profile
+        axios.get('http://localhost:5000/api/users/profile',
+            { 'headers': myHeaders })
+            .then(function (response) {
+                console.log(response.status);
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                }
+                if (response.status === 200) {
+                    console.log("response: ");
+                    console.log(response);
+                    //validate this profile is a farmer
+                    if (!response.data.isFarmer) {
+                        console.log("this profile is not a farmer");
+                    }
+                    //load state eventArr from response data
+                    for (let i = 0; i < response.data.userFarms.farmEvent.length; i++) {
+                        console.log(response.data.userFarms.farmEvent[i]);
+                        eventArr[i] = {
+                            ...eventArr[i],
+                            'eventId': response.data.userFarms.farmEvent[i].eventId,
+                            'eventName': response.data.userFarms.farmEvent[i].eventName,
+                            'eventAddress': response.data.userFarms.farmEvent[i].eventAddress,
+                            'eventCity': response.data.userFarms.farmEvent[i].eventCity,
+                            'eventState': response.data.userFarms.farmEvent[i].eventState,
+                            'eventZip': response.data.userFarms.farmEvent[i].eventZip,
+                            'eventStartDate': response.data.userFarms.farmEvent[i].eventStartDate,
+                            'eventFinishDate': response.data.userFarms.farmEvent[i].eventFinishDate,
+                            'eventImage': ""
+                        }
+                        console.log(eventArr[i]);
+                    };
+                    setEventArr(prevArr => [{ ...prevArr }, { ...eventArr }]);
+                    console.log(eventArr);
+
+                    setCalcEventId(response.data.userFarms.farmEvent.length); //sets eventId for form entry
+                }
+                else {
+                    console.log(`Unable to get farm event info; error status: ${response.status} `);
+                }
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+            });
+
+
     }, []);
-    console.log("eventArr: ");
-    console.log(eventArr);
-    console.log(eventArr.length);
+
+
 
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        setEventArr(prevEventArr => [...prevEventArr,
-        {
-            eventId: eventId,
-            eventId: enteredEventName,
-            eventAddress: enteredEventAddress,
-            eventCity: enteredEventCity,
-            eventState: enteredEventState,
-            eventZip: enteredEventZip,
-            eventStartDate: enteredEventStartDate,
-            eventFinishDate: enteredEventFinishDate
-        }]);
+        // setEventArr(prevEventArr => [...prevEventArr,
+        // {
+        //     eventId: eventId,
+        //     eventId: enteredEventName,
+        //     eventAddress: enteredEventAddress,
+        //     eventCity: enteredEventCity,
+        //     eventState: enteredEventState,
+        //     eventZip: enteredEventZip,
+        //     eventStartDate: enteredEventStartDate,
+        //     eventFinishDate: enteredEventFinishDate
+        // }]);
         console.log(eventArr);
 
-/*
-
-        //post to login in API to auth user and get token
-        axios.put('http://localhost:5000/api/users/update', eventArr)
-            .then(function (response) {
-                console.log(response);
-                if (response.status === 200) {
-                } else {
-                    console.log(`Event update error response received: ${response.status} `);
-                }
-            })
-            .catch(function (error) {
-                console.log(`Event update catch error: ${error} `);
-            });
-
-*/
-        setEventId('');
+        /*
+        
+                //post to login in API to auth user and get token
+                axios.put('http://localhost:5000/api/users/update', eventArr)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status === 200) {
+                        } else {
+                            console.log(`Event update error response received: ${response.status} `);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(`Event update catch error: ${error} `);
+                    });
+        
+        */
+        setCalcEventId('');
         setEventName('');
         setEventAddress('');
         setEventCity('');

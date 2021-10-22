@@ -36,13 +36,14 @@ const LoginToggle = () => {
         //redirect to landing or home page
         history.push('/users/login');
         window.location.reload();
+        
     };
     const logoutHandler = (event) => {
         //remove local storage items
         localStorage.clear();
         setUserName('');
         setLoginStatus(false);
-        //window.location.reload();
+        window.location.reload();
     };
 
 
