@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 const UserUpdateStyles = styled.div`
@@ -15,74 +15,111 @@ body {
     font-color: black;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     min-height: 100vh;
 }
 .container {
     justify-content: center;
-    height: 450px;
+    height: 600px;
+    max-width: 25rem;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 85%;
+    width: 90%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.userImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
-    border: 5px dashed var(--terra);
-    background-color: grey;   
-}
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+// }
+// .userImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border: 3px dashed var(--terra);
+//     background-color: grey;   
+// }
 .info_float {
     float: right;
-    width: 65%;
-    display: flex;
-    flex-wrap: wrap;
+    width: 95%;
+    height: 90%;
+    display: block;
+    margin-right: 0.5rem;
 }
-.userInfo {
-    margin-top: 2rem auto;
+.userInfoUpdate {
+    margin-top: 1rem auto;
     width: 100%;
     height: 100%;
     background-color: var(--cream);
-    border: 5px solid var(--coral);
+    border: 5px solid var(--dk-green);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 0.5rem;
     text-align: left;
 }
-.fullName {
-    margin-top: 16rem;
-    font-size: 2rem;
+.form{
+    padding: 0rem;
+    margin-left:0.5rem;
+    margin-top:0.5rem;
 }
-.h3 {
-    font-size: 1.5rem;
+.pageTitle{
+    font-size: 1.25rem;
 }
-.userFullName{
-    
+.form-field label {
+    font-family: 'MontserratRegular';
+    display: block;
+    color: black;
+    text-align: left;
+    padding-left: 15px;
+    margin-top: 5px;
 }
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+.form-field input {
+    font-family: 'MontserratRegular';
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    display: block;
+    width: 95%;
+}
+.buttonSection{
+    float: right;
+    margin-top: 3.5rem;
+    margin-right: -1rem; 
+}
+.btn{
+    padding: .5rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
+    border-radius: 12px;
+    text-decoration: none;  
 }
 
+
 @media only screen and (max-width: 768px) {
-    .userImage {
-        height: 200px;
+    .container {
+        display: block;
+        flex-direction: column;
+        height: 950px;
+    }
+    .image_float {
+        width: 100%;
         flex-direction: column;
     }
-    .userInfo {
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 575px;
         flex-direction: column;
+        padding-left: 1.5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 3.5rem;
+        margin-right: -2rem; 
     }
 }
 `;
@@ -213,14 +250,14 @@ const UserInfoUpdate = () => {
     return (
         <UserUpdateStyles>
             <div className="container">
-                <div className="image_float">
-                    <h3 className="userImage">Farm Image</h3>
-                </div>
+                {/* <div className="image_float">
+                    <h3 className="userImage">Image</h3>
+                </div> */}
                 <div className="info_float">
                     <div className="userInfoUpdate">
 
                         <form id='userUpdate' className='form' onSubmit={submitHandler}>
-                            <h2>Update Your Farm Information:</h2>
+                            <h2 className="pageTitle">Update Your User Information:</h2>
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
@@ -238,7 +275,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>User Name</label>
+                                <label className='form-label'>Last Name</label>
                                 <input type='text'
                                     placeholder='Update your last name'
                                     value={lastName}
@@ -246,7 +283,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>Farm Address</label>
+                                <label className='form-label'>Address</label>
                                 <input type='text'
                                     placeholder='Update your address'
                                     value={address}
@@ -279,15 +316,15 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='form-field'>
-                                <label className='form-label'>Farm Email</label>
+                                <label className='form-label'>Email</label>
                                 <input type='text'
                                     placeholder='Update email'
                                     value={email}
                                     onChange={emailChangeHandler}
                                 />
                             </div>
-                            <div className='btn-field'>
-                                <button className='btn' type='submit'>Update</button>
+                            <div className='buttonSection'>
+                                <Link to='/users/profile' type="button" className="btn">Update Info</Link>
                             </div>
                         </form>
 

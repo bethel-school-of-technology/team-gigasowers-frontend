@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import CheckAuth from '../services/CheckAuth';
+import { Link, useHistory } from 'react-router-dom';
+import CheckAuth from '../../services/CheckAuth';
 
 
 
-const LoginToggle = () => {
+
+const ProfileToggle = () => {
 
     let history = useHistory();
 
@@ -12,7 +13,7 @@ const LoginToggle = () => {
     const [userName, setUserName] = useState('');
 
 
-    useEffect(() => {
+    useEffect(async () => {
 
         //checkAuth for valid token will go here
         let validToken = CheckAuth();
@@ -29,26 +30,26 @@ const LoginToggle = () => {
         }
     }, []);
 
-    console.log("Entering LoginToggle: userName = " + userName);
-    if (localStorage.getItem("userName") === userName) {
-        // console.log("Entering LoginToggle: userName are same, return...");
-        // console.log(userName);
-        // console.log("loginStatus: " + loginStatus);
+    // console.log("ProfileToggle: userName = " + userName);
+    // if (localStorage.getItem("userName") === userName) {
+    //     // console.log("Entering LoginToggle: userName are same, return...");
+    //     // console.log(userName);
+    //     // console.log("loginStatus: " + loginStatus);
         
-    };
+    // };
 
 
     //handlers for each input field on the form
-    const loginHandler = (event) => {
-        //redirect to landing or home page
-        history.push('/users/login');
+    const regUserHandler = (event) => {
+        //redirect to registration page
+        history.push('/users/profile');
         window.location.reload();
     };
-    const logoutHandler = (event) => {
+    const userHandler = (event) => {
         //remove local storage items
         localStorage.clear();
-        setUserName('');
         setLoginStatus(false);
+        history.push('/users/register');
         window.location.reload();
     };
 
@@ -56,14 +57,14 @@ const LoginToggle = () => {
     return (
         <div>
             {loginStatus ?
-                <button type="button" onClick={logoutHandler} className="btn btn-info">LogOut</button>
+                <Link type="button" onClick={regUserHandler} className="btn">Profile</Link>
                 :
-                <button type="button" onClick={loginHandler} className="btn btn-info">LogIn</button>
+                <Link type="button" onClick={userHandler} className="btn">Register</Link>
             }
         </div>
     )
 }
 
-export default LoginToggle;
+export default ProfileToggle;
 
 

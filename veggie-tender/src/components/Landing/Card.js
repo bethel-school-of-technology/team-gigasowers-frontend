@@ -59,7 +59,7 @@ const CardStyles = styled.div`
     border: black dashed;
     flex-wrap: wrap;
     float: center;
-    width: 400px;
+    width: 265px;
     height: 150px;
     box-shadow: 0 2px 20px gray;
     justify-content: space-between;
@@ -67,13 +67,12 @@ const CardStyles = styled.div`
 }
 
 .cardImg{
-object-fit: cover;
-float: left;
+    object-fit: cover;
+    float: top;
 }
 
 .cardWords{
-width: 33%;
-float: right;
+float: bottom;
 }
 
 .cardTitle{
@@ -146,7 +145,7 @@ export default function Card() {
                             <PhotoPlaceholder width={265} height={149} />
                         </div>
                         <div className="cardWords">
-                            <p className ="cardFarmId">{currentUser.userFarms.farmId}</p>
+                            {/* <p className ="cardFarmId">{currentUser.userFarms.farmId}</p> */}
                             <h2 className="cardTitle">{currentUser.userFarms.farmName}</h2>
                         </div>
                         </div>
