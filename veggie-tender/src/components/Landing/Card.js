@@ -3,84 +3,102 @@ import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 //import ReactPlaceholder from 'react-placeholder';
 //import "react-placeholder/lib/reactPlaceholder.css";
-import { CustomPlaceholder } from 'react-placeholder-image';
+import { PhotoPlaceholder } from 'react-placeholder-image';
 //import farmName from './LandingFunction';
 //import farmDescription from './LandingFunction';
 //import farmId from './LandingFunction';
 
+
+
+
 const CardStyles = styled.div`
-.container {
-    
-    
+@media (max-width: 2560px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 25px;
+        position: center;
+        border: 3px solid green; 
+        .cardWrapper{
+            border: black solid;
+        }
+    }
 }
-.card-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-   }
-.card{
-   flex: 0.8;
-   box-sizing: border-box;
-   margin: 2rem;
-   padding: 3rem;
-   font-family: 'MontserratRegular';
-   margin: 2rem;
-   gap: 3px;
-}
-.carBody{
 
+@media (max-width: 1440px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 35% 40% 35%;
+        gap: 25px;
+        position: center;
+        border: 3px solid green; 
+        .cardWrapper{
+            border: black solid;
+        }
+    }
 }
+
+@media (max-width: 810px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 400){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
 .cardWrapper{
-
-    border: black solid 2px;
-    margin-top: 4rem;
-    margin-left: 6rem;
+    display: flex;
+    flex-direction: row;
+    border: black dashed;
+    flex-wrap: wrap;
     float: center;
     width: 265px;
     height: 150px;
     box-shadow: 0 2px 20px gray;
     justify-content: space-between;
     cursor: pointer;
-    transition: transform 200ms ease-in;
 }
+
 .cardImg{
     object-fit: cover;
     float: top;
 }
+
 .cardWords{
 float: bottom;
 }
 
 .cardTitle{
-    font-size: 1.5rem;
+    font-size: x-large;
     padding: 1px;
 }
 
-.cardDes{
-    padding: 0 1rem;
-}
-
-.cardBut{
-    padding: 1rem;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 1rem;
-    margin: 1px;
-    border: 2px solid red;
-    //background: transparent;
-    color: red;
-    border-radius: $radius;
-    transition : background 200ms ease-in, color 200ms ease-in;
-}
-
-.card::hover{
-    transform: scale(1.02)
-}
-.cardBut :hover{
-background: red;
-color: white;
-}
 `;
 
+// .card::hover{
+//     transform: scale(1.02)
+// }
+// .cardBut :hover{
+// background: red;
+// color: white;
+// }
+// .card{
+//     flex-wrap: wrap;
+//     flex: 0.8;
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: px;
+//     font-family: Oxygen, sans-serif;
+//     margin: 2rem;
+//     gap: 3px;
+//  }
 //const responce = "";
 
 export default function Card() {
@@ -115,36 +133,35 @@ export default function Card() {
 
     return (
         <CardStyles>
-<div class="card-container">
-
-
+            <div className="bigWrapper">
             {user.map(currentUser => (  
-                <div className="container">
+                //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
+                <div>
+                    <br/>
                 <div className="cardWrapper">
                     <div className="cardBody">
                         <div className="cardImg">
                             {/* <img src="./imgtest/imgholder.png" /> */}
-                            <CustomPlaceholder width={265} height={149} />
+                            <PhotoPlaceholder width={265} height={149} />
                         </div>
                         <div className="cardWords">
                             {/* <p className ="cardFarmId">{currentUser.userFarms.farmId}</p> */}
                             <h2 className="cardTitle">{currentUser.userFarms.farmName}</h2>
-                            {/* <p className="cardDes">{currentUser.userFarms.farmDescription}</p> */}
                         </div>
                         </div>
                     </div>
-                </div> 
+                </div>    
+                //</link> 
             ))};
             </div>
         </CardStyles>
 
     )
-
 }
 
 //<button className="cardBut">Buttonです</button>
 //<div>{currentUser.userFarms.farmId}</div>
-
+                            //<p className="cardDes">{currentUser.userFarms.farmDescription}</p>
 
     // farmName = 'Farm Name',
     // farmDescription = 'Farm Details',
