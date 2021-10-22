@@ -118,6 +118,7 @@ export default function Card() {
 
     )
 
+    
 }
 
 //<button className="cardBut">Buttonです</button>
