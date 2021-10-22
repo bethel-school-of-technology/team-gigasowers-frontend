@@ -12,6 +12,46 @@ import { PhotoPlaceholder } from 'react-placeholder-image';
 
 
 const CardStyles = styled.div`
+@media (max-width: 2560px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 25px;
+        position: center;
+        border: 3px solid green; 
+        .cardWrapper{
+            border: black solid;
+        }
+    }
+}
+
+@media (max-width: 1440px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 35% 40% 35%;
+        gap: 25px;
+        position: center;
+        border: 3px solid green; 
+        .cardWrapper{
+            border: black solid;
+        }
+    }
+}
+
+@media (max-width: 810px){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 400){
+    .bigWrapper{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
 
 .cardWrapper{
     display: flex;
@@ -37,7 +77,7 @@ float: right;
 }
 
 .cardTitle{
-    font-size: xx-large;
+    font-size: x-large;
     padding: 1px;
 }
 
@@ -94,7 +134,7 @@ export default function Card() {
 
     return (
         <CardStyles>
-
+            <div className="bigWrapper">
             {user.map(currentUser => (  
                 //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
                 <div>
@@ -114,6 +154,7 @@ export default function Card() {
                 </div>    
                 //</link> 
             ))};
+            </div>
         </CardStyles>
 
     )
