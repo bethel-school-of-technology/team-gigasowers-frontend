@@ -96,6 +96,25 @@ body {
     justify-content: flex-end;
     
 }
+.btn-1{
+    float: left;
+    padding: .5rem;
+    margin-top: -0.5rem;
+    margin-right: 1rem;
+    background-color: var(--md-gg);
+    border: 3px solid var(--md-gg);
+    border-radius: 12px;
+    text-decoration: none; 
+}
+.btn-2{
+    float: right;
+    padding: .5rem;
+    margin-top: -0.5rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
+    border-radius: 12px;
+    text-decoration: none; 
+}
 
 @media only screen and (max-width: 768px) {
     .container {
@@ -108,9 +127,7 @@ body {
         flex-direction: column;
     }
     .farmNameSection {
-
         margin-left: 3rem;
-
     }
     .info_float {
         justify-content: center;
@@ -268,7 +285,8 @@ const FarmInfo = () => {
                         <p>{farmEmail}</p>
                     </div>
                     <div className="buttonSection">
-                    <Link to='/users/update/farmProfile' type="button" className="btn">Update Info</Link>
+                        <Link to='/users/events' type="button" className="btn-1">My Events</Link>
+                        <Link to='/users/update/farmProfile' type="button" className="btn-2">Update Info</Link>
                     </div>
                 </div>
             </div>

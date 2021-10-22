@@ -7,15 +7,13 @@ font-family: 'MontserratRegular';
     box-sizing: border-box;
 }
 
-body {
-    
+body {  
     font-family: 'MontserratRegular';
     font-color: black;
     font-size: 12px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .container {
@@ -27,12 +25,11 @@ body {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         width: 85%;
         height: 250px;
-    
 }
 
 .farmProduce_shell {
     margin-top: .5rem;
-    width: 250px;
+    width: 100%;
     height: 95%;
     float: left;
     overflow: hidden;
@@ -45,10 +42,13 @@ body {
 }
 .produceTitle {
     font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
 .produceInventory {
     font-size: 1.1rem;
     margin-top: 1rem;
+    margin-left: 2rem;
 }
 @media only screen and (max-width: 768px) {
     .produceTitle {

@@ -74,11 +74,13 @@ export default function App() {
                               </Switch>
                               <Switch>
                                     <Route path="/users/eventRegister">
+                                          <Navbar /> 
                                           <EventReg />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/eventEdit">
+                                          <Navbar /> 
                                           <EventReg />
                                     </Route>
                               </Switch>

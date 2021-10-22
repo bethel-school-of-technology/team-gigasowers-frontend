@@ -58,7 +58,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--cream);
-    border: 5px solid var(--coral);
+    border: 5px solid var(--md-gg);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: left;
@@ -83,8 +83,8 @@ body {
     float: left;
     padding: .5rem;
     margin-top: 0.5rem;
-    background-color: var(--coral);
-    border: 3px solid var(--coral);
+    background-color: var(--dk-mustard);
+    border: 3px solid var(--dk-mustard);
     border-radius: 12px;
     text-decoration: none; 
 }
@@ -92,8 +92,8 @@ body {
     float: right;
     padding: .5rem;
     margin-top: 0.5rem;
-    background-color: var(--dk-mustard);
-    border: 3px solid var(--dk-mustard);
+    background-color: var(--coral);
+    border: 3px solid var(--coral);
     border-radius: 12px;
     text-decoration: none; 
 }

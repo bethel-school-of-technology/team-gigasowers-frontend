@@ -21,43 +21,51 @@ body {
 .container {
     justify-content: center;
     height: 600px;
-    max-width: 800px;
+    max-width: 25rem;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 85%;
+    width: 90%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-}
-.userImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border: 3px dashed var(--terra);
-    background-color: grey;   
-}
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+// }
+// .userImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border: 3px dashed var(--terra);
+//     background-color: grey;   
+// }
 .info_float {
     float: right;
-    width: 60%;
-    height: 95%;
+    width: 95%;
+    height: 90%;
     display: block;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 .userInfoUpdate {
     margin-top: 1rem auto;
     width: 100%;
-    height: 95%;
+    height: 100%;
     background-color: var(--cream);
     border: 5px solid var(--dk-green);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 0.5rem;
     text-align: left;
+}
+.form{
+    padding: 0rem;
+    margin-left:0.5rem;
+    margin-top:0.5rem;
+}
+.pageTitle{
+    font-size: 1.25rem;
 }
 .form-field label {
     font-family: 'MontserratRegular';
@@ -79,8 +87,8 @@ body {
 }
 .buttonSection{
     float: right;
-    margin-top: 3rem;
-    margin-right: -2rem; 
+    margin-top: 3.5rem;
+    margin-right: -1rem; 
 }
 .btn{
     padding: .5rem;
@@ -242,14 +250,14 @@ const UserInfoUpdate = () => {
     return (
         <UserUpdateStyles>
             <div className="container">
-                <div className="image_float">
+                {/* <div className="image_float">
                     <h3 className="userImage">Image</h3>
-                </div>
+                </div> */}
                 <div className="info_float">
                     <div className="userInfoUpdate">
 
                         <form id='userUpdate' className='form' onSubmit={submitHandler}>
-                            <h2>Update Your User Information:</h2>
+                            <h2 className="pageTitle">Update Your User Information:</h2>
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
