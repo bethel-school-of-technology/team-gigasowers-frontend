@@ -1,8 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
+import styled from "styled-components";
 
+const LoginToggleStyles = styled.div`
+ul{ 
+    padding: 1rem;
 
+    max-width: 50rem;
+    margin-righ: 1rem;
+    text-align: center;
+        li{
+            display: inline-block; 
+            border-radius: 8px;
+            
+        }
+    }
+.btn1{
+  display: inline-block;
+  margin: 0 auto;
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  transition: .3s ease background-color;
+                :hover{
+                    background-color: var(--dk-green);
+                    border-radius: 8px;
+                }
+}
+.btn2{
+    display: inline-block;
+    margin: 0 auto;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    transition: .3s ease background-color;
+                :hover{
+                    background-color: var(--dk-green);
+                    border-radius: 8px;
+                }
+  }
+`;
 
 
 const LoginToggle = () => {
@@ -69,22 +107,28 @@ const LoginToggle = () => {
 
 
     return (
-        <div>
-            <span>
-                {loginStatus ?
-                    <Link type="button" onClick={profileHandler} className="btn">{userName}</Link>
-                    :
-                    <Link type="button" onClick={registerHandler} className="btn">Register</Link>
-                }
-            </span>
-            <span>
-                {loginStatus ?
-                    <Link type="button" onClick={logoutHandler} className="btn">LogOut</Link>
-                    :
-                    <Link type="button" onClick={loginHandler} className="btn">LogIn</Link>
-                }
-            </span>
-        </div>
+        <LoginToggleStyles>
+            <ul>
+                <span>
+                    <li>
+                        {loginStatus ?
+                            <Link type="button" onClick={profileHandler} className="btn1">{userName}</Link>
+                            :
+                            <Link type="button" onClick={registerHandler} className="btn1">Register</Link>
+                        }
+                    </li>
+                </span>
+                <span>
+                    <li>
+                        {loginStatus ?
+                            <Link type="button" onClick={logoutHandler} className="btn2">LogOut</Link>
+                            :
+                            <Link type="button" onClick={loginHandler} className="btn2">LogIn</Link>
+                        }
+                    </li>
+                </span>
+            </ul>
+        </LoginToggleStyles>
     )
 }
 

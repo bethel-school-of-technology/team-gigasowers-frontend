@@ -9,8 +9,8 @@ export default function FarmerProfile() {
     return (
         <div >
             <FarmInfo />
-            <FarmProduce />
             <Events/>
+            <FarmProduce />
         </div>
     )
 }

@@ -15,7 +15,6 @@ body {
     font-color: black;
     font-size: 12px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     min-height: 100vh;
 
@@ -24,6 +23,7 @@ body {
 .container {
         justify-content: center;
         height: 450px;
+        max-width: 800px;
         background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
@@ -31,31 +31,30 @@ body {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         width: 85%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-}
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+//     flex-wrap: wrap;
+// }
 
-.farmImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
-    border: 5px dashed var(--terra);
-    background-color: grey; 
-}
+// .farmImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     // display: flex;
+//     // flex-wrap: wrap;
+//     border: 5px dashed var(--terra);
+//     background-color: grey; 
+// }
 .info_float {
-    float: right;
-    width: 65%;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    height: 90%;
+    display: block;
 }
-.farmInfo {
-    margin-top: 2rem auto;
+.farmEvents {
+    margin-top: 1rem auto;
     width: 100%;
     height: 100%;
     background-color: var(--cream);
@@ -64,32 +63,63 @@ body {
     padding: 1.5rem;
     text-align: left;
 }
+.eachEvent{
+    display: inline-block;
+}
+.buttonSection{
+    width: 100%; 
+}
+.btn {
+    float:right;
+    margin-top: -2rem;
+    padding: .5rem;
+    background-color: var(--terra);
+    border: 3px solid var(--terra);
+    border-radius: 12px;
+    text-decoration: none;
+}
 
-.h3 {
-    font-size: 1.5rem;
+.btn-1{
+    float: left;
+    padding: .5rem;
+    margin-top: 0.5rem;
+    background-color: var(--coral);
+    border: 3px solid var(--coral);
+    border-radius: 12px;
+    text-decoration: none; 
 }
-.addressDetails {
+.btn-2{
     float: right;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmZip {
-    float: right;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmName {
-    margin-top: -1rem;
-    font-size: 1.75rem;
+    padding: .5rem;
+    margin-top: 0.5rem;
+    background-color: var(--dk-mustard);
+    border: 3px solid var(--dk-mustard);
+    border-radius: 12px;
+    text-decoration: none; 
 }
 
 @media only screen and (max-width: 768px) {
-    .farmImage {
-        height: 200px;
+    .container {
+        display: block;
+        flex-direction: column;
+        height: 475px;
+    }
+    .image_float {
+        width: 100%;
+        margin-left: -1rem; 
         flex-direction: column;
     }
-    .farmInfo {
+    .info_float {
+        justify-content: center;
+        width: 100%;
+        max-height: 375px;
         flex-direction: column;
+        padding-left: .5rem;
+    }
+    .buttonSection{
+        float: right;
+        margin-top: 1rem;
+        margin-right: 0rem; 
     }
 }
 `;
@@ -102,23 +132,23 @@ const Events = () => {
     return (
         <FarmInfoStyles>
             <div className="container">
-                <div className="image_float">
+                {/* <div className="image_float">
                     <h3 className="farmImage">Farmer Market Image</h3>
-                </div>
+                </div> */}
                 <div className="info_float">
-                    <div className="farmInfo">
-                        <div>
+                    <div className="farmEvents">
+                        <div classname="eachEvents">
                             <h2>Farm Event(s) gets loaded here</h2>
+                            <Link type="button" className="btn">Edit Event Info</Link>
                         </div>
-                        <button type="button" className="btn">Edit Event Info</button>
                     </div>
                 </div>
-                <div>
-                    <Link to="/users/eventRegister" type='submit'>Schedule Event
-                    </Link>
-                </div>
+                <div className="buttonSection">
+                        <Link to="/users/eventRegister" type='submit' className="btn-1">Schedule Event</Link>
+                        <Link to="/users/farmProfile" type='submit' className="btn-2">Back to Farm</Link>
+                </div> 
             </div>
-        </FarmInfoStyles>
+        </FarmInfoStyles >
 
 
     )

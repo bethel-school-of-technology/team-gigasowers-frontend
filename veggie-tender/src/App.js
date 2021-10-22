@@ -13,6 +13,7 @@ import UserProfileUp from "./pages/UserProfileUp";
 // import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
 import EventReg from './pages/EventReg';
+import FarmEvents from './pages/FarmEvents';
 
 
 
@@ -57,6 +58,12 @@ export default function App() {
                                     <Route path="/users/update/farmProfile">
                                           <Navbar />
                                           <FarmProfileUp />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/events">
+                                          <Navbar />
+                                          <FarmEvents />
                                     </Route>
                               </Switch>
                               <Switch>

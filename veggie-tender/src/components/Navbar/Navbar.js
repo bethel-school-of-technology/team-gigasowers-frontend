@@ -83,31 +83,10 @@ const NavbarStyles = styled.div`
     justify-content: left;
     align-items: center;
   }
-  .button{
- 
-  }
-  ul{ 
-      padding-top: 1rem;
-      max-width: 50rem;
-      margin: 0 auto;
-        text-align: center;
-        li{
-            
-            display: inline-block; 
-            border-radius: 8px;
-            transition: .3s ease background-color;
-            :hover{
-                background-color: var(--dk-green);
-            }
-        }
-    }
-  .btn{
-    display: inline-block;
-    margin: 0 auto;
-    color: white;
-    padding: 1rem;
+  
+  li{
+    display: inline-block; 
     text-decoration: none;
-
   }
   
   .homeButton{
@@ -116,7 +95,42 @@ const NavbarStyles = styled.div`
     float: left;
     padding: 1rem;
   }
+  @media only screen and (max-width: 880px){
+    .Navbar .leftSide .links a{
+      font-size: 20px;
+    }
 
+  }
+  
+  @media only screen and (max-width: 750px){
+    .Navbar .leftSide .links a{
+      font-size: 15px;
+    }
+  }
+  
+  @media only screen and (max-width: 650px){
+    .Navbar .leftSide .button{
+      display: flex;
+    }
+  
+    .Navbar .leftSide .links{
+      display: none;
+    }
+  
+    .Navbar .leftSide .links{
+  position: absolute;
+  left: 0px;
+  top: 50px;
+  height: auto;
+  max-height: 230px;
+  font-size: 25px;
+  width: 130%;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: colomn;
+  align-items: center;
+  
+    }
 
 `;
 

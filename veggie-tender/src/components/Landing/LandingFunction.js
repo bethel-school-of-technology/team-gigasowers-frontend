@@ -15,10 +15,6 @@ const LandingFunctionStyles = styled.div`
     display: inline;
 }
 
-.card-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-   }
 `;
 
 
