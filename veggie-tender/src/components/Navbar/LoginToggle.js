@@ -42,7 +42,7 @@ const LoginToggle = () => {
         localStorage.clear();
         setUserName('');
         setLoginStatus(false);
-        //window.location.reload();
+        window.location.reload();
     };
 
 

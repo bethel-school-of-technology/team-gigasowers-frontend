@@ -21,20 +21,22 @@ body {
 }
 .container {
     justify-content: center;
-    height: 450px;
+    height: 600px;
     max-width: 800px;
+    display: inline-block;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 85%;
+    width: 95%;
 }
 .image_float {
     float: left;
     width: 35%;
     display: flex;
     flex-wrap: wrap;
+    margin-left: 1rem;
 }
 .userImage {
     margin: 2rem auto;
@@ -47,13 +49,14 @@ body {
 .info_float {
     float: right;
     width: 65%;
+    height: 95%;
     display: flex;
     flex-wrap: wrap;
 }
-.userInfo {
+.userInfoUpdate {
     margin-top: 1rem auto;
     width: 100%;
-    height: 95%;
+    height: 100%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
@@ -61,8 +64,8 @@ body {
     text-align: left;
 }
 .fullName {
-    margin-top: 16rem;
-    font-size: 2rem;
+    margin-top: -1rem;
+    font-size: 1.75rem;
 }
 .h3 {
     font-size: 1.5rem;

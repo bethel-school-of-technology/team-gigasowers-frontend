@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 
@@ -196,7 +196,7 @@ const EventRegForm = () => {
         setEventArr(prevEventArr => [...prevEventArr,
         {
             eventId: eventId,
-            eventId: enteredEventName,
+            eventName: enteredEventName,
             eventAddress: enteredEventAddress,
             eventCity: enteredEventCity,
             eventState: enteredEventState,

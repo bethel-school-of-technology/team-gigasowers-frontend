@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FarmerEvent from './FarmerEvent';
+import { Link } from 'react-router-dom';
 
 
 
@@ -107,11 +107,15 @@ const Events = () => {
                 </div>
                 <div className="info_float">
                     <div className="farmInfo">
-                        <FarmerEvent />
-
+                        <div>
+                            <h2>Farm Event(s) gets loaded here</h2>
+                        </div>
                         <button type="button" className="btn">Edit Event Info</button>
-
                     </div>
+                </div>
+                <div>
+                    <Link to="/users/eventRegister" type='submit'>Schedule Event
+                    </Link>
                 </div>
             </div>
         </FarmInfoStyles>

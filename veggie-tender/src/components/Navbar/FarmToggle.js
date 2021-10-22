@@ -10,42 +10,32 @@ const FarmToggle = () => {
     let history = useHistory();
 
     const [farmerStatus, setFarmerStatus] = useState(false);
-    const [userName, setUserName] = useState('');
 
-
-    useEffect(() => {
-
+    useEffect(async () => {
         //checkAuth for valid token will go here
-        let validToken = CheckAuth();
+        let validToken = await CheckAuth();
+            console.log(validToken.isFarmer);
         if (!validToken) {
-            console.log("validToken returned false or undefined");
-            setUserName('');
             setFarmerStatus(false);
-            
+            console.log("userName");
         } else {
-            //console.log("LoginToggle userName: " + localStorage.getItem("userName"));
-            if (localStorage.getItem("userName")){
-                setUserName(localStorage.getItem("userName"));
-                
-                if (("isFarmer") === true) {
-                    setFarmerStatus(true);     
-                }else {
-                    setFarmerStatus(false);
-                }
-            }        
+            if (localStorage.getItem("isFarmer")) {
+                console.log("farmer? " + localStorage.getItem("isFarmer"));
+                console.log("isFarmer");
+                setFarmerStatus(true);
+            }
         }
     }, []);
+
         
     //handlers for each input field on the form
     const notFarmerHandler = (event) => {
         history.push('/users/farmRegister');
-        setFarmerStatus(false);
         window.location.reload();
     };
     const farmHandler = (event) => {
         //remove local storage items
         history.push('/users/farmProfile');
-        setFarmerStatus(true);
         window.location.reload();
     };
 

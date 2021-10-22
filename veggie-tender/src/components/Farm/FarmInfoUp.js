@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
 
 
@@ -24,7 +24,8 @@ body {
 
 .container {
         justify-content: center;
-        height: 450px;
+        height: 600px;
+        max-width: 800px;
         background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
@@ -35,6 +36,7 @@ body {
 .image_float {
     float: left;
     width: 35%;
+    margin-left: 1rem;
     display: flex;
     flex-wrap: wrap;
 }
@@ -44,19 +46,18 @@ body {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
     border: 5px dashed var(--terra);
     background-color: grey; 
 }
 .info_float {
     float: right;
-    width: 65%;
+    height: 95%;
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
 }
-.farmInfo {
-    margin-top: 2rem auto;
+.farmInfoUpdate{
+    margin-top: 1rem auto;
     width: 100%;
     height: 100%;
     background-color: var(--cream);
@@ -66,7 +67,27 @@ body {
     text-align: left;
 }
 
-.h3 {
+.form-field label {
+    font-family: 'MontserratRegular';
+    display: block;
+    color: black;
+    text-align: left;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+
+.form-field input {
+    font-family: 'MontserratRegular';
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    display: block;
+    width: 95%;
+}
+
+.h2 {
     font-size: 1.5rem;
 }
 .addressDetails {
@@ -82,6 +103,18 @@ body {
 .farmName {
     margin-top: -1rem;
     font-size: 1.75rem;
+}
+.buttonSection{
+    margin-top: 2rem;
+}
+.btn{
+    padding: .5rem;
+    margin-top: 1rem;
+    background-color: var(--dk-coral);
+    border: 3px solid var(--dk-coral);
+    border-radius: 12px;
+    text-decoration: none;
+    
 }
 
 @media only screen and (max-width: 768px) {
@@ -235,10 +268,11 @@ const FarmInfoUpdate = () => {
                         <h3 className="farmImage">Farm Image</h3>
                     </div>
                     <div className="info_float">
+                        <h2>Update Farm Information:</h2>
                         <div className="farmInfoUpdate">
 
                             <form id='farmUpdate' className='form' onSubmit={submitHandler}>
-                                <h2>Update Farm Information:</h2>
+                                
                                 <div className='form-field'>
                                     <label className='form-label'>Farm Name</label>
                                     <input type='text'
@@ -303,8 +337,8 @@ const FarmInfoUpdate = () => {
                                         onChange={farmEmailHandler}
                                     />
                                 </div>
-                                <div className='btn-field'>
-                                    <button className='btn' type='submit'>Update</button>
+                                <div className='buttonSection'>
+                                <Link to='/users/farmProfile' type="button" className="btn">Update Info</Link>
                                 </div>
                             </form>
 

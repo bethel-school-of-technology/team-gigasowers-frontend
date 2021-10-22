@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
-import LoginForm from '../LoginForm';
+// import LoginForm from '../LoginForm';
 
 
 const FarmInfoStyles = styled.div`

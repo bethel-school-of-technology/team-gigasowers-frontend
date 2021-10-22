@@ -10,19 +10,12 @@ font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
 }
-body {
-    font-family: 'MontserratRegular';
-    font-color: black;
-    font-size: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    min-height: 100vh;
-}
 .container {
     justify-content: center;
     max-width: 800px;
-    height: 450px;
+    height: 550px;
+    display: flex;
+    flex-direction: row;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
@@ -31,74 +24,69 @@ body {
     width: 85%;
 }
 .image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
+    width: 30%;
+    height: 50%;
+    flex-direction: row;
 }
-.userImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    // display: flex;
-    // flex-wrap: wrap;
-    border: 5px dashed var(--terra);
-    background-color: grey;   
-}
+// .userImage {
+//     margin: 1rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border: 5px dashed var(--terra);
+//     background-color: grey;   
+// }
 .info_float {
-    float: right;
-    width: 65%;
-    display: flex;
-    flex-wrap: wrap;
+    // float: right;
+    width: 60%;
+    flex-direction: row;
 }
-.userInfo {
-    margin-top: 1rem auto;
-    width: 100%;
-    height: 95%;
-    background-color: var(--cream);
-    border: 5px solid var(--coral);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: left;
-}
-.fullName {
-    margin-top: -1rem;
-    font-size: 1.75rem; 
-}
-.h3 {
-    font-size: 1.5rem;
-}
+// .userInfo {
+//     margin-top: 1rem auto;
+//     width: 100%;
+//     height: 95%;
+//     background-color: var(--cream);
+//     border: 5px solid var(--coral);
+//     border-radius: 12px;
+//     padding: 1.5rem;
+//     text-align: left;
+// }
+// .fullName {
+//     margin-top: -1rem;
+//     font-size: 1.75rem; 
+// }
+// .h3 {
+//     font-size: 1.5rem;
+// }
 
-.zipContain {
-    float: right;
-    margin-right: 17rem;
-    margin-top: -3.75rem;
-    height: 10px;
-    display: inline-block;
-}
+// .zipContain {
+//     float: right;
+//     margin-right: 17rem;
+//     margin-top: -3.75rem;
+//     height: 10px;
+//     display: inline-block;
+// }
 .buttonSection{
     margin-top: 3rem;
-    float: right;
+
     
 }
-.btn{
-    padding: .5rem;
-    margin-bottom: 1rem;
-    background-color: var(--dk-coral);
-    border: 3px solid var(--dk-coral);
-    border-radius: 12px;
-    text-decoration: none;
+// .btn{
+//     padding: .5rem;
+//     margin-bottom: 1rem;
+//     background-color: var(--dk-coral);
+//     border: 3px solid var(--dk-coral);
+//     border-radius: 12px;
+//     text-decoration: none;
     
-}
+// }
 
 @media only screen and (max-width: 768px) {
-    .userImage {
-        height: 200px;
-        flex-direction: column;
-    }
-    .userInfo {
-        flex-direction: column;
+    .container {
+        width: 90%;
+        display: block;
+        margin: auto;
+        margin-bottom: 1rem;
     }
 }
 `;
