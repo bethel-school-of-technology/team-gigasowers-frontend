@@ -18,7 +18,7 @@ const CardStyles = styled.div`
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 25px;
         position: center;
-        border: 3px solid green; 
+        // border: 3px solid green; 
         .cardWrapper{
             border: black solid;
         }
@@ -28,10 +28,10 @@ const CardStyles = styled.div`
 @media (max-width: 1440px){
     .bigWrapper{
         display: grid;
-        grid-template-columns: 35% 40% 35%;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 25px;
         position: center;
-        border: 3px solid green; 
+        // border: 3px solid green; 
         .cardWrapper{
             border: black solid;
         }
