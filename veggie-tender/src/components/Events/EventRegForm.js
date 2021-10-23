@@ -102,32 +102,22 @@ const EventRegForm = () => {
     // }
 
     let history = useHistory();  //Used to track page route history
-   
-    let resEventsLength = 0;
+
+
+
+    const [isSubmitComplete, setIsSubmitComplete] = useState(false);
+    let tempArr = [];   //used to load event inputs from form
+    const [eventArr, setEventArr] = useState([]);  //state for events array
+    const [calcEventId, setCalcEventId] = useState('');  //load this separately by incrementing on array length
     //set state for entered credentials
-    const [eventArr, setEventArr] = useState([
-        {
-            eventId: "",
-            eventName: "",
-            eventAddress: "",
-            eventCity: "",
-            eventState: "",
-            eventZip: "",
-            eventStartDate: "",
-            eventFinishDate: ""
-        }
-    ]);
-
-    const [calcEventId, setCalcEventId] = useState([]);  //load this separately by incrementing on array length
-    const [enteredEventName, setEventName] = useState([]);
-    const [enteredEventAddress, setEventAddress] = useState([]);
-    const [enteredEventCity, setEventCity] = useState([]);
-    const [enteredEventState, setEventState] = useState([]);
-    const [enteredEventZip, setEventZip] = useState([]);
-    const [enteredEventStartDate, setEventStartDate] = useState([]);
-    const [enteredEventFinishDate, setEventFinishDate] = useState([]);
-    //const [enteredEventImage, setEventImage] = useState([]);
-
+    const [enteredEventName, setEventName] = useState('');
+    const [enteredEventAddress, setEventAddress] = useState('');
+    const [enteredEventCity, setEventCity] = useState('');
+    const [enteredEventState, setEventState] = useState('');
+    const [enteredEventZip, setEventZip] = useState('');
+    const [enteredEventStartDate, setEventStartDate] = useState('');
+    const [enteredEventFinishDate, setEventFinishDate] = useState('');
+    //const [enteredEventImage, setEventImage] = useState('');
 
 
     //handlers for each input field on the form
@@ -171,33 +161,18 @@ const EventRegForm = () => {
                     console.log("No token or must be logged in");
                 }
                 if (response.status === 200) {
-                    console.log("response: ");
-                    console.log(response);
+                    //console.log(response);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
                         console.log("this profile is not a farmer");
                     }
-                    //load state eventArr from response data
-                    for (let i = 0; i < response.data.userFarms.farmEvent.length; i++) {
-                        console.log(response.data.userFarms.farmEvent[i]);
-                        eventArr[i] = {
-                            ...eventArr[i],
-                            'eventId': response.data.userFarms.farmEvent[i].eventId,
-                            'eventName': response.data.userFarms.farmEvent[i].eventName,
-                            'eventAddress': response.data.userFarms.farmEvent[i].eventAddress,
-                            'eventCity': response.data.userFarms.farmEvent[i].eventCity,
-                            'eventState': response.data.userFarms.farmEvent[i].eventState,
-                            'eventZip': response.data.userFarms.farmEvent[i].eventZip,
-                            'eventStartDate': response.data.userFarms.farmEvent[i].eventStartDate,
-                            'eventFinishDate': response.data.userFarms.farmEvent[i].eventFinishDate,
-                            'eventImage': ""
-                        }
-                        console.log(eventArr[i]);
-                    };
-                    setEventArr(prevArr => [{ ...prevArr }, { ...eventArr }]);
-                    console.log(eventArr);
 
-                    setCalcEventId(response.data.userFarms.farmEvent.length); //sets eventId for form entry
+                    setEventArr(prevArr => {
+                        const newArr = [...prevArr, ...response.data.userFarms.farmEvent];
+                        return newArr;
+                    });
+
+                    setCalcEventId(parseInt(response.data.userFarms.farmEvent.length)+1); //sets eventId for form entry
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
@@ -207,57 +182,71 @@ const EventRegForm = () => {
                 console.log("catch error: " + error);
             });
 
-
     }, []);
-
 
 
 
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-
-        // setEventArr(prevEventArr => [...prevEventArr,
-        // {
-        //     eventId: eventId,
-        //     eventId: enteredEventName,
-        //     eventAddress: enteredEventAddress,
-        //     eventCity: enteredEventCity,
-        //     eventState: enteredEventState,
-        //     eventZip: enteredEventZip,
-        //     eventStartDate: enteredEventStartDate,
-        //     eventFinishDate: enteredEventFinishDate
-        // }]);
-
+        console.log("calcId: " + calcEventId);
         console.log(eventArr);
+        console.log(eventArr.length);
 
-        /*
-        
-                //post to login in API to auth user and get token
-                axios.put('http://localhost:5000/api/users/update', eventArr)
-                    .then(function (response) {
-                        console.log(response);
-                        if (response.status === 200) {
-                        } else {
-                            console.log(`Event update error response received: ${response.status} `);
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(`Event update catch error: ${error} `);
-                    });
-        
-        */
-        setCalcEventId('');
-        setEventName('');
-        setEventAddress('');
-        setEventCity('');
-        setEventState('');
-        setEventZip('');
-        setEventStartDate('');
-        setEventFinishDate('');
-        //setEventImage('');
-
+        tempArr = [{
+            'eventId': calcEventId.toString(),
+            'eventName': enteredEventName,
+            'eventAddress': enteredEventAddress,
+            'eventCity': enteredEventCity,
+            'eventState': enteredEventState,
+            'eventZip': enteredEventZip,
+            'eventStartDate': enteredEventStartDate,
+            'eventFinishDate': enteredEventFinishDate,
+            'eventImage': ""
+        }];
+        setEventArr(prevArr => {
+            const enteredArr = [...prevArr, ...tempArr];
+            console.log(enteredArr);
+            return enteredArr;
+        });
+        setIsSubmitComplete(true);
     };
+
+
+    useEffect(() => {
+        if (isSubmitComplete) {
+            console.log(eventArr);
+            //set JWT token into header for server side authentication
+            let myHeaders = {
+                'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+            };
+            //post to login in API to auth user and get token
+            axios.put('http://localhost:5000/api/users/update', {'farmEvent': eventArr }, { 'headers': myHeaders })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                    } else {
+                        console.log(`Event update error response received: ${response.status} `);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(`Event update catch error: ${error} `);
+                });
+
+            setCalcEventId('');
+            setEventName('');
+            setEventAddress('');
+            setEventCity('');
+            setEventState('');
+            setEventZip('');
+            setEventStartDate('');
+            setEventFinishDate('');
+            //setEventImage('');
+
+        }
+    }, [isSubmitComplete, eventArr]);
+
+
 
     return (
         <LoginFormStyles>
