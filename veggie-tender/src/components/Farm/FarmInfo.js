@@ -172,7 +172,7 @@ const FarmInfo = () => {
     const [farmCity, setFarmCity] = useState('');
     const [farmState, setFarmState] = useState('');
     const [farmZip, setFarmZip] = useState('');
-    //const [farmImage, setFarmImage] = useState('');
+    const [farmImage, setFarmImage] = useState('');
     const [farmWebsite, setFarmWebsite] = useState('');
     const [farmEmail, setFarmEmail] = useState('');
 
@@ -232,10 +232,10 @@ const FarmInfo = () => {
                     setFarmCity(response.data.userFarms.farmCity);
                     setFarmState(response.data.userFarms.farmState);
                     setFarmZip(response.data.userFarms.farmZip);
-                    //setFarmImage(response.data.userFarms.farmImage);
+                    setFarmImage(response.data.userFarms.farmImage);
                     setFarmWebsite(response.data.userFarms.farmWebsite);
                     setFarmEmail(response.data.userFarms.farmEmail);
-
+                    console.log(farmImage);
                     // history.push('/users/farmProfile/:farmId');
                 }
                 else {
@@ -257,7 +257,7 @@ const FarmInfo = () => {
         <FarmInfoStyles>
             <div className="container">
                 <div className="image_float">
-                    <h3 className="farmImage">Farm Image</h3>
+                    <img className="farmImage" src={farmImage} alt="profileImage"></img>
                     <div className="farmNameSection">
                         <h3 className="farmName">{farmName}</h3>
                     </div>

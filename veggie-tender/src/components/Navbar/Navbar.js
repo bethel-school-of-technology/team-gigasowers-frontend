@@ -97,14 +97,15 @@ const NavbarStyles = styled.div`
   }
   @media only screen and (max-width: 880px){
     .Navbar .leftSide .links a{
-      font-size: 20px;
+      font-size: 25px;
     }
 
   }
   
   @media only screen and (max-width: 750px){
     .Navbar .leftSide .links a{
-      font-size: 15px;
+      font-size: 20px;
+      margin-top: -1.5rem;
     }
   }
   
@@ -113,22 +114,22 @@ const NavbarStyles = styled.div`
       display: flex;
     }
   
-    .Navbar .leftSide .links{
-      display: none;
-    }
+    // .Navbar .leftSide .links{
+    //   display: none;
+    // }
   
     .Navbar .leftSide .links{
-  position: absolute;
-  left: 0px;
-  top: 50px;
-  height: auto;
-  max-height: 230px;
-  font-size: 25px;
-  width: 130%;
-  background-color: aliceblue;
-  display: flex;
-  flex-direction: colomn;
-  align-items: center;
+  // position: absolute;
+  // left: 0px;
+  // top: 50px;
+  // height: auto;
+  // max-height: 230px;
+  // font-size: 25px;
+  // width: 130%;
+  // background-color: aliceblue;
+  // display: flex;
+  // flex-direction: colomn;
+  // align-items: center;
   
     }
 
