@@ -271,20 +271,21 @@ const FarmInfo = () => {
                         <p>{farmAddress}</p><br />
                         <h3 className="farmCity">City: </h3>
                         <p>{farmCity}</p><br />
-                            <div className="stateContain">
-                                <h3 className="farmState">State: </h3>
-                                <p>{farmState}</p><br />
-                            </div>
-                            <div className="zipContain">
-                                <h3 className="farmZip">Zip: </h3>
-                                <p>{farmZip}</p><br />
-                            </div>
+                        <div className="stateContain">
+                            <h3 className="farmState">State: </h3>
+                            <p>{farmState}</p><br />
+                        </div>
+                        <div className="zipContain">
+                            <h3 className="farmZip">Zip: </h3>
+                            <p>{farmZip}</p><br />
+                        </div>
                         <h3 className="farmWebsite">Website: </h3>
                         <p>{farmWebsite}</p><br />
                         <h3 className="farmEmail">Contact Us: </h3>
                         <p>{farmEmail}</p>
                     </div>
                     <div className="buttonSection">
+                        <Link to='/users/productRegister' type="button" className="btn-1">Add Produce</Link>
                         <Link to='/users/events' type="button" className="btn-1">My Events</Link>
                         <Link to='/users/update/farmProfile' type="button" className="btn-2">Update Info</Link>
                     </div>

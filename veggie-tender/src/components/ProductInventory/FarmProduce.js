@@ -1,5 +1,9 @@
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Product from './Product';
+
 
 
 const FarmInfoStyles = styled.div`
@@ -123,32 +127,80 @@ body {
 `;
 
 
-const FarmEvent = (props) => {
+const FarmProduce = () => {
+
+    // let validToken = CheckAuth();
+    // if (!validToken) {
+    //     console.log("validToken returned null or undefined");
+    //    // history.push('/users/login');
+    // } else {
+    //     console.log(validToken);
+    // }
+
+
+    const [productArr, setProductArr] = useState([]);  //state for events array
+
+
+    useEffect(() => {
+
+        //set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
+        //get events for user profile
+        axios.get('http://localhost:5000/api/users/profile',
+            { 'headers': myHeaders })
+            .then(function (response) {
+                console.log("events GET response: " + response.status);
+                if (response.status === 401) {
+                    console.log("No token or must be logged in");
+                }
+                if (response.status === 200) {
+                    //console.log(response);
+                    //validate this profile is a farmer
+                    if (!response.data.isFarmer) {
+                        console.log("this profile is not a farmer");
+                    }
+
+                    setProductArr(prevArr => {
+                        const newArr = [...prevArr, ...response.data.userFarms.farmInventory];
+                        return newArr;
+                    });
+                }
+                else {
+                    console.log(`Unable to get farm event info; error status: ${response.status} `);
+                }
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+            });
+
+    }, []);
+
 
 
     return (
         <FarmInfoStyles>
             <div className="container">
-                <div className="image_float">
-                    <h3 className="farmImage">{props.farmEvent.eventImage}</h3>
-                </div>
+                {/* <div className="image_float">
+                    <h3 className="farmImage">Product Image</h3>
+                </div> */}
                 <div className="info_float">
                     <div className="farmEvents">
-                        <div classname="eachEvents" key={props.farmEvent.eventId}>
-                                <h3>{props.farmEvent.eventName}</h3>
-                                <h3>{props.farmEvent.eventAddress}</h3>
-                                <h3>{props.farmEvent.eventCity}</h3>
-                                <h3>{props.farmEvent.eventState}</h3>
-                                <h3>{props.farmEvent.eventZip}</h3>
-                                <h3>{props.farmEvent.eventStartDate}</h3>
-                                <h3>{props.farmEvent.eventFinishDate}</h3>
-                            <Link type="button" className="btn" fEvent={props.farmEvent}>Edit Event Info</Link>
+                        <div classname="eachEvents">
+                            <h2>
+                                {productArr.map(item => (
+                                    <Product farmProduct={item} />
+                                ))}
+                            </h2>
                         </div>
                     </div>
                 </div>
             </div>
         </FarmInfoStyles >
     )
-}
+};
 
-export default FarmEvent;
+export default FarmProduce;
+
+
