@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import ErrorMessage from '../services/ErrorMessage';
+//import { useLocation } from 'react-router-dom';
+//import ErrorMessage from '../services/ErrorMessage';
 
 const LoginFormStyles = styled.div`
 font-family: 'MontserratMedium';
@@ -93,17 +93,17 @@ font-family: 'MontserratMedium';
 
 const LoginForm = () => {
 
-    const location = useLocation();
-    const referer = location.state && location.state.referer;
-    console.log("referer: " + referer);
+   // const location = useLocation();
+    //const referer = location.state && location.state.referer;
+    //console.log("referer: " + referer);
 
     let history = useHistory();  //Used to track page route history
 
     //set state for entered credentials
     const [enteredUserName, setUserName] = useState('');
     const [enteredPassword, setPassword] = useState('');
-    let [showError, setShowError] = useState(false);
-    let [errCode, setErrorCode] = useState('');
+   // let [showError, setShowError] = useState(false);
+   // let [errCode, setErrorCode] = useState('');
 
 
 
@@ -178,14 +178,15 @@ const LoginForm = () => {
                     //redirect to landing or home page
                     history.push('/');
                 } else {
-                    setShowError = true;
-                    setErrorCode = response.status;
+                    //setShowError = true;
+                   // setErrorCode = response.status;
                     console.log(`error response received: ${response.status} `);
                 }
 
             })
             .catch(function (error) {
                 //errorCodeHandler(error.message);
+                console.log(error);
             });
 
 
@@ -213,7 +214,7 @@ const LoginForm = () => {
                     </div>
                     <div className="login__actions">
                         <button type='submit'>Login</button>
-                        {showError ? <ErrorMessage errorCode={errCode} /> : null}
+                        {/* {showError ? <ErrorMessage errorCode={errCode} /> : null} */}
                     </div>
                     <div className='login__control'>
                         <label>Don't have an account?</label>
