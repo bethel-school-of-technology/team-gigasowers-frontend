@@ -53,7 +53,7 @@ const LoginToggle = () => {
     const [userName, setUserName] = useState('');
 
 
-    useEffect(async () => {
+    useEffect(async() => {
         //checkAuth for valid token will go here
         let validToken = await CheckAuth();
         if (!validToken) {

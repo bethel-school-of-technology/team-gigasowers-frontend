@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import CheckAuth from '../../services/CheckAuth';
+//import CheckAuth from '../../services/CheckAuth';
 
 
 const LoginFormStyles = styled.div`
