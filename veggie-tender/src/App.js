@@ -14,6 +14,7 @@ import UserProfileUp from "./pages/UserProfileUp";
 import veggieBackFade from './assets/images/veggieBackFade.png';
 import EventReg from './pages/EventReg';
 import FarmEvents from './pages/FarmEvents';
+import ProductReg from './components/ProductInventory/ProductRegForm';
 
 
 
@@ -68,20 +69,26 @@ export default function App() {
                               </Switch>
                               <Switch>
                                     <Route path="/users/update/profile">
-                                          <Navbar />  
+                                          <Navbar />
                                           <UserProfileUp />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/eventRegister">
-                                          <Navbar /> 
+                                          <Navbar />
                                           <EventReg />
                                     </Route>
                               </Switch>
                               <Switch>
                                     <Route path="/users/eventEdit">
-                                          <Navbar /> 
+                                          <Navbar />
                                           <EventReg />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/productRegister">
+                                          <Navbar />
+                                          <ProductReg />
                                     </Route>
                               </Switch>
                               <Switch>
