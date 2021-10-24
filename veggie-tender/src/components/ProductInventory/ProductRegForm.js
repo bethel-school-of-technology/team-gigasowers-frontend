@@ -91,7 +91,7 @@ font-family: 'MontserratMedium';
 }
 `;
 
-const EventRegForm = () => {
+const ProductRegForm = () => {
 
     // let validToken = CheckAuth();
     // if (!validToken) {
@@ -101,49 +101,41 @@ const EventRegForm = () => {
     //     console.log(validToken);
     // }
 
-   // let history = useHistory();  //Used to track page route history
+    //let history = useHistory();  //Used to track page route history
 
 
 
     const [isSubmitComplete, setIsSubmitComplete] = useState(false);
-    let tempArr = [];   //used to load event inputs from form
-    const [eventArr, setEventArr] = useState([]);  //state for events array
-    const [calcEventId, setCalcEventId] = useState('');  //load this separately by incrementing on array length
+    let tempArr = [];   
+    const [productArr, setProductArr] = useState([]);  //state for farmInventory array
+    const [calcProductId, setCalcProductId] = useState('');  //load this separately by incrementing on array length
     //set state for entered credentials
-    const [enteredEventName, setEventName] = useState('');
-    const [enteredEventAddress, setEventAddress] = useState('');
-    const [enteredEventCity, setEventCity] = useState('');
-    const [enteredEventState, setEventState] = useState('');
-    const [enteredEventZip, setEventZip] = useState('');
-    const [enteredEventStartDate, setEventStartDate] = useState('');
-    const [enteredEventFinishDate, setEventFinishDate] = useState('');
-    //const [enteredEventImage, setEventImage] = useState('');
+    const [enteredProductName, setProductName] = useState('');
+    const [enteredProductCategory, setProductCategory] = useState('');
+    const [enteredProductDescription, setProductDescription] = useState('');
+    const [enteredProductQty, setProductQty] = useState();
+    const [enteredProductUnitPrice, setProductUnitPrice] = useState();
+    //const [enteredProductImage, setProductImage] = useState('');
 
 
     //handlers for each input field on the form
-    const eventNameChangeHandler = (event) => {
-        setEventName(event.target.value);
+    const productNameChangeHandler = (event) => {
+        setProductName(event.target.value);
     };
-    const eventAddressChangeHandler = (event) => {
-        setEventAddress(event.target.value);
+    const productCategoryChangeHandler = (event) => {
+        setProductCategory(event.target.value);
     };
-    const eventCityChangeHandler = (event) => {
-        setEventCity(event.target.value);
+    const productDescriptionChangeHandler = (event) => {
+        setProductDescription(event.target.value);
     };
-    const eventStateChangeHandler = (event) => {
-        setEventState(event.target.value);
+    const productQtyChangeHandler = (event) => {
+        setProductQty(event.target.value);
     };
-    const eventZipChangeHandler = (event) => {
-        setEventZip(event.target.value);
+    const productPriceChangeHandler = (event) => {
+        setProductUnitPrice(event.target.value);
     };
-    const eventStartDateChangeHandler = (event) => {
-        setEventStartDate(event.target.value);
-    };
-    const eventFinishDateChangeHandler = (event) => {
-        setEventFinishDate(event.target.value);
-    };
-    // const eventImageChangeHandler = (event) => {
-    //     setEventImage(event.target.value);
+    // const productImageChangeHandler = (event) => {
+    //     setProductImage(event.target.value);
     // };
 
     useEffect(() => {
@@ -167,12 +159,12 @@ const EventRegForm = () => {
                         console.log("this profile is not a farmer");
                     }
 
-                    setEventArr(prevArr => {
-                        const newArr = [...prevArr, ...response.data.userFarms.farmEvent];
+                    setProductArr(prevArr => {
+                        const newArr = [...prevArr, ...response.data.userFarms.farmInventory];
                         return newArr;
                     });
 
-                    setCalcEventId(parseInt(response.data.userFarms.farmEvent.length)+1); //sets eventId for form entry
+                    setCalcProductId(parseInt(response.data.userFarms.farmInventory.length)+1); //sets productId for form entry
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
@@ -185,26 +177,23 @@ const EventRegForm = () => {
     }, []);
 
 
-
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        console.log("calcId: " + calcEventId);
-        console.log(eventArr);
-        console.log(eventArr.length);
+        console.log("calcId: " + calcProductId);
+        console.log(productArr);
+        console.log(productArr.length);
 
         tempArr = [{
-            'eventId': calcEventId.toString(),
-            'eventName': enteredEventName,
-            'eventAddress': enteredEventAddress,
-            'eventCity': enteredEventCity,
-            'eventState': enteredEventState,
-            'eventZip': enteredEventZip,
-            'eventStartDate': enteredEventStartDate,
-            'eventFinishDate': enteredEventFinishDate,
-            'eventImage': ""
+            'productId': calcProductId.toString(),
+            'productName': enteredProductName,
+            'productCategory': enteredProductCategory,
+            'productDescription': enteredProductDescription,
+            'productQty': enteredProductQty,
+            'productUnitPrice': enteredProductUnitPrice,
+            'productImage': ""
         }];
-        setEventArr(prevArr => {
+        setProductArr(prevArr => {
             const enteredArr = [...prevArr, ...tempArr];
             console.log(enteredArr);
             return enteredArr;
@@ -215,36 +204,35 @@ const EventRegForm = () => {
 
     useEffect(() => {
         if (isSubmitComplete) {
-            console.log(eventArr);
+            console.log(productArr);
             //set JWT token into header for server side authentication
             let myHeaders = {
                 'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
             };
             //post to login in API to auth user and get token
-            axios.put('http://localhost:5000/api/users/update', {'farmEvent': eventArr }, { 'headers': myHeaders })
+            axios.put('http://localhost:5000/api/users/update', {'farmInventory': productArr }, { 'headers': myHeaders })
                 .then(function (response) {
                     console.log(response);
                     if (response.status === 200) {
                     } else {
-                        console.log(`Event update error response received: ${response.status} `);
+                        console.log(`Product update error response received: ${response.status} `);
                     }
                 })
                 .catch(function (error) {
-                    console.log(`Event update catch error: ${error} `);
+                    console.log(`Product update catch error: ${error} `);
                 });
 
-            setCalcEventId('');
-            setEventName('');
-            setEventAddress('');
-            setEventCity('');
-            setEventState('');
-            setEventZip('');
-            setEventStartDate('');
-            setEventFinishDate('');
-            //setEventImage('');
+            setCalcProductId('');
+            setProductName('');
+            setProductCategory('');
+            setProductDescription('');
+            setProductQty('');
+            setProductUnitPrice('');
+            //setProductImage('');
+  
 
         }
-    }, [isSubmitComplete, eventArr]);
+    }, [isSubmitComplete, productArr]);
 
 
 
@@ -254,39 +242,31 @@ const EventRegForm = () => {
                 <form onSubmit={submitHandler}>
                     <div className='login-shell'>
                         <div >
-                            <h1 className='title'>Create Farmer Market Event</h1>
+                            <h1 className='title'>Add A Farm Product</h1>
                             <div className='login__controls'>
                                 <div className='login__control'>
-                                    <label>Event Name</label>
-                                    <input type='text' value={enteredEventName} onChange={eventNameChangeHandler} />
+                                    <label>Product Name</label>
+                                    <input type='text' value={enteredProductName} onChange={productNameChangeHandler}/>
                                 </div>
                                 <div className='login__control'>
-                                    <label>Event Address</label>
-                                    <input type='text' value={enteredEventAddress} onChange={eventAddressChangeHandler} />
+                                    <label>Product Category</label>
+                                    <input type='text' value={enteredProductCategory} onChange={productCategoryChangeHandler}/>
                                 </div>
                                 <div className='login__control'>
-                                    <label>Event City</label>
-                                    <input type='text' value={enteredEventCity} onChange={eventCityChangeHandler} />
+                                    <label>Product Description</label>
+                                    <input type='text' value={enteredProductDescription} onChange={productDescriptionChangeHandler}/>
                                 </div>
                                 <div className='login__control'>
-                                    <label>Event State</label>
-                                    <input type='text' value={enteredEventState} onChange={eventStateChangeHandler} />
+                                    <label>Product Qty</label>
+                                    <input type='text' value={enteredProductQty} onChange={productQtyChangeHandler} />
                                 </div>
                                 <div className='login__control'>
-                                    <label>Event Zip</label>
-                                    <input type='text' value={enteredEventZip} onChange={eventZipChangeHandler} />
-                                </div>
-                                <div className='login__control'>
-                                    <label>Event Start Date</label>
-                                    <input type='date' value={enteredEventStartDate} onChange={eventStartDateChangeHandler} />
-                                </div>
-                                <div className='login__control'>
-                                    <label>Event Finish Date</label>
-                                    <input type='date' value={enteredEventFinishDate} onChange={eventFinishDateChangeHandler} />
+                                    <label>Product Unit Price</label>
+                                    <input type='text' value={enteredProductUnitPrice} onChange={productPriceChangeHandler} />
                                 </div>
                                 {/* <div className='login__control'>
-                                    <label>Event Image</label>
-                                    <input type='text' value={enteredEventImage} onChange={eventImageChangeHandler} />
+                                    <label>Product Image</label>
+                                    <input type='text' value={enteredProductImage} onChange={productImageChangeHandler} />
                                 </div> */}
                             </div>
                         </div>
@@ -300,4 +280,4 @@ const EventRegForm = () => {
     )
 };
 
-export default EventRegForm;
+export default ProductRegForm;

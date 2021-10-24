@@ -1,6 +1,6 @@
 import React from 'react';
 import FarmInfo from '../components/Farm/FarmInfo';
-import FarmProduce from '../components/Farm/FarmProduce';
+import FarmProduce from '../components/ProductInventory/FarmProduce';
 
 
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import FarmEvent from './FarmEvent';
+import Product from './Product';
 
 
 
@@ -127,7 +127,7 @@ body {
 `;
 
 
-const Events = () => {
+const FarmProduce = () => {
 
     // let validToken = CheckAuth();
     // if (!validToken) {
@@ -138,7 +138,7 @@ const Events = () => {
     // }
 
 
-    const [eventArr, setEventArr] = useState([]);  //state for events array
+    const [productArr, setProductArr] = useState([]);  //state for events array
 
 
     useEffect(() => {
@@ -162,8 +162,8 @@ const Events = () => {
                         console.log("this profile is not a farmer");
                     }
 
-                    setEventArr(prevArr => {
-                        const newArr = [...prevArr, ...response.data.userFarms.farmEvent];
+                    setProductArr(prevArr => {
+                        const newArr = [...prevArr, ...response.data.userFarms.farmInventory];
                         return newArr;
                     });
                 }
@@ -178,31 +178,29 @@ const Events = () => {
     }, []);
 
 
-  
+
     return (
         <FarmInfoStyles>
             <div className="container">
                 {/* <div className="image_float">
-                    <h3 className="farmImage">Farmer Market Image</h3>
+                    <h3 className="farmImage">Product Image</h3>
                 </div> */}
                 <div className="info_float">
                     <div className="farmEvents">
                         <div className="eachEvents">
                             <h2>
-                                {eventArr.map(event => (
-                                    <FarmEvent farmEvent={event} />
+                                {productArr.map(item => (
+                                    <Product farmProduct={item} />
                                 ))}
                             </h2>
                         </div>
                     </div>
                 </div>
-                <div className="buttonSection">
-                    <Link to="/users/eventRegister" type='submit' className="btn-1">Schedule Event</Link>
-                    <Link to="/users/farmProfile" type='submit' className="btn-2">Back to Farm</Link>
-                </div>
             </div>
         </FarmInfoStyles >
     )
-}
+};
 
-export default Events;
+export default FarmProduce;
+
+

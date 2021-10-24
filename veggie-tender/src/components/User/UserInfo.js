@@ -156,6 +156,7 @@ const UserInfo = () => {
     const [state, setState] = useState();
     const [zip, setZip] = useState();
     const [email, setEmail] = useState();
+    const [isFarmer, setIsFarmer] = useState(false);
 
     //set JWT token into header for server side authentication
     let myHeaders = {
@@ -185,6 +186,7 @@ const UserInfo = () => {
                 setState(response.data.state);
                 setZip(response.data.zip);
                 setEmail(response.data.email);
+                setIsFarmer(response.data.isFarmer);
 
                 // history.push('/users/profile/:_id');
             }
@@ -227,7 +229,11 @@ const UserInfo = () => {
 
                     </div>
                     <div className="buttonSection">
-                        <Link to="/users/farmProfile" type='submit' className="btn-2">My Farm</Link>
+                    {isFarmer ?
+                            <Link to="/users/farmProfile" type='button' className="btn">My Farm</Link>
+                            :
+                            <Link to="/users/farmRegister" type="button" className="btn">Register Your Farm</Link>
+                        }
                         <Link to='/users/update/profile' type="button" className="btn">Update Info</Link>
                     </div>
                 </div>
