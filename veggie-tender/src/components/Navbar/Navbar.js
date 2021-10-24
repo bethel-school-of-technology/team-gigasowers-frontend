@@ -9,6 +9,7 @@ import LoginToggle from './LoginToggle';
 import ProfileToggle from './ProfileToggle';
 import FarmToggle from './FarmToggle';
 // import { useLayoutEffect } from 'react';
+import Mascot from './Mascot';
 
 
 
@@ -184,7 +185,8 @@ function Navbar() {
       <div className="Navbar">
         <div className="leftSide">
           <div className="links">
-            <a href="/" className="homeButton">Veggie tender</a>
+            <a href="/" className="homeButton">Veggie tender </a>
+            {/* <div className="mascot"><Mascot/></div> */}
             {/* <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a> */}
             {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
             {/* <a href="/farmers">Farmers</a>

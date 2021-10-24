@@ -1,40 +1,24 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
-//import ReactPlaceholder from 'react-placeholder';
-//import "react-placeholder/lib/reactPlaceholder.css";
 import { PhotoPlaceholder } from 'react-placeholder-image';
-//import farmName from './LandingFunction';
-//import farmDescription from './LandingFunction';
-//import farmId from './LandingFunction';
-
 
 
 
 const CardStyles = styled.div`
 @media (max-width: 2560px){
-    .bigWrapper{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 25px;
-        position: center;
-        border: 3px solid green; 
-        .cardWrapper{
-            border: black solid;
+        .bigWrapper{
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+            position: absolute;
+            width: 100%;
         }
-    }
 }
 
 @media (max-width: 1440px){
     .bigWrapper{
         display: grid;
-        grid-template-columns: 35% 40% 35%;
-        gap: 25px;
-        position: center;
-        border: 3px solid green; 
-        .cardWrapper{
-            border: black solid;
-        }
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
@@ -42,73 +26,118 @@ const CardStyles = styled.div`
     .bigWrapper{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 5px;
     }
 }
 
-@media (max-width: 400){
+@media (max-width: 700px){
     .bigWrapper{
         display: grid;
         grid-template-columns: 1fr;
     }
 }
 
-.cardWrapper{
+.cards {
     display: flex;
-    flex-direction: row;
-    border: black dashed;
-    flex-wrap: wrap;
-    float: center;
-    width: 265px;
-    height: 150px;
-    box-shadow: 0 2px 20px gray;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .cardTop {
+    background: #a64e43;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
     cursor: pointer;
+    text-align: center;
+  }
+  
+  .cardImg {
+    text-align: center;
+    width: 100%;
+    border-radius: 16px;
+  }
+  
+  .cardName,
+  .cards__album {
+    color: #20263f;
+  }
+  
+  .cardTop img {
+    margin: 0;
+    height: 250px;
+  }
+
+  .cards__album {
+    font-style: italic;
+  }
+  
+  h2 {
+    margin: 0;
+    text-align: center;
+  }
+  
+  p {
+    line-height: 21px;
+  }
+  
+  .cardTop,
+    .cardBack {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.cardImg{
-    object-fit: cover;
-    float: top;
+.cardTop {
+  height: 100%;
+  width: 400px;
+  transform: rotateX(0deg);
+  -webkit-transform: rotateX(0deg);
 }
 
-.cardWords{
-float: bottom;
+.cardBack {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  position: absolute;
+  text-align: center;
+  right: 0;
+  left: 0;
+  top: 10px;
+  color: #20263f;
 }
 
-.cardTitle{
-    font-size: x-large;
-    padding: 1px;
-}
-
+.card {
+    -webkit-transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .card.flip {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+  
 `;
 
-// .card::hover{
-//     transform: scale(1.02)
-// }
-// .cardBut :hover{
-// background: red;
-// color: white;
-// }
-// .card{
-//     flex-wrap: wrap;
-//     flex: 0.8;
-//     box-sizing: border-box;
-//     margin: 0;
-//     padding: px;
-//     font-family: Oxygen, sans-serif;
-//     margin: 2rem;
-//     gap: 3px;
-//  }
-//const responce = "";
+
+
+const cards = document.querySelectorAll(".cardsTop");
+    function flipCard() {
+    this.classList.toggle("flip");
+    }
+    cards.forEach((card) => card.addEventListener("click", flipCard));
+
+
 
 export default function Card() {
 
     const [user, setUser] = useState([]);
-
-
-    useEffect(() => {
-       getFarm();
-    }, [])
+        useEffect(() => {
+        getFarm();
+        }, [])
 
 
 
@@ -129,6 +158,8 @@ export default function Card() {
         } catch (error) {
         console.error(error);
         }
+
+        
     }
 
     return (
@@ -136,28 +167,238 @@ export default function Card() {
             <div className="bigWrapper">
             {user.map(currentUser => (  
                 //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
-                <div>
-                    <br/>
-                <div className="cardWrapper">
-                    <div className="cardBody">
-                        <div className="cardImg">
-                            {/* <img src="./imgtest/imgholder.png" /> */}
-                            <PhotoPlaceholder width={265} height={149} />
+                
+
+                <div className="cards">
+                    <div className="card">
+                        <div className="cardTop">
+                            <PhotoPlaceholder width={350} height={250} className="cardImg"/>
+                            <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
+                            <p class="cards__album" tabindex="0">
+                                <strong>Oishii おいしい Yummy</strong>
+                            </p>
                         </div>
-                        <div className="cardWords">
-                            {/* <p className ="cardFarmId">{currentUser.userFarms.farmId}</p> */}
-                            <h2 className="cardTitle">{currentUser.userFarms.farmName}</h2>
-                        </div>
+                        <div className="cardBack">
+                            <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
+                            <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
+                            <p className="cardDes">{currentUser.userFarms.farmState}</p>
+                            <p className="cardDes">{currentUser.userFarms.farmCity}</p>
                         </div>
                     </div>
-                </div>    
-                //</link> 
+                </div>
+                
             ))};
             </div>
-        </CardStyles>
 
+        </CardStyles>
     )
 }
+
+
+
+
+// @media (max-width: 2560px){
+//     .bigWrapper{
+//         display: grid;
+//         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+//         gap: 25px;
+//         position: center;
+//         border: 3px solid green; 
+//         border-top: double;
+//         .cardWrapper{
+//             border: black solid;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             float: center;
+//             box-shadow: 0 2px 20px gray;
+            
+//             cursor: pointer;
+//             width: 330px;
+//             height: 185px;
+//         }
+//     }
+// }
+
+// @media (max-width: 1440px){
+//     .bigWrapper{
+//         display: grid;
+//         grid-template-columns: 1fr 1fr ;
+//         gap: 25px;
+//         position: center;
+//         border: 3px solid green; 
+//         .cardWrapper{
+//             border: black solid;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             float: center;
+//             box-shadow: 0 2px 20px gray;
+            
+//             cursor: pointer;
+//             width: 330px;
+//             height: 185px;
+//         }
+//     }
+// }
+
+// @media (max-width: 810px){
+//     .bigWrapper{
+//         display: grid;
+//         grid-template-columns: 1fr 1fr;
+//         gap: 25px;
+//         position: center;
+//         border: 3px solid green; 
+//         .cardWrapper{
+//             border: black solid;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             float: center;
+//             box-shadow: 0 2px 20px gray;
+            
+//             cursor: pointer;
+//             width: 330px;
+//             height: 185px;
+//         }
+//     }
+// }
+
+// @media (max-width: 400){
+//     .bigWrapper{
+//         display: grid;
+//         grid-template-columns: 1fr;
+//         gap: 25px;
+//         position: center;
+//         border: 3px solid green; 
+//         .cardWrapper{
+//             border: black solid;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             float: center;
+//             box-shadow: 0 2px 20px gray;
+            
+//             cursor: pointer;
+//             width: 330px;
+//             height: 185px;
+//         }
+//     }
+// }
+
+// .cardImg{
+//     // float: left;
+// }
+
+// .cardWords{
+//     position: top;
+// }
+
+// .cardTitle{
+//     font-size: x-large;
+// }
+
+
+// .flip-card {
+//     background-color: transparent;
+//     width: 330px;
+//     height: 155px;
+//     border: 1px solid #f1f1f1;
+//     perspective: 1000px; 
+//   }
+  
+//   .flip-card-inner {
+//     position: relative;
+//     width: 100%;
+//     height: 100%;
+//     text-align: center;
+//     transition: transform 0.8s;
+//     transform-style: preserve-3d;
+//   }
+  
+//   .flip-card:hover .flip-card-inner {
+//     transform: rotateY(180deg);
+//   }
+  
+//   .flip-card-front, .flip-card-back {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     -webkit-backface-visibility: hidden;
+//     backface-visibility: hidden;
+//   }
+  
+//   .flip-card-front {
+//     background-color: #bbb;
+//     color: black;
+//   }
+  
+//   .flip-card-back {
+//     background-color: dodgerblue;
+//     color: white;
+//     transform: rotateY(180deg);
+//   }
+
+
+// .card::hover{
+//     transform: scale(1.02)
+// }
+// .cardBut :hover{
+// background: red;
+// color: white;
+// }
+// .card{
+//     flex-wrap: wrap;
+//     flex: 0.8;
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: px;
+//     font-family: Oxygen, sans-serif;
+//     margin: 2rem;
+//     gap: 3px;
+//  }
+//const responce = "";
+
+// <div class="flip-card">
+//                     <div class="flip-card-inner">
+//                         <div class="flip-card-back"></div>
+//                             <div className="cardWrapper">
+//                                 <div className="cardBody">
+//                                     <div className="cardImg">
+//                                         <PhotoPlaceholder width={330} height={155} />
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                         <div class="flip-card-front">
+//                             <div className="cardWords">
+//                                 <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
+//                                 <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
+//                                 <p className="cardDes">{currentUser.userFarms.farmState}</p>
+//                                 <p className="cardDes">{currentUser.userFarms.farmCity}</p>
+//                             </div>
+//                         </div>
+//                     </div>
+
+
+{/* <div class="flip-card">
+<div class="flip-card-inner">
+    <div class="flip-card-back"></div>
+        <div className="cardWrapper">
+            <div className="cardBody">
+                <div className="cardImg">
+                    <PhotoPlaceholder width={330} height={155} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flip-card-front">
+        <div className="cardWords">
+            <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
+            <h2 className="cardDes">{currentUser.userFarms.farmDescription}</h2>
+        </div>
+    </div>
+</div> */}
 
 //<button className="cardBut">Buttonです</button>
 //<div>{currentUser.userFarms.farmId}</div>
