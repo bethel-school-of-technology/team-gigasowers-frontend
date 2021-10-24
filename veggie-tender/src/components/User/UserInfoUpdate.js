@@ -128,13 +128,6 @@ body {
 const UserInfoUpdate = () => {
     let history = useHistory();
 
-    //checkAuth for valid token will go here
-    let validToken = CheckAuth();
-    if (!validToken) {
-        console.log("validToken returned false or undefined");
-        history.push('/users/login');
-    }
-
     // const [userImage, setUserImage] = useState();
     const [userName, setUserName] = useState();
     const [firstName, setFirstName] = useState();
@@ -144,6 +137,17 @@ const UserInfoUpdate = () => {
     const [state, setState] = useState();
     const [zip, setZip] = useState();
     const [email, setEmail] = useState();
+
+
+    const usernameChangeHandler = (event) => { setUserName(event.target.value) };
+    const firstNameChangeHandler = (event) => { setFirstName(event.target.value) };
+    const lastNameChangeHandler = (event) => { setLastName(event.target.value) };
+    const emailChangeHandler = (event) => { setEmail(event.target.value) };
+    const addressChangeHandler = (event) => { setAddress(event.target.value) };
+    const cityChangeHandler = (event) => { setCity(event.target.value) };
+    const stateChangeHandler = (event) => { setState(event.target.value) };
+    const zipChangeHandler = (event) => { setZip(event.target.value) };
+
 
     useEffect(() => {
         //set JWT token into header for server side authentication
@@ -155,10 +159,10 @@ const UserInfoUpdate = () => {
             { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
                     console.log("No token or must be logged in");
                     console.log(response.status.message);
-                    //history.push('/users/login');
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log("response: ");
@@ -175,24 +179,15 @@ const UserInfoUpdate = () => {
                     setEmail(response.data.email);
                 }
                 else {
-                    // setShowError(true);
                     console.log(`Unable to get user info; error status: ${response.status} `);
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
-                // formErrorHandler(error.message);
             });
     }, []);
 
-    const usernameChangeHandler = (event) => {setUserName(event.target.value) };
-    const firstNameChangeHandler = (event) => {setFirstName(event.target.value) };
-    const lastNameChangeHandler = (event) => {setLastName(event.target.value) };
-    const emailChangeHandler = (event) => {setEmail(event.target.value) };
-    const addressChangeHandler = (event) => {setAddress(event.target.value) };
-    const cityChangeHandler = (event) => {setCity(event.target.value) };
-    const stateChangeHandler = (event) => {setState(event.target.value) };
-    const zipChangeHandler = (event) => {setZip(event.target.value) };
+
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -207,6 +202,8 @@ const UserInfoUpdate = () => {
             state: state,
             zip: zip
         };
+        console.log("profileData: ");
+        console.log(profileData);
 
         //set JWT token into header for server side authentication
         let myHeaders = {
@@ -217,18 +214,16 @@ const UserInfoUpdate = () => {
             { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
                     console.log("No token or must be logged in");
                     console.log(response.status.message);
-                    //history.push('/users/login');
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log("directing to profile");
                     history.push('/users/profile');
                 }
                 else {
-                    // setShowError(true);
-                    // setFormErrors('Unable to register farm.')
                     console.log(`Unable to get info; error status: ${response.status} `);
                 }
 
@@ -237,6 +232,7 @@ const UserInfoUpdate = () => {
                 console.log("catch error: " + error);
                 // formErrorHandler(error.message);
             });
+
         setUserName('');
         setFirstName('');
         setLastName('');
@@ -245,7 +241,9 @@ const UserInfoUpdate = () => {
         setState('');
         setZip('');
         setEmail('');
+
     };
+
 
     return (
         <UserUpdateStyles>
@@ -324,7 +322,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='buttonSection'>
-                                <Link to='/users/profile' type="button" className="btn">Update Info</Link>
+                                <button type='submit' className="btn">Update Info</button>
                             </div>
                         </form>
 
