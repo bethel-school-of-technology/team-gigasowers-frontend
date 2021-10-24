@@ -188,11 +188,12 @@ const Events = () => {
                 <div className="info_float">
                     <div className="farmEvents">
                         <div className="eachEvents">
-                            <h2>
+                            <h4>
                                 {eventArr.map(event => (
                                     <FarmEvent farmEvent={event} />
+                                    
                                 ))}
-                            </h2>
+                            </h4>
                         </div>
                     </div>
                 </div>

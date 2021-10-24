@@ -77,24 +77,6 @@ body {
     text-decoration: none;
 }
 
-.btn-1{
-    float: left;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--dk-mustard);
-    border: 3px solid var(--dk-mustard);
-    border-radius: 12px;
-    text-decoration: none; 
-}
-.btn-2{
-    float: right;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--coral);
-    border: 3px solid var(--coral);
-    border-radius: 12px;
-    text-decoration: none; 
-}
 
 @media only screen and (max-width: 768px) {
     .container {
@@ -128,25 +110,23 @@ const FarmEvent = (props) => {
 
     return (
         <FarmInfoStyles>
-            <div className="container">
+            {/* <div className="container">
                 <div className="image_float">
                     <h3 className="farmImage">{props.farmEvent.eventImage}</h3>
                 </div>
-                <div className="info_float">
-                    <div className="farmEvents">
+                <div className="info_float"> */}
+                    {/* <div className="farmEvents"> */}
                         <div classname="eachEvents" key={props.farmEvent.eventId}>
                                 <h3>{props.farmEvent.eventName}</h3>
                                 <h3>{props.farmEvent.eventAddress}</h3>
-                                <h3>{props.farmEvent.eventCity}</h3>
-                                <h3>{props.farmEvent.eventState}</h3>
-                                <h3>{props.farmEvent.eventZip}</h3>
+                                <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
                                 <h3>{props.farmEvent.eventStartDate}</h3>
                                 <h3>{props.farmEvent.eventFinishDate}</h3>
                             <Link type="button" className="btn" fEvent={props.farmEvent}>Edit Event Info</Link>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    {/* </div> */}
+                {/* </div>
+            </div> */}
         </FarmInfoStyles >
     )
 }

@@ -85,16 +85,6 @@ body {
     float: right;
     margin-top: 1rem;   
 }
-.btn{
-    padding: .5rem;
-    link-color: white;
-    background-color: var(--terra);
-    border: 3px solid var(--terra);
-    border-radius: 12px;
-    text-decoration: none;
-    justify-content: flex-end;
-    
-}
 .btn-1{
     float: left;
     padding: .5rem;
@@ -105,6 +95,17 @@ body {
     border-radius: 12px;
     text-decoration: none; 
 }
+.btn-3{
+    float: left;
+    padding: .5rem;
+    margin-top: -0.5rem;
+    margin-right: 1rem;
+    background-color: var(--mustard);
+    border: 3px solid var(--mustard);
+    border-radius: 12px;
+    text-decoration: none;
+    
+}
 .btn-2{
     float: right;
     padding: .5rem;
@@ -114,6 +115,7 @@ body {
     border-radius: 12px;
     text-decoration: none; 
 }
+
 
 @media only screen and (max-width: 768px) {
     .container {
@@ -242,7 +244,7 @@ const FarmInfo = () => {
                         <p>{farmEmail}</p>
                     </div>
                     <div className="buttonSection">
-                        <Link to='/users/productRegister' type="button" className="btn-1">Add Produce</Link>
+                        <Link to='/users/productRegister' type="button" className="btn-3">Add Produce</Link>
                         <Link to='/users/events' type="button" className="btn-1">My Events</Link>
                         <Link to='/users/update/farmProfile' type="button" className="btn-2">Update Info</Link>
                     </div>
