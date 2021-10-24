@@ -187,7 +187,7 @@ const FarmProduce = () => {
                 </div> */}
                 <div className="info_float">
                     <div className="farmEvents">
-                        <div classname="eachEvents">
+                        <div className="eachEvents">
                             <h2>
                                 {productArr.map(item => (
                                     <Product farmProduct={item} />

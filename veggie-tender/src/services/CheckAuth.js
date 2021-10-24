@@ -13,7 +13,7 @@ const CheckAuth = async () => {
 
    return await axios.get('http://localhost:5000/api/users/profile', { 'headers': myHeaders })
         .then(function (response) {
-            console.log(response.data);
+            //console.log(response.data);
             console.log("checkAuth response status: " + response.status);
             if (response.status === 401 || response === null) {
                 //user does not have a valid token or is not logged in
