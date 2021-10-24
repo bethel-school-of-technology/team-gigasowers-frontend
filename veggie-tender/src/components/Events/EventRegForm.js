@@ -93,16 +93,8 @@ font-family: 'MontserratMedium';
 
 const EventRegForm = () => {
 
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned null or undefined");
-    //    // history.push('/users/login');
-    // } else {
-    //     console.log(validToken);
-    // }
 
    // let history = useHistory();  //Used to track page route history
-
 
 
     const [isSubmitComplete, setIsSubmitComplete] = useState(false);

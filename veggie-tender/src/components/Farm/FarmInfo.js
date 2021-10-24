@@ -256,31 +256,3 @@ const FarmInfo = () => {
 
 export default FarmInfo;
 
- //useEffect(() => {
- //set JWT token into header for server side authentication
-        // let myHeaders = {
-        //     'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-        // };
-
-  // axios.get('http://localhost:5000/api/users/profile',
-        //     { 'headers': myHeaders })
-        //     .then(function (response) {
-        //         console.log(response.status);
-        //         if (response.status === 401) {
-        //             console.log("No token or must be logged in");
-        //             console.log(response.status.message);
-        //             history.push('/users/login');
-        //         }
-        //         if (response.status === 200) {
-        //             console.log("response: ");
-        //             console.log(response);
-
-                   // })
-                //    else {
-                //     console.log(`Unable to get farm info; error status: ${response.status} `);
-                // }
-            // .catch(function (error) {
-            //     console.log("catch error: " + error);
-            // });
-
-        //}, [validUser]);
