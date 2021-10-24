@@ -148,6 +148,7 @@ export default function FarmerRegisterForm() {
     const [enteredFarmZip, setFarmZip] = useState('');
     const [enteredFarmWebsite, setFarmWebsite] = useState('');
     const [enteredFarmEmail, setFarmEmail] = useState('');
+    const [isFarmer, setIsFarmer] = useState('');
     // let [showError, setShowError] = useState(false);
     // let [formErrors, setFormErrors] = useState('');
 
@@ -160,7 +161,6 @@ export default function FarmerRegisterForm() {
     const farmZipHandler = (event) => { setFarmZip(event.target.value) };
     const farmWebsiteHandler = (event) => { setFarmWebsite(event.target.value) };
     const farmEmailHandler = (event) => { setFarmEmail(event.target.value) };
-
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -182,7 +182,8 @@ export default function FarmerRegisterForm() {
             farmState: enteredFarmState,
             farmZip: enteredFarmZip,
             farmWebsite: enteredFarmWebsite,
-            farmEmail: enteredFarmEmail
+            farmEmail: enteredFarmEmail,
+            isFarmer: true
         };
 
 
@@ -225,6 +226,7 @@ export default function FarmerRegisterForm() {
         setFarmZip('');
         setFarmWebsite('');
         setFarmEmail('');
+        setIsFarmer(true);
     }
 
 

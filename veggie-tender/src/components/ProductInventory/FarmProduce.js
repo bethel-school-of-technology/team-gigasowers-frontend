@@ -24,8 +24,7 @@ body {
 
 .container {
         justify-content: center;
-        height: 450px;
-        max-width: 800px;
+        height: 300px;
         background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
@@ -52,7 +51,7 @@ body {
 // }
 .info_float {
     width: 100%;
-    height: 90%;
+    height: 100%;
     display: block;
 }
 .farmEvents {
@@ -60,7 +59,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--cream);
-    border: 5px solid var(--md-gg);
+    border: 5px solid var(--mustard);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: left;
@@ -188,11 +187,11 @@ const FarmProduce = () => {
                 <div className="info_float">
                     <div className="farmEvents">
                         <div className="eachEvents">
-                            <h2>
+                            <h3>
                                 {productArr.map(item => (
                                     <Product farmProduct={item} />
                                 ))}
-                            </h2>
+                            </h3>
                         </div>
                     </div>
                 </div>
