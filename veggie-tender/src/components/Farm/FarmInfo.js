@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import axios from "axios";
+//import axios from "axios";
 import { Link, useHistory } from 'react-router-dom';
 import CheckAuth from '../../services/CheckAuth';
-// import LoginForm from '../LoginForm';
 
 
 const FarmInfoStyles = styled.div`
@@ -164,7 +163,6 @@ const FarmInfo = () => {
 
     let history = useHistory();
 
-
     //State Variables for farm profile
     const [farmName, setFarmName] = useState('');
     const [farmDescription, setFarmDescription] = useState('');
@@ -176,81 +174,40 @@ const FarmInfo = () => {
     const [farmWebsite, setFarmWebsite] = useState('');
     const [farmEmail, setFarmEmail] = useState('');
 
+
+
     //state variable for validating user
-    let validUser = false;
-
-
+    const [validToken, setValidToken] = useState(false);
 
     useEffect(async () => {
         //checkAuth for valid token will go here
-        let validToken = await CheckAuth();
-        console.log(validToken);
-        if (!validToken) {
-            validUser = false;
+        let response = await CheckAuth();
+        
+        if (!response?.userFarms) {
+            setValidToken(false);
+            console.log("FarmInfo no userFarm " + response);
+            history.push('/users/login');
         } else {
+            setValidToken(true);
+
             if (localStorage.getItem("isFarmer")) {
                 console.log("farmer? " + localStorage.getItem("isFarmer"));
-                validUser = true;
+                //load state variables from response data
+                setFarmName(response.userFarms.farmName);
+                setFarmDescription(response.userFarms.farmDescription);
+                setFarmAddress(response.userFarms.farmAddress);
+                setFarmCity(response.userFarms.farmCity);
+                setFarmState(response.userFarms.farmState);
+                setFarmZip(response.userFarms.farmZip);
+                setFarmImage(response.userFarms.farmImage);
+                setFarmWebsite(response.userFarms.farmWebsite);
+                setFarmEmail(response.userFarms.farmEmail);
+            } else {
+                console.log("farmInfo: not a valid user");
+                history.push('/users/profile');
             }
         }
-        if (validUser) {
-            loadFarmInfo();
-        } else {
-            history.push('/users/login');
-        };
-    }, []);
-
-
-
-
-    const loadFarmInfo = () => {
-        //set JWT token into header for server side authentication
-        let myHeaders = {
-            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-        };
-
-        axios.get('http://localhost:5000/api/users/profile',
-            { 'headers': myHeaders })
-            .then(function (response) {
-                console.log(response.status);
-                if (response.status === 401) {
-                    console.log("No token or must be logged in");
-                    console.log(response.status.message);
-                    history.push('/users/login');
-                }
-                if (response.status === 200) {
-                    console.log("response: ");
-                    console.log(response);
-                    //validate this profile is a farmer
-                    if (!response.data.isFarmer) {
-                        console.log("this profile is not a farmer");
-                    }
-                    //load state variables from response data
-                    setFarmName(response.data.userFarms.farmName);
-                    setFarmDescription(response.data.userFarms.farmDescription);
-                    setFarmAddress(response.data.userFarms.farmAddress);
-                    setFarmCity(response.data.userFarms.farmCity);
-                    setFarmState(response.data.userFarms.farmState);
-                    setFarmZip(response.data.userFarms.farmZip);
-                    setFarmImage(response.data.userFarms.farmImage);
-                    setFarmWebsite(response.data.userFarms.farmWebsite);
-                    setFarmEmail(response.data.userFarms.farmEmail);
-                    console.log(farmImage);
-                    // history.push('/users/farmProfile/:farmId');
-                }
-                else {
-                    // setShowError(true);
-                    // setFormErrors('Unable to register farm.')
-                    console.log(`Unable to get farm info; error status: ${response.status} `);
-                }
-
-            })
-            .catch(function (error) {
-                console.log("catch error: " + error);
-                // formErrorHandler(error.message);
-            });
-
-    };
+    }, [validToken]);
 
 
     return (
@@ -296,3 +253,32 @@ const FarmInfo = () => {
 }
 
 export default FarmInfo;
+
+ //useEffect(() => {
+ //set JWT token into header for server side authentication
+        // let myHeaders = {
+        //     'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        // };
+
+  // axios.get('http://localhost:5000/api/users/profile',
+        //     { 'headers': myHeaders })
+        //     .then(function (response) {
+        //         console.log(response.status);
+        //         if (response.status === 401) {
+        //             console.log("No token or must be logged in");
+        //             console.log(response.status.message);
+        //             history.push('/users/login');
+        //         }
+        //         if (response.status === 200) {
+        //             console.log("response: ");
+        //             console.log(response);
+
+                   // })
+                //    else {
+                //     console.log(`Unable to get farm info; error status: ${response.status} `);
+                // }
+            // .catch(function (error) {
+            //     console.log("catch error: " + error);
+            // });
+
+        //}, [validUser]);
