@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 import { PhotoPlaceholder } from 'react-placeholder-image';
-import { Link, useLocation } from 'react-router-dom';
+import { Link} from 'react-router-dom'; //, useLocation 
 
 
 
@@ -196,6 +196,7 @@ export default function Card() {
                         state: { 'fProduct': props.farmProduct }.
                         console.log(pathname)
                     }}> */}
+                    <Link to="">
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
@@ -211,6 +212,7 @@ export default function Card() {
                             <p className="cardDes">{currentUser.userFarms.farmCity}</p>
                         </div> */}
                     {/* </Link> */}
+                    </Link>
                     </div>
                 </div>
                 
