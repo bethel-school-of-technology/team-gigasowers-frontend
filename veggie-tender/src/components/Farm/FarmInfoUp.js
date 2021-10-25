@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { Link, useHistory } from 'react-router-dom';
-import CheckAuth from '../../services/CheckAuth';
+import { useHistory } from 'react-router-dom';
+
 
 
 const FarmUpdateStyles = styled.div`
@@ -22,43 +22,47 @@ body {
 .container {
     justify-content: center;
     height: 600px;
-    max-width: 800px;
+    max-width: 25rem;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 85%;
+    width: 90%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border:3px dashed var(--terra);
-    background-color: grey; 
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+//     flex-wrap: wrap;
+// }
+// .farmImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border:3px dashed var(--terra);
+//     background-color: grey; 
+// }
+.pageTitle{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 .info_float {
     float: right;
     height: 90%;
-    width: 60%;
+    width: 90%;
     display: block;
     margin-right: 1rem;
 }
 .farmInfoUpdate{
     margin-top: 1rem auto;
+    padding-left: 1rem;
     width: 100%;
-    height: 95%;
+    height: 90%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 1.5rem;
     text-align: left;
 }
 
@@ -82,15 +86,16 @@ body {
 }
 .buttonSection{
     float: right;
-    margin-top: 3rem;
-    margin-right: -2rem; 
+    margin-right: -0.5rem; 
 }
 .btn{
     padding: .5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
+    font-family: 'MontserratRegular';
+    font-size: 1rem;
     text-decoration: none;  
 }
 
@@ -124,13 +129,6 @@ const FarmInfoUpdate = () => {
 
     let history = useHistory();
 
-    //checkAuth for valid token will go here
-    let validToken = CheckAuth();
-    if (!validToken) {
-        console.log("validToken returned false or undefined");
-        history.push('/users/login');
-    }
-
     //State Variables for farm profile
     const [farmName, setFarmName] = useState('');
     const [farmDescription, setFarmDescription] = useState('');
@@ -150,43 +148,40 @@ const FarmInfoUpdate = () => {
         };
 
         axios.get('http://localhost:5000/api/users/profile',
-        { 'headers': myHeaders })
-        .then(function (response) {
-            console.log(response.status);
-            if (response.status === 401) {
-                console.log("No token or must be logged in");
-                console.log(response.status.message);
-                //history.push('/users/login');
-            }
-            if (response.status === 200) {
-                console.log("response: ");
-                console.log(response);
-                //validate this profile is a farmer
-                if (!response.data.isFarmer) {
-                    console.log("this profile is not a farmer");
-                }
-                //load state variables from response data
-                setFarmName(response.data.userFarms.farmName);
-                setFarmDescription(response.data.userFarms.farmDescription);
-                setFarmAddress(response.data.userFarms.farmAddress);
-                setFarmCity(response.data.userFarms.farmCity);
-                setFarmState(response.data.userFarms.farmState);
-                setFarmZip(response.data.userFarms.farmZip);
-                //setFarmImage(response.data.userFarms.farmImage);
-                setFarmWebsite(response.data.userFarms.farmWebsite);
-                setFarmEmail(response.data.userFarms.farmEmail);
-            }
-            else {
-                // setShowError(true);
-                // setFormErrors('Unable to register farm.')
-                console.log(`Unable to get farm info; error status: ${response.status} `);
-            }
+            { 'headers': myHeaders })
+            .then(function (response) {
 
-        })
-        .catch(function (error) {
-            console.log("catch error: " + error);
-            // formErrorHandler(error.message);
-        });
+                if (!response.status === 200) {
+                    console.log(response.status);
+                    console.log("No token or must be logged in");
+                    history.push('/users/login');
+                }
+                if (response.status === 200) {
+                    console.log(response.status);
+                    //validate this profile is a farmer
+                    if (!response.data.isFarmer) {
+                        console.log("this profile is not a farmer");
+                        history.push('/users/profile');
+                    }
+                    //load state variables from response data
+                    setFarmName(response.data.userFarms.farmName);
+                    setFarmDescription(response.data.userFarms.farmDescription);
+                    setFarmAddress(response.data.userFarms.farmAddress);
+                    setFarmCity(response.data.userFarms.farmCity);
+                    setFarmState(response.data.userFarms.farmState);
+                    setFarmZip(response.data.userFarms.farmZip);
+                    //setFarmImage(response.data.userFarms.farmImage);
+                    setFarmWebsite(response.data.userFarms.farmWebsite);
+                    setFarmEmail(response.data.userFarms.farmEmail);
+                }
+                else {
+                    console.log(`Unable to get farm info; error status: ${response.status} `);
+                }
+
+            })
+            .catch(function (error) {
+                console.log("catch error: " + error);
+            });
     }, []);
 
     const farmNameHandler = (event) => { setFarmName(event.target.value) };
@@ -220,27 +215,24 @@ const FarmInfoUpdate = () => {
         axios.put('http://localhost:5000/api/users/update', profileData,
             { 'headers': myHeaders })
             .then(function (response) {
-                console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
                     console.log("No token or must be logged in");
                     console.log(response.status.message);
-                    //history.push('/users/login');
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log("directing to farm profile");
-                    history.push('/users/farmProfile/:farmId');
+                    history.push('/users/farmProfile');
                 }
                 else {
-                    // setShowError(true);
-                    // setFormErrors('Unable to register farm.')
                     console.log(`Unable to get farm info; error status: ${response.status} `);
                 }
 
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
-                // formErrorHandler(error.message);
             });
+
         setFarmName('');
         setFarmDescription('');
         setFarmAddress('');
@@ -250,95 +242,92 @@ const FarmInfoUpdate = () => {
         setFarmWebsite('');
         setFarmEmail('');
 
-        }
-
-        return (
-            <FarmUpdateStyles>
-                <div className="container">
-                    <div className="image_float">
-                        <h3 className="farmImage">Farm Image</h3>
-                    </div>
-                    <div className="info_float">
-                        <h2>Update Farm Information:</h2>
-                        <div className="farmInfoUpdate">
-
-                            <form id='farmUpdate' className='form' onSubmit={submitHandler}>
-                                
-                                <div className='form-field'>
-                                    <label className='form-label'>Farm Name</label>
-                                    <input type='text'
-                                        placeholder='Update your farm name'
-                                        value={farmName}
-                                        onChange={farmNameHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>Farm Details</label>
-                                    <input type='text'
-                                        placeholder='Update your farm details'
-                                        value={farmDescription}
-                                        onChange={farmDescriptionHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>Farm Address</label>
-                                    <input type='text'
-                                        placeholder='Update farm address'
-                                        value={farmAddress}
-                                        onChange={farmAddressHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>City</label>
-                                    <input type='text'
-                                        placeholder='Update City'
-                                        value={farmCity}
-                                        onChange={farmCityHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>State</label>
-                                    <input type='text'
-                                        placeholder='Update your state'
-                                        value={farmState}
-                                        onChange={farmStateHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>Zip</label>
-                                    <input type='text'
-                                        placeholder='Update zipcode'
-                                        value={farmZip}
-                                        onChange={farmZipHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>Farm Website</label>
-                                    <input type='text'
-                                        placeholder='Website'
-                                        value={farmWebsite}
-                                        onChange={farmWebsiteHandler}
-                                    />
-                                </div>
-                                <div className='form-field'>
-                                    <label className='form-label'>Farm Email</label>
-                                    <input type='text'
-                                        placeholder='Email'
-                                        value={farmEmail}
-                                        onChange={farmEmailHandler}
-                                    />
-                                </div>
-                                
-                            </form>
-                            <div className='buttonSection'>
-                                <Link to='/users/farmProfile' type="button" className="btn">Update Info</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </FarmUpdateStyles>
-        )
     }
 
-    export default FarmInfoUpdate;
+    return (
+        <FarmUpdateStyles>
+            <div className="container">
+                {/* <div className="image_float">
+                    <h3 className="farmImage">Farm Image</h3>
+                </div> */}
+                <div className="info_float">
+                    <h2 className="pageTitle">Update Farm Information:</h2>
+                    <div className="farmInfoUpdate">
+                        <form id='farmUpdate' className='form' onSubmit={submitHandler}>
+                            <div className='form-field'>
+                                <label className='form-label'>Farm Name</label>
+                                <input type='text'
+                                    placeholder='Update your farm name'
+                                    value={farmName}
+                                    onChange={farmNameHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>Farm Details</label>
+                                <input type='text'
+                                    placeholder='Update your farm details'
+                                    value={farmDescription}
+                                    onChange={farmDescriptionHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>Farm Address</label>
+                                <input type='text'
+                                    placeholder='Update farm address'
+                                    value={farmAddress}
+                                    onChange={farmAddressHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>City</label>
+                                <input type='text'
+                                    placeholder='Update City'
+                                    value={farmCity}
+                                    onChange={farmCityHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>State</label>
+                                <input type='text'
+                                    placeholder='Update your state'
+                                    value={farmState}
+                                    onChange={farmStateHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>Zip</label>
+                                <input type='text'
+                                    placeholder='Update zipcode'
+                                    value={farmZip}
+                                    onChange={farmZipHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>Farm Website</label>
+                                <input type='text'
+                                    placeholder='Website'
+                                    value={farmWebsite}
+                                    onChange={farmWebsiteHandler}
+                                />
+                            </div>
+                            <div className='form-field'>
+                                <label className='form-label'>Farm Email</label>
+                                <input type='text'
+                                    placeholder='Email'
+                                    value={farmEmail}
+                                    onChange={farmEmailHandler}
+                                />
+                            </div>
+                            <div className='buttonSection'>
+                                <button type='submit' className="btn">Update Info</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </FarmUpdateStyles>
+    )
+}
+
+export default FarmInfoUpdate;

@@ -6,10 +6,9 @@ import { createBrowserHistory } from "history";
 // import kingyo from '../../assets/images/kingyo.png';
 // import LoginForm from './LoginForm';
 import LoginToggle from './LoginToggle';
-import ProfileToggle from './ProfileToggle';
-import FarmToggle from './FarmToggle';
+// import ProfileToggle from './ProfileToggle';
+// import FarmToggle from './FarmToggle';
 // import { useLayoutEffect } from 'react';
-import Mascot from './Mascot';
 
 
 

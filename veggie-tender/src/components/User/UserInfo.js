@@ -89,17 +89,28 @@ body {
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
-    text-decoration: none;
-    
+    text-decoration: none; 
+}
+.btn:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
 }
 .btn-2{
     float: left;
     padding: .5rem;
     margin-top: 0.5rem;
-    background-color: var(--dk-mustard);
-    border: 3px solid var(--dk-mustard);
+    background-color: var(--coral);
+    border: 3px solid var(--coral);
     border-radius: 12px;
     text-decoration: none; 
+}
+.btn-2:hover {
+    background-color: var(--dk-coral);
+    border-color: var(--dk-coral);
+    color:white;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
@@ -230,9 +241,9 @@ const UserInfo = () => {
                     </div>
                     <div className="buttonSection">
                     {isFarmer ?
-                            <Link to="/users/farmProfile" type='button' className="btn">My Farm</Link>
+                            <Link to="/users/farmProfile" type='button' className="btn-2">My Farm</Link>
                             :
-                            <Link to="/users/farmRegister" type="button" className="btn">Register Your Farm</Link>
+                            <Link to="/users/farmRegister" type="button" className="btn-2">Register Your Farm</Link>
                         }
                         <Link to='/users/update/profile' type="button" className="btn">Update Info</Link>
                     </div>
