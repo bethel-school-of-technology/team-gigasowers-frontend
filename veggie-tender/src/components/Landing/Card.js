@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 import { PhotoPlaceholder } from 'react-placeholder-image';
+import { Link, useLocation } from 'react-router-dom';
 
 
 
@@ -9,8 +10,7 @@ const CardStyles = styled.div`
 @media (max-width: 2560px){
         .bigWrapper{
             margin-top: 6rem;
-            
-            display: flex;
+            margin-left: 0.5rem;
             display: grid;
             grid-template-columns: 20% 20% 20% 20% 20%;
             position: absolute;
@@ -21,7 +21,7 @@ const CardStyles = styled.div`
 @media (max-width: 1440px){
     .bigWrapper{
         margin-top: 6rem;
-        display: flex;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -30,7 +30,7 @@ const CardStyles = styled.div`
 @media (max-width: 810px){
     .bigWrapper{
         margin-top: 6rem;
-        display: flex;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -159,6 +159,14 @@ export default function Card() {
         console.log(response.data)
         setUser(response.data)
 
+        // const location = useLocation();
+        // let i;
+        // while(i=1){
+        //     for(let w=0; w < response.length; w++){
+        //         console.log("ProductUpdate Received: ");
+        //         console.log(location.state?.fProduct);
+        //     }
+        // }
         //   for (let i = 0; i < response.length; i++) {
         //       console.log(response[i].userF)
         //   }
@@ -173,15 +181,21 @@ export default function Card() {
         
     }
 
+    
     return (
         <CardStyles>
             <div className="bigWrapper">
             {user.map(currentUser => (  
                 //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
-                
+                // console.log("ProductUpdate Received: ", location.state?.fProduct)
 
                 <div className="cards">
                     <div className="card">
+                    {/* <Link to={{
+                        pathname: '/users/productUpdate',
+                        state: { 'fProduct': props.farmProduct }.
+                        console.log(pathname)
+                    }}> */}
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
@@ -196,6 +210,8 @@ export default function Card() {
                             <p className="cardDes">{currentUser.userFarms.farmState}</p>
                             <p className="cardDes">{currentUser.userFarms.farmCity}</p>
                         </div> */}
+                    {/* </Link> */}
+
                     </div>
                 </div>
                 
@@ -207,6 +223,12 @@ export default function Card() {
 }
 
 
+// <Link to={{
+//                     pathname: '/users/productUpdate',
+//                     state: { 'fProduct': props.farmProduct }
+//                 }}>Edit Product Info</Link>
+
+// href="/users/profile/{data.farmProfile}">
 
 
 
