@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import axios from "axios";
 import { Link, useHistory } from 'react-router-dom';
 
-
 const UserUpdateStyles = styled.div`
 font-family: 'MontserratRegular';
 
@@ -52,7 +51,7 @@ body {
 .userInfoUpdate {
     margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--dk-green);
     border-radius: 12px;
@@ -66,6 +65,7 @@ body {
 }
 .pageTitle{
     font-size: 1.25rem;
+    margin-bottom: 1rem;
 }
 .form-field label {
     font-family: 'MontserratRegular';
@@ -87,14 +87,16 @@ body {
 }
 .buttonSection{
     float: right;
-    margin-top: 3.5rem;
+    margin-top: 3rem;
     margin-right: -1rem; 
 }
-.btn{
+.btn-1{
     padding: .5rem;
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
+    font-family: 'MontserratRegular';
+    font-size: 1rem;
     text-decoration: none;  
 }
 
@@ -252,10 +254,11 @@ const UserInfoUpdate = () => {
                     <h3 className="userImage">Image</h3>
                 </div> */}
                 <div className="info_float">
+                <h2 className="pageTitle">Update Your User Information:</h2>
                     <div className="userInfoUpdate">
 
                         <form id='userUpdate' className='form' onSubmit={submitHandler}>
-                            <h2 className="pageTitle">Update Your User Information:</h2>
+                            
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
@@ -322,7 +325,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='buttonSection'>
-                                <button type='submit' className="btn">Update Info</button>
+                                <button type='submit' className="btn-1">Update Info</button>
                             </div>
                         </form>
 

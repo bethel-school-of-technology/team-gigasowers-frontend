@@ -19,110 +19,7 @@ body {
     align-items: center;
     min-height: 100vh;
 
-}
-
-.container {
-        justify-content: center;
-        height: 300px;
-        background-color: var(--cream);
-        padding: 1em;
-        margin: 2rem auto;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        width: 85%;
-}
-// .image_float {
-//     float: left;
-//     width: 35%;
-//     display: flex;
-//     flex-wrap: wrap;
-// }
-
-// .farmImage {
-//     margin: 2rem auto;
-//     width: 250px;
-//     height: 250px;
-//     border-radius: 50%;
-//     // display: flex;
-//     // flex-wrap: wrap;
-//     border: 5px dashed var(--terra);
-//     background-color: grey; 
-// }
-.info_float {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-.farmEvents {
-    margin-top: 1rem auto;
-    width: 100%;
-    height: 100%;
-    background-color: var(--cream);
-    border: 5px solid var(--mustard);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: left;
-}
-.eachEvent{
-    display: inline-block;
-}
-.buttonSection{
-    width: 100%; 
-}
-.btn {
-    float:right;
-    margin-top: -2rem;
-    padding: .5rem;
-    background-color: var(--terra);
-    border: 3px solid var(--terra);
-    border-radius: 12px;
-    text-decoration: none;
-}
-
-.btn-1{
-    float: left;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--dk-mustard);
-    border: 3px solid var(--dk-mustard);
-    border-radius: 12px;
-    text-decoration: none; 
-}
-.btn-2{
-    float: right;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--coral);
-    border: 3px solid var(--coral);
-    border-radius: 12px;
-    text-decoration: none; 
-}
-
-@media only screen and (max-width: 768px) {
-    .container {
-        display: block;
-        flex-direction: column;
-        height: 475px;
-    }
-    .image_float {
-        width: 100%;
-        margin-left: -1rem; 
-        flex-direction: column;
-    }
-    .info_float {
-        justify-content: center;
-        width: 100%;
-        max-height: 375px;
-        flex-direction: column;
-        padding-left: .5rem;
-    }
-    .buttonSection{
-        float: right;
-        margin-top: 1rem;
-        margin-right: 0rem; 
-    }
-}
-`;
+}`;
 
 
 const FarmProduce = () => {
@@ -171,22 +68,19 @@ const FarmProduce = () => {
 
     return (
         <FarmInfoStyles>
-            <div className="container">
-                {/* <div className="image_float">
-                    <h3 className="farmImage">Product Image</h3>
-                </div> */}
+            {/* <div className="container">
                 <div className="info_float">
-                    <div className="farmEvents">
-                        <div className="eachEvents">
+                    <div className="farmEvents"> */}
+                        <div>
                             <h3>
                                 {productArr.map(item => (
                                     <Product farmProduct={item} />
                                 ))}
                             </h3>
                         </div>
-                    </div>
+                    {/* </div>
                 </div>
-            </div>
+            </div> */}
         </FarmInfoStyles >
     )
 };

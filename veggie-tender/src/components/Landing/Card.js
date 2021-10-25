@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 import { PhotoPlaceholder } from 'react-placeholder-image';
+import { Link, useLocation } from 'react-router-dom';
 
 
 
@@ -9,6 +10,7 @@ const CardStyles = styled.div`
 @media (max-width: 2560px){
         .bigWrapper{
             margin-top: 6rem;
+            margin-left: 0.5rem;
             display: grid;
             grid-template-columns: 20% 20% 20% 20% 20%;
             position: absolute;
@@ -19,6 +21,7 @@ const CardStyles = styled.div`
 @media (max-width: 1440px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -27,6 +30,7 @@ const CardStyles = styled.div`
 @media (max-width: 810px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -35,6 +39,7 @@ const CardStyles = styled.div`
 @media (max-width: 700px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -42,6 +47,7 @@ const CardStyles = styled.div`
 
 .cards {
     display: flex;
+    flex: wrap;
     margin-bottom: 2rem;
     flex-direction: column;
     justify-content: center;
@@ -153,6 +159,14 @@ export default function Card() {
         console.log(response.data)
         setUser(response.data)
 
+        // const location = useLocation();
+        // let i;
+        // while(i=1){
+        //     for(let w=0; w < response.length; w++){
+        //         console.log("ProductUpdate Received: ");
+        //         console.log(location.state?.fProduct);
+        //     }
+        // }
         //   for (let i = 0; i < response.length; i++) {
         //       console.log(response[i].userF)
         //   }
@@ -167,15 +181,21 @@ export default function Card() {
         
     }
 
+    
     return (
         <CardStyles>
             <div className="bigWrapper">
             {user.map(currentUser => (  
                 //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
-                
+                // console.log("ProductUpdate Received: ", location.state?.fProduct)
 
                 <div className="cards">
                     <div className="card">
+                    {/* <Link to={{
+                        pathname: '/users/productUpdate',
+                        state: { 'fProduct': props.farmProduct }.
+                        console.log(pathname)
+                    }}> */}
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
@@ -190,6 +210,8 @@ export default function Card() {
                             <p className="cardDes">{currentUser.userFarms.farmState}</p>
                             <p className="cardDes">{currentUser.userFarms.farmCity}</p>
                         </div> */}
+                    {/* </Link> */}
+
                     </div>
                 </div>
                 
@@ -201,169 +223,14 @@ export default function Card() {
 }
 
 
+// <Link to={{
+//                     pathname: '/users/productUpdate',
+//                     state: { 'fProduct': props.farmProduct }
+//                 }}>Edit Product Info</Link>
+
+// href="/users/profile/{data.farmProfile}">
 
 
-// @media (max-width: 2560px){
-//     .bigWrapper{
-//         display: grid;
-//         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-//         gap: 25px;
-//         position: center;
-//         border: 3px solid green; 
-//         border-top: double;
-//         .cardWrapper{
-//             border: black solid;
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             float: center;
-//             box-shadow: 0 2px 20px gray;
-            
-//             cursor: pointer;
-//             width: 330px;
-//             height: 185px;
-//         }
-//     }
-// }
-
-// @media (max-width: 1440px){
-//     .bigWrapper{
-//         display: grid;
-//         grid-template-columns: 1fr 1fr ;
-//         gap: 25px;
-//         position: center;
-//         border: 3px solid green; 
-//         .cardWrapper{
-//             border: black solid;
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             float: center;
-//             box-shadow: 0 2px 20px gray;
-            
-//             cursor: pointer;
-//             width: 330px;
-//             height: 185px;
-//         }
-//     }
-// }
-
-// @media (max-width: 810px){
-//     .bigWrapper{
-//         display: grid;
-//         grid-template-columns: 1fr 1fr;
-//         gap: 25px;
-//         position: center;
-//         border: 3px solid green; 
-//         .cardWrapper{
-//             border: black solid;
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             float: center;
-//             box-shadow: 0 2px 20px gray;
-            
-//             cursor: pointer;
-//             width: 330px;
-//             height: 185px;
-//         }
-//     }
-// }
-
-// @media (max-width: 400){
-//     .bigWrapper{
-//         display: grid;
-//         grid-template-columns: 1fr;
-//         gap: 25px;
-//         position: center;
-//         border: 3px solid green; 
-//         .cardWrapper{
-//             border: black solid;
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             float: center;
-//             box-shadow: 0 2px 20px gray;
-            
-//             cursor: pointer;
-//             width: 330px;
-//             height: 185px;
-//         }
-//     }
-// }
-
-// .cardImg{
-//     // float: left;
-// }
-
-// .cardWords{
-//     position: top;
-// }
-
-// .cardTitle{
-//     font-size: x-large;
-// }
-
-
-// .flip-card {
-//     background-color: transparent;
-//     width: 330px;
-//     height: 155px;
-//     border: 1px solid #f1f1f1;
-//     perspective: 1000px; 
-//   }
-  
-//   .flip-card-inner {
-//     position: relative;
-//     width: 100%;
-//     height: 100%;
-//     text-align: center;
-//     transition: transform 0.8s;
-//     transform-style: preserve-3d;
-//   }
-  
-//   .flip-card:hover .flip-card-inner {
-//     transform: rotateY(180deg);
-//   }
-  
-//   .flip-card-front, .flip-card-back {
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     -webkit-backface-visibility: hidden;
-//     backface-visibility: hidden;
-//   }
-  
-//   .flip-card-front {
-//     background-color: #bbb;
-//     color: black;
-//   }
-  
-//   .flip-card-back {
-//     background-color: dodgerblue;
-//     color: white;
-//     transform: rotateY(180deg);
-//   }
-
-
-// .card::hover{
-//     transform: scale(1.02)
-// }
-// .cardBut :hover{
-// background: red;
-// color: white;
-// }
-// .card{
-//     flex-wrap: wrap;
-//     flex: 0.8;
-//     box-sizing: border-box;
-//     margin: 0;
-//     padding: px;
-//     font-family: Oxygen, sans-serif;
-//     margin: 2rem;
-//     gap: 3px;
-//  }
-//const responce = "";
 
 // <div class="flip-card">
 //                     <div class="flip-card-inner">
@@ -387,24 +254,6 @@ export default function Card() {
 //                     </div>
 
 
-{/* <div class="flip-card">
-<div class="flip-card-inner">
-    <div class="flip-card-back"></div>
-        <div className="cardWrapper">
-            <div className="cardBody">
-                <div className="cardImg">
-                    <PhotoPlaceholder width={330} height={155} />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flip-card-front">
-        <div className="cardWords">
-            <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
-            <h2 className="cardDes">{currentUser.userFarms.farmDescription}</h2>
-        </div>
-    </div>
-</div> */}
 
 //<button className="cardBut">Buttonです</button>
 //<div>{currentUser.userFarms.farmId}</div>
