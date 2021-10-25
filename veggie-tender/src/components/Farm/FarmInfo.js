@@ -22,7 +22,7 @@ body {
 .container {
     justify-content: center;
     height: 450px;
-    max-width: 700px;
+    max-width: 600px;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
@@ -92,21 +92,34 @@ body {
     padding: .5rem;
     margin-top: -0.5rem;
     margin-right: 1rem;
-    background-color: var(--md-gg);
-    border: 3px solid var(--md-gg);
+    color: white;
+    background-color: var(--lt-navy);
+    border: 3px solid var(--lt-navy);
     border-radius: 12px;
     text-decoration: none; 
+}
+.btn-1:hover {
+    background-color: var(--navy);
+    border-color: var(--navy);
+    color: var(--md-gg);
+    cursor: pointer;
 }
 .btn-3{
     float: left;
     padding: .5rem;
     margin-top: -0.5rem;
     margin-right: 1rem;
-    background-color: var(--mustard);
-    border: 3px solid var(--mustard);
+    background-color: var(--md-gg);
+    border: 3px solid var(--md-gg);
     border-radius: 12px;
     text-decoration: none;
     
+}
+.btn-3:hover {
+    background-color: var(--gray-green);
+    border-color: var(--gray-green);
+    color: white;
+    cursor: pointer;
 }
 .btn-2{
     float: right;
@@ -117,17 +130,19 @@ body {
     border-radius: 12px;
     text-decoration: none; 
 }
+.btn-2:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
+}
 
 
 @media only screen and (max-width: 768px) {
     .container {
         display: block;
         flex-direction: column;
-        height: 900px;
-    }
-    .image_float {
-        width: 100%;
-        flex-direction: column;
+        height: 450px;
     }
     .farmNameSection {
         margin-left: 3rem;
@@ -135,7 +150,7 @@ body {
     .info_float {
         justify-content: center;
         width: 100%;
-        max-height: 450px;
+        max-height: 300px;
         flex-direction: column;
         padding-left: .5rem;
     }
