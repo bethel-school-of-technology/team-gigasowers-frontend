@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Product from './Product';
 
 
@@ -127,14 +126,6 @@ body {
 
 
 const FarmProduce = () => {
-
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned null or undefined");
-    //    // history.push('/users/login');
-    // } else {
-    //     console.log(validToken);
-    // }
 
 
     const [productArr, setProductArr] = useState([]);  //state for events array

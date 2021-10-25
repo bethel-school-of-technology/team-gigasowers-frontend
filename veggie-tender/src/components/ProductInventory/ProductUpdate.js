@@ -1,10 +1,8 @@
-
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from "axios";
 import { useHistory } from 'react-router-dom';
-
-
 
 const LoginFormStyles = styled.div`
 font-family: 'MontserratMedium';
@@ -91,54 +89,37 @@ font-family: 'MontserratMedium';
 }
 `;
 
-const ProductRegForm = () => {
+const ProductUpdate = () => {
 
 
-    let history = useHistory();  //Used to track page route history
+    const location = useLocation();
+    console.log("ProductUpdate Received: ");
+    console.log(location.state?.fProduct);
+    const fProduct = location.state?.fProduct;
 
-    const [isSubmitComplete, setIsSubmitComplete] = useState(false);
-    let tempArr = [];   
-    const [productArr, setProductArr] = useState([]);  //state for farmInventory array
-    const [calcProductId, setCalcProductId] = useState('');  //load this separately by incrementing on array length
+    let uId = localStorage.getItem("userId")
+    console.log(uId);
+
+    let history = useHistory();
+
     //set state for entered credentials
+    const [productId, setProductId] = useState('');
     const [enteredProductName, setProductName] = useState('');
     const [enteredProductCategory, setProductCategory] = useState('');
     const [enteredProductDescription, setProductDescription] = useState('');
     const [enteredProductQty, setProductQty] = useState();
     const [enteredProductUnitPrice, setProductUnitPrice] = useState();
-    //const [enteredProductImage, setProductImage] = useState('');
 
-
-    //handlers for each input field on the form
-    const productNameChangeHandler = (event) => {
-        setProductName(event.target.value);
-    };
-    const productCategoryChangeHandler = (event) => {
-        setProductCategory(event.target.value);
-    };
-    const productDescriptionChangeHandler = (event) => {
-        setProductDescription(event.target.value);
-    };
-    const productQtyChangeHandler = (event) => {
-        setProductQty(event.target.value);
-    };
-    const productPriceChangeHandler = (event) => {
-        setProductUnitPrice(event.target.value);
-    };
-    // const productImageChangeHandler = (event) => {
-    //     setProductImage(event.target.value);
-    // };
 
     useEffect(() => {
-
-        //set JWT token into header for server side authentication
         let myHeaders = {
             'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
         };
-        //get events for user profile
+
         axios.get('http://localhost:5000/api/users/profile',
             { 'headers': myHeaders })
             .then(function (response) {
+
                 if (!response.status === 200) {
                     console.log(response.status);
                     console.log("No token or must be logged in");
@@ -152,85 +133,76 @@ const ProductRegForm = () => {
                         history.push('/users/profile');
                     }
 
-                    setProductArr(prevArr => {
-                        const newArr = [...prevArr, ...response.data.userFarms.farmInventory];
-                        return newArr;
-                    });
+                    //load state variables with product detail passed via location state
+                    setProductId(fProduct.productId);
+                    setProductName(fProduct.productName);
+                    setProductCategory(fProduct.productCategory);
+                    setProductDescription(fProduct.productDescription);
+                    setProductQty(fProduct.productQty);
+                    setProductUnitPrice(fProduct.productUnitPrice);
 
-                    setCalcProductId(parseInt(response.data.userFarms.farmInventory.length)+1); //sets productId for form entry
                 }
                 else {
-                    console.log(`Unable to get farm event info; error status: ${response.status} `);
+                    console.log(`Product Update error status: ${response.status} `);
                 }
+
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
             });
-
     }, []);
 
+    //handlers for each input field on the form
+    const productNameChangeHandler = (event) => { setProductName(event.target.value); };
+    const productCategoryChangeHandler = (event) => { setProductCategory(event.target.value); };
+    const productDescriptionChangeHandler = (event) => { setProductDescription(event.target.value); };
+    const productQtyChangeHandler = (event) => { setProductQty(event.target.value); };
+    const productPriceChangeHandler = (event) => { setProductUnitPrice(event.target.value); };
+    // const productImageChangeHandler = (event) => { setProductImage(event.target.value); };
 
     const submitHandler = (event) => {
-        event.preventDefault();  //prevents form from refreshing after submit
+        event.preventDefault();
 
-        console.log("calcId: " + calcProductId);
-        console.log(productArr);
-        console.log(productArr.length);
-
-        tempArr = [{
-            'productId': calcProductId.toString(),
-            'productName': enteredProductName,
+        const product = {
+            'productId': productId,
             'productCategory': enteredProductCategory,
+            'productName': enteredProductName,
             'productDescription': enteredProductDescription,
             'productQty': enteredProductQty,
-            'productUnitPrice': enteredProductUnitPrice,
-            'productImage': ""
-        }];
-        setProductArr(prevArr => {
-            const enteredArr = [...prevArr, ...tempArr];
-            console.log(enteredArr);
-            return enteredArr;
-        });
-        setIsSubmitComplete(true);
-    };
+            'productUnitPrice': enteredProductUnitPrice
+        };
+        console.log("product to be updated: ");
+        console.log(product);
 
+        //set JWT token into header for server side authentication
+        // let myHeaders = {
+        //     'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        // };
+        // //post to login in API to auth user and get token
+        // axios.put('http://localhost:5000/api/users/updateProduct', product , { 'headers': myHeaders })
+        //     .then(function (response) {
+        //         console.log(response);
+        //         if (response.status === 200) {
+        //             console.log(response.status);
+        //         } else {
+        //             console.log(`Product update error response received: ${response.status} `);
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.log(`Product update catch error: ${error} `);
+        //     });
 
-    useEffect(() => {
-        if (isSubmitComplete) {
-            //console.log(productArr);
-            //set JWT token into header for server side authentication
-            let myHeaders = {
-                'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-            };
-            //post to login in API to auth user and get token
-            axios.put('http://localhost:5000/api/users/update', {'farmInventory': productArr }, { 'headers': myHeaders })
-                .then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                        console.log(response.status);
-                    } else {
-                        console.log(`Product update error response received: ${response.status} `);
-                    }
-                })
-                .catch(function (error) {
-                    console.log(`Product update catch error: ${error} `);
-                });
+        setProductId('');
+        setProductName('');
+        setProductCategory('');
+        setProductDescription('');
+        setProductQty('');
+        setProductUnitPrice('');
+        //setProductImage('');
 
-            setCalcProductId('');
-            setProductName('');
-            setProductCategory('');
-            setProductDescription('');
-            setProductQty('');
-            setProductUnitPrice('');
-            //setProductImage('');
+       //history.goBack();
 
-            history.goBack();
-  
-
-        }
-    }, [isSubmitComplete, productArr]);
-
-
+    }
 
     return (
         <LoginFormStyles>
@@ -238,19 +210,19 @@ const ProductRegForm = () => {
                 <form onSubmit={submitHandler}>
                     <div className='login-shell'>
                         <div >
-                            <h1 className='title'>Add A Farm Product</h1>
+                            <h1 className='title'>Update Farm Product</h1>
                             <div className='login__controls'>
                                 <div className='login__control'>
                                     <label>Product Name</label>
-                                    <input type='text' value={enteredProductName} onChange={productNameChangeHandler}/>
+                                    <input type='text' value={enteredProductName} onChange={productNameChangeHandler} />
                                 </div>
                                 <div className='login__control'>
                                     <label>Product Category</label>
-                                    <input type='text' value={enteredProductCategory} onChange={productCategoryChangeHandler}/>
+                                    <input type='text' value={enteredProductCategory} onChange={productCategoryChangeHandler} />
                                 </div>
                                 <div className='login__control'>
                                     <label>Product Description</label>
-                                    <input type='text' value={enteredProductDescription} onChange={productDescriptionChangeHandler}/>
+                                    <input type='text' value={enteredProductDescription} onChange={productDescriptionChangeHandler} />
                                 </div>
                                 <div className='login__control'>
                                     <label>Product Qty</label>
@@ -261,19 +233,19 @@ const ProductRegForm = () => {
                                     <input type='text' value={enteredProductUnitPrice} onChange={productPriceChangeHandler} />
                                 </div>
                                 {/* <div className='login__control'>
-                                    <label>Product Image</label>
-                                    <input type='text' value={enteredProductImage} onChange={productImageChangeHandler} />
-                                </div> */}
+                                <label>Product Image</label>
+                                <input type='text' value={enteredProductImage} onChange={productImageChangeHandler} />
+                            </div> */}
                             </div>
                         </div>
                         <div className="login__actions">
-                            <button type='submit'>Submit</button>
+                            <button type='submit'>Update</button>
                         </div>
                     </div>
                 </form>
             </div>
         </LoginFormStyles>
     )
-};
+}
 
-export default ProductRegForm;
+export default ProductUpdate;

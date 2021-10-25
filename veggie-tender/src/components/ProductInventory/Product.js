@@ -132,17 +132,21 @@ const Product = (props) => {
                 {/* <div className="image_float">
                     <h3 className="">{props.farmEvent.productImage}</h3>
                 </div> */}
-                {/* <div className="info_float">
+            {/* <div className="info_float">
                     <div className="farmEvents">  */}
-                        <div classname="eachEvents" key={props.farmProduct.productId}>
-                                <h3>{props.farmProduct.productName}</h3>
-                                <h4>{props.farmProduct.productDescription}</h4>
-                                <h4>{props.farmProduct.productCategory}</h4>
-                                <h4>{props.farmProduct.productQty}</h4>
-                                <h4>{props.farmProduct.productUnitPrice}</h4>
-                            <Link type="button" className="btn" fProduct={props.farmProduct}>Edit Product Info</Link>
-                        </div>
-                    {/* </div>
+            <div classname="eachEvents" key={props.farmProduct.productId}>
+                <h3>{props.farmProduct.productName}</h3>
+                <h4>{props.farmProduct.productDescription}</h4>
+                <h4>{props.farmProduct.productCategory}</h4>
+                <h4>{props.farmProduct.productQty}</h4>
+                <h4>{props.farmProduct.productUnitPrice}</h4>
+                <Link to={{
+                    pathname: '/users/productUpdate',
+                    state: { 'fProduct': props.farmProduct }
+                }}>Edit Product Info</Link>
+
+            </div>
+            {/* </div>
                 </div>
             </div> */}
         </FarmInfoStyles >

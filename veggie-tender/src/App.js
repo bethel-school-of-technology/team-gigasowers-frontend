@@ -15,7 +15,7 @@ import veggieBackFade from './assets/images/veggieBackFade.png';
 import EventReg from './pages/EventReg';
 import FarmEvents from './pages/FarmEvents';
 import ProductReg from './components/ProductInventory/ProductRegForm';
-
+import ProductUp from './pages/ProductUp';
 
 
 export default function App() {
@@ -89,6 +89,12 @@ export default function App() {
                                     <Route path="/users/productRegister">
                                           <Navbar />
                                           <ProductReg />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/productUpdate">
+                                          <Navbar />
+                                          <ProductUp />
                                     </Route>
                               </Switch>
                               <Switch>
