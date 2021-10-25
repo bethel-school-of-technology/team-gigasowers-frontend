@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
 
-const LoginFormStyles = styled.div`
+const ProductUpdateStyles = styled.div`
 font-family: 'MontserratMedium';
 
 .title{
@@ -205,7 +205,7 @@ const ProductUpdate = () => {
     }
 
     return (
-        <LoginFormStyles>
+        <ProductUpdateStyles>
             <div className='login-form-content'>
                 <form onSubmit={submitHandler}>
                     <div className='login-shell'>
@@ -244,7 +244,7 @@ const ProductUpdate = () => {
                     </div>
                 </form>
             </div>
-        </LoginFormStyles>
+        </ProductUpdateStyles>
     )
 }
 

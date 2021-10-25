@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const LoginFormStyles = styled.div`
+const ProductRegStyles = styled.div`
 padding-top: 5rem;
 font-size: 1.1rem;
 
@@ -269,7 +269,7 @@ const ProductRegForm = () => {
 
 
     return (
-        <LoginFormStyles>
+        <ProductRegStyles>
             <div className='product-form-content'>
                 <form className='form' onSubmit={submitHandler}>
                         <h2 className='form-title'>Add A Farm Product</h2>
@@ -302,7 +302,7 @@ const ProductRegForm = () => {
                         </div>
                 </form>
             </div>
-        </LoginFormStyles>
+        </ProductRegStyles>
     )
 };
 

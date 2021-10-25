@@ -5,7 +5,7 @@ import Product from './Product';
 
 
 
-const FarmInfoStyles = styled.div`
+const FarmProduceStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
@@ -67,7 +67,7 @@ const FarmProduce = () => {
 
 
     return (
-        <FarmInfoStyles>
+        <FarmProduceStyles>
             {/* <div className="container">
                 <div className="info_float">
                     <div className="farmEvents"> */}
@@ -81,7 +81,7 @@ const FarmProduce = () => {
                     {/* </div>
                 </div>
             </div> */}
-        </FarmInfoStyles >
+        </FarmProduceStyles >
     )
 };
 
