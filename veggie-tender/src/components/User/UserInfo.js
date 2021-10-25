@@ -89,8 +89,13 @@ body {
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
-    text-decoration: none;
-    
+    text-decoration: none; 
+}
+.btn:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
 }
 .btn-2{
     float: left;
@@ -100,6 +105,12 @@ body {
     border: 3px solid var(--coral);
     border-radius: 12px;
     text-decoration: none; 
+}
+.btn-2:hover {
+    background-color: var(--dk-coral);
+    border-color: var(--dk-coral);
+    color:white;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

@@ -9,7 +9,6 @@ import LoginToggle from './LoginToggle';
 // import ProfileToggle from './ProfileToggle';
 // import FarmToggle from './FarmToggle';
 // import { useLayoutEffect } from 'react';
-import Mascot from './Mascot';
 
 
 

@@ -7,87 +7,123 @@ import styled from 'styled-components';
 
 
 const LoginFormStyles = styled.div`
-font-family: 'MontserratMedium';
+padding-top: 5rem;
+font-size: 1.1rem;
 
-.title{
-    text-transform: uppercase;
-    font-size: 1.75rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.login-form-content {
-    min-height: 100vh;
-}
-
-
-.login-shell {
-    background-color: var(--cream);
-    padding: 1rem;
-    margin: 2rem auto;
-    width: 28rem;
-    max-width: 95%;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-}
-.login__controls {
+body {
+    
+    font-family: 'MontserratRegular';
+    font-color: black;
+    font-size: 12px;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 3rem;
-    margin-top: 2rem;
-    text-align: left;
-}
-.login__control label {
-    font-family: 'MontserratRegular';
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
-    display: block;
-} 
-.login__control input {
-    font-family: 'MontserratRegular';
-    padding: .5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 20rem;
-    max-width: 100%;
-    text-align: left;
-    margin-left: 0.3rem;
-}
-.login__actions {
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.login-shell button {
+.product-form-content {
+    margin-left: 25rem;
+        justify-content: center;
+        background-color: var(--cream);
+        padding: 2rem;
+        margin: 2rem auto;
+        margin-top: -3rem;
+        // border: solid 2px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        width: 26rem;
+}
+
+
+.form-title {
+    font-family: 'MontserratRegular';
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+
+}
+
+.form-field {
+    margin-bottom: 5px;
+
+}
+
+.form-field label {
+    font-family: 'MontserratRegular';
+    display: block;
+    color: black;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.form-field input {
+    font-family: 'MontserratRegular';
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+
+.form-field input:focus {
+    outline: none;
+}
+
+.form-field.error input {
+    border-color: var(--error-color);
+}
+
+.form-field.success input {
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    font-family: 'MontserratThin'
+    color: var(--error-color);
+}
+
+
+/* button */
+.btn-field {
+    padding-top: 1rem;
+}
+.btn {
+    width: 100%;
+    padding: 3%;
+    background: var(--terra);
+    border-bottom: 2px solid var(--terra);
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
     font-family: 'MontserratRegular';
     font-size: 16px;
-    cursor: pointer;
-    padding: 1rem 2rem;
-    border: 1px solid var(--terra);
-    background-color: var(--terra);
-    color: white;
-    border-radius: 12px;
-    /* margin-right: 1rem; */
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
 }
 
-.login-shell button:hover,
-.login-shell button:active {
+.btn:hover {
     background-color: var(--greybrwn);
     border-color: var(--greybrwn);
-}
-.login-shell button.alternative {
-    color: #220131;
-    border-color: transparent;
-    background-color: transparent;
+    cursor: pointer;
 }
 
-.login-shell button.alternative:hover,
-.login-shell button.alternative:active {
-    background-color: #ddb3f8;
+.btn:focus {
+    outline: none;
 }
 `;
 
@@ -238,42 +274,36 @@ const ProductRegForm = () => {
 
     return (
         <LoginFormStyles>
-            <div className='login-form-content'>
-                <form onSubmit={submitHandler}>
-                    <div className='login-shell'>
-                        <div >
-                            <h1 className='title'>Add A Farm Product</h1>
-                            <div className='login__controls'>
-                                <div className='login__control'>
-                                    <label>Product Name</label>
+            <div className='product-form-content'>
+                <form className='form' onSubmit={submitHandler}>
+                        <h2 className='form-title'>Add A Farm Product</h2>
+                                <div className='form-field'>
+                                    <label className="form-label">Product Name</label>
                                     <input type='text' value={enteredProductName} onChange={productNameChangeHandler}/>
                                 </div>
-                                <div className='login__control'>
-                                    <label>Product Category</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Product Category</label>
                                     <input type='text' value={enteredProductCategory} onChange={productCategoryChangeHandler}/>
                                 </div>
-                                <div className='login__control'>
-                                    <label>Product Description</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Product Description</label>
                                     <input type='text' value={enteredProductDescription} onChange={productDescriptionChangeHandler}/>
                                 </div>
-                                <div className='login__control'>
-                                    <label>Product Qty</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Product Qty</label>
                                     <input type='text' value={enteredProductQty} onChange={productQtyChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Product Unit Price</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Product Unit Price</label>
                                     <input type='text' value={enteredProductUnitPrice} onChange={productPriceChangeHandler} />
                                 </div>
                                 {/* <div className='login__control'>
                                     <label>Product Image</label>
                                     <input type='text' value={enteredProductImage} onChange={productImageChangeHandler} />
                                 </div> */}
-                            </div>
+                        <div className="btn-field">
+                            <button className='btn' type='submit'>Submit</button>
                         </div>
-                        <div className="login__actions">
-                            <button type='submit'>Submit</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </LoginFormStyles>
