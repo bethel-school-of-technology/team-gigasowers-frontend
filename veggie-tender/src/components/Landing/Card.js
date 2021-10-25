@@ -2,12 +2,15 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 import { PhotoPlaceholder } from 'react-placeholder-image';
+import { Link, useLocation } from 'react-router-dom';
 
 
 
 const CardStyles = styled.div`
 @media (max-width: 2560px){
         .bigWrapper{
+            margin-top: 6rem;
+            margin-left: 0.5rem;
             display: grid;
             grid-template-columns: 20% 20% 20% 20% 20%;
             position: absolute;
@@ -17,6 +20,8 @@ const CardStyles = styled.div`
 
 @media (max-width: 1440px){
     .bigWrapper{
+        margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -24,6 +29,8 @@ const CardStyles = styled.div`
 
 @media (max-width: 810px){
     .bigWrapper{
+        margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -31,6 +38,8 @@ const CardStyles = styled.div`
 
 @media (max-width: 700px){
     .bigWrapper{
+        margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -38,6 +47,8 @@ const CardStyles = styled.div`
 
 .cards {
     display: flex;
+    flex: wrap;
+    margin-bottom: 2rem;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -45,7 +56,7 @@ const CardStyles = styled.div`
   }
   
   .cardTop {
-    background: #a64e43;
+    background: var(--gray-green);
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -71,9 +82,9 @@ const CardStyles = styled.div`
     height: 250px;
   }
 
-  .cards__album {
-    font-style: italic;
-  }
+//   .cards__album {
+//     font-style: italic;
+//   }
   
   h2 {
     margin: 0;
@@ -94,7 +105,7 @@ const CardStyles = styled.div`
 
 .cardTop {
   height: 100%;
-  width: 400px;
+  width: 300px;
   transform: rotateX(0deg);
   -webkit-transform: rotateX(0deg);
 }
@@ -148,6 +159,14 @@ export default function Card() {
         console.log(response.data)
         setUser(response.data)
 
+        // const location = useLocation();
+        // let i;
+        // while(i=1){
+        //     for(let w=0; w < response.length; w++){
+        //         console.log("ProductUpdate Received: ");
+        //         console.log(location.state?.fProduct);
+        //     }
+        // }
         //   for (let i = 0; i < response.length; i++) {
         //       console.log(response[i].userF)
         //   }
@@ -162,32 +181,40 @@ export default function Card() {
         
     }
 
+    
     return (
         <CardStyles>
             <div className="bigWrapper">
             {user.map(currentUser => (  
                 //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
-                
+                // console.log("ProductUpdate Received: ", location.state?.fProduct)
 
                 <div className="cards">
                     <div className="card">
+                    {/* <Link to={{
+                        pathname: '/users/productUpdate',
+                        state: { 'fProduct': props.farmProduct }.
+                        console.log(pathname)
+                    }}> */}
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
                             <p class="cards__album" tabindex="0">
-                                <strong>Oishii おいしい Yummy</strong>
+                                <strong>{currentUser.userFarms.farmCity}</strong>, 
+                                <strong> {currentUser.userFarms.farmState}</strong>
                             </p>
                         </div>
-                        <div className="cardBack">
+                        {/* <div className="cardBack">
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
                             <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
                             <p className="cardDes">{currentUser.userFarms.farmState}</p>
                             <p className="cardDes">{currentUser.userFarms.farmCity}</p>
-                        </div>
+                        </div> */}
+                    {/* </Link> */}
                     </div>
                 </div>
                 
-            ))};
+            ))}
             </div>
 
         </CardStyles>
@@ -195,6 +222,12 @@ export default function Card() {
 }
 
 
+// <Link to={{
+//                     pathname: '/users/productUpdate',
+//                     state: { 'fProduct': props.farmProduct }
+//                 }}>Edit Product Info</Link>
+
+// href="/users/profile/{data.farmProfile}">
 
 
 // @media (max-width: 2560px){
