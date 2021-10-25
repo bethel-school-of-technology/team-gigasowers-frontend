@@ -9,6 +9,7 @@ const CardStyles = styled.div`
 @media (max-width: 2560px){
         .bigWrapper{
             margin-top: 6rem;
+            margin-left: 0.5rem;
             display: grid;
             grid-template-columns: 20% 20% 20% 20% 20%;
             position: absolute;
@@ -19,6 +20,7 @@ const CardStyles = styled.div`
 @media (max-width: 1440px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -27,6 +29,7 @@ const CardStyles = styled.div`
 @media (max-width: 810px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -35,6 +38,7 @@ const CardStyles = styled.div`
 @media (max-width: 700px){
     .bigWrapper{
         margin-top: 6rem;
+        margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr;
     }
@@ -42,6 +46,7 @@ const CardStyles = styled.div`
 
 .cards {
     display: flex;
+    flex: wrap;
     margin-bottom: 2rem;
     flex-direction: column;
     justify-content: center;

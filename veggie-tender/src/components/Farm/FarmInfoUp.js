@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -22,43 +22,47 @@ body {
 .container {
     justify-content: center;
     height: 600px;
-    max-width: 800px;
+    max-width: 25rem;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    width: 85%;
+    width: 90%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border:3px dashed var(--terra);
-    background-color: grey; 
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+//     flex-wrap: wrap;
+// }
+// .farmImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border:3px dashed var(--terra);
+//     background-color: grey; 
+// }
+.pageTitle{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 .info_float {
     float: right;
     height: 90%;
-    width: 60%;
+    width: 90%;
     display: block;
     margin-right: 1rem;
 }
 .farmInfoUpdate{
     margin-top: 1rem auto;
+    padding-left: 1rem;
     width: 100%;
-    height: 95%;
+    height: 90%;
     background-color: var(--cream);
     border: 5px solid var(--coral);
     border-radius: 12px;
-    padding: 1.5rem;
     text-align: left;
 }
 
@@ -82,15 +86,16 @@ body {
 }
 .buttonSection{
     float: right;
-    margin-top: 3rem;
-    margin-right: -2rem; 
+    margin-right: -0.5rem; 
 }
 .btn{
     padding: .5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
+    font-family: 'MontserratRegular';
+    font-size: 1rem;
     text-decoration: none;  
 }
 
@@ -242,11 +247,11 @@ const FarmInfoUpdate = () => {
     return (
         <FarmUpdateStyles>
             <div className="container">
-                <div className="image_float">
+                {/* <div className="image_float">
                     <h3 className="farmImage">Farm Image</h3>
-                </div>
+                </div> */}
                 <div className="info_float">
-                    <h2>Update Farm Information:</h2>
+                    <h2 className="pageTitle">Update Farm Information:</h2>
                     <div className="farmInfoUpdate">
                         <form id='farmUpdate' className='form' onSubmit={submitHandler}>
                             <div className='form-field'>

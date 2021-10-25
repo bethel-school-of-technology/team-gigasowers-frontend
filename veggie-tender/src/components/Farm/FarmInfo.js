@@ -22,6 +22,7 @@ body {
 .container {
     justify-content: center;
     height: 450px;
+    max-width: 700px;
     background-color: var(--cream);
     padding: 1em;
     margin: 2rem auto;
@@ -29,24 +30,31 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     width: 85%;
 }
-.image_float {
-    float: left;
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.farmImage {
-    margin: 2rem auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border: 5px dashed var(--terra);
-    background-color: grey; 
+// .image_float {
+//     float: left;
+//     width: 35%;
+//     display: flex;
+//     flex-wrap: wrap;
+// }
+// .farmImage {
+//     margin: 2rem auto;
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50%;
+//     border: 5px dashed var(--terra);
+//     background-color: grey; 
+// }
+.farmNameSection {
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    justify-content: center;
 }
 .info_float {
     float: right;
-    height: 90%;
-    width: 65%;
+    height: 80%;
+    width: 100%;
     display: block;
 }
 .farmInfo {
@@ -74,12 +82,6 @@ body {
     height: 10px;
     display: inline-block;
     margin-left: 5rem;
-}
-.farmNameSection {
-    margin-top: -0.5rem;
-    margin-left: 2rem;
-    font-size: 1.5rem;
-    justify-content: center;
 }
 .buttonSection{
     float: right;
@@ -172,7 +174,7 @@ const FarmInfo = () => {
     const [farmCity, setFarmCity] = useState('');
     const [farmState, setFarmState] = useState('');
     const [farmZip, setFarmZip] = useState('');
-    const [farmImage, setFarmImage] = useState('');
+    // const [farmImage, setFarmImage] = useState('');
     const [farmWebsite, setFarmWebsite] = useState('');
     const [farmEmail, setFarmEmail] = useState('');
 
@@ -201,7 +203,7 @@ const FarmInfo = () => {
                 setFarmCity(response.userFarms.farmCity);
                 setFarmState(response.userFarms.farmState);
                 setFarmZip(response.userFarms.farmZip);
-                setFarmImage(response.userFarms.farmImage);
+                // setFarmImage(response.userFarms.farmImage);
                 setFarmWebsite(response.userFarms.farmWebsite);
                 setFarmEmail(response.userFarms.farmEmail);
             } else {
@@ -215,12 +217,12 @@ const FarmInfo = () => {
     return (
         <FarmInfoStyles>
             <div className="container">
-                <div className="image_float">
-                    <img className="farmImage" src={farmImage} alt="profileImage"></img>
+                {/* <div className="image_float">
+                    <img className="farmImage" src={farmImage} alt="profileImage"></img> */}
                     <div className="farmNameSection">
                         <h3 className="farmName">{farmName}</h3>
                     </div>
-                </div>
+                {/* </div> */}
                 <div className="info_float">
                     <div className="farmInfo">
 

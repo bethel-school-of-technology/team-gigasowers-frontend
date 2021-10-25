@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import Card from '../Card';
 
 const LandingFunctionStyles = styled.div`
-.landing {
-    margin-top: 10rem;
-}
 
 .topShelf{
     list-style: none;

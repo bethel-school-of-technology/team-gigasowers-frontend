@@ -25,6 +25,7 @@ body {
 .container {
         justify-content: center;
         height: 300px;
+        max-width: 700px;
         background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
