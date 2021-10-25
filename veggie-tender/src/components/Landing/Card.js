@@ -135,11 +135,11 @@ const CardStyles = styled.div`
 
 
 
-const cards = document.querySelectorAll(".cardsTop");
-    function flipCard() {
-    this.classList.toggle("flip");
-    }
-    cards.forEach((card) => card.addEventListener("click", flipCard));
+// const cards = document.querySelectorAll(".cardsTop");
+//     function flipCard() {
+//     this.classList.toggle("flip");
+//     }
+//     cards.forEach((card) => card.addEventListener("click", flipCard));
 
 
 
@@ -178,7 +178,7 @@ export default function Card() {
         console.error(error);
         }
 
-        
+        // export default response;
     }
 
     
@@ -196,7 +196,12 @@ export default function Card() {
                         state: { 'fProduct': props.farmProduct }.
                         console.log(pathname)
                     }}> */}
-                    <Link to="">
+                    <Link to={{
+                    pathname: '/users/farmDetailPage',
+                    state: { 'selectedFarm': currentUser.userFarms }
+                    }}>
+                    {/* <Link to=""> */}
+
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
@@ -205,6 +210,7 @@ export default function Card() {
                                 <strong> {currentUser.userFarms.farmState}</strong>
                             </p>
                         </div>
+
                         {/* <div className="cardBack">
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
                             <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
