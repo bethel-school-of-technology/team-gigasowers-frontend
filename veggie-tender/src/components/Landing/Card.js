@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 const CardStyles = styled.div`
 @media (max-width: 2560px){
         .bigWrapper{
-            margin-top: 6rem;
+            margin-top: -2rem;
             margin-left: 0.5rem;
             display: grid;
             grid-template-columns: 20% 20% 20% 20% 20%;
@@ -20,7 +20,7 @@ const CardStyles = styled.div`
 
 @media (max-width: 1440px){
     .bigWrapper{
-        margin-top: 6rem;
+        margin-top: -2rem;
         margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -29,7 +29,7 @@ const CardStyles = styled.div`
 
 @media (max-width: 810px){
     .bigWrapper{
-        margin-top: 6rem;
+        margin-top: -2rem;
         margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -38,7 +38,7 @@ const CardStyles = styled.div`
 
 @media (max-width: 700px){
     .bigWrapper{
-        margin-top: 6rem;
+        margin-top: -2rem;
         margin-left: 0.5rem;
         display: grid;
         grid-template-columns: 1fr;

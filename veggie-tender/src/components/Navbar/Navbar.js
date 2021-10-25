@@ -3,12 +3,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 import { createBrowserHistory } from "history";
-// import kingyo from '../../assets/images/kingyo.png';
-// import LoginForm from './LoginForm';
 import LoginToggle from './LoginToggle';
-// import ProfileToggle from './ProfileToggle';
-// import FarmToggle from './FarmToggle';
-// import { useLayoutEffect } from 'react';
+
 
 
 
@@ -186,19 +182,14 @@ function Navbar() {
         <div className="leftSide">
           <div className="links">
             <a href="/" className="homeButton">Veggie tender </a>
-            {/* <div className="mascot"><Mascot/></div> */}
-            {/* <a href="/home"><img className="homeButton" src={kingyo} alt="Logo"/></a> */}
-            {/* <a href="/" id={showLinks ? "hidden" : ""}>Home</a> */}
-            {/* <a href="/farmers">Farmers</a>
-                    <a href="/events">Events</a> */}
+
           </div>
         </div>
 
         <div className="rightSide">
           <ul className="buttons">
-            {/* <li><ProfileToggle className="btn"/></li> */}
             <li><LoginToggle className="btn" /></li>
-            {/* <li><FarmToggle className="btn" /></li> */}
+
           </ul>
         </div>
       </div>

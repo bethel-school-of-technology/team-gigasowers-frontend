@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 
-const FarmInfoStyles = styled.div`
+const ProductStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
@@ -88,7 +88,7 @@ const Product = (props) => {
 
 
     return (
-        <FarmInfoStyles>
+        <ProductStyles>
 
             <div className="container">
                 <div className="info_float">
@@ -106,7 +106,7 @@ const Product = (props) => {
                     </div>
                 </div>  
             </div>    
-        </FarmInfoStyles >
+        </ProductStyles >
     )
 }
 
