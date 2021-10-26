@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FarmEvent from './FarmEvent';
 
 
 
-
-const FarmInfoStyles = styled.div`
+const EventsStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
@@ -134,7 +133,14 @@ body {
 
 const Events = () => {
 
-    let history = useHistory();
+    // let validToken = CheckAuth();
+    // if (!validToken) {
+    //     console.log("validToken returned null or undefined");
+    //    // history.push('/users/login');
+    // } else {
+    //     console.log(validToken);
+    // }
+
 
     const [eventArr, setEventArr] = useState([]);  //state for events array
 
@@ -149,16 +155,15 @@ const Events = () => {
         axios.get('http://localhost:5000/api/users/profile',
             { 'headers': myHeaders })
             .then(function (response) {
+                console.log("events GET response: " + response.status);
                 if (response.status === 401) {
-                    console.log(response.status);
-                    history.push('/users/login');
+                    console.log("No token or must be logged in");
                 }
                 if (response.status === 200) {
-                    //console.log(response.status);
+                    //console.log(response);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
-                        console.log("this user is not a farmer");
-                        history.push('/users/profile');
+                        console.log("this profile is not a farmer");
                     }
 
                     setEventArr(prevArr => {
@@ -168,12 +173,10 @@ const Events = () => {
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
-                    history.push('/users/login');
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
-                history.push('/users/login');
             });
 
     }, []);
@@ -181,7 +184,7 @@ const Events = () => {
 
 
     return (
-        <FarmInfoStyles>
+        <EventsStyles>
             {/* <div className="container"> */}
                 {/* <div className="image_float">
                     <h3 className="farmImage">Farmer Market Image</h3>
@@ -200,7 +203,7 @@ const Events = () => {
                     ))}
                 </h4>
             </div>
-        </FarmInfoStyles >
+        </EventsStyles >
     )
 }
 
