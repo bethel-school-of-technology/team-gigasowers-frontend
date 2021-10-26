@@ -275,6 +275,14 @@ const FarmDetails = () => {
                 <h3>Current Produce:</h3>
                 <div className="produce_info_float">
                     <div className="farmProducts">
+                        {this.farm.farmInventory.map((farm, 
+                            index) => (
+                                <p key={index}>Current Inventory is ... <br/>   {this.farm.farmInventory.farmProduct.productCategory}
+                                <br/> {this.farm.farmInventory.farmProduct.productName}
+                                <br/> {this.farm.farmInventory.farmProduct.productDescription}
+                                <br/> {this.farm.farmInventory.farmProduct.productPrice}</p>
+                            ))}
+
                         {/* <div classname="eachProduct" key={props.farmProduct.productId}>
                             {farm.map(inv => (
                             <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
@@ -298,6 +306,18 @@ const FarmDetails = () => {
                 <h3>Farm Events:</h3>
                 <div className="events_info_float">
                     <div className="farmEvents">
+                        {this.farm.farmEvent.map((farm, 
+                            index) => (
+                                <p key={index}>Current Inventory is ... 
+                                <br/> {this.farm.farmEvent.eventName}
+                                <br/> {this.farm.farmEvent.eventAddress}
+                                <br/> {this.farm.farmEvent.eventCity}
+                                <br/> {this.farm.farmEvent.eventState}
+                                <br/> {this.farm.farmEvent.eventZip}
+                                <br/> {this.farm.farmEvent.eventStartDate}
+                                <br/> {this.farm.farmEvent.eventFinishDate}
+                                </p>
+                            ))}
                         {/* <div classname="eachEvents" key={farm.farmEvent.eventId}>
                                 <strong>{farm.farmEvents}</strong>
                                 <p>{farm.farmEvents.eventId}</p>
