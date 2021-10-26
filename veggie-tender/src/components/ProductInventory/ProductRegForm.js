@@ -209,9 +209,9 @@ const ProductRegForm = () => {
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        console.log("calcId: " + calcProductId);
-        console.log(productArr);
-        console.log(productArr.length);
+        //console.log("calcId: " + calcProductId);
+        //console.log(productArr);
+        //console.log(productArr.length);
 
         tempArr = [{
             'productId': calcProductId.toString(),
@@ -224,7 +224,7 @@ const ProductRegForm = () => {
         }];
         setProductArr(prevArr => {
             const enteredArr = [...prevArr, ...tempArr];
-            console.log(enteredArr);
+            //console.log(enteredArr);
             return enteredArr;
         });
         setIsSubmitComplete(true);
@@ -241,7 +241,7 @@ const ProductRegForm = () => {
             //post to login in API to auth user and get token
             axios.put('http://localhost:5000/api/users/update', {'farmInventory': productArr }, { 'headers': myHeaders })
                 .then(function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.status === 200) {
                         console.log(response.status);
                     } else {

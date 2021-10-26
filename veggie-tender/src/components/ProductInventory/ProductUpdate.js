@@ -93,12 +93,10 @@ const ProductUpdate = () => {
 
 
     const location = useLocation();
-    console.log("ProductUpdate Received: ");
-    console.log(location.state?.fProduct);
+    //console.log("ProductUpdate Received: ");
+    //console.log(location.state?.fProduct);
     const fProduct = location.state?.fProduct;
 
-    let uId = localStorage.getItem("userId")
-    console.log(uId);
 
     let history = useHistory();
 
@@ -171,26 +169,25 @@ const ProductUpdate = () => {
             'productQty': enteredProductQty,
             'productUnitPrice': enteredProductUnitPrice
         };
-        console.log("product to be updated: ");
-        console.log(product);
 
-        //set JWT token into header for server side authentication
-        // let myHeaders = {
-        //     'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
-        // };
-        // //post to login in API to auth user and get token
-        // axios.put('http://localhost:5000/api/users/updateProduct', product , { 'headers': myHeaders })
-        //     .then(function (response) {
-        //         console.log(response);
-        //         if (response.status === 200) {
-        //             console.log(response.status);
-        //         } else {
-        //             console.log(`Product update error response received: ${response.status} `);
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         console.log(`Product update catch error: ${error} `);
-        //     });
+
+       // set JWT token into header for server side authentication
+        let myHeaders = {
+            'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
+        };
+        //post to login in API to auth user and get token
+        axios.put('http://localhost:5000/api/users/updateProduct', product , { 'headers': myHeaders })
+            .then(function (response) {
+                //console.log(response);
+                if (response.status === 200) {
+                    console.log("Product Update Status: " + response.status);
+                } else {
+                    console.log(`Product update error response received: ${response.status} `);
+                }
+            })
+            .catch(function (error) {
+                console.log(`Product update catch error: ${error} `);
+            });
 
         setProductId('');
         setProductName('');
@@ -200,7 +197,7 @@ const ProductUpdate = () => {
         setProductUnitPrice('');
         //setProductImage('');
 
-       //history.goBack();
+       history.goBack();
 
     }
 
