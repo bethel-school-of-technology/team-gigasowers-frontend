@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 
-const FarmEventStyles = styled.div`
+const FarmInfoStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
