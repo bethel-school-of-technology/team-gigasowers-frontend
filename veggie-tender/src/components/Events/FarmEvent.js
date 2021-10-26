@@ -95,28 +95,45 @@ body {
 const FarmEvent = (props) => {
 
 
+    let eventAvailable = false;
+    if (props.farmEvent) {
+        eventAvailable = true;
+    }
+
+
     return (
         <FarmInfoStyles>
-            <div className="container">
-                <div className="image_float">
-                    <h3 className="farmImage">{props.farmEvent.eventImage}</h3>
-                </div>
-                <div className="info_float">
-                    <div className="farmEvents">
-                        <div classname="eachEvents" key={props.farmEvent.eventId}>
-                            <h3>{props.farmEvent.eventName} / {props.farmEvent.eventStartDate} - {props.farmEvent.eventFinishDate}</h3>
-                            <h3>{props.farmEvent.eventAddress}</h3>
-                            <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
-                            <Link type="button" className="btn" to={{
-                                pathname: '/users/eventUpdate',
-                                state: { 'fEvent': props.farmEvent }
-                            }}>Edit Event Info</Link>
+            {eventAvailable ?
+                <div className="container">
+                    <div className="image_float">
+                        <h3 className="farmImage">{props.farmEvent.eventImage}</h3>
+                    </div>
+                    <div className="info_float">
+                        <div className="farmEvents">
+                            <div classname="eachEvents" key={props.farmEvent.eventId}>
+                                <h3>{props.farmEvent.eventName} / {props.farmEvent.eventStartDate} - {props.farmEvent.eventFinishDate}</h3>
+                                <h3>{props.farmEvent.eventAddress}</h3>
+                                <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
+                                <Link type="button" className="btn" to={{
+                                    pathname: '/users/eventUpdate',
+                                    state: { 'fEvent': props.farmEvent }
+                                }}>Edit Event Info</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                :
+                null
+            }
+
         </FarmInfoStyles >
     )
 }
 
 export default FarmEvent;
+
+// {loginStatus ?
+//     <Link type="button" onClick={logoutHandler} className="btn2">LogOut</Link>
+//     :
+//     <Link type="button" onClick={loginHandler} className="btn2">LogIn</Link>
+// }

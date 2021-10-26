@@ -193,7 +193,17 @@ const ProductRegForm = () => {
                         return newArr;
                     });
 
-                    setCalcProductId(parseInt(response.data.userFarms.farmInventory.length)+1); //sets productId for form entry
+    
+                    if (response.data.userFarms.farmInventory.length){
+                        //console.log("incrementing productId:");
+                        let incId = parseInt(response.data.userFarms.farmInventory.length)
+                        setCalcProductId(++incId);
+                    }else{
+                        //console.log("Else setting productId to length to 1");
+                        setCalcProductId(1); 
+                        
+                    }
+                    
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
@@ -257,7 +267,7 @@ const ProductRegForm = () => {
             setProductDescription('');
             setProductQty('');
             setProductUnitPrice('');
-            //setProductImage('');
+           
 
             history.goBack();
   
