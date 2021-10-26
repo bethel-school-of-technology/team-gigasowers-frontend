@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import FarmEvent from './FarmEvent';
+
 
 
 
@@ -133,14 +134,7 @@ body {
 
 const Events = () => {
 
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned null or undefined");
-    //    // history.push('/users/login');
-    // } else {
-    //     console.log(validToken);
-    // }
-
+    let history = useHistory();
 
     const [eventArr, setEventArr] = useState([]);  //state for events array
 
@@ -155,15 +149,16 @@ const Events = () => {
         axios.get('http://localhost:5000/api/users/profile',
             { 'headers': myHeaders })
             .then(function (response) {
-                console.log("events GET response: " + response.status);
                 if (response.status === 401) {
-                    console.log("No token or must be logged in");
+                    console.log(response.status);
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
-                    //console.log(response);
+                    //console.log(response.status);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
-                        console.log("this profile is not a farmer");
+                        console.log("this user is not a farmer");
+                        history.push('/users/profile');
                     }
 
                     setEventArr(prevArr => {
@@ -173,10 +168,12 @@ const Events = () => {
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
+                    history.push('/users/login');
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
+                history.push('/users/login');
             });
 
     }, []);

@@ -17,6 +17,7 @@ import ProductReg from './components/ProductInventory/ProductRegForm';
 //import farmDetails from './';
 import FarmDetail from '../src/components/Landing/FarmDetails';
 import ProductUp from './pages/ProductUp';
+import EventUp from './pages/EventUp';
 import Mascot from './components/Navbar/Mascot';
 
 
@@ -83,9 +84,9 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/eventEdit">
+                                    <Route path="/users/eventUpdate">
                                           <Navbar />
-                                          <EventReg />
+                                          <EventUp />
                                     </Route>
                               </Switch>
                               <Switch>

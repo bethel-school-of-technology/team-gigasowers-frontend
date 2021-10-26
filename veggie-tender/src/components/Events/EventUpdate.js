@@ -89,25 +89,23 @@ font-family: 'MontserratMedium';
 }
 `;
 
-const ProductUpdate = () => {
+const EventUpdate = () => {
 
 
     const location = useLocation();
-    const fProduct = location.state?.fProduct;
-
-
-
+    const fEvent = location.state?.fEvent;
 
     let history = useHistory();
 
     //set state for entered credentials
-    const [productId, setProductId] = useState('');
-    const [enteredProductName, setProductName] = useState('');
-    const [enteredProductCategory, setProductCategory] = useState('');
-    const [enteredProductDescription, setProductDescription] = useState('');
-    const [enteredProductQty, setProductQty] = useState();
-    const [enteredProductUnitPrice, setProductUnitPrice] = useState();
-
+    const [eventId, setEventId] = useState('');
+    const [enteredEventName, setEventName] = useState('');
+    const [enteredEventAddress, setEventAddress] = useState('');
+    const [enteredEventCity, setEventCity] = useState('');
+    const [enteredEventState, setEventState] = useState('');
+    const [enteredEventZip, setEventZip] = useState('');
+    const [enteredEventStartDate, setEventStartDate] = useState('');
+    const [enteredEventFinishDate, setEventFinishDate] = useState('');
 
     useEffect(() => {
         let myHeaders = {
@@ -117,36 +115,36 @@ const ProductUpdate = () => {
         axios.get('http://localhost:5000/api/users/profile',
             { 'headers': myHeaders })
             .then(function (response) {
-
                 if (!response.status === 200) {
                     console.log(response.status);
-                    console.log("No token or must be logged in");
+                    console.log("Invalid Token");
                     history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log(response.status);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
-                        console.log("this profile is not a farmer");
+                        console.log("this user is not a farmer");
                         history.push('/users/profile');
                     }
 
                     //load state variables with product detail passed via location state
-                    if (fProduct) {
-                        setProductId(fProduct.productId);
-                        setProductName(fProduct.productName);
-                        setProductCategory(fProduct.productCategory);
-                        setProductDescription(fProduct.productDescription);
-                        setProductQty(fProduct.productQty);
-                        setProductUnitPrice(fProduct.productUnitPrice);
+                    if (fEvent) {
+                        setEventId(fEvent.eventId);
+                        setEventName(fEvent.eventName);
+                        setEventAddress(fEvent.eventAddress);
+                        setEventCity(fEvent.eventCity);
+                        setEventState(fEvent.eventState);
+                        setEventZip(fEvent.eventZip);
+                        setEventStartDate(fEvent.eventStartDate);
+                        setEventFinishDate(fEvent.eventFinishDate);
                     } else {
-                        console.log("No product info to update");
+                        console.log("No event info to update");
                         history.push('/users/profile');
                     }
-
                 }
                 else {
-                    console.log(`Product Update error status: ${response.status} `);
+                    console.log(`Event Update error status: ${response.status} `);
                     history.push('/users/login');
                 }
 
@@ -158,51 +156,54 @@ const ProductUpdate = () => {
     }, []);
 
     //handlers for each input field on the form
-    const productNameChangeHandler = (event) => { setProductName(event.target.value); };
-    const productCategoryChangeHandler = (event) => { setProductCategory(event.target.value); };
-    const productDescriptionChangeHandler = (event) => { setProductDescription(event.target.value); };
-    const productQtyChangeHandler = (event) => { setProductQty(event.target.value); };
-    const productPriceChangeHandler = (event) => { setProductUnitPrice(event.target.value); };
-    // const productImageChangeHandler = (event) => { setProductImage(event.target.value); };
+    const eventNameChangeHandler = (event) => { setEventName(event.target.value); };
+    const eventAddressChangeHandler = (event) => { setEventAddress(event.target.value); };
+    const eventCityChangeHandler = (event) => { setEventCity(event.target.value); };
+    const eventStateChangeHandler = (event) => { setEventState(event.target.value); };
+    const eventZipChangeHandler = (event) => { setEventZip(event.target.value); };
+    const eventStartDateChangeHandler = (event) => { setEventStartDate(event.target.value); };
+    const eventFinishDateChangeHandler = (event) => { setEventFinishDate(event.target.value); };
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        const product = {
-            'productId': productId,
-            'productCategory': enteredProductCategory,
-            'productName': enteredProductName,
-            'productDescription': enteredProductDescription,
-            'productQty': enteredProductQty,
-            'productUnitPrice': enteredProductUnitPrice
+        const upEvent = {
+            'eventId': eventId,
+            'eventName': enteredEventName,
+            'eventAddress': enteredEventAddress,
+            'eventCity': enteredEventCity,
+            'eventState': enteredEventState,
+            'eventZip': enteredEventZip,
+            'eventStartDate': enteredEventStartDate,
+            'eventFinishDate': enteredEventFinishDate
         };
-
 
         // set JWT token into header for server side authentication
         let myHeaders = {
             'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
         };
         //post to login in API to auth user and get token
-        axios.put('http://localhost:5000/api/users/updateProduct', product, { 'headers': myHeaders })
+        axios.put('http://localhost:5000/api/users/updateEvent', upEvent, { 'headers': myHeaders })
             .then(function (response) {
                 //console.log(response);
                 if (response.status === 200) {
-                    console.log("Product Update Status: " + response.status);
+                    console.log("Event Update Status: " + response.status);
                 } else {
-                    console.log(`Product update error response received: ${response.status} `);
+                    console.log(`Event update error response received: ${response.status} `);
                 }
             })
             .catch(function (error) {
-                console.log(`Product update catch error: ${error} `);
+                console.log(`Event update catch error: ${error} `);
             });
 
-        setProductId('');
-        setProductName('');
-        setProductCategory('');
-        setProductDescription('');
-        setProductQty('');
-        setProductUnitPrice('');
-        //setProductImage('');
+        setEventId('');
+        setEventName('');
+        setEventAddress('');
+        setEventCity('');
+        setEventState('');
+        setEventZip('');
+        setEventStartDate('');
+        setEventFinishDate('');
 
         history.goBack();
 
@@ -214,32 +215,36 @@ const ProductUpdate = () => {
                 <form onSubmit={submitHandler}>
                     <div className='login-shell'>
                         <div >
-                            <h1 className='title'>Update Farm Product</h1>
+                            <h1 className='title'>Update Farm Event</h1>
                             <div className='login__controls'>
                                 <div className='login__control'>
-                                    <label>Product Name</label>
-                                    <input type='text' value={enteredProductName} onChange={productNameChangeHandler} />
+                                    <label>Event Name</label>
+                                    <input type='text' value={enteredEventName} onChange={eventNameChangeHandler} />
                                 </div>
                                 <div className='login__control'>
-                                    <label>Product Category</label>
-                                    <input type='text' value={enteredProductCategory} onChange={productCategoryChangeHandler} />
+                                    <label>Event Address</label>
+                                    <input type='text' value={enteredEventAddress} onChange={eventAddressChangeHandler} />
                                 </div>
                                 <div className='login__control'>
-                                    <label>Product Description</label>
-                                    <input type='text' value={enteredProductDescription} onChange={productDescriptionChangeHandler} />
+                                    <label>Event City</label>
+                                    <input type='text' value={enteredEventCity} onChange={eventCityChangeHandler} />
                                 </div>
                                 <div className='login__control'>
-                                    <label>Product Qty</label>
-                                    <input type='text' value={enteredProductQty} onChange={productQtyChangeHandler} />
+                                    <label>Event State</label>
+                                    <input type='text' value={enteredEventState} onChange={eventStateChangeHandler} />
                                 </div>
                                 <div className='login__control'>
-                                    <label>Product Unit Price</label>
-                                    <input type='text' value={enteredProductUnitPrice} onChange={productPriceChangeHandler} />
+                                    <label>Event Zip</label>
+                                    <input type='text' value={enteredEventZip} onChange={eventZipChangeHandler} />
                                 </div>
-                                {/* <div className='login__control'>
-                                <label>Product Image</label>
-                                <input type='text' value={enteredProductImage} onChange={productImageChangeHandler} />
-                            </div> */}
+                                <div className='login__control'>
+                                    <label>Event Start Date</label>
+                                    <input type='date' value={enteredEventStartDate} onChange={eventStartDateChangeHandler} />
+                                </div>
+                                <div className='login__control'>
+                                    <label>Event Finish Date</label>
+                                    <input type='date' value={enteredEventFinishDate} onChange={eventFinishDateChangeHandler} />
+                                </div>
                             </div>
                         </div>
                         <div className="login__actions">
@@ -252,4 +257,4 @@ const ProductUpdate = () => {
     )
 }
 
-export default ProductUpdate;
+export default EventUpdate;

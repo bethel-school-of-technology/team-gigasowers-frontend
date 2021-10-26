@@ -104,11 +104,13 @@ const FarmEvent = (props) => {
                 <div className="info_float">
                     <div className="farmEvents">
                         <div classname="eachEvents" key={props.farmEvent.eventId}>
-                                <h3>{props.farmEvent.eventName} / {props.farmEvent.eventStartDate} - {props.farmEvent.eventFinishDate}</h3>
-                                <h3>{props.farmEvent.eventAddress}</h3>
-                                <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
-
-                            <Link type="button" className="btn" fEvent={props.farmEvent}>Edit Event Info</Link>
+                            <h3>{props.farmEvent.eventName} / {props.farmEvent.eventStartDate} - {props.farmEvent.eventFinishDate}</h3>
+                            <h3>{props.farmEvent.eventAddress}</h3>
+                            <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
+                            <Link type="button" className="btn" to={{
+                                pathname: '/users/eventUpdate',
+                                state: { 'fEvent': props.farmEvent }
+                            }}>Edit Event Info</Link>
                         </div>
                     </div>
                 </div>

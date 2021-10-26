@@ -184,7 +184,7 @@ const ProductRegForm = () => {
                     console.log(response.status);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
-                        console.log("this profile is not a farmer");
+                        console.log("this user is not a farmer");
                         history.push('/users/profile');
                     }
 
@@ -197,10 +197,12 @@ const ProductRegForm = () => {
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
+                    history.push('/users/login');
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
+                history.push('/users/login');
             });
 
     }, []);
@@ -209,9 +211,6 @@ const ProductRegForm = () => {
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        //console.log("calcId: " + calcProductId);
-        //console.log(productArr);
-        //console.log(productArr.length);
 
         tempArr = [{
             'productId': calcProductId.toString(),

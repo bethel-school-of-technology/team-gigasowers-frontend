@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import  CheckAuth  from '../../services/CheckAuth';
+import CheckAuth from '../../services/CheckAuth';
 // import { checkField, checkEmail, checkAddress, checkState, checkZip, checkWebsite } from '../services/FormErrors';
 
 
@@ -133,11 +133,16 @@ export default function FarmerRegisterForm() {
 
     let history = useHistory();  //Used to track page route history
 
-    let validToken = CheckAuth();
-    if (!validToken) {
-        console.log("validToken returned false or undefined");
-        history.push('/users/login');
-    }
+    useEffect(async () => {
+        //checkAuth for valid token 
+        let validToken = await CheckAuth();
+        if (!validToken) {
+            console.log("Not a validToken");
+            history.push('/users/login');
+        }
+    }, []);
+
+  
 
     //set state for entered information
     const [enteredFarmName, setFarmName] = useState('');
@@ -205,7 +210,7 @@ export default function FarmerRegisterForm() {
                 }
                 if (response.status === 200) {
                     console.log("directing to farm profile");
-                    history.push('/users/farmProfile/:farmId');
+                    history.push('/users/farmProfile/');
                 }
                 else {
                     // setShowError(true);
@@ -216,6 +221,7 @@ export default function FarmerRegisterForm() {
             })
             .catch(function (error) {
                 // formErrorHandler(error.message);
+                console.log(`Unable to register farm: ${error.status} `);
             });
 
         setFarmName('');
