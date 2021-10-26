@@ -189,7 +189,7 @@ const EventRegForm = () => {
                     history.push('/users/login');
                 }
                 if (response.status === 200) {
-                    //console.log(response);
+                    console.log(response.status);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
                         console.log("this user is not a farmer");
@@ -201,7 +201,13 @@ const EventRegForm = () => {
                         return newArr;
                     });
 
-                    setCalcEventId(parseInt(response.data.userFarms.farmEvent.length) + 1); //sets eventId for form entry
+                    if (response.data.userFarms.farmEvent.length) {
+                        let incId = parseInt(response.data.userFarms.farmEvent.length);
+                        setCalcEventId(++incId);
+                    } else {
+                        setCalcEventId(1);
+                    }
+
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
@@ -220,9 +226,6 @@ const EventRegForm = () => {
     const submitHandler = (event) => {
         event.preventDefault();  //prevents form from refreshing after submit
 
-        console.log("calcId: " + calcEventId);
-        console.log(eventArr);
-        console.log(eventArr.length);
 
         tempArr = [{
             'eventId': calcEventId.toString(),
@@ -237,7 +240,6 @@ const EventRegForm = () => {
         }];
         setEventArr(prevArr => {
             const enteredArr = [...prevArr, ...tempArr];
-            console.log(enteredArr);
             return enteredArr;
         });
         setIsSubmitComplete(true);
@@ -254,8 +256,8 @@ const EventRegForm = () => {
             //post to login in API to auth user and get token
             axios.put('http://localhost:5000/api/users/update', { 'farmEvent': eventArr }, { 'headers': myHeaders })
                 .then(function (response) {
-                    console.log(response);
                     if (response.status === 200) {
+                        console.log(response.status);
                     } else {
                         console.log(`Event update error response received: ${response.status} `);
                     }
@@ -272,7 +274,9 @@ const EventRegForm = () => {
             setEventZip('');
             setEventStartDate('');
             setEventFinishDate('');
-            //setEventImage('');
+
+            history.goBack();
+            
 
         }
     }, [isSubmitComplete, eventArr]);

@@ -180,6 +180,7 @@ export default function FarmerRegisterForm() {
         // checkEmail(enteredFarmEmail, 'Email is not valid');
 
         const profileData = {
+            farmId: "1",
             farmName: enteredFarmName,
             farmDescription: enteredFarmDescription,
             farmAddress: enteredFarmAddress,

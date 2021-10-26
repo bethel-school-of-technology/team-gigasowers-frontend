@@ -86,26 +86,36 @@ body {
 
 const Product = (props) => {
 
+    
+
+    let productAvailable = false;
+    if (props.farmProduct) {
+        productAvailable = true;
+    }
+
 
     return (
         <ProductStyles>
-
-            <div className="container">
-                <div className="info_float">
-                    <div className="farmProducts"> 
-                        <div classname="eachProduct" key={props.farmProduct.productId}>
+            {productAvailable ?
+                <div className="container">
+                    <div className="info_float">
+                        <div className="farmProducts">
+                            <div classname="eachProduct" key={props.farmProduct.productId}>
                                 <Link type="button" className="btn" to={{
-                                 pathname: '/users/productUpdate',
-                                state: { 'fProduct': props.farmProduct }
-                                 }}>Edit Product Info</Link>
+                                    pathname: '/users/productUpdate',
+                                    state: { 'fProduct': props.farmProduct }
+                                }}>Edit Product Info</Link>
                                 <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
                                 <h4>{props.farmProduct.productDescription}</h4>
                                 <h4>Quantity Available: {props.farmProduct.productQty}</h4>
                                 <h4>Cost: ${props.farmProduct.productUnitPrice}</h4>
+                            </div>
                         </div>
                     </div>
-                </div>  
-            </div>    
+                </div>
+                :
+                null
+            }
         </ProductStyles >
     )
 }
