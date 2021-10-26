@@ -8,8 +8,22 @@ import styled from 'styled-components';
 
 
 const FarmDetailStyles = styled.div`
-.div{
-    background: black;
+.bigBox{
+    border: solid black;
+}
+
+.infoBox{
+    border: solid black;
+}
+
+.produceBox{
+    background-color: #e7feff;
+    border: solid black;
+}
+
+.eventsBox{
+    border: solid black;
+
 }
 `
 
@@ -45,21 +59,22 @@ const FarmDetails = () => {
                 </div>
 
                  <div className="produceBox">
-                 {/* {farm.map(inv => ( */}
-                 <div>aaaa</div>
-                 <br/>
-                    {/* <p>{farm.farmInventory[0].map}</p>
+                    {/* {farm.map(inv => ( */}
+                    <div>aaaa もの　items</div>
                     <br/>
-                    <p>{farm.farmInventory[1].productCategory}</p>
-                    <br/>
-                    <h2>{farm.farmInventory[1].productName}</h2>
-                    <br/>
-                    <p>{farm.farmInventory[1].productQty}</p>
-                    <p>{farm.farmInventory[1].productUnitPrice}</p>
-                 */}
+                        {/* <p>{farm.farmInventory[0].map}</p>
+                        <br/>
+                        <p>{farm.farmInventory[1].productCategory}</p>
+                        <br/>
+                        <h2>{farm.farmInventory[1].productName}</h2>
+                        <br/>
+                        <p>{farm.farmInventory[1].productQty}</p>
+                        <p>{farm.farmInventory[1].productUnitPrice}</p>
+                    */}
                 </div>
 
                 <div className="eventsBox">
+                    <div>ahh event box あああああ</div>
                     {/* <strong>{farm.farmEvents}</strong>
                     <p>{farm.farmEvents.eventId}</p> */}
                 </div>
