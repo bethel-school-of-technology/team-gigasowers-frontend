@@ -94,7 +94,7 @@ const Product = (props) => {
                 <div className="info_float">
                     <div className="farmProducts"> 
                         <div classname="eachProduct" key={props.farmProduct.productId}>
-                                <Link to={{
+                                <Link type="button" className="btn" to={{
                                  pathname: '/users/productUpdate',
                                 state: { 'fProduct': props.farmProduct }
                                  }}>Edit Product Info</Link>

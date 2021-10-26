@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-//import { useHistory } from 'react-router-dom';
-//import CheckAuth from '../../services/CheckAuth';
+import { useHistory } from 'react-router-dom';
 
 
 const EventRegFormStyles = styled.div`
@@ -130,7 +129,7 @@ body {
 const EventRegForm = () => {
 
 
-   // let history = useHistory();  //Used to track page route history
+    let history = useHistory();  //Used to track page route history
 
 
     const [isSubmitComplete, setIsSubmitComplete] = useState(false);
@@ -187,12 +186,14 @@ const EventRegForm = () => {
                 console.log(response.status);
                 if (response.status === 401) {
                     console.log("No token or must be logged in");
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     //console.log(response);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
-                        console.log("this profile is not a farmer");
+                        console.log("this user is not a farmer");
+                        history.push('/users/profile');
                     }
 
                     setEventArr(prevArr => {
@@ -200,14 +201,16 @@ const EventRegForm = () => {
                         return newArr;
                     });
 
-                    setCalcEventId(parseInt(response.data.userFarms.farmEvent.length)+1); //sets eventId for form entry
+                    setCalcEventId(parseInt(response.data.userFarms.farmEvent.length) + 1); //sets eventId for form entry
                 }
                 else {
                     console.log(`Unable to get farm event info; error status: ${response.status} `);
+                    history.push('/users/login');
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
+                history.push('/users/login');
             });
 
     }, []);
@@ -249,7 +252,7 @@ const EventRegForm = () => {
                 'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
             };
             //post to login in API to auth user and get token
-            axios.put('http://localhost:5000/api/users/update', {'farmEvent': eventArr }, { 'headers': myHeaders })
+            axios.put('http://localhost:5000/api/users/update', { 'farmEvent': eventArr }, { 'headers': myHeaders })
                 .then(function (response) {
                     console.log(response);
                     if (response.status === 200) {
@@ -280,42 +283,42 @@ const EventRegForm = () => {
         <EventRegFormStyles>
             <div className='event-form-content'>
                 <form className='form' onSubmit={submitHandler}>
-                            <h2 className='form-title'>Create Farmer Market Event</h2>
-                                <div className='form-field'>
-                                    <label className="form-label">Event Name</label>
-                                    <input type='text' value={enteredEventName} onChange={eventNameChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event Address</label>
-                                    <input type='text' value={enteredEventAddress} onChange={eventAddressChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event City</label>
-                                    <input type='text' value={enteredEventCity} onChange={eventCityChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event State</label>
-                                    <input type='text' value={enteredEventState} onChange={eventStateChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event Zip</label>
-                                    <input type='text' value={enteredEventZip} onChange={eventZipChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event Start Date</label>
-                                    <input type='date' value={enteredEventStartDate} onChange={eventStartDateChangeHandler} />
-                                </div>
-                                <div className='form-field'>
-                                    <label className="form-label">Event Finish Date</label>
-                                    <input type='date' value={enteredEventFinishDate} onChange={eventFinishDateChangeHandler} />
-                                </div>
-                                {/* <div className='login__control'>
+                    <h2 className='form-title'>Create Farmer Market Event</h2>
+                    <div className='form-field'>
+                        <label className="form-label">Event Name</label>
+                        <input type='text' value={enteredEventName} onChange={eventNameChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event Address</label>
+                        <input type='text' value={enteredEventAddress} onChange={eventAddressChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event City</label>
+                        <input type='text' value={enteredEventCity} onChange={eventCityChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event State</label>
+                        <input type='text' value={enteredEventState} onChange={eventStateChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event Zip</label>
+                        <input type='text' value={enteredEventZip} onChange={eventZipChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event Start Date</label>
+                        <input type='date' value={enteredEventStartDate} onChange={eventStartDateChangeHandler} />
+                    </div>
+                    <div className='form-field'>
+                        <label className="form-label">Event Finish Date</label>
+                        <input type='date' value={enteredEventFinishDate} onChange={eventFinishDateChangeHandler} />
+                    </div>
+                    {/* <div className='login__control'>
                                     <label>Event Image</label>
                                     <input type='text' value={enteredEventImage} onChange={eventImageChangeHandler} />
                                 </div> */}
-                        <div className="btn-field">
-                            <button className="btn" type='submit'>Submit</button>
-                        </div>
+                    <div className="btn-field">
+                        <button className="btn" type='submit'>Submit</button>
+                    </div>
                 </form>
             </div>
         </EventRegFormStyles>

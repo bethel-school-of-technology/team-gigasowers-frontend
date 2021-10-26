@@ -186,6 +186,7 @@ const UserInfoUpdate = () => {
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
+                history.push('/users/login');
             });
     }, []);
 

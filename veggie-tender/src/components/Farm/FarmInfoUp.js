@@ -176,11 +176,13 @@ const FarmInfoUpdate = () => {
                 }
                 else {
                     console.log(`Unable to get farm info; error status: ${response.status} `);
+                    history.push('/users/profile');
                 }
 
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
+                history.push('/users/login');
             });
     }, []);
 

@@ -57,7 +57,7 @@ const LoginToggle = () => {
         //checkAuth for valid token will go here
         let validToken = await CheckAuth();
         if (!validToken) {
-            console.log("validToken returned false or undefined");
+            console.log("Not a validToken");
             setLoginStatus(false);
             setFarmerStatus('');
             setAdminStatus('');
