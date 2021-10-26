@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'; //{useState, useEffect}
 import styled from 'styled-components';
 import { PhotoPlaceholder } from 'react-placeholder-image';
-import { Link, useLocation } from 'react-router-dom';
+import { Link} from 'react-router-dom'; //, useLocation 
 
 
 
@@ -135,11 +135,11 @@ const CardStyles = styled.div`
 
 
 
-const cards = document.querySelectorAll(".cardsTop");
-    function flipCard() {
-    this.classList.toggle("flip");
-    }
-    cards.forEach((card) => card.addEventListener("click", flipCard));
+// const cards = document.querySelectorAll(".cardsTop");
+//     function flipCard() {
+//     this.classList.toggle("flip");
+//     }
+//     cards.forEach((card) => card.addEventListener("click", flipCard));
 
 
 
@@ -178,7 +178,7 @@ export default function Card() {
         console.error(error);
         }
 
-        
+        // export default response;
     }
 
     
@@ -196,6 +196,12 @@ export default function Card() {
                         state: { 'fProduct': props.farmProduct }.
                         console.log(pathname)
                     }}> */}
+                    <Link to={{
+                    pathname: '/users/farmDetailPage',
+                    state: { 'selectedFarm': currentUser.userFarms }
+                    }}>
+                    {/* <Link to=""> */}
+
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
@@ -204,6 +210,7 @@ export default function Card() {
                                 <strong> {currentUser.userFarms.farmState}</strong>
                             </p>
                         </div>
+
                         {/* <div className="cardBack">
                             <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
                             <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
@@ -211,7 +218,7 @@ export default function Card() {
                             <p className="cardDes">{currentUser.userFarms.farmCity}</p>
                         </div> */}
                     {/* </Link> */}
-
+                    </Link>
                     </div>
                 </div>
                 

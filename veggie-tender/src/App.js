@@ -14,8 +14,11 @@ import veggieBackFade from './assets/images/veggieBackFade.png';
 import EventReg from './pages/EventReg';
 import FarmEvents from './pages/FarmEvents';
 import ProductReg from './components/ProductInventory/ProductRegForm';
+//import farmDetails from './';
+import FarmDetail from '../src/components/Landing/FarmDetails';
 import ProductUp from './pages/ProductUp';
 import Mascot from './components/Navbar/Mascot';
+
 
 
 export default function App() {
@@ -102,6 +105,12 @@ export default function App() {
                                           <Navbar />
                                           <Mascot />
                                           <Landing />
+                                    </Route>
+                              </Switch>
+                              <Switch>
+                                    <Route path="/users/farmDetailPage">
+                                          <Navbar />
+                                          <FarmDetail />
                                     </Route>
                               </Switch>
                         </div>
