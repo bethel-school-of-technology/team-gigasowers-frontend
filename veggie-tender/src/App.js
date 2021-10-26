@@ -10,13 +10,14 @@ import UserProfile from "./pages/UserProfile";
 import FarmProfile from "./pages/FarmProfile";
 import FarmProfileUp from "./pages/FarmProfileUp";
 import UserProfileUp from "./pages/UserProfileUp";
-// import Mascot from "./components/Mascot";
 import veggieBackFade from './assets/images/veggieBackFade.png';
 import EventReg from './pages/EventReg';
 import FarmEvents from './pages/FarmEvents';
 import ProductReg from './components/ProductInventory/ProductRegForm';
 //import farmDetails from './';
 import FarmDetail from '../src/components/Landing/FarmDetails';
+import ProductUp from './pages/ProductUp';
+import Mascot from './components/Navbar/Mascot';
 
 
 
@@ -94,13 +95,20 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
+                                    <Route path="/users/productUpdate">
+                                          <Navbar />
+                                          <ProductUp />
+                                    </Route>
+                              </Switch>
+                              <Switch>
                                     <Route exact path="/">
                                           <Navbar />
+                                          <Mascot />
                                           <Landing />
                                     </Route>
                               </Switch>
                               <Switch>
-                                    <Route path="/users/FarmDetailPage">
+                                    <Route path="/users/farmDetailPage">
                                           <Navbar />
                                           <FarmDetail />
                                     </Route>

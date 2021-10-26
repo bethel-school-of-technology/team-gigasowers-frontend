@@ -6,7 +6,7 @@ import styled from 'styled-components';
 //import CheckAuth from '../../services/CheckAuth';
 
 
-const LoginFormStyles = styled.div`
+const EventRegFormStyles = styled.div`
 padding-top: 5rem;
 font-size: 1.1rem;
 
@@ -277,7 +277,7 @@ const EventRegForm = () => {
 
 
     return (
-        <LoginFormStyles>
+        <EventRegFormStyles>
             <div className='event-form-content'>
                 <form className='form' onSubmit={submitHandler}>
                             <h2 className='form-title'>Create Farmer Market Event</h2>
@@ -318,7 +318,7 @@ const EventRegForm = () => {
                         </div>
                 </form>
             </div>
-        </LoginFormStyles>
+        </EventRegFormStyles>
     )
 };
 

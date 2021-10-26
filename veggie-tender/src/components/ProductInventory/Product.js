@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 
-const FarmInfoStyles = styled.div`
+const ProductStyles = styled.div`
 font-family: 'MontserratRegular';
 * {
     box-sizing: border-box;
@@ -88,12 +88,16 @@ const Product = (props) => {
 
 
     return (
-        <FarmInfoStyles>
+        <ProductStyles>
+
             <div className="container">
                 <div className="info_float">
                     <div className="farmProducts"> 
                         <div classname="eachProduct" key={props.farmProduct.productId}>
-                                <Link type="button" className="btn" fProduct={props.farmProduct}>Edit Product</Link>
+                                <Link to={{
+                                 pathname: '/users/productUpdate',
+                                state: { 'fProduct': props.farmProduct }
+                                 }}>Edit Product Info</Link>
                                 <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
                                 <h4>{props.farmProduct.productDescription}</h4>
                                 <h4>Quantity Available: {props.farmProduct.productQty}</h4>
@@ -102,7 +106,7 @@ const Product = (props) => {
                     </div>
                 </div>  
             </div>    
-        </FarmInfoStyles >
+        </ProductStyles >
     )
 }
 

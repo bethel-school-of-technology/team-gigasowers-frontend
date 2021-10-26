@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const MascotStyles = styled.div`
 .body {
     margin-top: -11rem;
-    margin-left: 4rem;
+    margin-left: 34rem;
     padding: 0;
     width:300px;
     height:300px;

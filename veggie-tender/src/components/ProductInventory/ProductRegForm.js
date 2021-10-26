@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
-//import { useHistory } from 'react-router-dom';
-//import CheckAuth from '../../services/CheckAuth';
+import { useHistory } from 'react-router-dom';
 
 
-const LoginFormStyles = styled.div`
+
+const ProductRegStyles = styled.div`
 padding-top: 5rem;
 font-size: 1.1rem;
 
@@ -129,17 +129,8 @@ body {
 
 const ProductRegForm = () => {
 
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned null or undefined");
-    //    // history.push('/users/login');
-    // } else {
-    //     console.log(validToken);
-    // }
 
-    //let history = useHistory();  //Used to track page route history
-
-
+    let history = useHistory();  //Used to track page route history
 
     const [isSubmitComplete, setIsSubmitComplete] = useState(false);
     let tempArr = [];   
@@ -184,15 +175,17 @@ const ProductRegForm = () => {
         axios.get('http://localhost:5000/api/users/profile',
             { 'headers': myHeaders })
             .then(function (response) {
-                console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
+                    console.log(response.status);
                     console.log("No token or must be logged in");
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
-                    //console.log(response);
+                    console.log(response.status);
                     //validate this profile is a farmer
                     if (!response.data.isFarmer) {
                         console.log("this profile is not a farmer");
+                        history.push('/users/profile');
                     }
 
                     setProductArr(prevArr => {
@@ -240,7 +233,7 @@ const ProductRegForm = () => {
 
     useEffect(() => {
         if (isSubmitComplete) {
-            console.log(productArr);
+            //console.log(productArr);
             //set JWT token into header for server side authentication
             let myHeaders = {
                 'Authorization': `Bearer ${localStorage.getItem("vegToken")}`
@@ -250,6 +243,7 @@ const ProductRegForm = () => {
                 .then(function (response) {
                     console.log(response);
                     if (response.status === 200) {
+                        console.log(response.status);
                     } else {
                         console.log(`Product update error response received: ${response.status} `);
                     }
@@ -265,6 +259,8 @@ const ProductRegForm = () => {
             setProductQty('');
             setProductUnitPrice('');
             //setProductImage('');
+
+            history.goBack();
   
 
         }
@@ -273,7 +269,7 @@ const ProductRegForm = () => {
 
 
     return (
-        <LoginFormStyles>
+        <ProductRegStyles>
             <div className='product-form-content'>
                 <form className='form' onSubmit={submitHandler}>
                         <h2 className='form-title'>Add A Farm Product</h2>
@@ -306,7 +302,7 @@ const ProductRegForm = () => {
                         </div>
                 </form>
             </div>
-        </LoginFormStyles>
+        </ProductRegStyles>
     )
 };
 

@@ -23,8 +23,8 @@ const CheckAuth = async () => {
             if (response.status === 200) {
                 //user has a valid token; return the userName 
                 result = response.data;
-                console.log("CheckAuth result: ");
-                console.log(result);
+               //console.log("CheckAuth result: ");
+               // console.log(result);
                 return result;
             }
             else {
