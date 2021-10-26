@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { Link, useHistory } from 'react-router-dom';
-import CheckAuth from '../../services/CheckAuth';
+import { useHistory } from 'react-router-dom';
+// import CheckAuth from '../../services/CheckAuth';
 
 const UserUpdateStyles = styled.div`
 font-family: 'MontserratRegular';
@@ -52,7 +52,7 @@ body {
 .userInfoUpdate {
     margin-top: 1rem auto;
     width: 100%;
-    height: 100%;
+    height: 95%;
     background-color: var(--cream);
     border: 5px solid var(--dk-green);
     border-radius: 12px;
@@ -66,6 +66,7 @@ body {
 }
 .pageTitle{
     font-size: 1.25rem;
+    margin-bottom: 1rem;
 }
 .form-field label {
     font-family: 'MontserratRegular';
@@ -87,14 +88,16 @@ body {
 }
 .buttonSection{
     float: right;
-    margin-top: 3.5rem;
+    margin-top: 3rem;
     margin-right: -1rem; 
 }
-.btn{
+.btn-1{
     padding: .5rem;
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
+    font-family: 'MontserratRegular';
+    font-size: 1rem;
     text-decoration: none;  
 }
 
@@ -128,13 +131,6 @@ body {
 const UserInfoUpdate = () => {
     let history = useHistory();
 
-    //checkAuth for valid token will go here
-    let validToken = CheckAuth();
-    if (!validToken) {
-        console.log("validToken returned false or undefined");
-        history.push('/users/login');
-    }
-
     // const [userImage, setUserImage] = useState();
     const [userName, setUserName] = useState();
     const [firstName, setFirstName] = useState();
@@ -144,6 +140,17 @@ const UserInfoUpdate = () => {
     const [state, setState] = useState();
     const [zip, setZip] = useState();
     const [email, setEmail] = useState();
+
+
+    const usernameChangeHandler = (event) => { setUserName(event.target.value) };
+    const firstNameChangeHandler = (event) => { setFirstName(event.target.value) };
+    const lastNameChangeHandler = (event) => { setLastName(event.target.value) };
+    const emailChangeHandler = (event) => { setEmail(event.target.value) };
+    const addressChangeHandler = (event) => { setAddress(event.target.value) };
+    const cityChangeHandler = (event) => { setCity(event.target.value) };
+    const stateChangeHandler = (event) => { setState(event.target.value) };
+    const zipChangeHandler = (event) => { setZip(event.target.value) };
+
 
     useEffect(() => {
         //set JWT token into header for server side authentication
@@ -155,10 +162,10 @@ const UserInfoUpdate = () => {
             { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
                     console.log("No token or must be logged in");
                     console.log(response.status.message);
-                    //history.push('/users/login');
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log("response: ");
@@ -175,24 +182,15 @@ const UserInfoUpdate = () => {
                     setEmail(response.data.email);
                 }
                 else {
-                    // setShowError(true);
                     console.log(`Unable to get user info; error status: ${response.status} `);
                 }
             })
             .catch(function (error) {
                 console.log("catch error: " + error);
-                // formErrorHandler(error.message);
             });
     }, []);
 
-    const usernameChangeHandler = (event) => {setUserName(event.target.value) };
-    const firstNameChangeHandler = (event) => {setFirstName(event.target.value) };
-    const lastNameChangeHandler = (event) => {setLastName(event.target.value) };
-    const emailChangeHandler = (event) => {setEmail(event.target.value) };
-    const addressChangeHandler = (event) => {setAddress(event.target.value) };
-    const cityChangeHandler = (event) => {setCity(event.target.value) };
-    const stateChangeHandler = (event) => {setState(event.target.value) };
-    const zipChangeHandler = (event) => {setZip(event.target.value) };
+
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -207,6 +205,8 @@ const UserInfoUpdate = () => {
             state: state,
             zip: zip
         };
+        console.log("profileData: ");
+        console.log(profileData);
 
         //set JWT token into header for server side authentication
         let myHeaders = {
@@ -217,18 +217,16 @@ const UserInfoUpdate = () => {
             { 'headers': myHeaders })
             .then(function (response) {
                 console.log(response.status);
-                if (response.status === 401) {
+                if (!response.status === 200) {
                     console.log("No token or must be logged in");
                     console.log(response.status.message);
-                    //history.push('/users/login');
+                    history.push('/users/login');
                 }
                 if (response.status === 200) {
                     console.log("directing to profile");
                     history.push('/users/profile');
                 }
                 else {
-                    // setShowError(true);
-                    // setFormErrors('Unable to register farm.')
                     console.log(`Unable to get info; error status: ${response.status} `);
                 }
 
@@ -237,6 +235,7 @@ const UserInfoUpdate = () => {
                 console.log("catch error: " + error);
                 // formErrorHandler(error.message);
             });
+
         setUserName('');
         setFirstName('');
         setLastName('');
@@ -245,7 +244,9 @@ const UserInfoUpdate = () => {
         setState('');
         setZip('');
         setEmail('');
+
     };
+
 
     return (
         <UserUpdateStyles>
@@ -254,10 +255,11 @@ const UserInfoUpdate = () => {
                     <h3 className="userImage">Image</h3>
                 </div> */}
                 <div className="info_float">
+                <h2 className="pageTitle">Update Your User Information:</h2>
                     <div className="userInfoUpdate">
 
                         <form id='userUpdate' className='form' onSubmit={submitHandler}>
-                            <h2 className="pageTitle">Update Your User Information:</h2>
+                            
                             <div className='form-field'>
                                 <label className='form-label'>User Name</label>
                                 <input type='text'
@@ -324,7 +326,7 @@ const UserInfoUpdate = () => {
                                 />
                             </div>
                             <div className='buttonSection'>
-                                <Link to='/users/profile' type="button" className="btn">Update Info</Link>
+                                <button type='submit' className="btn-1">Update Info</button>
                             </div>
                         </form>
 

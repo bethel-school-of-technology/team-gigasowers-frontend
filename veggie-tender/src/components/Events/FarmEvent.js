@@ -20,8 +20,8 @@ body {
 
 .container {
         justify-content: center;
-        height: 450px;
-        max-width: 800px;
+        height: 200px;
+        max-width: 600px;
         background-color: var(--cream);
         padding: 1em;
         margin: 2rem auto;
@@ -29,26 +29,9 @@ body {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         width: 85%;
 }
-// .image_float {
-//     float: left;
-//     width: 35%;
-//     display: flex;
-//     flex-wrap: wrap;
-// }
-
-// .farmImage {
-//     margin: 2rem auto;
-//     width: 250px;
-//     height: 250px;
-//     border-radius: 50%;
-//     // display: flex;
-//     // flex-wrap: wrap;
-//     border: 5px dashed var(--terra);
-//     background-color: grey; 
-// }
 .info_float {
     width: 100%;
-    height: 90%;
+    height: 100%;
     display: block;
 }
 .farmEvents {
@@ -56,7 +39,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--cream);
-    border: 5px solid var(--md-gg);
+    border: 5px solid var(--lt-navy);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: left;
@@ -64,49 +47,25 @@ body {
 .eachEvent{
     display: inline-block;
 }
-.buttonSection{
-    width: 100%; 
-}
 .btn {
-    float:right;
-    margin-top: -2rem;
+    margin-top: 0.5rem;
+    float: left;
     padding: .5rem;
     background-color: var(--terra);
     border: 3px solid var(--terra);
     border-radius: 12px;
     text-decoration: none;
 }
+.btn:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
+}
 
-.btn-1{
-    float: left;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--dk-mustard);
-    border: 3px solid var(--dk-mustard);
-    border-radius: 12px;
-    text-decoration: none; 
-}
-.btn-2{
-    float: right;
-    padding: .5rem;
-    margin-top: 0.5rem;
-    background-color: var(--coral);
-    border: 3px solid var(--coral);
-    border-radius: 12px;
-    text-decoration: none; 
-}
 
 @media only screen and (max-width: 768px) {
-    .container {
-        display: block;
-        flex-direction: column;
-        height: 475px;
-    }
-    .image_float {
-        width: 100%;
-        margin-left: -1rem; 
-        flex-direction: column;
-    }
+    
     .info_float {
         justify-content: center;
         width: 100%;
@@ -114,10 +73,20 @@ body {
         flex-direction: column;
         padding-left: .5rem;
     }
-    .buttonSection{
+    .eachEvents{
+        display: block;
+        max-height: 200px;
+        flex-direction: column;
+        width: 85%
+    }
+    .btn {
+        margin-top: -1rem;
         float: right;
-        margin-top: 1rem;
-        margin-right: 0rem; 
+        padding: .5rem;
+        background-color: var(--terra);
+        border: 3px solid var(--terra);
+        border-radius: 12px;
+        text-decoration: none;
     }
 }
 `;
@@ -135,13 +104,10 @@ const FarmEvent = (props) => {
                 <div className="info_float">
                     <div className="farmEvents">
                         <div classname="eachEvents" key={props.farmEvent.eventId}>
-                                <h3>{props.farmEvent.eventName}</h3>
+                                <h3>{props.farmEvent.eventName} / {props.farmEvent.eventStartDate} - {props.farmEvent.eventFinishDate}</h3>
                                 <h3>{props.farmEvent.eventAddress}</h3>
-                                <h3>{props.farmEvent.eventCity}</h3>
-                                <h3>{props.farmEvent.eventState}</h3>
-                                <h3>{props.farmEvent.eventZip}</h3>
-                                <h3>{props.farmEvent.eventStartDate}</h3>
-                                <h3>{props.farmEvent.eventFinishDate}</h3>
+                                <h3>{props.farmEvent.eventCity} {props.farmEvent.eventState} {props.farmEvent.eventZip}</h3>
+
                             <Link type="button" className="btn" fEvent={props.farmEvent}>Edit Event Info</Link>
                         </div>
                     </div>

@@ -3,13 +3,17 @@ import styled from 'styled-components';
 
 const MascotStyles = styled.div`
 .body {
-    background: clear;
-    margin: 0;
+    margin-top: -11rem;
+    margin-left: 4rem;
     padding: 0;
+    width:300px;
+    height:300px;
+    border-radius: 50%;
+    
   }
   
   .hit-area {
-    position: relative;
+    position: absolute;
     width: 500px;
     height: 500px;
     margin: 0 auto;
@@ -23,22 +27,22 @@ const MascotStyles = styled.div`
   
   .eye {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    left: 25%;
+    left: 30%;
     top: 40%;
     background-color: white;
     pointer-events: none;
   }
   
   .eye + .eye {
-    left: 55%;
+    left: 50%;
   }
   
   .pupil {
     position: relative;
-    width: 10px;
+    width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: black;
@@ -51,11 +55,11 @@ const MascotStyles = styled.div`
   
   .eyelid {
     width: 75px;
-    height: 50px;
+    height: 10px;
     background-color: black;
     position: absolute;
-    left: 20%;
-    top: 25%;
+    left: 28%;
+    top: 35%;
     pointer-events: none;
     -webkit-animation-name: blink;
     -webkit-animation-duration: 4.5s;
@@ -210,131 +214,68 @@ const MascotStyles = styled.div`
 
 
 export default function Mascot() {
-    
 
 
-    return (
-        <MascotStyles>
-            <div class="body">
-            <div class="hit-area">
-            <div class="hitbox" id="a-1"></div>
-            <div class="hitbox" id="a-2"></div>
-            <div class="hitbox" id="a-3"></div>
-            <div class="hitbox" id="a-4"></div>
-            <div class="hitbox" id="a-5"></div>
-            <div class="hitbox" id="b-1"></div>
-            <div class="hitbox" id="b-2"></div>
-            <div class="hitbox" id="b-3"></div>
-            <div class="hitbox" id="b-4"></div>
-            <div class="hitbox" id="b-5"></div>
-            <div class="hitbox" id="c-1"></div>
-            <div class="hitbox" id="c-2"></div>
-            <div class="hitbox" id="c-3"></div>
-            <div class="hitbox" id="c-4"></div>
-            <div class="hitbox" id="c-5"></div>
-            <div class="hitbox" id="d-1"></div>
-            <div class="hitbox" id="d-2"></div>
-            <div class="hitbox" id="d-3"></div>
-            <div class="hitbox" id="d-4"></div>
-            <div class="hitbox" id="d-5"></div>
-            <div class="hitbox" id="e-1"></div>
-            <div class="hitbox" id="e-2"></div>
-            <div class="hitbox" id="e-3"></div>
-            <div class="hitbox" id="e-4"></div>
-            <div class="hitbox" id="e-5"></div>
-            <div class="eye">
+
+  return (
+    <MascotStyles>
+      <div class="body">
+        <div class="hit-area">
+          <div class="hitbox" id="a-1"></div>
+          <div class="hitbox" id="a-2"></div>
+          <div class="hitbox" id="a-3"></div>
+          <div class="hitbox" id="a-4"></div>
+          <div class="hitbox" id="a-5"></div>
+          <div class="hitbox" id="b-1"></div>
+          <div class="hitbox" id="b-2"></div>
+          <div class="hitbox" id="b-3"></div>
+          <div class="hitbox" id="b-4"></div>
+          <div class="hitbox" id="b-5"></div>
+          <div class="hitbox" id="c-1"></div>
+          <div class="hitbox" id="c-2"></div>
+          <div class="hitbox" id="c-3"></div>
+          <div class="hitbox" id="c-4"></div>
+          <div class="hitbox" id="c-5"></div>
+          <div class="hitbox" id="d-1"></div>
+          <div class="hitbox" id="d-2"></div>
+          <div class="hitbox" id="d-3"></div>
+          <div class="hitbox" id="d-4"></div>
+          <div class="hitbox" id="d-5"></div>
+          <div class="hitbox" id="e-1"></div>
+          <div class="hitbox" id="e-2"></div>
+          <div class="hitbox" id="e-3"></div>
+          <div class="hitbox" id="e-4"></div>
+          <div class="hitbox" id="e-5"></div>
+          <div class="eye">
             <div class="pupil"></div>
-                </div>
-                <div class="eye">
-                    <div class="pupil"></div>
-                </div>
-                <div class="eyelid"></div>
-                <div class="eyelid"></div>
-                </div>
-            </div>
-        </MascotStyles>
-    )
+          </div>
+          <div class="eye">
+            <div class="pupil"></div>
+          </div>
+          <div class="eyelid"></div>
+          <div class="eyelid"></div>
+        </div>
+      </div>
+
+    </MascotStyles>
+  )
 }
 
 
-// var element = document.getElementById("leela-eye");
-//     document.addEventListener("mousemove", function (event) {
-//         var x = event.pageX;
-//         var y = event.pageY;   
-//         var offsets = eye.lens.getBoundingClientRect();
-//         var left = (offsets.left - x)
-//         var top = (offsets.top - y)
-//         var rad = Math.atan2(top, left);
-//         element.style.webkitTransform = "rotate(" + rad + "rad)";
-//     });
 
-
-
-
-
-// document.querySelector("body").addEventListener("mousemove", eyeball);
-// function eyeball() {
-//     var event;
-//     var eye = document.querySelectorAll(".eye");
-//     eye.forEach(function(eye) {
-//       // x & y are variables and x represents the x coordinate of the mouse and y represents the coordinate of the mouse.
-//       let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
-//       let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
-//       let radian = Math.atan2(event.pageX - x, event.pageY - y);
-//       //   rot is a variable (short for rotate)
-//       let rot = radian * (180 / Math.PI) * -1 + 270;
-//       eye.style.transform = "rotate(" + rot + "deg)";
-//     });
-//   }
-
-
-{/* <div class="hat">
-<div class="face">
-<div class="eyes">
-    <div class="eye">.</div>
-    <div class="eye">.</div>
-</div>
-</div>
-</div> */}
 
 
 {/* <div className="container">
-<div className="face">
-    <div className="eyes">
-        <div className="eye">.</div>
-        <div className="eye">.</div>
+<div className="body">
+    <div className="eye">
+        <div className="pupil">.</div>
+        <div className="pupil">.</div>
     </div>
 </div>
-</div> */}
+</div>  */}
 
 
-    //  $("face").mousemove(function(event) {
-    //     var eye = $("eye");
-    //     var x = (eye.offset().left) + (eye.width()/2);
-    //     var y = (eye.offset().top) + (eye.height()/2);
-    //     var rad = Math.atan2(event.pageX - x, event.pageY - y);
-    //     var rot = (rad * (180 / Math.PI) * -1) + 180;
-    //     eye.css({
-    //         '-webkit-transform': 'rotate(' + rot + 'deg)',
-    //         '-moz-transform': 'rotate(' + rot + 'deg)',
-    //         '-ms-transform': 'rotate(' + rot + 'deg)',
-    //         'transform': 'rotate(' + rot + 'deg)',
-    //     });
-    // });
 
-
-    // function eyeball() {
-    //     var eye = document.querySelectorAll('eye');
-    //     eye.forEach(function (eye) {
-    //         // x & y are variables and x represents the x coordinate of the mouse and y represents the coordinate of the mouse.
-    //         let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
-    //         let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
-    //         let radian = Math.atan2(eye.pageX - x, eye.pageY - y);
-    //         //   rot is a variable (short for rotate)
-    //         let rot = radian * (180 / Math.PI) * -1 + 270;
-    //         eye.style.transform = "rotate(" + rot + "deg)";
-    //     });
-    // }
 
     // *{
     //     margin: 0;
@@ -347,7 +288,7 @@ export default function Mascot() {
     //     align-items: center;
     //     min-height: 100vh;
     //     background: #abcde4;
-        
+
     // }
     // .container{
     //     display: flex;
@@ -357,7 +298,7 @@ export default function Mascot() {
     //     margin-top: 22rem;
     //     margin-right: 1rem;
     // }
-    
+
     // .face{
     //     position:relative;
     //     float: right;
@@ -368,7 +309,7 @@ export default function Mascot() {
     //     display: flex;
     //     justify-content:center;
     //     align-items: center;
-    
+
     // }
     // .face::before{
     //     content: "";
@@ -386,15 +327,15 @@ export default function Mascot() {
     //     width: 150px;
     //     height: 20px;
     //     background: #b57700;
-    
+
     // }
-    
+
     // .eyes{
     //     position: relative;
     //     top: -40px;
     //     display: flex;
     // }
-    
+
     // .eyes .eye{
     //     position: relative;
     //     width: 80px;
@@ -404,7 +345,7 @@ export default function Mascot() {
     //     margin: 0 15px;
     //     border-radius: 50%;
     // }
-    
+
     // .eyes .eye::before {
     //     content: "";
     //     position: absolute;

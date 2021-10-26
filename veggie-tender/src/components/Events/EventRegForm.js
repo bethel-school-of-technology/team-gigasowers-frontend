@@ -7,102 +7,130 @@ import styled from 'styled-components';
 
 
 const LoginFormStyles = styled.div`
-font-family: 'MontserratMedium';
+padding-top: 5rem;
+font-size: 1.1rem;
 
-.title{
-    text-transform: uppercase;
-    font-size: 1.75rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.login-form-content {
-    min-height: 100vh;
-}
-
-
-.login-shell {
-    background-color: var(--cream);
-    padding: 1rem;
-    margin: 2rem auto;
-    width: 28rem;
-    max-width: 95%;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-}
-.login__controls {
+body {
+    
+    font-family: 'MontserratRegular';
+    font-color: black;
+    font-size: 12px;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 3rem;
-    margin-top: 2rem;
-    text-align: left;
-}
-.login__control label {
-    font-family: 'MontserratRegular';
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
-    display: block;
-} 
-.login__control input {
-    font-family: 'MontserratRegular';
-    padding: .5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 20rem;
-    max-width: 100%;
-    text-align: left;
-    margin-left: 0.3rem;
-}
-.login__actions {
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.login-shell button {
+.event-form-content {
+    margin-left: 25rem;
+        justify-content: center;
+        background-color: var(--cream);
+        padding: 2rem;
+        margin: 2rem auto;
+        margin-top: -3rem;
+        // border: solid 2px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        width: 26rem;
+}
+
+
+.form-title {
+    font-family: 'MontserratRegular';
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+
+}
+
+.form-field {
+    margin-bottom: 5px;
+
+}
+
+.form-field label {
+    font-family: 'MontserratRegular';
+    display: block;
+    color: black;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.form-field input {
+    font-family: 'MontserratRegular';
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+
+.form-field input:focus {
+    outline: none;
+}
+
+.form-field.error input {
+    border-color: var(--error-color);
+}
+
+.form-field.success input {
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    font-family: 'MontserratThin'
+    color: var(--error-color);
+}
+
+
+/* button */
+.btn-field {
+    padding-top: 1rem;
+}
+.btn {
+    width: 100%;
+    padding: 3%;
+    background: var(--terra);
+    border-bottom: 2px solid var(--terra);
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
     font-family: 'MontserratRegular';
     font-size: 16px;
-    cursor: pointer;
-    padding: 1rem 2rem;
-    border: 1px solid var(--terra);
-    background-color: var(--terra);
-    color: white;
-    border-radius: 12px;
-    /* margin-right: 1rem; */
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
 }
 
-.login-shell button:hover,
-.login-shell button:active {
+.btn:hover {
     background-color: var(--greybrwn);
     border-color: var(--greybrwn);
-}
-.login-shell button.alternative {
-    color: #220131;
-    border-color: transparent;
-    background-color: transparent;
+    cursor: pointer;
 }
 
-.login-shell button.alternative:hover,
-.login-shell button.alternative:active {
-    background-color: #ddb3f8;
+.btn:focus {
+    outline: none;
 }
 `;
 
 const EventRegForm = () => {
 
-    // let validToken = CheckAuth();
-    // if (!validToken) {
-    //     console.log("validToken returned null or undefined");
-    //    // history.push('/users/login');
-    // } else {
-    //     console.log(validToken);
-    // }
 
    // let history = useHistory();  //Used to track page route history
-
 
 
     const [isSubmitComplete, setIsSubmitComplete] = useState(false);
@@ -250,50 +278,44 @@ const EventRegForm = () => {
 
     return (
         <LoginFormStyles>
-            <div className='login-form-content'>
-                <form onSubmit={submitHandler}>
-                    <div className='login-shell'>
-                        <div >
-                            <h1 className='title'>Create Farmer Market Event</h1>
-                            <div className='login__controls'>
-                                <div className='login__control'>
-                                    <label>Event Name</label>
+            <div className='event-form-content'>
+                <form className='form' onSubmit={submitHandler}>
+                            <h2 className='form-title'>Create Farmer Market Event</h2>
+                                <div className='form-field'>
+                                    <label className="form-label">Event Name</label>
                                     <input type='text' value={enteredEventName} onChange={eventNameChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event Address</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event Address</label>
                                     <input type='text' value={enteredEventAddress} onChange={eventAddressChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event City</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event City</label>
                                     <input type='text' value={enteredEventCity} onChange={eventCityChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event State</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event State</label>
                                     <input type='text' value={enteredEventState} onChange={eventStateChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event Zip</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event Zip</label>
                                     <input type='text' value={enteredEventZip} onChange={eventZipChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event Start Date</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event Start Date</label>
                                     <input type='date' value={enteredEventStartDate} onChange={eventStartDateChangeHandler} />
                                 </div>
-                                <div className='login__control'>
-                                    <label>Event Finish Date</label>
+                                <div className='form-field'>
+                                    <label className="form-label">Event Finish Date</label>
                                     <input type='date' value={enteredEventFinishDate} onChange={eventFinishDateChangeHandler} />
                                 </div>
                                 {/* <div className='login__control'>
                                     <label>Event Image</label>
                                     <input type='text' value={enteredEventImage} onChange={eventImageChangeHandler} />
                                 </div> */}
-                            </div>
+                        <div className="btn-field">
+                            <button className="btn" type='submit'>Submit</button>
                         </div>
-                        <div className="login__actions">
-                            <button type='submit'>Submit</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </LoginFormStyles>
