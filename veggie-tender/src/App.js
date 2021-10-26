@@ -66,6 +66,12 @@ export default function App() {
                                     </Route>
                               </Switch>
                               <Switch>
+                                    <Route path="/users/farmDetailPage">
+                                          <Navbar />
+                                          <FarmDetail />
+                                    </Route>
+                              </Switch>
+                              <Switch>
                                     <Route path="/users/events">
                                           <Navbar />
                                           <FarmEvents />
@@ -108,12 +114,7 @@ export default function App() {
                                           <Landing />
                                     </Route>
                               </Switch>
-                              <Switch>
-                                    <Route path="/users/farmDetailPage">
-                                          <Navbar />
-                                          <FarmDetail />
-                                    </Route>
-                              </Switch>
+                              
                         </div>
                   </div>
             </Router>
