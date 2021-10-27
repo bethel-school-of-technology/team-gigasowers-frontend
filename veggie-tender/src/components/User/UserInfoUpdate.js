@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import axios from "axios";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const UserUpdateStyles = styled.div`
 font-family: 'MontserratRegular';

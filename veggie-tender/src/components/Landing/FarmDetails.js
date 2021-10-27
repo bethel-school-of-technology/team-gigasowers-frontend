@@ -78,10 +78,10 @@ body {
 
 .produceContainer {
     justify-content: center;
-    height: 200px;
+    height: 100%;
     background-color: var(--cream);
     padding: 1em;
-    margin: 2rem auto;
+    margin: 1rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     width: 50%;
@@ -92,7 +92,6 @@ height: 100%;
 display: block;
 }
 .farmProducts {
-    margin-top: 1rem auto;
     width: 100%;
     height: 80%;
     background-color: var(--cream);
@@ -111,32 +110,34 @@ display: inline-block;
 
 .eventsContainer {
     justify-content: center;
-    height: 200px;
+    height: 100%;
     background-color: var(--cream);
     padding: 1em;
-    margin: 2rem auto;
+    margin: 1rem auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     width: 50%;
 }
 .events_info_float {
-float: right;
 width: 100%;
 height: 100%;
 display: block;
 }
 .farmEvents {
-margin-top: 1rem auto;
 width: 100%;
-height: 80%;
+height: 70%;
 background-color: var(--cream);
 border: 5px solid var(--lt-navy);
 border-radius: 12px;
-padding: 1.5rem;
+padding: 1rem;
 text-align: left;
 }
 .eachEvent{
 display: inline-block;
+}
+.line{
+    margin-top:0.5rem;
+    border: 1px solid
 }
 
 @media only screen and (max-width: 1000px) {
@@ -150,7 +151,6 @@ display: inline-block;
         width: 100%;
         flex-direction: column;
     }
-
     .info_float {
         justify-content: center;
         width: 100%;
@@ -158,7 +158,6 @@ display: inline-block;
         flex-direction: column;
         padding-left: .5rem;
     }
-
     .events {
         justify-content: center;
         width: 100%;
@@ -178,16 +177,6 @@ display: inline-block;
         flex-direction: column;
         width: 85%
     }
-    .btn {
-        margin-top: -1rem;
-        float: right;
-        padding: .5rem;
-        background-color: var(--terra);
-        border: 3px solid var(--terra);
-        border-radius: 12px;
-        text-decoration: none;
-    }
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -211,19 +200,16 @@ display: inline-block;
         flex-direction: column;
         padding-left: .5rem;
     }
-
     .eventsContainer {
         display: block;
         min-width: 325px;
         flex-direction: column;
-    }
-    
+    }  
     .produceContainer {
         display: block;
         min-width: 325px;
         flex-direction: column;
     }
-    
 
 }
 `
@@ -288,32 +274,13 @@ const FarmDetails = () => {
                     <div className="farmProducts">
                         {farm.farmInventory.map((farm, 
                             index) => (
-                                <p key={index}>Current Inventory is ... <br/>   
-                                <br/> {farm.productName}
-                                <br/> {farm.productDescription}
-                                <br/> {farm.productPrice}
+                                <p key={index}> 
+                                <br/> {farm.productCategory}/ {farm.productName} -- {farm.productDescription}
+                                <br/> Cost: ${farm.productPrice}
+                                <br/> Quantity Available: {farm.productQty}
+                                <hr className="line"/>
                                 </p>
                             ))} 
-                            {/* catch (error) {
-                                console.error(error);
-                                 } */}
-
-                        {/* <div classname="eachProduct" key={props.farmProduct.productId}>
-                            {farm.map(inv => (
-                            <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
-                            <h4>{props.farmProduct.productDescription}</h4>
-                            <h4>Quantity Available: {props.farmProduct.productQty}</h4>
-                            <h4>Cost: ${props.farmProduct.productUnitPrice}</h4>
-                            <p>{farm.farmInventory[0].map}</p>
-                            <br/>
-                            <p>{farm.farmInventory[1].productCategory}</p>
-                            <br/>
-                            <h2>{farm.farmInventory[1].productName}</h2>
-                            <br/>
-                            <p>{farm.farmInventory[1].productQty}</p>
-                            <p>{farm.farmInventory[1].productUnitPrice}</p>
-                   
-                        </div>*/}
                     </div>
                 </div>
             </div>
@@ -321,38 +288,17 @@ const FarmDetails = () => {
                 <h3>Farm Events:</h3>
                 <div className="events_info_float">
                     <div className="farmEvents">
-                        Events stuff
                         {farm.farmEvent.map((farm, 
                             index) => (
-                                <p key={index}>Current Events are ... <br/>   
-                                <br/> {farm.eventName}
+                                <p key={index}>
+                                <br/> {farm.eventName} / {farm.eventStartDate} - {farm.eventFinishDate}
                                 <br/> {farm.eventAddress}
-                                <br/> {farm.eventCity}
-                                <br/> {farm.eventState}
-                                <br/> {farm.eventZip}
-                                <br/> {farm.eventStartDate}
-                                <br/> {farm.eventFinishDate}
+                                <br/> {farm.eventCity}, {farm.eventState}  {farm.eventZip}
+                                <hr className="line"/>
                                 </p>
+                                
                             ))} 
-                        {/* {this.farm.farmEvent.map((farm, 
-                            index) => (
-                                <p key={index}>Current Inventory is ... 
-                                <br/> {this.farm.farmEvent.eventName}
-                                <br/> {this.farm.farmEvent.eventAddress}
-                                <br/> {this.farm.farmEvent.eventCity}
-                                <br/> {this.farm.farmEvent.eventState}
-                                <br/> {this.farm.farmEvent.eventZip}
-                                <br/> {this.farm.farmEvent.eventStartDate}
-                                <br/> {this.farm.farmEvent.eventFinishDate}
-                                </p>
-                            ))} */}
-                        {/* <div classname="eachEvents" key={farm.farmEvent.eventId}>
-                                <strong>{farm.farmEvents}</strong>
-                                <p>{farm.farmEvents.eventId}</p>
-                                <h3>{farm.farmEvent.eventName} / {farm.farmEvent.eventStartDate} - {farm.farmEvent.eventFinishDate}</h3>
-                                <h3>{farm.farmEvent.eventAddress}</h3>
-                                <h3>{farm.farmEvent.eventCity} {farm.farmEvent.eventState} {farm.farmEvent.eventZip}</h3>
-                        </div> */}
+                        
                     </div>
                 </div>
             </div>
