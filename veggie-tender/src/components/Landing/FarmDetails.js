@@ -1,6 +1,6 @@
 //import { SignalWifi1BarLock } from '@material-ui/icons';
 import axios from 'axios';
-import React from 'react'; //, { useState, useEffect }
+import React, {useState, useEffect} from 'react'; //, { useState, useEffect }
 import { PhotoPlaceholder } from 'react-placeholder-image';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -232,7 +232,7 @@ display: inline-block;
 const FarmDetails = () => {
     //const =>  FarmDetails() {
     //export default function FarmDetails() {
-
+    const [farmIn, setFarmIn] = useState([])
     const location = useLocation();
     console.log("selectedFarm Received: ");
     console.log(location.state?.selectedFarm);
@@ -240,6 +240,17 @@ const FarmDetails = () => {
 
     console.log("logging inventory");
     console.log(farm.farmInventory);
+
+    useEffect(async () => {
+
+ 
+        setFarmIn(farm.farmInventory);
+        console.log("logging inventory2");
+        console.log(farmIn)
+        console.log(farm.farmInventory)
+    }, [])
+
+    
 
 
     return (
@@ -275,6 +286,18 @@ const FarmDetails = () => {
                 <h3>Current Produce:</h3>
                 <div className="produce_info_float">
                     <div className="farmProducts">
+                        {farm.farmInventory.map((farm, 
+                            index) => (
+                                <p key={index}>Current Inventory is ... <br/>   
+                                <br/> {farm.productName}
+                                <br/> {farm.productDescription}
+                                <br/> {farm.productPrice}
+                                </p>
+                            ))} 
+                            {/* catch (error) {
+                                console.error(error);
+                                 } */}
+
                         {/* <div classname="eachProduct" key={props.farmProduct.productId}>
                             {farm.map(inv => (
                             <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
@@ -290,7 +313,7 @@ const FarmDetails = () => {
                             <p>{farm.farmInventory[1].productQty}</p>
                             <p>{farm.farmInventory[1].productUnitPrice}</p>
                    
-                        </div> */}
+                        </div>*/}
                     </div>
                 </div>
             </div>
@@ -298,6 +321,31 @@ const FarmDetails = () => {
                 <h3>Farm Events:</h3>
                 <div className="events_info_float">
                     <div className="farmEvents">
+                        Events stuff
+                        {farm.farmEvent.map((farm, 
+                            index) => (
+                                <p key={index}>Current Events are ... <br/>   
+                                <br/> {farm.eventName}
+                                <br/> {farm.eventAddress}
+                                <br/> {farm.eventCity}
+                                <br/> {farm.eventState}
+                                <br/> {farm.eventZip}
+                                <br/> {farm.eventStartDate}
+                                <br/> {farm.eventFinishDate}
+                                </p>
+                            ))} 
+                        {/* {this.farm.farmEvent.map((farm, 
+                            index) => (
+                                <p key={index}>Current Inventory is ... 
+                                <br/> {this.farm.farmEvent.eventName}
+                                <br/> {this.farm.farmEvent.eventAddress}
+                                <br/> {this.farm.farmEvent.eventCity}
+                                <br/> {this.farm.farmEvent.eventState}
+                                <br/> {this.farm.farmEvent.eventZip}
+                                <br/> {this.farm.farmEvent.eventStartDate}
+                                <br/> {this.farm.farmEvent.eventFinishDate}
+                                </p>
+                            ))} */}
                         {/* <div classname="eachEvents" key={farm.farmEvent.eventId}>
                                 <strong>{farm.farmEvents}</strong>
                                 <p>{farm.farmEvents.eventId}</p>
