@@ -98,6 +98,12 @@ body {
     font-size: 1rem;
     text-decoration: none;  
 }
+.btn:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 768px) {
     .container {

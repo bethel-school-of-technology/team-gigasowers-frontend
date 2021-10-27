@@ -87,6 +87,7 @@ font-family: 'MontserratMedium';
 .login-shell button.alternative:active {
     background-color: #ddb3f8;
 }
+
 `;
 
 const ProductUpdate = () => {

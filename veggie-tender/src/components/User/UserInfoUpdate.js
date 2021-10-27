@@ -99,6 +99,12 @@ body {
     font-size: 1rem;
     text-decoration: none;  
 }
+.btn-1:hover {
+    background-color: var(--greybrwn);
+    border-color: var(--greybrwn);
+    color: white;
+    cursor: pointer;
+}
 
 
 @media only screen and (max-width: 768px) {

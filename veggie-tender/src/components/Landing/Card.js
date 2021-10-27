@@ -135,12 +135,6 @@ const CardStyles = styled.div`
 
 
 
-// const cards = document.querySelectorAll(".cardsTop");
-//     function flipCard() {
-//     this.classList.toggle("flip");
-//     }
-//     cards.forEach((card) => card.addEventListener("click", flipCard));
-
 
 
 export default function Card() {
@@ -159,21 +153,6 @@ export default function Card() {
         console.log(response.data)
         setUser(response.data)
 
-        // const location = useLocation();
-        // let i;
-        // while(i=1){
-        //     for(let w=0; w < response.length; w++){
-        //         console.log("ProductUpdate Received: ");
-        //         console.log(location.state?.fProduct);
-        //     }
-        // }
-        //   for (let i = 0; i < response.length; i++) {
-        //       console.log(response[i].userF)
-        //   }
-        //  response = await axios.get('/farms.farmDescription');
-        //   console.log(response);
-        //  response = await axios.get('/farms.farmId');
-        //   console.log(response);
         } catch (error) {
         console.error(error);
         }
@@ -229,99 +208,3 @@ export default function Card() {
     )
 }
 
-
-// <Link to={{
-//                     pathname: '/users/productUpdate',
-//                     state: { 'fProduct': props.farmProduct }
-//                 }}>Edit Product Info</Link>
-
-// href="/users/profile/{data.farmProfile}">
-
-
-
-// <div class="flip-card">
-//                     <div class="flip-card-inner">
-//                         <div class="flip-card-back"></div>
-//                             <div className="cardWrapper">
-//                                 <div className="cardBody">
-//                                     <div className="cardImg">
-//                                         <PhotoPlaceholder width={330} height={155} />
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <div class="flip-card-front">
-//                             <div className="cardWords">
-//                                 <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
-//                                 <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
-//                                 <p className="cardDes">{currentUser.userFarms.farmState}</p>
-//                                 <p className="cardDes">{currentUser.userFarms.farmCity}</p>
-//                             </div>
-//                         </div>
-//                     </div>
-
-
-
-//<button className="cardBut">Buttonです</button>
-//<div>{currentUser.userFarms.farmId}</div>
-                            //<p className="cardDes">{currentUser.userFarms.farmDescription}</p>
-
-    // farmName = 'Farm Name',
-    // farmDescription = 'Farm Details',
-    // farmAddress = 'Farm Address',
-    // farmCity = "Farm City",
-    // farmState = "Farm State",
-    // farmWebsite = "Farm Website",
-    // farmEmail = "Farm Email",
-
-// }){
-    // const [repo, setRepo] = useState([]);
-    
-
-    // const getRepo = () => {
-    // axios.get('localhost:5000/api/users/farms')
-    // .then((response) => {
-    //     console.log(response);
-    //     const myRepo = response.data;
-    //     setRepo(myRepo);
-    // });
-    // };
-
-    // useEffect (() => getRepo(), []);
-
-
-    // farmId = 'farm ID',
-    // farmName = 'Farm Name',
-    // farmDescription = 'Farm Details',
-    // farmCity = "Farm City",
-
-    // function componentDidMount() {
-    //     fetch('localhost:5000/api/users/farms')
-    //         .then(response => response.json())
-    //         .then(data => this.setState({ totalReactPackages: data.total }));
-    // }
-
-    // useEffect(() => {
-    //     // GET request using fetch inside useEffect React hook
-    //     fetch('https://localhost:5000/api/users/farms')
-    //         .then(response => response.json())
-    //         .then(data => setTotalReactPackages(data.total));
-    // }, []);
-
-    // axios.get('/farms', {
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
-//     axios.get('localhost:5000/api/users/farms')
-//   .then((response) => {
-    
-//     console.log(response);
-//   })
-//   .catch((error) => {
-  
-//   })

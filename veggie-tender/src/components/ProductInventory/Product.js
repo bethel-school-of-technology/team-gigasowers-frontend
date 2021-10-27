@@ -108,7 +108,7 @@ const Product = (props) => {
                                 <h3>{props.farmProduct.productCategory} -- {props.farmProduct.productName}</h3>
                                 <h4>{props.farmProduct.productDescription}</h4>
                                 <h4>Quantity Available: {props.farmProduct.productQty}</h4>
-                                <h4>Cost: ${props.farmProduct.productUnitPrice}</h4>
+                                <h4>Unit Price: ${props.farmProduct.productUnitPrice}</h4>
                             </div>
                         </div>
                     </div>

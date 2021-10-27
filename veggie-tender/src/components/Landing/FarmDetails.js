@@ -137,7 +137,7 @@ display: inline-block;
 }
 .line{
     margin-top:0.5rem;
-    border: 1px solid
+    border: 1px solid var(--terra);
 }
 
 @media only screen and (max-width: 1000px) {
@@ -276,7 +276,7 @@ const FarmDetails = () => {
                             index) => (
                                 <p key={index}> 
                                 <br/> {farm.productCategory}/ {farm.productName} -- {farm.productDescription}
-                                <br/> Cost: ${farm.productPrice}
+                                <br/> Unit Price: ${farm.productUnitPrice}
                                 <br/> Quantity Available: {farm.productQty}
                                 <hr className="line"/>
                                 </p>
