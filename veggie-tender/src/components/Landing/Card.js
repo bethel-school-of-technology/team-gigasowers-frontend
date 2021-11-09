@@ -48,7 +48,7 @@ const CardStyles = styled.div`
 .cards {
     display: flex;
     flex: wrap;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -59,7 +59,7 @@ const CardStyles = styled.div`
     background: var(--gray-green);
     display: flex;
     flex-direction: column;
-    margin-top: 45px;
+    margin-top: 20px;
     border-radius: 16px;
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
     cursor: pointer;
@@ -157,7 +157,7 @@ export default function Card() {
         console.error(error);
         }
 
-        
+        // export default response;
     }
 
     
@@ -165,14 +165,21 @@ export default function Card() {
         <CardStyles>
             <div className="bigWrapper">
             {user.map(currentUser => (  
+                //<link to="users/farmProfile">    className="d-flex flex-wrap"> console.log(currentUser.userFarms.farmId)
+                // console.log("ProductUpdate Received: ", location.state?.fProduct)
+
                 <div className="cards">
                     <div className="card">
-                
+                    {/* <Link to={{
+                        pathname: '/users/productUpdate',
+                        state: { 'fProduct': props.farmProduct }.
+                        console.log(pathname)
+                    }}> */}
                     <Link to={{
                     pathname: '/users/farmDetailPage',
                     state: { 'selectedFarm': currentUser.userFarms }
                     }}>
-                  
+                    {/* <Link to=""> */}
 
                         <div className="cardTop">
                             <PhotoPlaceholder width={350} height={250} className="cardImg"/>
@@ -183,6 +190,13 @@ export default function Card() {
                             </p>
                         </div>
 
+                        {/* <div className="cardBack">
+                            <h2 className="cardName">{currentUser.userFarms.farmName}</h2>
+                            <p className="cardDes">{currentUser.userFarms.farmDescription}</p>
+                            <p className="cardDes">{currentUser.userFarms.farmState}</p>
+                            <p className="cardDes">{currentUser.userFarms.farmCity}</p>
+                        </div> */}
+                    {/* </Link> */}
                     </Link>
                     </div>
                 </div>

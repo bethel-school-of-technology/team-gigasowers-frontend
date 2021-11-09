@@ -1,5 +1,6 @@
-
-import React, {useState, useEffect} from 'react';
+//import { SignalWifi1BarLock } from '@material-ui/icons';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react'; //, { useState, useEffect }
 import { PhotoPlaceholder } from 'react-placeholder-image';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -215,7 +216,8 @@ display: inline-block;
 
 
 const FarmDetails = () => {
-  
+    //const =>  FarmDetails() {
+    //export default function FarmDetails() {
     const [farmIn, setFarmIn] = useState([])
     const location = useLocation();
     console.log("selectedFarm Received: ");
